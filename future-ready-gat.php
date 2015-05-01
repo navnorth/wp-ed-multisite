@@ -25,17 +25,15 @@
  */
 define( 'GAT_PATH' , plugin_dir_path(__FILE__) );
 define( 'GAT_URL' , plugin_dir_url(__FILE__) );
+define( 'PLUGIN_DOMAIN' , 'wp-gap-analysis' );
 
+include_once( GAT_PATH ."/includes/init.php" );
 include_once( GAT_PATH ."/includes/assessment.php" );
 
 //Register our menus in WP Admin
 function register_gat_admin_menus(){
-    // Add Assesment menu and sub-menus
-    add_menu_page( 'Assessment' , 'Assessment' , 'add_users' , 'get-assessments' , '' , 'dashicons-list-view' , 25 );
-    add_submenu_page( 'get-assessments' , 'Assessment' , 'All Assessments' , 'add_users' , 'get-assessments' , 'get_assessments' );
-    add_submenu_page( 'get-assessments' , 'New Assessment' , 'Add New' , 'add_users' , 'new-assessment' , 'create_assessment' );
-    //Add Response submenu
-    add_submenu_page( 'get-assessments' , 'Responses' , 'Responses' , 'add_users' , 'view-responses' , 'view_responses' );
+    //Add Response submenu under Assessment
+    add_submenu_page( 'edit.php?post_type=assessment' , 'Responses' , 'Responses' , 'add_users' , 'view-responses' , 'view_responses' );
     
     // Add Domains menu and sub-menus
     add_menu_page( 'Domain' , 'Domain' , 'add_users' , 'get-domains' , '' , 'dashicons-admin-site' , 30 );

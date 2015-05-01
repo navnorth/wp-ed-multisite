@@ -35,11 +35,6 @@ function register_gat_admin_menus(){
     //Add Response submenu under Assessment
     add_submenu_page( 'edit.php?post_type=assessment' , 'Responses' , 'Responses' , 'add_users' , 'view-responses' , 'view_responses' );
     
-    // Add Domains menu and sub-menus
-    add_menu_page( 'Domain' , 'Domain' , 'add_users' , 'get-domains' , '' , 'dashicons-admin-site' , 30 );
-    add_submenu_page( 'get-domains' , 'Domain' , 'All Domains' , 'add_users' , 'get-domains' , 'get_domains' );
-    add_submenu_page( 'get-domains' , 'New Domain' , 'Add New' , 'add_users' , 'new-domain' , 'add_domain' );
-    
     //Add Ratings menu and sub-menus
     add_menu_page( 'Rating' , 'Rating' , 'add_users' , 'get-ratings' , '' , 'dashicons-awards' , 35 );
     add_submenu_page( 'get-ratings' , 'Rating' , 'All Ratings' , 'add_users' , 'get-ratings' , 'get_ratings' );

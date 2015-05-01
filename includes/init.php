@@ -7,7 +7,7 @@ function register_assessment_type(){
     //Labels
     $labels = array(
                     'name' => _x( 'Assessment' , 'post type general name' , PLUGIN_DOMAIN ) ,
-                    'name' => _x( 'Assessment' , 'post type singular name'  , PLUGIN_DOMAIN ) ,
+                    'singular_name' => _x( 'Assessment' , 'post type singular name'  , PLUGIN_DOMAIN ) ,
                     'menu_name' => _x( 'Assessment' , 'admin menu' , PLUGIN_DOMAIN ) ,
                     'name_admin_bar' => _x( 'Assessment' , 'add new on admin bar' , PLUGIN_DOMAIN ) ,
                     'add_new' => _x( 'Add New' , 'assessment' , PLUGIN_DOMAIN ) ,
@@ -34,6 +34,34 @@ function register_assessment_type(){
                     'register_meta_box_cb' => 'assessment_metaboxes'
                   );
     register_post_type( 'assessment' , $args );
+}
+
+//Register Domains as taxonomy
+add_action( 'init' , 'register_domain_taxonomy' );
+function register_domain_taxonomy(){
+    //Labels
+    $labels = array(
+                    'name' => _x( 'Domain' , 'taxonomy general name' ) ,
+                    'singular_name' => _x( 'Domain' , 'taxonomy singular name' ) ,
+                    'add_new_item' => __( 'Add New Domain' ) ,
+                    'new_item_name' => __( 'New Domain' ) ,
+                    'edit_item' => __( 'Edit Domain' ) ,
+                    'update_item' => __( 'Update Domain' ) ,
+                    'all_items' => __( 'All Domains' ) ,
+                    'search_items' => __( 'Search Domains' ) ,
+                    'menu_name' => __( 'Domains' )
+                    );
+    
+    //Arguments
+    $args = array(
+                    'hierarchical'      => true,
+                    'labels'            => $labels,
+                    'show_ui'           => true,
+                    'show_admin_column' => true,
+                    'query_var'         => true,
+                    'rewrite'           => array( 'slug' => 'domain' ),
+                  );
+    register_taxonomy( 'domain' , array( 'assessment' ) , $args );
 }
 
 ?>

@@ -64,4 +64,39 @@ function register_domain_taxonomy(){
     register_taxonomy( 'domain' , array( 'assessment' ) , $args );
 }
 
+//Register Dimension as Custom Post Type
+add_action( 'init' , 'register_dimension_post_type' );
+function register_dimension_post_type(){
+    //Labels
+    $labels = array(
+                    'name' => _x( 'Dimension' , 'post type general name' , PLUGIN_DOMAIN ) ,
+                    'singular_name' => _x( 'Dimension' , 'post type singular name'  , PLUGIN_DOMAIN ) ,
+                    'menu_name' => _x( 'Dimension' , 'admin menu' , PLUGIN_DOMAIN ) ,
+                    'name_admin_bar' => _x( 'Dimension' , 'add new on admin bar' , PLUGIN_DOMAIN ) ,
+                    'add_new' => _x( 'Add New' , 'dimension' , PLUGIN_DOMAIN ) ,
+                    'add_new_item' => __( 'Add New Dimension' , PLUGIN_DOMAIN ) ,
+                    'new_item' => __( 'New Dimension' , PLUGIN_DOMAIN ) ,
+                    'edit_item' => __( 'Edit Dimension' , PLUGIN_DOMAIN ) ,
+                    'view_item' => __( 'View Dimension' , PLUGIN_DOMAIN ) ,
+                    'all_items' => __( 'All Dimension' , PLUGIN_DOMAIN ) ,
+                    'search_items' => __( 'Search Dimension' , PLUGIN_DOMAIN ) ,
+                    'not_found' => __( 'No dimensions found' , PLUGIN_DOMAIN )
+                    );
+    
+    //Arguments
+    $args = array(
+                    'labels' => $labels ,
+                    'description' => 'Create Dimension' ,
+                    'public' => true ,
+                    'show_ui' => true ,
+                    'menu_icon' => 'dashicons-editor-help' ,
+                    'has_archive' => true ,
+                    'menu_position' => 30 ,
+                    'taxonomies' => array('post_tag') ,
+                    'supports' => array( 'title', 'editor' , 'thumbnail' , 'author' , 'revisions', 'custom-fields' ) ,
+                    'register_meta_box_cb' => 'dimension_metaboxes'
+                  );
+    register_post_type( 'dimension' , $args );
+}
+
 ?>

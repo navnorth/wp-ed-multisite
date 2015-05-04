@@ -30,7 +30,7 @@ function register_assessment_type(){
                     'has_archive' => true ,
                     'menu_position' => 25 ,
                     'taxonomies' => array('post_tag') ,
-                    'supports' => array( 'title', 'editor' , 'thumbnail' , 'author' , 'revisions', 'custom-fields' ) ,
+                    'supports' => array( 'title', 'editor' , 'thumbnail' , 'author' , 'revisions' ) ,
                     'register_meta_box_cb' => 'assessment_metaboxes'
                   );
     register_post_type( 'assessment' , $args );
@@ -93,7 +93,7 @@ function register_dimension_post_type(){
                     'has_archive' => true ,
                     'menu_position' => 30 ,
                     'taxonomies' => array('post_tag') ,
-                    'supports' => array( 'title', 'editor' , 'thumbnail' , 'author' , 'revisions', 'custom-fields' ) ,
+                    'supports' => array( 'title', 'editor' , 'thumbnail' , 'author' , 'revisions' ) ,
                     'register_meta_box_cb' => 'dimension_metaboxes'
                   );
     register_post_type( 'dimension' , $args );

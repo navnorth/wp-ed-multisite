@@ -9,7 +9,7 @@ function get_assessments(){
 
 //Assessment Content Editor
 function assessment_metaboxes(){
-    //Add 
+    //Add Results Content Meta Box
     add_meta_box(
                  'assessment_result_content' ,
                  __( 'Results Content' , PLUGIN_DOMAIN ) ,
@@ -18,9 +18,18 @@ function assessment_metaboxes(){
                  'normal' ,
                  'default'
                  );
+    //Add Ratings Meta Box
+    add_meta_box(
+                 'assessment_ratings_scale' ,
+                 __( 'Rating Scale' , PLUGIN_DOMAIN ) ,
+                 'get_ratings_scale' ,
+                 'assessment' ,
+                 'normal' ,
+                 'default'
+                 );
 }
 
-//Shows the new metabox for result content
+//Shows the new metabox for Ratings Scale
 function get_assessment_result_content( $post ){
 
     //Add a nonce field
@@ -29,10 +38,22 @@ function get_assessment_result_content( $post ){
     //Get Value from database
     $value = get_post_meta( $post->ID , '_assessment_result_content' , true );
     
-    echo '<label for="assessment_result_content">';
-	_e( 'Results Content', PLUGIN_DOMAIN );
-    echo '</label> ';
-    echo '<textarea id="assessment_result_content" name="assessment_result_content" cols="110" rows="5">'. esc_attr( $value ) . '</textarea>';
+    //Results Content
+    //echo '<textarea id="assessment_result_content" name="assessment_result_content" cols="110" rows="5">'. esc_attr( $value ) . '</textarea>';
+     wp_editor( htmlspecialchars_decode($value), 'assessment_result_content' );
+}
+
+//Shows the new metabox for result content
+function get_ratings_scale( $post ){
+
+    //Add a nonce field
+    wp_nonce_field( 'assessment_rating_meta_box' , 'assessment_rating_meta_box_nonce' );
+    
+    //Get Value from database
+    $value = get_post_meta( $post->ID , '_assessment_rating_scale' , true );
+    
+    //Results Content
+    echo '<textarea id="assessment_rating_scale" name="assessment_rating_scale" cols="110" rows="5">'. esc_attr( $value ) . '</textarea>';
 }
 
 //Save Assessment result_content
@@ -73,10 +94,20 @@ function save_assessment_result_content( $post_id ){
 	}
 
 	// Sanitize user input.
-	$my_data = sanitize_text_field( $_POST['assessment_result_content'] );
+	$my_data = esc_textarea( $_POST['assessment_result_content'] );
         
 	// Update the meta field in the database.
-	update_post_meta( $post_id, '_assessment_result_content', $my_data );
+        if (isset($my_data)) {
+            update_post_meta( $post_id, '_assessment_result_content', $my_data );
+        }
+        
+        // Sanitize user input
+        $ratings = sanitize_text_field( $_POST['assessment_rating_scale'] );
+        
+        // Update rating scale in the database
+        if (isset($ratings)) {
+            update_post_meta( $post_id, '_assessment_rating_scale', $ratings );
+        }
 }
 add_action( 'save_post', 'save_assessment_result_content' );
 

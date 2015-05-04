@@ -16,11 +16,9 @@ function assessment_metaboxes(){
                  'get_assessment_result_content' ,
                  'assessment' ,
                  'normal' ,
-                 'default' ,
-                 'save_assessment_result_content'
+                 'default'
                  );
 }
-add_action( 'add_meta_boxes', 'assessment_metaboxes' );
 
 //Shows the new metabox for result content
 function get_assessment_result_content( $post ){
@@ -29,7 +27,7 @@ function get_assessment_result_content( $post ){
     wp_nonce_field( 'assessment_meta_box' , 'assessment_meta_box_nonce' );
     
     //Get Value from database
-    $value = get_post_meta( $post->ID , '_my_meta_value_key' , true );
+    $value = get_post_meta( $post->ID , '_assessment_result_content' , true );
     
     echo '<label for="assessment_result_content">';
 	_e( 'Results Content', PLUGIN_DOMAIN );
@@ -76,9 +74,10 @@ function save_assessment_result_content( $post_id ){
 
 	// Sanitize user input.
 	$my_data = sanitize_text_field( $_POST['assessment_result_content'] );
-
+        
 	// Update the meta field in the database.
-	update_post_meta( $post_id, '_my_meta_value_key', $my_data );
+	update_post_meta( $post_id, '_assessment_result_content', $my_data );
 }
+add_action( 'save_post', 'save_assessment_result_content' );
 
 ?>

@@ -60,6 +60,7 @@ function register_domain_taxonomy(){
                     'show_admin_column' => true,
                     'query_var'         => true,
                     'rewrite'           => array( 'slug' => 'domain' ),
+                    'meta_box_cb'       => 'domain_metaboxes'
                   );
     register_taxonomy( 'domain' , array( 'assessment' ) , $args );
 }

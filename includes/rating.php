@@ -1,6 +1,6 @@
 <?php
 
-include ( GAT_PATH . "/classes/class.rating.php");
+include ( GAT_PATH . "/classes/rating.list.php");
 
 //Show Ratings
 function  show_ratings(){
@@ -9,7 +9,10 @@ function  show_ratings(){
     
     echo "<h1>Ratings</h1>";
     
+    $rating_list = new Rating_List();
+    $rating_list->prepare_items();
     
+    $rating_list->display();
 }
 
 //Add Rating

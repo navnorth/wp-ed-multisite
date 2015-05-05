@@ -31,6 +31,56 @@ include_once( GAT_PATH ."/includes/init.php" );
 include_once( GAT_PATH ."/includes/assessment.php" );
 include_once( GAT_PATH ."/includes/rating.php" );
 
+register_activation_hook( __FILE__ , 'activate_gat_plugin' );
+function activate_gat_plugin(){
+    //Create Tables used by GAT Plugin
+    global $wpdb;
+    
+    $tables = array( "_rating" , "_ratingmeta" );
+    $create_tables = array();
+    
+    foreach ($tables as $table){
+        //Check if table exists
+        $table = $wpdb->prefix . $table;
+        if ($wpdb->get_var("SHOW TABLES like {$table}") !=  $table) {
+            $creat_tables[] = $table;
+        }
+    }
+    
+    //If table for creation is not empty, create plugin tables
+    if (!empty($create_tables)){
+        create_tables($create_tables);
+    }
+}
+
+function create_tables($tables){
+    //create tables
+    require_once( ABSPATH . "wp-admin/includes/upgrade.php" );
+    foreach ($tables as $table){
+        switch ($table){
+            case $wpdb->prefix."_rating":
+                $sql = "CREATE TABLE IF NOT EXISTS `{$table}` (
+                        `rating_id` int(11) NOT NULL AUTO_INCREMENT,
+                        `rating_meta_id` int(11) NOT NULL,
+                        `value` int(11) NOT NULL,
+                        `label` text NOT NULL,
+                        `description` longtext NOT NULL,
+                        `display` tinyint(1) NOT NULL,
+                        PRIMARY KEY (`rating_id`)
+                      )";
+                break;
+            case $wpdb->prefix."_ratingmeta":
+                $sql = "CREATE TABLE IF NOT EXISTS `{$table}` (
+                        `rating_meta_id` int(11) NOT NULL AUTO_INCREMENT,
+                        `name` tinytext NOT NULL,
+                        `description` longtext NOT NULL,
+                        PRIMARY KEY (`rating_meta_id`)
+                      )";
+        }
+        dbDelta($sql);
+    }
+}
+
 //Register our menus in WP Admin
 function register_gat_admin_menus(){
     //Add Response submenu under Assessment

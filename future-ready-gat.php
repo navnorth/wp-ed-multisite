@@ -29,6 +29,7 @@ define( 'PLUGIN_DOMAIN' , 'wp-gap-analysis' );
 
 include_once( GAT_PATH ."/includes/init.php" );
 include_once( GAT_PATH ."/includes/assessment.php" );
+include_once( GAT_PATH ."/includes/rating.php" );
 
 //Register our menus in WP Admin
 function register_gat_admin_menus(){
@@ -37,7 +38,7 @@ function register_gat_admin_menus(){
     
     //Add Ratings menu and sub-menus
     add_menu_page( 'Rating' , 'Rating' , 'add_users' , 'get-ratings' , '' , 'dashicons-awards' , 35 );
-    add_submenu_page( 'get-ratings' , 'Rating' , 'All Ratings' , 'add_users' , 'get-ratings' , 'get_ratings' );
+    add_submenu_page( 'get-ratings' , 'Rating' , 'All Ratings' , 'add_users' , 'get-ratings' , 'show_ratings' );
     add_submenu_page( 'get-ratings' , 'New Rating' , 'Add New' , 'add_users' , 'new-rating' , 'add_rating' );
     
     //Add Organizations menu and sub-menus

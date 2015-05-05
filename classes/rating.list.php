@@ -121,6 +121,7 @@ class Rating_List extends WP_List_Table {
         
         //Register Columns
         $columns = $this->get_columns();
+        
         $_wp_column_headers[$screen->id] = $columns;
         
         //Get the items

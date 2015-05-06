@@ -72,6 +72,16 @@ class Rating_List extends WP_List_Table {
     
     /**
      *
+     * Columns that are going to be hidden
+     *
+     **/
+    public function get_hidden_columns(){
+        $hidden_columns = array( 'id' );
+        return $hidden_columns;
+    }
+    
+    /**
+     *
      * Prepare the ratings table for display
      *
      **/
@@ -124,9 +134,13 @@ class Rating_List extends WP_List_Table {
         //Register Columns
         $columns = $this->get_columns();
         
-        $hidden = array();
+        //Get Hidden Columns
+        $hidden = $this->get_hidden_columns();
+        
+        //Get Sortable Columns
         $sortable = $this->get_sortable_columns();
-        //$_wp_column_headers[$screen->id] = $columns;
+        
+        //Show Column Headers
         $this->_column_headers = array($columns, $hidden, $sortable);
         
         //Get the items

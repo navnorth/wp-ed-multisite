@@ -59,8 +59,8 @@ function register_domain_taxonomy(){
                     'show_ui'           => true,
                     'show_admin_column' => true,
                     'query_var'         => true,
-                    'rewrite'           => array( 'slug' => 'domain' ),
-                    'meta_box_cb'       => 'domain_metaboxes'
+                    'rewrite'           => array( 'slug' => 'domain' )
+                    //'meta_box_cb'       => 'domain_metaboxes'
                   );
     register_taxonomy( 'domain' , array( 'assessment' ) , $args );
 }

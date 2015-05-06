@@ -46,13 +46,14 @@ class Rating_List extends WP_List_Table {
      *
      **/
     function get_columns() {
-        return $columns = array(
-                                'col_link_id' => __('ID') ,
-                                'col_link_value' => __('Value') ,
-                                'col_link_label' => __('Label') ,
-                                'col_link_description' => __('Description') ,
-                                'col_link_display' => __('Display')
-                                );
+        $columns = array(
+                        'id' => __('ID') ,
+                        'value' => __('Value') ,
+                        'label' => __('Label') ,
+                        'description' => __('Description') ,
+                        'display' => __('Display')
+                        );
+        return $columns;
     }
     
     /**
@@ -61,11 +62,12 @@ class Rating_List extends WP_List_Table {
      *
      **/
     public function get_sortable_columns(){
-        return $sortable = array(
-                                'col_link_value' => 'value' ,
-                                'col_link_label' => 'label' ,
-                                'col_link_description' => 'description'
-                                 );
+        $sortable = array(
+                        'value' => array('value', false) ,
+                        'label' => array('label', false) ,
+                        'description' => array('description', false)
+                         );
+        return $sortable;
     }
     
     /**
@@ -122,7 +124,10 @@ class Rating_List extends WP_List_Table {
         //Register Columns
         $columns = $this->get_columns();
         
-        $_wp_column_headers[$screen->id] = $columns;
+        $hidden = array();
+        $sortable = $this->get_sortable_columns();
+        //$_wp_column_headers[$screen->id] = $columns;
+        $this->_column_headers = array($columns, $hidden, $sortable);
         
         //Get the items
         $this->items = $wpdb->get_results($query);

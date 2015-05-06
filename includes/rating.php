@@ -7,12 +7,19 @@ function  show_ratings(){
     //Add a nonce field
     wp_nonce_field( 'gat_rating_scale' , 'gat_rating_scale_nonce' );
     
-    echo "<h1>Ratings</h1>";
-    
+    //Instantiate Rating List class
     $rating_list = new Rating_List();
-    $rating_list->prepare_items();
     
+    // Display Heading
+    echo "<div class='wrap'>";
+    echo "<div id='icon-users' class='icon32'></div>";
+    echo "<h2>Ratings</h2>";
+    
+    //Display Ratings Table
+    $rating_list->prepare_items();    
     $rating_list->display();
+    
+    echo "</div>";
 }
 
 //Add Rating

@@ -27,28 +27,36 @@ function add_rating(){
     <h2>Add New Rating</h2>
     <form method='post'>
         <?php wp_nonce_field( 'gat_rating_scale' , 'gat_rating_scale_nonce' ); ?>
-        <p><strong><?php echo __('Label:', PLUGIN_DOMAIN); ?></strong><br />
-            <input type="text" name="rating_label" size="100" value="<?php echo get_option('label'); ?>" />
-        </p>
-         <p><strong><?php echo __('Value:', PLUGIN_DOMAIN); ?></strong><br />
-            <input type="text" name="rating_value" size="100" value="<?php echo get_option('value'); ?>" />
-        </p>
-        <p><strong><?php echo __('Description:', PLUGIN_DOMAIN); ?></strong><br />
-           <textarea id="rating_description" name="rating_description" cols="110" rows="5"><?php echo get_option('description'); ?></textarea>
-        </p>
-        <p><strong><?php echo __('Display:', PLUGIN_DOMAIN); ?></strong><br />
-           <input type="checkbox" name="rating_display" />
-        </p>
+        <div class="form-field form-required rating_label-wrap">
+            <label for="rating_label"><?php echo __('Label:', PLUGIN_DOMAIN); ?></label>
+            <input name="rating_label" id="rating_label" type="text" value="" size="40" aria-required="true">
+        </div>
+        <div class="form-field form-required rating_value-wrap">
+            <label for="rating_value"><?php echo __('Value:', PLUGIN_DOMAIN); ?></label>
+            <input name="rating_value" id="rating_value" type="text" value="" size="40" aria-required="true">
+        </div>
+        <div class="form-field rating_description-wrap">
+            <label for="rating_description"><?php echo __('Description:', PLUGIN_DOMAIN); ?></label>
+            <textarea id="rating_description" name="rating_description" aria-required="true" cols="110" rows="5"></textarea>
+        </div>
+        <div class="form-field rating_display-wrap">
+            <label for="rating_display"><?php echo __('Display:', PLUGIN_DOMAIN); ?></label>
+            <input type="checkbox" name="rating_display" />
+        </div>
         <p><?php submit_button(
             __( 'Save Rating', PLUGIN_DOMAIN ),
             'primary',
             'submit'
         ); ?></p>
-        <input type="hidden" name="action" value="add" />
+        <input type="hidden" name="action" value="add-rating" />
         <input type="hidden" name="page_options" value="rating" />
     </form>
     </div>
 <?php 
+}
+
+function save_rating(){
+    
 }
 
 ?>

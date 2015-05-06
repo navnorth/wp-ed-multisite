@@ -30,6 +30,7 @@ define( 'PLUGIN_DOMAIN' , 'wp-gap-analysis' );
 include_once( GAT_PATH ."/includes/init.php" );
 include_once( GAT_PATH ."/includes/assessment.php" );
 include_once( GAT_PATH ."/includes/domain.php" );
+include_once( GAT_PATH ."/includes/dimension.php" );
 include_once( GAT_PATH ."/includes/rating.php" );
 
 register_activation_hook( __FILE__ , 'activate_gat_plugin' );

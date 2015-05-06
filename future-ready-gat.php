@@ -38,7 +38,7 @@ function activate_gat_plugin(){
     //Create Tables used by GAT Plugin
     global $wpdb;
     
-    $tables = array( "_rating" , "_ratingmeta" );
+    $tables = array( "rating" , "ratingmeta" );
     $create_tables = array();
     
     foreach ($tables as $table){
@@ -60,7 +60,7 @@ function create_tables($tables){
     require_once( ABSPATH . "wp-admin/includes/upgrade.php" );
     foreach ($tables as $table){
         switch ($table){
-            case $wpdb->prefix."_rating":
+            case $wpdb->prefix."rating":
                 $sql = "CREATE TABLE IF NOT EXISTS `{$table}` (
                         `rating_id` int(11) NOT NULL AUTO_INCREMENT,
                         `rating_meta_id` int(11) NOT NULL,
@@ -71,7 +71,7 @@ function create_tables($tables){
                         PRIMARY KEY (`rating_id`)
                       )";
                 break;
-            case $wpdb->prefix."_ratingmeta":
+            case $wpdb->prefix."ratingmeta":
                 $sql = "CREATE TABLE IF NOT EXISTS `{$table}` (
                         `rating_meta_id` int(11) NOT NULL AUTO_INCREMENT,
                         `name` tinytext NOT NULL,

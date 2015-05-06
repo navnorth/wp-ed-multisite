@@ -11,7 +11,7 @@ if(!class_exists('WP_List_Table')){
  
 class Rating_List extends WP_List_Table {
     
-    protected $_table = "_ratings";
+    protected $_table = "ratings";
     
     /**
      *
@@ -161,7 +161,7 @@ class Rating_List extends WP_List_Table {
         
         if (!empty($records)){
             foreach($records as $record) {
-                echo "<tr id='record_".$record->link_id."'>";
+                echo "<tr id='record_".$record->id."'>";
                 foreach ($columns as $column_name=>$column_display_name) {
                     //Style per column
                     $class = "$column_name column-$column_name";
@@ -176,11 +176,11 @@ class Rating_List extends WP_List_Table {
                     
                     //Display the cell
                     switch ( $column_name ) {
-                       case "col_link_id":  echo '< td '.$attributes.'>'.stripslashes($record->rating_id).'< /td>';   break;
-                       case "col_link_value": echo '< td '.$attributes.'>'.stripslashes($record->value).'5< /td>'; break;
-                       case "col_link_label": echo '< td '.$attributes.'>'.stripslashes($record->label).'< /td>'; break;
-                       case "col_link_description": echo '< td '.$attributes.'>'.$record->description.'< /td>'; break;
-                       case "col_link_display": echo '< td '.$attributes.'>'.$record->display.'< /td>'; break;
+                       case "id":  echo '<td '.$attributes.'>'.stripslashes($record->rating_id).'</td>';   break;
+                       case "value": echo '<td '.$attributes.'>'.stripslashes($record->value).'</td>'; break;
+                       case "label": echo '<td '.$attributes.'>'.stripslashes($record->label).'</td>'; break;
+                       case "description": echo '<td '.$attributes.'>'.$record->description.'</td>'; break;
+                       case "display": echo '<td '.$attributes.'>'.$record->display.'</td>'; break;
                     }
                 }
                 echo "</tr>";

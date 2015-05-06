@@ -22,6 +22,28 @@ function  show_ratings(){
 
 //Add Rating
 function add_rating(){
+    global $wpdb;
+    if ( 'save-rating' == $_REQUEST['action'] ) {
+        
+        //Verify nonce before saving
+        if ( isset( $_POST['gat_rating_scale_nonce'] ) || wp_verify_nonce( $_POST['gat_rating_scale_nonce'], 'gat_rating_scale' )) {
+            //Save Rating here
+            $ratingmeta_id = 1;
+            $label = sanitize_text_field($_POST['rating_label']);
+            $value = sanitize_text_field($_POST['rating_value']);
+            $description = sanitize_text_field($_POST['rating_description']);
+            $display = sanitize_text_field($_POST['rating_display']);
+            
+            $rating_table = $wpdb->prefix."ratings";
+            $sql = $wpdb->prepare("INSERT INTO {$rating_table} VALUES('', %d, %d, %s, %s, %d)", $ratingmeta_id, $value, $label, $description, $display );
+            
+            if ($wpdb->query($sql)) {
+                $rating_list_url = site_url()."/wp-admin/admin.php?page=get-ratings";
+                wp_safe_redirect($rating_list_url, 302);
+                exit();
+            }
+        }
+    } else {
 ?>
     <div class='wrap'>
     <h2>Add New Rating</h2>
@@ -48,11 +70,12 @@ function add_rating(){
             'primary',
             'submit'
         ); ?></p>
-        <input type="hidden" name="action" value="add-rating" />
+        <input type="hidden" name="action" value="save-rating" />
         <input type="hidden" name="page_options" value="rating" />
     </form>
     </div>
-<?php 
+<?php
+    }
 }
 
 function save_rating(){

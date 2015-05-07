@@ -13,6 +13,7 @@ class Rating_List extends WP_List_Table {
     
     protected $_table = "ratings";
     
+    protected $_per_page = 10;
     /**
      *
      * Constructor to pass our own arguments
@@ -33,10 +34,10 @@ class Rating_List extends WP_List_Table {
      **/
     function extra_tablenav( $which ){
         if ( $which == "top" ) {
-            echo "Top Header";
+            
         }
         if ( $which == "bottom" ) {
-            echo "Bottom Footer";
+            
         }
     }
     
@@ -47,9 +48,10 @@ class Rating_List extends WP_List_Table {
      **/
     function get_columns() {
         $columns = array(
+                        'cb' => '<input type="checkbox" />' ,
                         'id' => __('ID') ,
-                        'value' => __('Value') ,
                         'label' => __('Label') ,
+                        'value' => __('Value') ,
                         'description' => __('Description') ,
                         'display' => __('Display')
                         );
@@ -63,8 +65,8 @@ class Rating_List extends WP_List_Table {
      **/
     public function get_sortable_columns(){
         $sortable = array(
-                        'value' => array('value', false) ,
                         'label' => array('label', false) ,
+                        'value' => array('value', false) ,
                         'description' => array('description', false)
                          );
         return $sortable;
@@ -78,6 +80,58 @@ class Rating_List extends WP_List_Table {
     public function get_hidden_columns(){
         $hidden_columns = array( 'id' );
         return $hidden_columns;
+    }
+    
+    /*function column_default( $item, $column_name ) {
+        switch( $column_name ) { 
+          case 'label':
+          case 'value':
+          case 'description':
+          case 'display':
+            return $item[ $column_name ];
+          case 'cb':
+             return sprintf('<input type="checkbox" name="rating[]" value="%s" />', $item['id']);  
+          default:
+            return print_r( $item, true ) ; //Show the whole array for troubleshooting purposes
+        }
+    }*/
+    
+    /**
+     *
+     * Add Bulk Actions on Custom Rating List Table
+     *
+     **/
+    function get_bulk_actions() {
+        $actions = array(
+          'delete'    => 'Delete'
+        );
+        return $actions;
+    }
+    
+    /**
+     *
+     * Adding Checkbox in every Row for bulk action
+     *
+     **/
+    function column_cb($item) {
+        return sprintf(
+            '<input type="checkbox" name="rating[]" value="%s" />', $item['id']
+        );    
+    }
+    
+    /**
+     *
+     * Action Links under Label field
+     *
+     **/
+    function column_label($item) {
+        var_dump($item);
+        $actions = array(
+                        'edit' => sprint( '<a href="?page=%s&action=%s&id=%d">Edit</a>', $_REQUEST['page'] , 'edit' , $item['rating_id'] ) ,
+                        'delete' => sprintf( '<a href="?page=%s&action=%s&id=%d">Delete</a>' , $_REQUEST['page'] , 'delete' , $item['rating_id'] )
+                         );
+        
+        return sprintf( '%1$s %2$s' , $item['label'] , $this->row_actions($actions) );
     }
     
     /**
@@ -108,7 +162,7 @@ class Rating_List extends WP_List_Table {
         //Get number of records
         $totalitems = $wpdb->query($query);
         
-        $perpage = 5;
+        $perpage = $this->_per_page;
         
         $paged = !empty($_GET['paged']) ? mysql_real_escape_string($_GET['paged']) : "";
         

@@ -32,7 +32,7 @@ function add_rating(){
             $label = sanitize_text_field($_POST['rating_label']);
             $value = sanitize_text_field($_POST['rating_value']);
             $description = sanitize_text_field($_POST['rating_description']);
-            $display = sanitize_text_field($_POST['rating_display']);
+            $display = !empty($_POST['rating_display'])?1:0;
             
             $rating_table = $wpdb->prefix."ratings";
             $sql = $wpdb->prepare("INSERT INTO {$rating_table} VALUES('', %d, %d, %s, %s, %d)", $ratingmeta_id, $value, $label, $description, $display );
@@ -63,7 +63,7 @@ function add_rating(){
         </div>
         <div class="form-field rating_display-wrap">
             <label for="rating_display"><?php echo __('Display:', PLUGIN_DOMAIN); ?></label>
-            <input type="checkbox" name="rating_display" />
+            <input type="checkbox" name="rating_display" value="1" />
         </div>
         <p><?php submit_button(
             __( 'Save Rating', PLUGIN_DOMAIN ),
@@ -78,7 +78,7 @@ function add_rating(){
     }
 }
 
-function save_rating(){
+function edit_rating(){
     
 }
 

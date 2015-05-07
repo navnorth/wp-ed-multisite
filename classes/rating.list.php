@@ -231,6 +231,7 @@ class Rating_List extends WP_List_Table {
                     //Display the cell
                     switch ( $column_name ) {
                        case "id":  echo '<td '.$attributes.'>'.stripslashes($record->rating_id).'</td>';   break;
+                       case "cb":  echo '<td '.$attributes.'><input type="checkbox" name="rating[]" value="'.stripslashes($record->rating_id).'" /></td>';   break;
                        case "value": echo '<td '.$attributes.'>'.stripslashes($record->value).'</td>'; break;
                        case "label": echo '<td '.$attributes.'>'.stripslashes($record->label).'</td>'; break;
                        case "description": echo '<td '.$attributes.'>'.$record->description.'</td>'; break;

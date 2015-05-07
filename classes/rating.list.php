@@ -220,7 +220,7 @@ class Rating_List extends WP_List_Table {
                     //Style per column
                     $class = "$column_name column-$column_name";
                     $style = "";
-                    
+                    $class = "class='{$class}' ";
                     if ( in_array($column_name, $hidden)) $style=" style='display:none;'";
                     
                     $attributes = $class . $style;

@@ -32,6 +32,7 @@ include_once( GAT_PATH ."/includes/assessment.php" );
 include_once( GAT_PATH ."/includes/domain.php" );
 include_once( GAT_PATH ."/includes/dimension.php" );
 include_once( GAT_PATH ."/includes/rating.php" );
+include_once( GAT_PATH ."/includes/overall_rating.php" );
 include_once( GAT_PATH ."/includes/organization.php" );
 
 register_activation_hook( __FILE__ , 'activate_gat_plugin' );
@@ -130,6 +131,7 @@ function register_gat_admin_menus(){
     add_menu_page( 'Rating' , 'Rating' , 'add_users' , 'get-ratings' , '' , 'dashicons-awards' , 35 );
     add_submenu_page( 'get-ratings' , 'Rating' , 'All Ratings' , 'add_users' , 'get-ratings' , 'show_ratings' );
     add_submenu_page( 'get-ratings' , 'New Rating' , 'Add New' , 'add_users' , 'new-rating' , 'add_rating' );
+    add_submenu_page( 'get-ratings' , 'Overall Ratings' , 'Overall Ratings' , 'add_users' , 'overall-rating' , 'show_overall_ratings' );
     
     //Add Organizations menu and sub-menus
     add_menu_page( 'Organization' , 'Organization' , 'add_users' , 'get-organizations' , '' , 'dashicons-groups' , 40 );

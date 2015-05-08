@@ -8,6 +8,8 @@ function  show_ratings(){
         edit_rating($_REQUEST['id']);
     } elseif ( 'update-rating' == $_REQUEST['action'] ) {
         update_rating();
+    } elseif ( 'delete-rating' == $_REQUEST['action'] ) {
+        delete_rating($_REQUEST['id']);
     } else {
         //Instantiate Rating List class
         $rating_list = new Rating_List();
@@ -145,6 +147,18 @@ function update_rating() {
             wp_safe_redirect($rating_list_url, 302);
             exit();
         }
+    }
+}
+
+function delete_rating($rating_id){
+    global $wpdb;
+    $rating_table = $wpdb->prefix."ratings";
+    $sql = $wpdb->prepare("DELETE FROM {$rating_table} WHERE rating_id=%d", $rating_id );
+    
+    if ($wpdb->query($sql)) {
+        $rating_list_url = site_url()."/wp-admin/admin.php?page=get-ratings";
+        wp_safe_redirect($rating_list_url, 302);
+        exit();
     }
 }
 

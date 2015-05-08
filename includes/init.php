@@ -103,7 +103,7 @@ function register_dimension_post_type(){
 //Add reference to CSS for styling
 add_action( 'admin_init' , 'gat_admin_init' );
 function gat_admin_init(){
-    wp_enqueue_style( 'admin-css' , GAT_PATH . "/css/admin.css", false, 1.0, 'all' );
+    wp_enqueue_style( 'admin-css' , GAT_PATH . "/css/admin.css", false, 1.0 );
 }
 
 ?>

@@ -98,6 +98,20 @@ class Rating_List extends WP_List_Table {
     
     /**
      *
+     * Altering display of each row for edit and delete links
+     *
+     **/
+    public function single_row( $item ) {
+            $actions = array(
+                        'edit' => sprintf( '<a href="?page=%s&action=%s&id=%d">Edit</a>', $_REQUEST['page'] , 'edit' , $item->rating_id ) ,
+                        'delete' => sprintf( '<a href="?page=%s&action=%s&id=%d">Delete</a>' , $_REQUEST['page'] , 'delete' , $item->rating_id )
+                         );
+        
+            return sprintf( '%1$s %2$s' , $item->label , $this->row_actions($actions) );
+    }
+    
+    /**
+     *
      * Add Bulk Actions on Custom Rating List Table
      *
      **/
@@ -125,7 +139,7 @@ class Rating_List extends WP_List_Table {
      *
      **/
     function column_label($item) {
-        var_dump($item);
+        
         $actions = array(
                         'edit' => sprint( '<a href="?page=%s&action=%s&id=%d">Edit</a>', $_REQUEST['page'] , 'edit' , $item['rating_id'] ) ,
                         'delete' => sprintf( '<a href="?page=%s&action=%s&id=%d">Delete</a>' , $_REQUEST['page'] , 'delete' , $item['rating_id'] )
@@ -233,7 +247,9 @@ class Rating_List extends WP_List_Table {
                        case "id":  echo '<td '.$attributes.'>'.stripslashes($record->rating_id).'</td>';   break;
                        case "cb":  echo '<td '.$attributes.'><input type="checkbox" name="rating[]" value="'.stripslashes($record->rating_id).'" /></td>';   break;
                        case "value": echo '<td '.$attributes.'>'.stripslashes($record->value).'</td>'; break;
-                       case "label": echo '<td '.$attributes.'>'.stripslashes($record->label).'</td>'; break;
+                       case "label":
+                        echo '<td '.$attributes.'>'.stripslashes($record->label).$this->single_row($record).'</td>';
+                        break;
                        case "description": echo '<td '.$attributes.'>'.$record->description.'</td>'; break;
                        case "display": echo '<td '.$attributes.'>'.$record->display.'</td>'; break;
                     }

@@ -11,9 +11,9 @@ if(!class_exists('WP_List_Table')){
  
 class Rating_List extends WP_List_Table {
     
-    protected $_table = "ratings";
+    protected static $_table = "ratings";
     
-    protected $_per_page = 10;
+    protected static $_per_page = 10;
     /**
      *
      * Constructor to pass our own arguments
@@ -162,7 +162,7 @@ class Rating_List extends WP_List_Table {
         //Get number of records
         $totalitems = $wpdb->query($query);
         
-        $perpage = $this->_per_page;
+        $perpage = self::$_per_page;
         
         $paged = !empty($_GET['paged']) ? mysql_real_escape_string($_GET['paged']) : "";
         

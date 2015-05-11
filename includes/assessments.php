@@ -28,30 +28,30 @@ function add_assessment(){
 ?>
     <div class='wrap'>
     <h2>Add New Assessment</h2>
-    <form method='post'>
+    <form method='post' action='admin.php?page=assessments'>
         <?php wp_nonce_field( 'gat_assessment' , 'gat_assessment_nonce' ); ?>
-        <div class="form-field form-required assessment_title-wrap">
-            <label for="assessment_title"><?php echo __('Label:', PLUGIN_DOMAIN); ?></label>
+        <div id="titlediv" class="form-field form-required assessment_title-wrap">
+            <label for="assessment_title"><?php echo __('Title:', PLUGIN_DOMAIN); ?></label>
             <input name="assessment_title" id="assessment_title" type="text" value="" size="40" aria-required="true">
         </div>
         <div class="form-field form-required assessment_description-wrap">
-            <label for="assessment_description"><?php echo __('Value:', PLUGIN_DOMAIN); ?></label>
-            <input name="assessment_description" id="assessment_description" type="text" value="" size="40" aria-required="true">
+            <label for="assessment_description"><?php echo __('Description:', PLUGIN_DOMAIN); ?></label>
+              <?php wp_editor( "", 'assessment_description' ); ?>
         </div>
-        <div class="form-field rating_description-wrap">
-            <label for="rating_description"><?php echo __('Description:', PLUGIN_DOMAIN); ?></label>
-            <textarea id="rating_description" name="rating_description" aria-required="true" cols="110" rows="5"></textarea>
+        <div class="form-field assessment_results-wrap">
+            <label for="assessment_results"><?php echo __('Result:', PLUGIN_DOMAIN); ?></label>
+             <?php wp_editor( "", 'assessment_results' ); ?>
         </div>
-        <div class="form-field rating_display-wrap">
-            <label for="rating_display"><?php echo __('Display:', PLUGIN_DOMAIN); ?></label>
-            <input type="checkbox" name="rating_display" value="1" />
+        <div class="form-field assessment_rating-wrap">
+            <label for="assessment_rating"><?php echo __('Rating:', PLUGIN_DOMAIN); ?></label>
+            <input name="assessment_rating" id="assessment_rating" type="text" value="" size="40" aria-required="true">
         </div>
         <p><?php submit_button(
-            __( 'Save Rating', PLUGIN_DOMAIN ),
+            __( 'Save Assessment', PLUGIN_DOMAIN ),
             'primary',
             'submit'
         ); ?></p>
-        <input type="hidden" name="action" value="save-rating" />
+        <input type="hidden" name="action" value="save-assessment" />
         <input type="hidden" name="page_options" value="rating" />
     </form>
     </div>

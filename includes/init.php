@@ -1,7 +1,7 @@
 <?php
 
 //Register Assessment as Custom Post Type
-add_action( 'init' , 'register_assessment_type' );
+//add_action( 'init' , 'register_assessment_type' );
 function register_assessment_type(){
     
     //Labels
@@ -37,7 +37,7 @@ function register_assessment_type(){
 }
 
 //Register Domains as taxonomy
-add_action( 'init' , 'register_domain_taxonomy' );
+//add_action( 'init' , 'register_domain_taxonomy' );
 function register_domain_taxonomy(){
     //Labels
     $labels = array(
@@ -66,7 +66,7 @@ function register_domain_taxonomy(){
 }
 
 //Register Dimension as Custom Post Type
-add_action( 'init' , 'register_dimension_post_type' );
+//add_action( 'init' , 'register_dimension_post_type' );
 function register_dimension_post_type(){
     //Labels
     $labels = array(

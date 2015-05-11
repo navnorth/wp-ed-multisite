@@ -2,24 +2,21 @@
 
 /**
  *
- * Ratings_List class that extends the native List table of WordPress to display list of Ratings
+ * Assessment Custom List
  *
  **/
+
 if(!class_exists('WP_List_Table')){
    require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
- 
-class Rating_List extends WP_List_Table {
+
+class Assessment_List extends WP_List_Table{
+    protected static $_table = "assessments";
     
-    protected $_table = "ratings";
-    
+    //Records per page
     protected $_per_page = 10;
-    /**
-     *
-     * Constructor to pass our own arguments
-     *
-     **/
-    function __construct(){
+    
+    public function __construct(){
         parent::__construct(array(
                             'singular' => 'wp_list_text_link' ,
                             'plural' => 'wp_list_text_links' ,
@@ -50,10 +47,8 @@ class Rating_List extends WP_List_Table {
         $columns = array(
                         'cb' => '<input type="checkbox" />' ,
                         'id' => __('ID') ,
-                        'label' => __('Label') ,
-                        'value' => __('Value') ,
-                        'description' => __('Description') ,
-                        'display' => __('Display')
+                        'title' => __('Title') ,
+                        'description' => __('Description') 
                         );
         return $columns;
     }
@@ -65,8 +60,7 @@ class Rating_List extends WP_List_Table {
      **/
     public function get_sortable_columns(){
         $sortable = array(
-                        'label' => array('label', false) ,
-                        'value' => array('value', false) ,
+                        'rating' => array('rating', false) ,
                         'description' => array('description', false)
                          );
         return $sortable;
@@ -84,20 +78,6 @@ class Rating_List extends WP_List_Table {
     
     /**
      *
-     * Altering display of each row for edit and delete links
-     *
-     **/
-    public function single_row( $item ) {
-            $actions = array(
-                        'edit' => sprintf( '<a href="?page=%s&action=%s&id=%d">Edit</a>', $_REQUEST['page'] , 'edit-rating' , $item->rating_id ) ,
-                        'delete' => sprintf( '<a href="?page=%s&action=%s&id=%d">Delete</a>' , $_REQUEST['page'] , 'delete-rating' , $item->rating_id )
-                         );
-        
-            return sprintf( '%1$s %2$s' , $item->label , $this->row_actions($actions) );
-    }
-    
-    /**
-     *
      * Add Bulk Actions on Custom Rating List Table
      *
      **/
@@ -110,32 +90,6 @@ class Rating_List extends WP_List_Table {
     
     /**
      *
-     * Adding Checkbox in every Row for bulk action
-     *
-     **/
-    function column_cb($item) {
-        return sprintf(
-            '<input type="checkbox" name="rating[]" value="%s" />', $item['id']
-        );    
-    }
-    
-    /**
-     *
-     * Action Links under Label field
-     *
-     **/
-    function column_label($item) {
-        
-        $actions = array(
-                        'edit' => sprint( '<a href="?page=%s&action=%s&id=%d">Edit</a>', $_REQUEST['page'] , 'edit' , $item['rating_id'] ) ,
-                        'delete' => sprintf( '<a href="?page=%s&action=%s&id=%d">Delete</a>' , $_REQUEST['page'] , 'delete' , $item['rating_id'] )
-                         );
-        
-        return sprintf( '%1$s %2$s' , $item['label'] , $this->row_actions($actions) );
-    }
-    
-    /**
-     *
      * Prepare the ratings table for display
      *
      **/
@@ -144,7 +98,7 @@ class Rating_List extends WP_List_Table {
         
         $screen = get_current_screen();
         
-        $table = $wpdb->prefix .self::$_table;
+        $table = $wpdb->prefix . self::$_table;
         
         //Preparing query
         $query = "Select * FROM {$table}";
@@ -230,14 +184,12 @@ class Rating_List extends WP_List_Table {
                     
                     //Display the cell
                     switch ( $column_name ) {
-                       case "id":  echo '<td '.$attributes.'>'.stripslashes($record->rating_id).'</td>';   break;
-                       case "cb":  echo '<td '.$attributes.'><input type="checkbox" name="rating[]" value="'.stripslashes($record->rating_id).'" /></td>';   break;
-                       case "value": echo '<td '.$attributes.'>'.stripslashes($record->value).'</td>'; break;
-                       case "label":
+                       case "id":  echo '<td '.$attributes.'>'.stripslashes($record->id).'</td>';   break;
+                       case "cb":  echo '<td '.$attributes.'><input type="checkbox" name="assessments[]" value="'.stripslashes($record->rating_id).'" /></td>';   break;
+                       case "title":
                         echo '<td '.$attributes.'>'.stripslashes($this->single_row($record)).'</td>';
                         break;
                        case "description": echo '<td '.$attributes.'>'.$record->description.'</td>'; break;
-                       case "display": echo '<td '.$attributes.'>'.$record->display.'</td>'; break;
                     }
                 }
                 echo "</tr>";
@@ -245,4 +197,5 @@ class Rating_List extends WP_List_Table {
         }
     }
 }
+
 ?>

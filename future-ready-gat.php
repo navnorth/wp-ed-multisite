@@ -28,7 +28,7 @@ define( 'GAT_URL' , plugin_dir_url(__FILE__) );
 define( 'PLUGIN_DOMAIN' , 'wp-gap-analysis' );
 
 include_once( GAT_PATH ."/includes/init.php" );
-include_once( GAT_PATH ."/includes/assessment.php" );
+include_once( GAT_PATH ."/includes/assessments.php" );
 include_once( GAT_PATH ."/includes/domain.php" );
 include_once( GAT_PATH ."/includes/dimension.php" );
 include_once( GAT_PATH ."/includes/rating.php" );
@@ -117,6 +117,18 @@ function create_tables($tables){
                         PRIMARY KEY (`organization_id`)
                       ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
                 break;
+            case $wpdb->prefix."assessments":
+                $sql = "CREATE TABLE IF NOT EXISTS `gat_assessments` (
+                        `id` int(11) NOT NULL AUTO_INCREMENT,
+                        `title` text NOT NULL,
+                        `permalink` text NOT NULL,
+                        `description` longtext NOT NULL,
+                        `results` longtext NOT NULL,
+                        `rating` int(11) NOT NULL,
+                        `domains` text NOT NULL,
+                        PRIMARY KEY (`id`)
+                      ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+                break;
         }
         dbDelta($sql);
     }
@@ -139,5 +151,16 @@ function register_gat_admin_menus(){
     add_submenu_page( 'get-organizations' , 'New Organization' , 'Add New' , 'add_users' , 'new-organization' , 'add_organization' );
     add_submenu_page( 'get-organizations' , 'Import Organizations' , 'Import' , 'add_users' , 'import-organization' , 'import_organizations' );
 }
-add_action( 'admin_menu' , 'register_gat_admin_menus' );
+
+add_action( 'admin_menu' , 'register_gat_menus' );
+
+//
+function register_gat_menus(){
+    //Assessment
+    add_menu_page( 'Assessment' , 'Assessments' , 'add_users' , 'assessments' , 'get_assessments' , 'dashicons-editor-help' , 35 );
+    add_submenu_page( 'assessments' , 'Rating Systems' , 'All Ratings' , 'add_users' , 'ratings' , 'show_ratings' );
+    add_submenu_page( 'assessments' , 'Reporting' , 'Reporting' , 'add_users' , 'reporting' , 'show_reports' );
+    add_submenu_page( 'assessments' , 'Settings' , 'Settings' , 'add_users' , 'settings' , 'import_organizations' );
+}
+
 ?>

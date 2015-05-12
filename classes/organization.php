@@ -58,9 +58,14 @@ class Organization {
         
         $fields = array_keys(get_object_vars($organization));
         
-        $sql = "INSERT INTO " . $wpdb->prefix . self::$table . " (`" . implode("`, `", $fields) . "`) VALUES ";
+        $sqlstart = "INSERT INTO " . $wpdb->prefix . self::$table . " (`" . implode("`, `", $fields) . "`) VALUES ";
         
         $organizations = array();
+        $count = count($array);
+        
+        $cnt = 0;
+        
+        $sql = $sqlstart;
         
         foreach($array AS $element)
         {
@@ -72,10 +77,29 @@ class Organization {
                 $content = addslashes($content);
             
             $organizations[] = "('" . implode("', '", $contents) . "')";
+            
+            //process batch insert in every 1000 records
+            if ($count>1000 && $cnt>=1000){
+                
+                $sql .= implode(", ", $organizations);
+                
+                $wpdb->query( $sql );
+                
+                $sql = $sqlstart;
+                
+                unset($organizations);
+                
+                $organizations = array();
+                
+                $cnt = 0;
+            } 
+            
+            $cnt++;
         }
         
         $sql .= implode(", ", $organizations);
+        $wpdb->query( $sql );
         
-        $wpdb->query($sql);
+        
     }
 }

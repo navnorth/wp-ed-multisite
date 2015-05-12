@@ -20,6 +20,8 @@ function import_organizations(){
     if(isset($_POST["html-upload"]) AND isset($_FILES["organizations"]) AND $_FILES["organizations"]["size"])
     {
         ini_set("max_execution_time", 0);
+        // set memory 1 GB for the huge data in flat file
+        ini_set("memory_limit", "1200M");
         set_time_limit(0);
         
         $file = fopen($_FILES["organizations"]["tmp_name"], "r") or die("Unable to read the file.");
@@ -34,12 +36,14 @@ function import_organizations(){
         {
             $row = str_replace(array("\r", "\n"), NULL, fgets($file));
             
-            if($line)
-                $organizations[] = array_combine($heading, explode("\t", $row));
-            else
-                $heading = explode("\t", $row);
-            
-            $line++;
+            if (strlen(trim($row))>0){
+                if($line){
+                    $organizations[] = array_combine($heading, explode("\t", $row));
+                } else
+                    $heading = explode("\t", $row);
+                
+                $line++;
+            }
         }
         
         fclose($file);

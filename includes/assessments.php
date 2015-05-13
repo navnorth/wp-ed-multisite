@@ -29,7 +29,7 @@ function assessment_metaboxes(){
     //Add Results Content Meta Box
     add_meta_box(
                  'assessment_result_content' ,
-                 __( 'Results Content' , PLUGIN_DOMAIN ) ,
+                 __( 'Result Content' , PLUGIN_DOMAIN ) ,
                  'get_assessment_result_content' ,
                  'assessment' ,
                  'normal' ,
@@ -46,38 +46,31 @@ function assessment_metaboxes(){
                  );
 }
 
-function add_assessment(){
-?>
-    <div class='wrap'>
-    <h2>Add New Assessment</h2>
-    <form method='post' action='admin.php?page=assessments'>
-        <?php wp_nonce_field( 'gat_assessment' , 'gat_assessment_nonce' ); ?>
-        <div id="titlediv" class="form-field form-required assessment_title-wrap">
-            <label for="assessment_title"><?php echo __('Title:', PLUGIN_DOMAIN); ?></label>
-            <input name="assessment_title" id="assessment_title" type="text" value="" size="40" aria-required="true">
-        </div>
-        <div class="form-field form-required assessment_description-wrap">
-            <label for="assessment_description"><?php echo __('Description:', PLUGIN_DOMAIN); ?></label>
-              <?php wp_editor( "", 'assessment_description' ); ?>
-        </div>
-        <div class="form-field assessment_results-wrap">
-            <label for="assessment_results"><?php echo __('Result:', PLUGIN_DOMAIN); ?></label>
-             <?php wp_editor( "", 'assessment_results' ); ?>
-        </div>
-        <div class="form-field assessment_rating-wrap">
-            <label for="assessment_rating"><?php echo __('Rating:', PLUGIN_DOMAIN); ?></label>
-            <input name="assessment_rating" id="assessment_rating" type="text" value="" size="40" aria-required="true">
-        </div>
-        <p><?php submit_button(
-            __( 'Save Assessment', PLUGIN_DOMAIN ),
-            'primary',
-            'submit'
-        ); ?></p>
-        <input type="hidden" name="action" value="save-assessment" />
-        <input type="hidden" name="page_options" value="rating" />
-    </form>
-    </div>
-<?php
+//Shows the new metabox for Ratings Scale
+function get_assessment_result_content( $post ){
+
+    //Add a nonce field
+    wp_nonce_field( 'assessment_meta_box' , 'assessment_meta_box_nonce' );
+    
+    //Get Value from database
+    $value = get_post_meta( $post->ID , '_assessment_result_content' , true );
+    
+    //Results Content
+    //echo '<textarea id="assessment_result_content" name="assessment_result_content" cols="110" rows="5">'. esc_attr( $value ) . '</textarea>';
+     wp_editor( htmlspecialchars_decode($value), 'assessment_result_content' );
+}
+
+//Shows the new metabox for result content
+function get_ratings_scale( $post ){
+
+    //Add a nonce field
+    wp_nonce_field( 'assessment_rating_meta_box' , 'assessment_rating_meta_box_nonce' );
+    
+    //Get Value from database
+    $value = get_post_meta( $post->ID , '_assessment_rating_scale' , true );
+    
+    //Results Content
+    echo '<textarea id="assessment_rating_scale" name="assessment_rating_scale" cols="110" rows="5">'. esc_attr( $value ) . '</textarea>';
 }
 
 ?>

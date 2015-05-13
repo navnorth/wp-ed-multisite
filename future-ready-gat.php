@@ -154,15 +154,15 @@ function register_gat_admin_menus(){
 }
 
 add_action( 'admin_menu' , 'register_gat_menus' );
-
+    
 //
 function register_gat_menus(){
     //Assessment
-    add_menu_page( 'Assessment' , 'Assessments' , 'add_users' , 'assessments' , 'get_assessments' , 'dashicons-editor-help' , 35 );
-    add_submenu_page( 'assessments' , 'Rating Systems' , 'Rating Systems' , 'add_users' , 'ratings' , 'show_ratings' );
-    add_submenu_page( 'assessments' , 'Reporting' , 'Reporting' , 'add_users' , 'reporting' , 'show_reports' );
-    add_submenu_page( 'assessments' , 'Organizations' , 'Organizations' , 'add_users' , 'get-organizations' , 'get_organizations' );
-    add_submenu_page( 'assessments' , 'Settings' , 'Settings' , 'add_users' , 'settings' , 'import_organizations' );
+    //add_menu_page( 'Assessment' , 'Assessments' , 'add_users' , 'assessments' , 'get_assessments' , 'dashicons-editor-help' , 35 );
+    add_submenu_page( 'edit.php?post_type=assessment' , 'Rating Systems' , 'Rating Systems' , 'add_users' , 'ratings' , 'show_ratings' );
+    add_submenu_page( 'edit.php?post_type=assessment' , 'Reporting' , 'Reporting' , 'add_users' , 'reporting' , 'show_reports' );
+    add_submenu_page( 'edit.php?post_type=assessment' , 'Organizations' , 'Organizations' , 'add_users' , 'get-organizations' , 'get_organizations' );
+    add_submenu_page( 'edit.php?post_type=assessment' , 'Settings' , 'Settings' , 'add_users' , 'settings' , 'import_organizations' );
 }
 
 ?>

@@ -14,7 +14,7 @@ function get_assessments(){
         // Display Heading
         echo "<div class='wrap'>";
         echo "<div id='icon-users' class='icon32'></div>";
-        echo "<h2>Assessments <a href='admin.php?page=assessments&action=add-new' class='add-new-h2'>Add New</a></h2>";
+        echo "<h2>Assessments <a href='post-new.php?post_type=assessment' class='add-new-h2'>Add New</a></h2>";
         
         //Display Ratings Table
         $assessment_list->prepare_items();    
@@ -22,6 +22,28 @@ function get_assessments(){
     
     echo "</div>";
     }
+}
+
+//Assessment Content Editor
+function assessment_metaboxes(){
+    //Add Results Content Meta Box
+    add_meta_box(
+                 'assessment_result_content' ,
+                 __( 'Results Content' , PLUGIN_DOMAIN ) ,
+                 'get_assessment_result_content' ,
+                 'assessment' ,
+                 'normal' ,
+                 'default'
+                 );
+    //Add Ratings Meta Box
+    add_meta_box(
+                 'assessment_ratings_scale' ,
+                 __( 'Rating Scale' , PLUGIN_DOMAIN ) ,
+                 'get_ratings_scale' ,
+                 'assessment' ,
+                 'normal' ,
+                 'default'
+                 );
 }
 
 function add_assessment(){

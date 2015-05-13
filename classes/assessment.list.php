@@ -60,7 +60,7 @@ class Assessment_List extends WP_List_Table{
      **/
     public function get_sortable_columns(){
         $sortable = array(
-                        'rating' => array('rating', false) ,
+                        'title' => array('title', false) ,
                         'description' => array('description', false)
                          );
         return $sortable;

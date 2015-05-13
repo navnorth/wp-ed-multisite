@@ -57,14 +57,23 @@ class Organization_List extends WP_List_Table {
         );
     }
     
-    function column_label($item)
+    function single_row($item)
+    {
+        $actions = array(
+            "edit" => sprintf("<a href='?page=%s&action=%s&id=%d'>Edit</a>", $_REQUEST["page"] , "edit-organization" , $item->organization_id),
+            "delete" => sprintf("<a class='delete-organization' href='?page=%s&action=%s&id=%d&_wpnonce=" . wp_create_nonce("gat-delete-organization-nonce") . "'>Delete</a>", $_REQUEST["page"] , "delete-organization" , $item->organization_id)
+        );
+        
+        return sprintf('%1$s %2$s', $item->FIPST, $this->row_actions($actions));
+    }
+    function column_FIPST($item)
     {
         $actions = array(
             "edit" => sprintf("<a href='?page=%s&action=%s&id=%d'>Edit</a>", $_REQUEST["page"], "edit", $item["organization_id"]),
             "delete" => sprintf("<a href='?page=%s&action=%s&id=%d'>Delete</a>", $_REQUEST["page"], "delete", $item["organization_id"])
         );
         
-        return sprintf('%1$s %2$s', $item["state"], $this->row_actions($actions));
+        return sprintf('%1$s %2$s', $item["FIPST"], $this->row_actions($actions));
     }
     
     function prepare_items()
@@ -155,7 +164,7 @@ class Organization_List extends WP_List_Table {
                             echo '<td ' . $attributes . '><input type="checkbox" name="organization[]" value="' . stripslashes($entry->organization_id).'" /></td>';
                             break;
                         case "FIPST":
-                            echo '<td ' . $attributes . '>'.stripslashes($entry->FIPST).'</td>';
+                            echo '<td ' . $attributes . '>' . stripslashes($this->single_row($entry)) . '</td>';
                             break;
                         case "LEAID":
                             echo '<td ' . $attributes . '>' . stripslashes($entry->LEAID) . '</td>';

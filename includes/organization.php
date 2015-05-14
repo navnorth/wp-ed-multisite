@@ -3,6 +3,24 @@
 include ( GAT_PATH . "/classes/organization.list.php");
 include ( GAT_PATH . "/classes/organization.php");
 
+function create_organization(){
+    if (isset($_POST["gat-new-organization-nonce"]) || wp_verify_nonce($_POST["gat-new-organization-nonce"], "gat-new-organization"))
+    {
+        global $wpdb;
+        
+        $organization_id = sanitize_text_field($_REQUEST["id"]);
+        $FIPST = sanitize_text_field($_REQUEST["FIPST"]);
+        $LEAID = sanitize_text_field($_REQUEST["LEAID"]);
+        $LEANM = sanitize_text_field($_REQUEST["LEANM"]);
+        
+        $sql = $wpdb->prepare("INSERT INTO `" . $wpdb->prefix . "organizations` (`FIPST`, `LEAID`, `LEANM`) VALUES (%s, %s, %s)", $FIPST, $LEAID, $LEANM);
+        
+        return ($wpdb->query($sql) === FALSE) ? FALSE : TRUE;
+    }
+}
+/**
+ * Delete Organization
+ */
 function delete_organization($organization_id){
     if (isset($_REQUEST["_wpnonce"]) || wp_verify_nonce($_REQUEST["_wpnonce"], "gat-delete-organization-nonce"))
     {
@@ -49,13 +67,40 @@ function edit_organization($organization_id){
     include(GAT_PATH . "/gat_template/" . __FUNCTION__ . ".php");
 }
 /**
+ * New Organization
+ */
+function new_organization(){
+    if(isset($_REQUEST["submit"]))
+    {
+        $organization = new Organization($_REQUEST);
+        
+        $organization->organization_id = $organization_id;
+        
+        $create = TRUE;
+        
+        foreach(array("FIPST", "LEAID", "LEANM") AS $field)
+        {
+            if($organization->$field == NULL)
+            {
+                $create = FALSE;
+                break;
+            }    
+        }
+        
+        if($create)
+            $success = create_organization();
+    }
+    
+    include(GAT_PATH . "gat_template/" . __FUNCTION__ . ".php");
+}
+/**
  * Update Organization
  */
 function update_organization(){
-    global $wpdb;
-    
     if (isset($_POST["gat-edit-organization-nonce"]) || wp_verify_nonce($_POST["gat-edit-organization-nonce"], "gat-edit-organization"))
     {
+        global $wpdb;
+        
         $organization_id = sanitize_text_field($_REQUEST["id"]);
         $FIPST = sanitize_text_field($_REQUEST["FIPST"]);
         $LEAID = sanitize_text_field($_REQUEST["LEAID"]);
@@ -72,6 +117,9 @@ function update_organization(){
 function get_organizations(){
     switch($_REQUEST["action"])
     {
+        case "new-organization":
+            new_organization();
+            break;
         case "edit-organization":
             edit_organization($_REQUEST["id"]);
             break;
@@ -81,14 +129,13 @@ function get_organizations(){
         case "delete-organization":
             delete_organization($_REQUEST["id"]);
             break;
-        
         default:
             $organization_list = new Organization_List();
     
             // Display Heading
             echo "<div class='wrap'>";
             echo "<div id='icon-users' class='icon32'></div>";
-            echo "<h2>Organizations</h2>";
+            echo "<h2>Organizations <a href='admin.php?page=get-organizations&action=new-organization' class='add-new-h2'>Add New</a></h2>";
             wp_enqueue_script('gat-admin', plugins_url(PLUGIN_DOMAIN . "/js/organization.js"), array('jquery'), 1.0);
             //Display Ratings Table
             $organization_list->prepare_items();    

@@ -40,18 +40,18 @@ register_activation_hook( __FILE__ , 'activate_gat_plugin' );
 function activate_gat_plugin(){
     //Create Tables used by GAT Plugin
     global $wpdb;
-    
+
     $tables = array( "rating" , "ratingmeta" , "organizations" );
     $create_tables = array();
-    
+
     foreach ($tables as $table){
         //Check if table exists
         $table = $wpdb->prefix . $table;
-        if ($wpdb->get_var("SHOW TABLES like {$table}") !=  $table) {
-            $creat_tables[] = $table;
+        if ($wpdb->get_var("SHOW TABLES like '{$table}'") !=  $table) {
+            $create_tables[] = $table;
         }
     }
-    
+
     //If table for creation is not empty, create plugin tables
     if (!empty($create_tables)){
         create_tables($create_tables);
@@ -83,7 +83,7 @@ function create_tables($tables){
                       )";
                 break;
             case $wpdb->prefix."organizations":
-                $sql = "CREATE TABLE IF NOT EXISTS `gat_organizations` (
+                $sql = "CREATE TABLE IF NOT EXISTS `{$table}` (
                         `organization_id` bigint(20) NOT NULL AUTO_INCREMENT,
                         `FIPST` char(2) NOT NULL COMMENT 'ANSI1 State Code',
                         `LEAID` char(9) NOT NULL COMMENT 'NCES Local Education Agency ID',
@@ -119,7 +119,7 @@ function create_tables($tables){
                       ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
                 break;
             case $wpdb->prefix."assessments":
-                $sql = "CREATE TABLE IF NOT EXISTS `gat_assessments` (
+                $sql = "CREATE TABLE IF NOT EXISTS `{$table}` (
                         `id` int(11) NOT NULL AUTO_INCREMENT,
                         `title` text NOT NULL,
                         `permalink` text NOT NULL,
@@ -139,13 +139,13 @@ function create_tables($tables){
 function register_gat_admin_menus(){
     //Add Response submenu under Assessment
     add_submenu_page( 'edit.php?post_type=assessment' , 'Responses' , 'Responses' , 'add_users' , 'view-responses' , 'view_responses' );
-    
+
     //Add Ratings menu and sub-menus
     add_menu_page( 'Rating' , 'Rating' , 'add_users' , 'get-ratings' , '' , 'dashicons-awards' , 35 );
     add_submenu_page( 'get-ratings' , 'Rating' , 'All Ratings' , 'add_users' , 'get-ratings' , 'show_ratings' );
     add_submenu_page( 'get-ratings' , 'New Rating' , 'Add New' , 'add_users' , 'new-rating' , 'add_rating' );
     add_submenu_page( 'get-ratings' , 'Overall Ratings' , 'Overall Ratings' , 'add_users' , 'overall-rating' , 'show_overall_ratings' );
-    
+
     //Add Organizations menu and sub-menus
     add_menu_page( 'Organization' , 'Organization' , 'add_users' , 'get-organizations' , '' , 'dashicons-groups' , 40 );
     add_submenu_page( 'get-organizations' , 'Organizations' , 'All Organizations' , 'add_users' , 'get-organizations' , 'get_organizations' );
@@ -154,7 +154,7 @@ function register_gat_admin_menus(){
 }
 
 add_action( 'admin_menu' , 'register_gat_menus' );
-    
+
 //
 function register_gat_menus(){
     //Assessment

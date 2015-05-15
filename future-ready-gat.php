@@ -40,18 +40,18 @@ register_activation_hook( __FILE__ , 'activate_gat_plugin' );
 function activate_gat_plugin(){
     //Create Tables used by GAT Plugin
     global $wpdb;
-
+    
     $tables = array( "rating" , "ratingmeta" , "organizations" );
     $create_tables = array();
-
+    
     foreach ($tables as $table){
         //Check if table exists
         $table = $wpdb->prefix . $table;
-        if ($wpdb->get_var("SHOW TABLES like '{$table}'") !=  $table) {
-            $create_tables[] = $table;
+        if ($wpdb->get_var("SHOW TABLES like {$table}") !=  $table) {
+            $creat_tables[] = $table;
         }
     }
-
+    
     //If table for creation is not empty, create plugin tables
     if (!empty($create_tables)){
         create_tables($create_tables);
@@ -83,43 +83,43 @@ function create_tables($tables){
                       )";
                 break;
             case $wpdb->prefix."organizations":
-                $sql = "CREATE TABLE IF NOT EXISTS `{$table}` (
+                $sql = "CREATE TABLE IF NOT EXISTS `gat_organizations` (
                         `organization_id` bigint(20) NOT NULL AUTO_INCREMENT,
-                        `FIPST` char(2) NOT NULL,
-                        `LEAID` char(9) NOT NULL,
-                        `SCHNO` char(7) NOT NULL,
-                        `STID` char(5) NOT NULL,
-                        `SEASCH` char(6) NOT NULL,
-                        `LEANM` text NOT NULL,
-                        `SCHNAM` text NOT NULL,
-                        `PHONE` char(12) NOT NULL,
-                        `MSTREE` text NOT NULL,
-                        `MCITY` text NOT NULL,
-                        `MSTATE` char(2) NOT NULL,
-                        `MZIP` char(5) NOT NULL,
-                        `MZIP4` char(9) NOT NULL,
-                        `LSTREE` text NOT NULL,
-                        `LCITY` text NOT NULL,
-                        `LSTATE` char(2) NOT NULL,
-                        `LZIP` char(5) NOT NULL,
-                        `LZIP4` char(9) NOT NULL,
-                        `TYPE` tinyint(2) NOT NULL,
-                        `STATUS` tinyint(2) NOT NULL,
-                        `UNION` char(3) NOT NULL,
-                        `ULOCAL` tinyint(2) NOT NULL,
-                        `LATCOD` decimal(10,6) NOT NULL,
-                        `LONCOD` decimal(10,6) NOT NULL,
-                        `CONUM` char(5) NOT NULL,
-                        `CONAME` text NOT NULL,
-                        `CDCODE` char(4) NOT NULL,
-                        `GSLO` char(2) NOT NULL,
-                        `GSHI` char(2) NOT NULL,
-                        `CHARTR` char(1) NOT NULL,
+                        `FIPST` char(2) NOT NULL COMMENT 'ANSI1 State Code',
+                        `LEAID` char(9) NOT NULL COMMENT 'NCES Local Education Agency ID',
+                        `SCHNO` char(7) NOT NULL COMMENT 'NCES School ID',
+                        `STID` char(5) NOT NULL COMMENT 'State Local Education Agency ID',
+                        `SEASCH` char(6) NOT NULL COMMENT 'State School ID',
+                        `LEANM` text NOT NULL COMMENT 'Name of Education Agency',
+                        `SCHNAM` text NOT NULL COMMENT 'Name of School',
+                        `PHONE` char(12) NOT NULL COMMENT 'Area code + Telephone Number',
+                        `MSTREE` text NOT NULL COMMENT 'Mailing Street',
+                        `MCITY` text NOT NULL COMMENT 'Mailing City',
+                        `MSTATE` char(2) NOT NULL COMMENT 'Mailing State (PO Abbreviation)',
+                        `MZIP` char(5) NOT NULL COMMENT 'Mailing ZIP Code',
+                        `MZIP4` char(9) NOT NULL COMMENT 'Mailing ZIP Code + 4',
+                        `LSTREE` text NOT NULL COMMENT 'Location Street',
+                        `LCITY` text NOT NULL COMMENT 'Location City',
+                        `LSTATE` char(2) NOT NULL COMMENT 'Location State',
+                        `LZIP` char(5) NOT NULL COMMENT 'Location Zip Code',
+                        `LZIP4` char(9) NOT NULL COMMENT 'Location Zip Code + 4',
+                        `TYPE` tinyint(2) NOT NULL COMMENT 'School Type Code [1] Regular school [2] Special education school 3: Vocational education school 4:  Alternative/other school 5: Reportable programSchool Type Code [1] Regular school [2] Special education school [3] Vocational education school [4]  Alternative/other school [5] Reportable program',
+                        `STATUS` tinyint(2) NOT NULL COMMENT 'Operational Status Code [1] School was operational at the time of the last report and is currently operational [2] School has closed since the time of the last report [3] School has been opened since the time of the last report [4] School was in existence, but not reported in a previous year’s CCD school universe survey, and is now being added [5] School was listed in previous year’s CCD school universe as being affiliated with a different education agency [6] School is temporarily closed and may reopen within 3 years [7] School is scheduled to be operational within 2 years [8] School was closed on a previous year’s file but has reopened',
+                        `UNION` char(3) NOT NULL COMMENT ' Supervisory Union Identification Number',
+                        `ULOCAL` tinyint(2) NOT NULL COMMENT 'Urban-centric Locale Code [11] City, Large [12] City, Midsize [13] City, Small [21] Suburb, Large [22] Suburb, Midsize [23] Suburb, Small [31] Town, Fringe [32] Town, Distant [33] Town, Remote [41] Rural, Fringe [42]  Rural, Distant [43] Rural, Remote',
+                        `LATCOD` decimal(10,6) NOT NULL COMMENT 'Latitude',
+                        `LONCOD` decimal(10,6) NOT NULL COMMENT 'Longitude',
+                        `CONUM` char(5) NOT NULL COMMENT 'ANSI County Code',
+                        `CONAME` text NOT NULL COMMENT 'County Name',
+                        `CDCODE` char(4) NOT NULL COMMENT '113th Congressional District Code',
+                        `GSLO` char(2) NOT NULL COMMENT 'Low Grade Span Offered',
+                        `GSHI` char(2) NOT NULL COMMENT 'High Grade Span Offered',
+                        `CHARTR` char(1) NOT NULL COMMENT 'Charter Status [1] Yes [2] No',
                         PRIMARY KEY (`organization_id`)
                       ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
                 break;
             case $wpdb->prefix."assessments":
-                $sql = "CREATE TABLE IF NOT EXISTS `{$table}` (
+                $sql = "CREATE TABLE IF NOT EXISTS `gat_assessments` (
                         `id` int(11) NOT NULL AUTO_INCREMENT,
                         `title` text NOT NULL,
                         `permalink` text NOT NULL,
@@ -139,13 +139,13 @@ function create_tables($tables){
 function register_gat_admin_menus(){
     //Add Response submenu under Assessment
     add_submenu_page( 'edit.php?post_type=assessment' , 'Responses' , 'Responses' , 'add_users' , 'view-responses' , 'view_responses' );
-
+    
     //Add Ratings menu and sub-menus
     add_menu_page( 'Rating' , 'Rating' , 'add_users' , 'get-ratings' , '' , 'dashicons-awards' , 35 );
     add_submenu_page( 'get-ratings' , 'Rating' , 'All Ratings' , 'add_users' , 'get-ratings' , 'show_ratings' );
     add_submenu_page( 'get-ratings' , 'New Rating' , 'Add New' , 'add_users' , 'new-rating' , 'add_rating' );
     add_submenu_page( 'get-ratings' , 'Overall Ratings' , 'Overall Ratings' , 'add_users' , 'overall-rating' , 'show_overall_ratings' );
-
+    
     //Add Organizations menu and sub-menus
     add_menu_page( 'Organization' , 'Organization' , 'add_users' , 'get-organizations' , '' , 'dashicons-groups' , 40 );
     add_submenu_page( 'get-organizations' , 'Organizations' , 'All Organizations' , 'add_users' , 'get-organizations' , 'get_organizations' );
@@ -154,7 +154,7 @@ function register_gat_admin_menus(){
 }
 
 add_action( 'admin_menu' , 'register_gat_menus' );
-
+    
 //
 function register_gat_menus(){
     //Assessment

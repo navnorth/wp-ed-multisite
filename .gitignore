@@ -1,1 +1,3 @@
-WP-Gap-Analysis.komodoproject
+*.DS_Store
+*.komodoproject
+*.sublime-*

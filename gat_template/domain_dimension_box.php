@@ -5,6 +5,14 @@
     .row {
         margin: 0 -15px;
     }
+    .clearfix:before,
+    .clearfix:after {
+        content: " ";
+        display: table;
+    }
+    .clearfix:after {
+        clear: both;
+    }
     .row:after {
         display: table;
         content: " ";
@@ -45,7 +53,7 @@
     }
     .dimension-count {
         font-weight: bold;
-        color: #A0A5AA;
+        color: #777;
         font-size: 15px;
         margin-top: 10px;
         display: block;
@@ -54,42 +62,14 @@
     .dimension-move {
         display: block;
         text-align: center;
-        color: #a0a5aa;
+        color: #777;
         text-decoration: none;
         margin-top: 10px;
     }
 </style>
-<div class="row dimension">
-    <div class="col-md-1">
-        <span class="dimension-count">1.</span>
-    </div>
-    
-    <div class="col-md-10">
-        <input type="text" class="dimension-title" size="30" spellcheck="true" autocomplete="off" />
-        <?php wp_editor(NULL, "editor-one", array("media_buttons" => FALSE, "teeny" => TRUE, "textarea_rows" => 1)); ?>
-        <p style="text-align: right;"><button type="button" class="button">Add <i class="fa fa-plus"></i></button></p>
-    </div>
-    
-    <div class="col-md-1">
-        <a href="#" class="dimension-remove"><i class="dashicons dashicons-trash"></i></a>
-        <a href="#" class="dimension-move"><i class="dashicons dashicons-arrow-down-alt"></i></a>
-    </div>
+
+<div class="dimensions">
+    <?php $n = 1; include(GAT_PATH . "/gat_template/new_dimension.php"); ?> 
 </div>
-<div class="row dimension">
-    <div class="col-md-1">
-        <span class="dimension-count">2.</span>
-    </div>
-    
-    <div class="col-md-10">
-        <input type="text" class="dimension-title" size="30" spellcheck="true" autocomplete="off" />
-        <?php wp_editor(NULL, "editor-two", array("media_buttons" => FALSE, "teeny" => TRUE, "textarea_rows" => 1)); ?>
-        <p style="text-align: right;"><button type="button" class="button">Add <i class="fa fa-plus"></i></button></p>
-    </div>
-    
-    <div class="col-md-1">
-        <a href="#" class="dimension-remove"><i class="dashicons dashicons-trash"></i></a>
-        <a href="#" class="dimension-move"><i class="dashicons dashicons-arrow-up-alt"></i></a>
-    </div>
-</div>
-<p>
-<button type="button" class="button">Add New Dimension</button></p>
+
+<p><button type="button" id="new-dimension" class="button">Add New Dimension</button></p>

@@ -178,17 +178,50 @@ function domain_dimension_box(){
     );
 }
 
+add_action("admin_footer", "new_dimension_js");
+function new_dimension_js(){ ?>
+    <script type="text/javascript" >
+	jQuery(document).ready(function($) {
+            tinyMCEPreInit.mceInit["editor-2"] = {"theme":"modern","skin":"lightgray","language":"en","formats":{"alignleft":[{"selector":"p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li","styles":{"textAlign":"left"},"deep":false,"remove":"none"},{"selector":"img,table,dl.wp-caption","classes":["alignleft"],"deep":false,"remove":"none"}],"aligncenter":[{"selector":"p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li","styles":{"textAlign":"center"},"deep":false,"remove":"none"},{"selector":"img,table,dl.wp-caption","classes":["aligncenter"],"deep":false,"remove":"none"}],"alignright":[{"selector":"p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li","styles":{"textAlign":"right"},"deep":false,"remove":"none"},{"selector":"img,table,dl.wp-caption","classes":["alignright"],"deep":false,"remove":"none"}],"strikethrough":{"inline":"del","deep":true,"split":true}},"relative_urls":false,"remove_script_host":false,"convert_urls":false,"browser_spellcheck":true,"fix_list_elements":true,"entities":"38,amp,60,lt,62,gt","entity_encoding":"raw","keep_styles":false,"cache_suffix":"wp-mce-4109-20150505","preview_styles":"font-family font-size font-weight font-style text-decoration text-transform","end_container_on_empty_block":true,"wpeditimage_disable_captions":false,"wpeditimage_html5_captions":true,"plugins":"charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wpview","content_css":"<?php echo site_url(); ?>/wp-includes/css/dashicons.min.css?ver=4.2.2,h…ost/gap-analysis/wp-content/themes/twentyfifteen/genericons/genericons.css","selector":"#editor-2","resize":"vertical","menubar":false,"wpautop":true,"indent":false,"toolbar1":"bold,italic,underline,blockquote,strikethrough,bullist,numlist,alignleft,aligncenter,alignright,undo,redo,link,unlink,fullscreen","toolbar2":"","toolbar3":"","toolbar4":"","tabfocus_elements":":prev,:next","body_class":"editor-2 post-type-domain post-status-auto-draft locale-en-us","wp_autoresize_on":true,"add_unload_trigger":false};
+            console.log(tinyMCEPreInit.mceInit)
+            console.log(JSON.stringify(tinyMCEPreInit.qtInit['editor-1']))
+            tinyMCEPreInit.qtInit["editor-2"] = {"id":"editor-2","buttons":"strong,em,link,block,del,ins,img,ul,ol,li,code,more,close"}
+            
+            jQuery("#new-dimension").click(function() {    
+                jQuery.post(ajaxurl, {
+                    action: 'new_dimension'
+                }, function(response) {
+                    $('.dimensions').append(response);
+                    tinymce.init(tinyMCEPreInit.mceInit['editor-2']);
+                    quicktags({id : 'editor-2'});
+                })
+            })
+	});
+    </script>
+<?php
+}
+add_action("wp_ajax_new_dimension", "new_dimension_callback");
+
+function new_dimension_callback(){
+    $n = 2;
+    include(GAT_PATH . "gat_template/new_dimension.php");
+    
+    wp_die();
+}
+
 /**
  * Display Domain Dimension Box
  */
 function display_domain_dimension_box(){
     include(GAT_PATH . "/gat_template/domain_dimension_box.php");
 }
-
-//Add reference to CSS for styling
+/**
+ * Add reference to CSS for styling
+ */
 add_action( 'admin_init' , 'gat_admin_init' );
+
 function gat_admin_init(){
     wp_enqueue_style('gat-admin' , plugins_url(PLUGIN_DOMAIN . "/css/admin.css"), false, 1.0);
+    wp_enqueue_style('gat-fa', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', false, '4.3.0');
 }
-
 ?>

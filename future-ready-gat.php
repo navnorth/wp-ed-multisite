@@ -25,7 +25,7 @@
  */
 define( 'GAT_PATH' , plugin_dir_path(__FILE__) );
 define( 'GAT_URL' , plugin_dir_url(__FILE__) );
-define( 'PLUGIN_DOMAIN' , 'wp-gap-analysis' );
+define( 'PLUGIN_DOMAIN' , plugin_basename(__FILE__) );
 
 include_once( GAT_PATH ."/includes/init.php" );
 include_once( GAT_PATH ."/includes/assessments.php" );

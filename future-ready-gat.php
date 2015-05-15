@@ -159,6 +159,7 @@ add_action( 'admin_menu' , 'register_gat_menus' );
 function register_gat_menus(){
     //Assessment
     //add_menu_page( 'Assessment' , 'Assessments' , 'add_users' , 'assessments' , 'get_assessments' , 'dashicons-editor-help' , 35 );
+    add_submenu_page( 'edit.php?post_type=assessment' , 'Assessment Domains' , 'Domains' , 'add_users' , 'ratings' , 'show_domains' );
     add_submenu_page( 'edit.php?post_type=assessment' , 'Rating Systems' , 'Rating Systems' , 'add_users' , 'ratings' , 'show_ratings' );
     add_submenu_page( 'edit.php?post_type=assessment' , 'Reporting' , 'Reporting' , 'add_users' , 'reporting' , 'show_reports' );
     add_submenu_page( 'edit.php?post_type=assessment' , 'Organizations' , 'Organizations' , 'add_users' , 'get-organizations' , 'get_organizations' );

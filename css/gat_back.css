@@ -1,0 +1,141 @@
+.gat_wrpr, .gat_dimention_wrpr
+{
+	width: 100%;
+	float: left;
+	padding: 10px 0;
+}
+.gat_btnwrpr
+{
+	width: 100%; float: left;
+}
+.gat_dimention_wrpr {
+    border-bottom: 1px dashed hsl(0, 0%, 80%);
+    margin-bottom: 10px;
+}
+.gat_cntrlr_wrpr {
+    float: left;
+    padding: 5px 0;
+    width: 100%;
+}
+.gat_cntrlr_wrpr .count {
+    float: left;
+    font-size: 16px;
+    font-weight: bold;
+    width: auto;
+}
+.gat_cntrlr_wrpr .order {
+    float: right;
+    width: auto;
+}
+.order .order_anch {
+    float: left;
+    margin: 5px;
+}
+.gat_cntrlr_wrpr .action {
+    float: right;
+    width: auto;
+}
+.gat_inside_wrpr {
+    float: left;
+    padding: 5px 0;
+    width: 100%;
+}
+.gat_inside_wrpr .gat_fldwrpr {
+    float: left;
+    margin: 5px 0;
+    width: 100%;
+}
+.gat_fldwrpr input[type="text"], .gat_fldwrpr textarea {
+    float: left;
+    padding: 8px;
+    width: 100%;
+}
+.gat_fldwrpr .gat_fldtopwrpr {
+    float: left;
+    padding: 10px 0;
+    width: 100%;
+}
+.gat_fldtopwrpr > label {
+    float: left;
+    font-size: 18px;
+    padding: 5px 0;
+    width: auto;
+}
+.gat_fldtopwrpr > p {
+    float: right;
+    margin: 0 !important;
+    width: auto;
+}
+.gat_table tr td:first-child, .gat_table tr th:first-child
+{
+	width: 250px;
+}
+.gat_table tr td:nth-child(2), .gat_table tr th:nth-child(2)
+{
+	width: 150px;
+}
+.order_anch.up {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-image: url("../images/arrow_up.png");
+    background-origin: padding-box;
+    background-position: -6px -1px;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    padding: 3px 0;
+	width: 20px;
+	height: 18px;
+}
+.order_anch.down {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-image: url("../images/arrow_down.png");
+    background-origin: padding-box;
+    background-position: -6px -4px;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    padding: 3px 0;
+	width: 20px;
+	height: 18px;
+}
+.dmnordr_up {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-image: url("../images/arrow_up.png");
+    background-origin: padding-box;
+    background-position: -6px -1px;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    padding: 3px 0;
+	width: 20px;
+	height: 18px;
+	display: block;
+}
+.dmnordr_dwn {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-image: url("../images/arrow_down.png");
+    background-origin: padding-box;
+    background-position: -6px -4px;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    padding: 3px 0;
+	width: 20px;
+	height: 18px;
+	display: block;
+}
+.mce-tinymce.mce-tinymce-inline {
+    width: 822px !important;
+}
+.mce-container-body .mce-abs-layout
+{
+	width: 822px !important;
+}
+.gat_editablediv
+{
+	width: 97.4%; float: left; border: 1px solid #ccc; height: 200px; overflow: scroll; padding: 10px;
+}
+.gap_analysis_tool ul li:nth-child(6), .gap_analysis_tool ul li:nth-child(7), .gap_analysis_tool ul li:nth-child(8)
+{
+	display: none;
+}

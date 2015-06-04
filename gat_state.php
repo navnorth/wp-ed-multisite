@@ -33,4 +33,4 @@ function gat_districtcode_function()
 	echo $return;
 	die;
 }
-?>	
+?>

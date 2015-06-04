@@ -213,3 +213,9 @@ include_once( GAT_PATH ."/gat_state.php" );
 include_once( GAT_PATH ."/includes/init.php" );
 include_once( GAT_PATH ."/includes/save-post.php" );
 include_once( GAT_PATH ."/includes/ajax.php" );
+
+if(!term_exists( '1-4 scale', "scale" ))
+{
+	wp_insert_term("1-4 scale", 'scale', $args = array());
+}
+?>

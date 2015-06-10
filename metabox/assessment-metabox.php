@@ -5,6 +5,13 @@ function assessment_metabox_func()
 	add_meta_box('assessment_result_contentid','Result Content','result_content_func','assessment','advanced');
 	add_meta_box('assessment_rating_scale','Rating Scale','rating_scale_func','assessment','advanced');
 	add_meta_box('assessment_domain','Domains','domain_func','assessment','advanced');
+	add_meta_box('assessment_featurevideo','Feature Video','video_func','assessment','side');
+}
+function video_func()
+{
+	global $post;
+	$video = get_post_meta($post->ID, "assessment_featurevideo", true);
+	echo '<input type="text" name="assessment_featurevideo" value="'.$video.'" placeholder="Youtub video Id"/>';
 }
 function result_content_func()
 {

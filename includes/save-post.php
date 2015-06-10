@@ -89,6 +89,7 @@ function gat_assessment_save()
 		return;
 	}
 	extract($_POST);
+	update_post_meta($post->ID, "assessment_featurevideo", $assessment_featurevideo);
 	update_post_meta($post->ID, "result_content", $result_content);
 	update_post_meta($post->ID, "rating_scale", $rating_scale);
 }

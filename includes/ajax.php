@@ -1,4 +1,5 @@
 <?php
+/*Add Dimensions*/
 add_action('wp_ajax_addfield_call','get_dimensions');
 function get_dimensions()
 {
@@ -33,8 +34,8 @@ function get_dimensions()
                 	<input type="text" name="dimension_title[]" autocomplete="off" spellcheck="true" value="" class="wp_title" />
                 </div>
                 <div class="gat_fldwrpr">
-                 	<textarea rows="5" name="dimension_content[]" style="display: none" class="gat_editabletextarea"></textarea>
-                    <div class="gat_editablediv" onclick="initareaodoo();"></div>
+                 	<textarea rows="5" name="dimension_content[]" class="gat_editabletextarea"></textarea>
+                    <!--<div class="gat_editablediv" onclick="initareaodoo();"></div>-->
                 </div>
                 <div class="gat_fldwrpr">
                 	<div class="gat_fldtopwrpr">
@@ -63,6 +64,21 @@ function get_dimensions()
     <?php
 	die;
 }
+
+/*Delete Dimensions*/
+add_action('wp_ajax_delete_dimensions','gat_delete_dimensions_func');
+function gat_delete_dimensions_func()
+{
+	global $wpdb;
+	extract($_POST);
+	$dimensiontable = PLUGIN_PREFIX . "dimensions";
+	$videotable = PLUGIN_PREFIX . "videos";
+	$wpdb->query("delete from $dimensiontable where id=$dimensionid");
+	$wpdb->query("delete from $videotable where dimensions_id=$dimensionid");
+	die;
+}
+
+/*Delete Domain*/
 add_action('wp_ajax_delete_domain','delete_domain_function');
 function delete_domain_function()
 {
@@ -75,7 +91,10 @@ function delete_domain_function()
 	$wpdb->query("DELETE FROM $videotable WHERE domain_id=$domainid");
 	die;
 }
+
+/*Dynamic update of progress bar when user answer for the questions*/
 add_action('wp_ajax_save_assessment','save_assessment_function');
+add_action('wp_ajax_nopriv_save_assessment','save_assessment_function');
 function save_assessment_function()
 {
 	global $wpdb;
@@ -105,7 +124,31 @@ OR rating_scale != '' ) && dimension_id NOT IN ($dimension_id) ", OBJECT_K );
 	$data = array_keys($data);
 	$total_rated = $data[0];
 	
-	echo $progress = (($total_rated+$ratingcount)/$total_dimension)*100;
+	$progress = (($total_rated+$ratingcount)/$total_dimension)*100;
+	echo ceil($progress);
 	die;
+}
+
+/*Track record of play video*/
+add_action('wp_ajax_gat_trackrecord','gat_trackrecord_func');
+add_action('wp_ajax_nopriv_gat_trackrecord','gat_trackrecord_func');
+function gat_trackrecord_func()
+{
+	global $wpdb;
+	$resulted_video = PLUGIN_PREFIX . "resulted_video";
+	extract($_POST);
+	if(isset($resultedid) && !empty($resultedid))
+	{
+		$wpdb->query("update $resulted_video set start='0', end='$videottltime', seek='$videocrrnttime' where id = $resultedid");
+		$seek = ceil($videocrrnttime);
+		$end = ceil($videottltime);
+		$complete = 0;
+		if(!empty($seek) && !empty($end))
+		{
+			$complete = ($seek/$end)*100;
+			$complete = ceil($complete);
+		}
+	}
+	die(json_encode(array('complete'=> $complete, 'seek'=> $videocrrnttime)));
 }
 ?>

@@ -1,224 +1,141 @@
 <?php
+/*Register post type (assessment, domain, rating)*/
+add_action("init", "gap_init_function");
+function gap_init_function()
+{
+	$post_types = array("Assessment"=>"Assessments", "Domain"=>"Domains", 'Rating' => 'ratings');
+	
+	foreach($post_types as $key => $posttype)
+	{
+		if($key == 'Rating')
+		{
+			$support = array( 'title', 'editor' );
+		}
+		else
+		{
+			$support = array( 'title', 'editor', 'thumbnail' );
+		}
+		$labels = array(
+			'name'               => _x( $posttype, 'post type general name', PLUGIN_DOMAIN ),
+			'singular_name'      => _x( $key, 'post type singular name', PLUGIN_DOMAIN ),
+			'menu_name'          => _x( $posttype, 'admin menu', PLUGIN_DOMAIN ),
+			'name_admin_bar'     => _x( $key, 'add new on admin bar', PLUGIN_DOMAIN ),
+			'add_new'            => _x( 'Add New', strtolower($key), PLUGIN_DOMAIN ),
+			'add_new_item'       => __( 'Add New '.$key, PLUGIN_DOMAIN ),
+			'new_item'           => __( 'New '.$key, PLUGIN_DOMAIN ),
+			'edit_item'          => __( 'Edit '.$key, PLUGIN_DOMAIN ),
+			'view_item'          => __( 'View '.$key, PLUGIN_DOMAIN ),
+			'all_items'          => __( 'All '.$posttype, PLUGIN_DOMAIN ),
+			'search_items'       => __( 'Search '.$posttype, PLUGIN_DOMAIN ),
+			'parent_item_colon'  => __( 'Parent '.$posttype.':', PLUGIN_DOMAIN ),
+			'not_found'          => __( 'No '.strtolower($posttype).' found.', PLUGIN_DOMAIN ),
+			'not_found_in_trash' => __( 'No '.strtolower($posttype).' found in Trash.', PLUGIN_DOMAIN )
+		);
+		$args = array(
+			'labels'             => $labels,
+			'public'             => true,
+			'publicly_queryable' => true,
+			'show_ui'            => true,
+			'show_in_menu'       => false,
+			'query_var'          => true,
+			'rewrite'            => array( 'slug' => strtolower($key) ),
+			'capability_type'    => 'post',
+			'has_archive'        => true,
+			'hierarchical'       => false,
+			'menu_position'      => null,
+			'supports'           => $support,
+			'register_meta_box_cb' => strtolower($key)."_metabox_func"
+		);
+		register_post_type( strtolower($key), $args );
+	}
+	$labels = array(
+		'name'                       => _x( 'Tags', 'taxonomy general name' ),
+		'singular_name'              => _x( 'Tag', 'taxonomy singular name' ),
+		'search_items'               => __( 'Search Tags' ),
+		'popular_items'              => __( 'Popular Tags' ),
+		'all_items'                  => __( 'All Tags' ),
+		'parent_item'                => null,
+		'parent_item_colon'          => null,
+		'edit_item'                  => __( 'Edit Tag' ),
+		'update_item'                => __( 'Update Tag' ),
+		'add_new_item'               => __( 'Add New Tag' ),
+		'new_item_name'              => __( 'New Tag Name' ),
+		'separate_items_with_commas' => __( 'Separate tags with commas' ),
+		'add_or_remove_items'        => __( 'Add or remove tags' ),
+		'choose_from_most_used'      => __( 'Choose from the most used tags' ),
+		'not_found'                  => __( 'No tags found.' ),
+		'menu_name'                  => __( 'Tags' ),
+	);
+
+	$args = array(
+		'hierarchical'          => false,
+		'labels'                => $labels,
+		'show_ui'               => true,
+		'show_admin_column'     => true,
+		'update_count_callback' => '_update_post_term_count',
+		'query_var'             => true,
+		'rewrite'               => array( 'slug' => 'tag' ),
+	);
+
+	register_taxonomy( 'tag', array('assessment', 'domain'), $args );
+	
+	$labels = array(
+		'name'                       => _x( 'Scales', 'taxonomy general name' ),
+		'singular_name'              => _x( 'Scale', 'taxonomy singular name' ),
+		'search_items'               => __( 'Search Scales' ),
+		'popular_items'              => __( 'Popular Scales' ),
+		'all_items'                  => __( 'All Scales' ),
+		'parent_item'                => null,
+		'parent_item_colon'          => null,
+		'edit_item'                  => __( 'Edit Scale' ),
+		'update_item'                => __( 'Update Scale' ),
+		'add_new_item'               => __( 'Add New Scale' ),
+		'new_item_name'              => __( 'New Scale Name' ),
+		'separate_items_with_commas' => __( 'Separate scales with commas' ),
+		'add_or_remove_items'        => __( 'Add or remove scales' ),
+		'choose_from_most_used'      => __( 'Choose from the most used scales' ),
+		'not_found'                  => __( 'No scales found.' ),
+		'menu_name'                  => __( 'Scales' ),
+	);
+
+	$args = array(
+		'hierarchical'          => true,
+		'labels'                => $labels,
+		'show_ui'               => true,
+		'show_admin_column'     => true,
+		'update_count_callback' => '_update_post_term_count',
+		'query_var'             => true,
+		'rewrite'               => array( 'slug' => 'scale' ),
+	);
+
+	register_taxonomy( 'scale', array('rating'), $args );	
+}
+/*Create Plugin menu*/
+add_action( 'admin_menu', 'register_my_custom_menu_page' );
+function register_my_custom_menu_page()
+{
+	add_menu_page( 'Gap Assessment', 'Gap Assessment', 'edit_private_pages', 'edit.php?post_type=assessment', '', 'dashicons-editor-help', 4 );
+	add_submenu_page( 'edit.php?post_type=assessment' , 'Assessment', 'Assessment', 'edit_private_pages', 'edit.php?post_type=assessment' );
+	add_submenu_page( 'edit.php?post_type=assessment' , 'Rating Systems' , 'Rating Systems' , 'edit_private_pages' , 'edit.php?post_type=rating' , '' );
+    add_submenu_page( 'edit.php?post_type=assessment' , 'Reporting' , 'Reporting' , 'edit_private_pages' , 'reporting' , 'show_reports' );
+    add_submenu_page( 'edit.php?post_type=assessment' , 'Settings' , 'Settings' , 'edit_private_pages' , 'settings' , 'import_organizations' );
+	add_submenu_page( 'edit.php?post_type=assessment' , 'Scale', 'Scale', 'edit_private_pages', 'edit-tags.php?taxonomy=scale&post_type=rating' );
+	
+	add_submenu_page( 'edit.php?post_type=assessment' , 'add assessment', 'add assessment', 'edit_private_pages', 'post-new.php?post_type=assessment' );
+	add_submenu_page( 'edit.php?post_type=assessment' , 'add domain', 'add domain', 'edit_private_pages', 'post-new.php?post_type=domain' );
+	add_submenu_page( 'edit.php?post_type=assessment' , 'add rating', 'add rating', 'edit_private_pages', 'post-new.php?post_type=rating' );
+}
 //Report function
 function show_reports()
 {
+	include_once( GAT_PATH ."/metabox/show-reports.php" );
 }
 //Setting function
 function import_organizations()
 {
-    if(isset($_POST["html-upload"]) AND isset($_FILES["organizations"]) AND $_FILES["organizations"]["size"])
-    {
-        include_once(GAT_PATH . "/classes/organization.php");
-		 
-		ini_set("max_execution_time", 0);
-        ini_set("memory_limit", "1200M");
-		ini_set('post_max_size', "1200M");
-        set_time_limit(0);
-        
-        $file = fopen($_FILES["organizations"]["tmp_name"], "r") or die("Unable to read the file.");
-        $line = 0;
-        $organizations = $heading = array();
-        
-        while( ! feof($file))
-        {
-            $row = str_replace(array("\r", "\n"), NULL, fgets($file));
-            
-            if (strlen(trim($row))>0){
-                if($line){
-                    $organizations[] = array_combine($heading, explode("\t", $row));
-                } else
-                    $heading = explode("\t", $row);
-                
-                $line++;
-            }
-        }
-        fclose($file);
-        Organization::insert($organizations);
-        $success = TRUE;
-    }
-	
-	//Get max upload file size
-    $max_upload = (int)(ini_get('upload_max_filesize'));
-?>
-<div class="wrap">
-    <h2>Import Organizations</h2>
-    <?php if($success): ?>
-        <div id="message" class="updated notice notice-success is-dismissible below-h2">
-        	<p>Organizations imported. <a href="?page=get-organizations">View organizations</a></p>
-            <button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button>
-        </div>
-    <?php endif; ?>
-    <form enctype="multipart/form-data" method="post" class="media-upload-form" id="file-form">
-        <p>
-        	<input type="file" name="organizations" id="organizations">
-            <input type="submit" name="html-upload" id="html-upload" class="button" value="Upload">
-        </p>
-        <div class="clear"></div>
-        <p class="max-upload-size">Maximum upload file size: <?php echo $max_upload; ?> MB.</p>
-    </form>
-</div>
-<?php
+  include_once( GAT_PATH ."/metabox/import-organization.php" );  
 }
-//Add metaboxs to assessment post type
-function assessment_metabox_func()
-{
-	add_meta_box('assessment_result_contentid','Result Content','result_content_func','assessment','advanced');
-	add_meta_box('assessment_rating_scale','Rating Scale','rating_scale_func','assessment','advanced');
-	add_meta_box('assessment_domain','Domains','domain_func','assessment','advanced');
-}
-function result_content_func()
-{
-	global $post;
-	$content = get_post_meta($post->ID, "result_content", true);
-	$editor_id = "result_content";
-	wp_editor( $content, $editor_id, $settings = array('textarea_name'=> 'result_content', 'textarea_rows'=> 5));
-}
-function rating_scale_func()
-{
-	global $post;
-	
-	if($post->post_status != 'publish')
-	{
-		$post->post_status = 'publish';
-		wp_insert_post( $post );
-	}
-	$rating_scale = get_post_meta($post->ID, "rating_scale", true);
-	echo $html = '<select name="rating_scale">
-					<option value="1-4">1-4 Scale</option>
-				 </select>';
-}
-function domain_func()
-{
-	global $post;
-	$domainids = get_domainid_by_assementid($post->ID);
-	$html = '';
-	$html .= '<div class="gat_wrpr">';
-	$html .= '<table class="wp-list-table widefat fixed">';
-		$html .= '<thead>';
-			$html .= '<tr>';
-				$html .= '<th></th>';
-				$html .= '<th></th>';
-				$html .= '<th>Domain Title</th>';
-				$html .= '<th>Dimension</th>';
-				$html .= '<th>Videos</th>';
-				$html .= '<th></th>';
-				$html .= '<th></th>';
-			$html .= '</tr>';
-		$html .= '</thead>';
-		$html .= '<tbody>';
-			$i = 1;
-			foreach($domainids as $domainid)
-			{
-				$domain = get_post($domainid);
-				$html .= '<tr>';
-					if($i == 1)
-					{
-						$html .= '<td><a href="javascript:" onclick="domain_order(this)" data-order="up" class=""></a></td>';
-						$html .= '<td><a href="javascript:" onclick="domain_order(this)" data-order="down" class="dmnordr_dwn"></a></td>';
-					}
-					elseif($i == count($domainids))
-					{
-						$html .= '<td><a href="javascript:" onclick="domain_order(this)" data-order="up" class="dmnordr_up"></a></td>';
-						$html .= '<td><a href="javascript:" onclick="domain_order(this)" data-order="down" class=""></a></td>';
-					}
-					else
-					{
-						$html .= '<td><a href="javascript:" onclick="domain_order(this)" data-order="up" class="dmnordr_up"></a></td>';
-						$html .= '<td><a href="javascript:" onclick="domain_order(this)" data-order="down" class="dmnordr_dwn"></a></td>';
-					}
-					$html .= '<td>'.$domain->post_title.'</td>';
-					$html .= '<td>'.get_dimensioncount($domainid).'</td>';
-					$html .= '<td>'.get_videocount($domainid).'</td>';
-					$html .= '<td><a href="'.site_url().'/wp-admin/post.php?post='.$domainid.'&action=edit" class="button button-primary">Edit</a></td>';
-					$html .= '<td><a href="javascript:" class="button button-primary" onclick="delete_domain(this)" data-id="'.$domainid.'">Delete</a></td>';
-				$html .= '</tr>';
-				$i++;
-			}
-		$html .= '</tbody>';
-	$html .= '</table>';
-	
-	$html .= '</div>';
-	$html .= '<p class="gat_btnwrpr"><a class="add-new-h2" href="post-new.php?post_type=domain&assessmentid='.$post->ID.'">Add New Domain</a></p>';
-	$html .= '<div class="clear"></div>';
-	echo $html;
-}
-//Add metaboxs to domain post type
-function domain_metabox_func()
-{
-	add_meta_box('domain_dimensions','Dimensions','domain_dimensions_functions','domain','advanced');
-}
-function domain_dimensions_functions()
-{
-	global $post, $wpdb;
-	$dimensiontable = PLUGIN_PREFIX . "dimensions";
-	if(isset($_REQUEST['assessmentid']) && !empty($_REQUEST['assessmentid']))
-	{
-		$assessmentid = $_REQUEST['assessmentid'];
-	}
-	else
-	{
-		$assessmentid = get_assessmentid_by_domainid($post->ID);
-	}
-	echo '<div class="gat_wrpr">';
-			echo '<input type="hidden" name="assessmentid" value="'.$assessmentid.'" />';
-			get_dimensions_data($post->ID);
-	echo '</div>';
-	$count = get_dimensioncount($post->ID);
-	echo '<p class="gat_btnwrpr">
-			<a class="add-new-h2" href="javascript:" onclick="add_dimension(this)" data-editorid="'.$count.'">
-				Add New Dimension
-			</a>
-		  </p>';
-	echo '<div class="clear"></div>';	  
-}
-//add metabox for rating post type
-function rating_metabox_func()
-{
-	add_meta_box('rating_scale_order','Order','rating_scale_orderfunctions','rating','side', 'high');
-}
-function rating_scale_orderfunctions()
-{
-	global $post;
-	$scales = wp_get_post_terms( $post->ID, 'scale' );
-	foreach($scales as $scale)
-	{
-		if(isset($scale) && !empty($scale))
-		{
-			$oredercount = $scale->count;
-			break;
-		}
-	}
-	if(!isset($oredercount) || empty($oredercount))
-	{
-		$oredercount = 0;
-	}
-	$rating_order = get_post_meta($post->ID, "rating_order", true);
-	$return .= '<select name="rating_order">';
-		$return .= '<option value="">--Select order--</option>';
-		for($i = 1; $i <= $oredercount; $i++)
-		{
-			$check = ($i == $rating_order)? 'selected="selected"': '';
-			$return .= '<option '.$check.' value="'.$i.'">'.$i.'</option>';
-		}
-	$return .= '</select>';
-	echo $return;
-}
-add_filter( 'manage_edit-rating_columns', 'rating_columns_filter',10, 1 );
-function rating_columns_filter($columns)
-{
-	$columns['order'] = 'Order';
-	return $columns;
-}
-
-//adding values to custom columns
-add_action( 'manage_rating_posts_custom_column', 'manage_rating_columns');
-function manage_rating_columns( $column )
-{
-	global $post;
-	switch( $column ) {
-		case 'order':
-			echo get_post_meta($post->ID, "rating_order", true);
-		break;
-	}
-}
+include_once( GAT_PATH ."/metabox/assessment-metabox.php" );
+include_once( GAT_PATH ."/metabox/domain-metabox.php" );
+include_once( GAT_PATH ."/metabox/rating-metabox.php" );
 ?>

@@ -19,8 +19,16 @@ function gat_domain_save()
 		{
 			for($i = 0; $i < count($dimension_title); $i++)
 			{
-				$wpdb->query('update '.$dimensiontable.' SET assessment_id='.$assessmentid.', domain_id='.$post->ID.', title="'.$dimension_title[$i].'", description = "'.$dimension_content[$i].'" where id='.$dimension_id[$i].'');
-				$lastid = $dimension_id[$i];
+				if(isset($dimension_id[$i]) && !empty($dimension_id[$i]))
+				{
+					$wpdb->query('update '.$dimensiontable.' SET assessment_id='.$assessmentid.', domain_id='.$post->ID.', title="'.$dimension_title[$i].'", description = "'.$dimension_content[$i].'" where id='.$dimension_id[$i].'');
+					$lastid = $dimension_id[$i];
+				}
+				else
+				{
+					$wpdb->query('insert into '.$dimensiontable.' (assessment_id, domain_id, title, description) VALUES ('.$assessmentid.','.$post->ID.' ,"'.$dimension_title[$i].'", "'.$dimension_content[$i].'")');
+					$lastid = $wpdb->insert_id;
+				}
 				$var = $i+1;
 				if(isset(${'dimension_' . $var .'_videolabel'}) && !empty(${'dimension_' . $var .'_videolabel'}))
 				{

@@ -1,4 +1,5 @@
 <?php
+/*Enqueue script and style on backend*/
 add_action( 'admin_enqueue_scripts', 'gat_back_enqueue_script' );
 function gat_back_enqueue_script()
 {
@@ -6,7 +7,7 @@ function gat_back_enqueue_script()
 	wp_enqueue_script( 'gat_editor-js', plugin_dir_url( __FILE__ ).'js/tinymce.min.js' );
 	wp_enqueue_script( 'gat_back_script', plugin_dir_url( __FILE__ ).'js/gat_back.js' );
 }
-
+/*Enqueue script and style on frontend*/
 add_action( 'wp_enqueue_scripts', 'gat_front_enqueue_script' );
 function gat_front_enqueue_script()
 {
@@ -14,7 +15,7 @@ function gat_front_enqueue_script()
 	wp_enqueue_style( 'gat_front_style', plugin_dir_url( __FILE__ ).'css/font-awesome.min.css' );
 	wp_enqueue_script( 'gat_front_script', plugin_dir_url( __FILE__ ).'js/gat_front.js' );
 }
-
+/*Enqueue youtube script and ajax url on frontend*/
 add_action('wp_head','pluginname_ajaxurl');
 function pluginname_ajaxurl()
 {?>
@@ -26,24 +27,10 @@ function pluginname_ajaxurl()
       tag.src = "https://www.youtube.com/iframe_api";
       var firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      var player;
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-          height: '260',
-          width: '420',
-          videoId: 'M7lc1UVf-VE',
-          events: {
-            'onReady': onPlayerReady
-          }
-        });
-      }
-      function onPlayerReady(event) {
-        event.target.playVideo();
-      }
     </script>
 <?php
 }
+/*Enqueue script in footer for domain posttype on backend*/
 add_action('admin_footer', 'gat_post_validation');
 function gat_post_validation()
 {
@@ -52,7 +39,7 @@ function gat_post_validation()
 	{
 		 return;
 	}
-	echo '<script>
+	/*echo '<script>
 		 jQuery( "form#post #publish" ).hide();
  		 jQuery( "form#post #publish" ).after("<input type=\'button\' value=\'Publish\' class=\'sb_publish button-primary\' /><span class=\'sb_js_errors\'></span>");
 		 jQuery( ".sb_publish" ).click(function()
@@ -75,133 +62,9 @@ function gat_post_validation()
 			 	jQuery( "form#post #publish" ).click();
 			}
 		 });
-	</script>';
+	</script>';*/
 }
-add_action("init", "gap_init_function");
-function gap_init_function()
-{
-	$post_types = array("Assessment"=>"Assessments", "Domain"=>"Domains", 'Rating' => 'ratings');
-	
-	foreach($post_types as $key => $posttype)
-	{
-		if($key == 'Rating')
-		{
-			$support = array( 'title', 'editor' );
-		}
-		else
-		{
-			$support = array( 'title', 'editor', 'thumbnail' );
-		}
-		$labels = array(
-			'name'               => _x( $posttype, 'post type general name', PLUGIN_DOMAIN ),
-			'singular_name'      => _x( $key, 'post type singular name', PLUGIN_DOMAIN ),
-			'menu_name'          => _x( $posttype, 'admin menu', PLUGIN_DOMAIN ),
-			'name_admin_bar'     => _x( $key, 'add new on admin bar', PLUGIN_DOMAIN ),
-			'add_new'            => _x( 'Add New', strtolower($key), PLUGIN_DOMAIN ),
-			'add_new_item'       => __( 'Add New '.$key, PLUGIN_DOMAIN ),
-			'new_item'           => __( 'New '.$key, PLUGIN_DOMAIN ),
-			'edit_item'          => __( 'Edit '.$key, PLUGIN_DOMAIN ),
-			'view_item'          => __( 'View '.$key, PLUGIN_DOMAIN ),
-			'all_items'          => __( 'All '.$posttype, PLUGIN_DOMAIN ),
-			'search_items'       => __( 'Search '.$posttype, PLUGIN_DOMAIN ),
-			'parent_item_colon'  => __( 'Parent '.$posttype.':', PLUGIN_DOMAIN ),
-			'not_found'          => __( 'No '.strtolower($posttype).' found.', PLUGIN_DOMAIN ),
-			'not_found_in_trash' => __( 'No '.strtolower($posttype).' found in Trash.', PLUGIN_DOMAIN )
-		);
-		$args = array(
-			'labels'             => $labels,
-			'public'             => true,
-			'publicly_queryable' => true,
-			'show_ui'            => true,
-			'show_in_menu'       => false,
-			'query_var'          => true,
-			'rewrite'            => array( 'slug' => strtolower($key) ),
-			'capability_type'    => 'post',
-			'has_archive'        => true,
-			'hierarchical'       => false,
-			'menu_position'      => null,
-			'supports'           => $support,
-			'register_meta_box_cb' => strtolower($key)."_metabox_func"
-		);
-		register_post_type( strtolower($key), $args );
-	}
-	$labels = array(
-		'name'                       => _x( 'Tags', 'taxonomy general name' ),
-		'singular_name'              => _x( 'Tag', 'taxonomy singular name' ),
-		'search_items'               => __( 'Search Tags' ),
-		'popular_items'              => __( 'Popular Tags' ),
-		'all_items'                  => __( 'All Tags' ),
-		'parent_item'                => null,
-		'parent_item_colon'          => null,
-		'edit_item'                  => __( 'Edit Tag' ),
-		'update_item'                => __( 'Update Tag' ),
-		'add_new_item'               => __( 'Add New Tag' ),
-		'new_item_name'              => __( 'New Tag Name' ),
-		'separate_items_with_commas' => __( 'Separate tags with commas' ),
-		'add_or_remove_items'        => __( 'Add or remove tags' ),
-		'choose_from_most_used'      => __( 'Choose from the most used tags' ),
-		'not_found'                  => __( 'No tags found.' ),
-		'menu_name'                  => __( 'Tags' ),
-	);
-
-	$args = array(
-		'hierarchical'          => false,
-		'labels'                => $labels,
-		'show_ui'               => true,
-		'show_admin_column'     => true,
-		'update_count_callback' => '_update_post_term_count',
-		'query_var'             => true,
-		'rewrite'               => array( 'slug' => 'tag' ),
-	);
-
-	register_taxonomy( 'tag', array('assessment', 'domain'), $args );
-	
-	$labels = array(
-		'name'                       => _x( 'Scales', 'taxonomy general name' ),
-		'singular_name'              => _x( 'Scale', 'taxonomy singular name' ),
-		'search_items'               => __( 'Search Scales' ),
-		'popular_items'              => __( 'Popular Scales' ),
-		'all_items'                  => __( 'All Scales' ),
-		'parent_item'                => null,
-		'parent_item_colon'          => null,
-		'edit_item'                  => __( 'Edit Scale' ),
-		'update_item'                => __( 'Update Scale' ),
-		'add_new_item'               => __( 'Add New Scale' ),
-		'new_item_name'              => __( 'New Scale Name' ),
-		'separate_items_with_commas' => __( 'Separate scales with commas' ),
-		'add_or_remove_items'        => __( 'Add or remove scales' ),
-		'choose_from_most_used'      => __( 'Choose from the most used scales' ),
-		'not_found'                  => __( 'No scales found.' ),
-		'menu_name'                  => __( 'Scales' ),
-	);
-
-	$args = array(
-		'hierarchical'          => true,
-		'labels'                => $labels,
-		'show_ui'               => true,
-		'show_admin_column'     => true,
-		'update_count_callback' => '_update_post_term_count',
-		'query_var'             => true,
-		'rewrite'               => array( 'slug' => 'scale' ),
-	);
-
-	register_taxonomy( 'scale', array('rating'), $args );	
-}
-
-add_action( 'admin_menu', 'register_my_custom_menu_page' );
-function register_my_custom_menu_page()
-{
-	add_menu_page( 'Gap Assessment', 'Gap Assessment', 'edit_private_pages', 'edit.php?post_type=assessment', '', 'dashicons-editor-help', 4 );
-	add_submenu_page( 'edit.php?post_type=assessment' , 'Assessment', 'Assessment', 'edit_private_pages', 'edit.php?post_type=assessment' );
-	add_submenu_page( 'edit.php?post_type=assessment' , 'Rating Systems' , 'Rating Systems' , 'edit_private_pages' , 'edit.php?post_type=rating' , '' );
-    add_submenu_page( 'edit.php?post_type=assessment' , 'Reporting' , 'Reporting' , 'edit_private_pages' , 'reporting' , 'show_reports' );
-    add_submenu_page( 'edit.php?post_type=assessment' , 'Settings' , 'Settings' , 'edit_private_pages' , 'settings' , 'import_organizations' );
-	
-	add_submenu_page( 'edit.php?post_type=assessment' , 'add assessment', 'add assessment', 'edit_private_pages', 'post-new.php?post_type=assessment' );
-	add_submenu_page( 'edit.php?post_type=assessment' , 'add domain', 'add domain', 'edit_private_pages', 'post-new.php?post_type=domain' );
-	add_submenu_page( 'edit.php?post_type=assessment' , 'add rating', 'add rating', 'edit_private_pages', 'post-new.php?post_type=rating' );
-}
-
+/*add action when assessments delete*/
 add_action('before_delete_post', 'delete_post_metadata_function');
 function delete_post_metadata_function($postid)
 {
@@ -218,7 +81,7 @@ function delete_post_metadata_function($postid)
 		INNER JOIN $videotable AS b ON a.id = b.dimensions_id 
 		WHERE a.assessment_id = $postid");
 }
-
+/*add action for adding class on plugin menu*/
 add_action("admin_init", "wpse_60168_var_dump_and_die");
 function wpse_60168_var_dump_and_die() 
 {
@@ -232,6 +95,7 @@ function wpse_60168_var_dump_and_die()
 		}
 	}
 }
+/*add action for set cookie of a token*/
 add_action('init', 'GAT_setcookie');
 function GAT_setcookie()
 {
@@ -283,7 +147,7 @@ function get_dimensions_data($postid)
         	<div class="gat_cntrlr_wrpr">
             	<span class="count"><?php echo $i; ?>.</span>
                 <div class="action">
-                	<a href="javascript:" onclick="delete_dimension(this)" class="button button-primary">Delete</a>
+                	<a href="javascript:" data-dimensionid="<?php echo $data->id; ?>" onclick="delete_dimension(this)" class="button button-primary">Delete</a>
                 </div>
                 <div class="order">
                 	<?php echo $order; ?>
@@ -295,10 +159,10 @@ function get_dimensions_data($postid)
                 	<input type="text" name="dimension_title[]" autocomplete="off" spellcheck="true" value="<?php echo $title; ?>" class="wp_title" />
                 </div>
                 <div class="gat_fldwrpr">
-                 	<textarea rows="1" name="dimension_content[]" class="gat_editabletextarea" style="display: none"></textarea>
-                    <div class="gat_editablediv" onclick="initareaodoo();">
-						<?php echo $description; ?>
-                    </div>
+                 	<textarea rows="5" name="dimension_content[]" class="gat_editabletextarea"><?php echo $description; ?></textarea>
+                    <!--<div class="gat_editablediv" onclick="initareaodoo();">
+						<?php //echo $description; ?>
+                    </div>-->
                 </div>
                 <div class="gat_fldwrpr">
                 	<div class="gat_fldtopwrpr">
@@ -473,46 +337,7 @@ function check_token_exists($assessment_id, $token, $value = NULL)
 		return false;
 	}
 }
-function progress_indicator_sidebar($assessment_id, $token)
-{
-	global $wpdb;
-	$response_table = PLUGIN_PREFIX . "response";
-	$data = $wpdb->get_row("select * from $response_table where assessment_id=$assessment_id AND token='$token'");
-	if(!empty($data->email))
-	{
-		$email = explode("@", $data->email);
-		for($i=0; $i < strlen($email[0]); $i++)
-		{
-			if($i != 0)
-			{
-				$email[0][$i] = '*';
-			}
-		}
-		$email = $email[0].'@'.$email[1];
-	}
-	else
-	{
-		$email = '<a href="'. get_permalink().'?action=start-analysis">Set Your Email</a>';
-	}
-	
-	echo '<div class="gat_indicatorwidget">
-			<div class="meter">
-			  <span style="width: '.$data->progress.'%">'.$data->progress.'%</span>
-		  	</div>
-			<div>
-				<span><b>Token : </b></span>
-				'.$token.'
-			</div>
-			<div>
-				<span><b>Email : </b></span>
-				'.$email.'
-			</div>
-			<div>
-				<span><b>Last Saved : </b></span>
-				'.$data->last_saved.'
-			</div>
-		  </div>';
-}
+/*This functions get rating scales for dimensions*/
 function get_rating_scale($cat)
 {
 	global $wpdb;
@@ -531,6 +356,7 @@ function get_rating_scale($cat)
 		return array();
 	}
 }
+/*This function save domains and assessment data into responce and result table*/
 function gat_save_domaindata($post)
 {
 	global $wpdb;
@@ -547,6 +373,10 @@ function gat_save_domaindata($post)
 			if(!empty($filtered))
 			{
 				$rating = array_values($filtered);
+			}
+			else
+			{
+				$rating[0] = 1;
 			}
 			$wpdb->query("delete from $results_table where dimension_id = $dimensionid && token = '$token'");
 			$wpdb->query("INSERT INTO $results_table (assessment_id, domain_id, dimension_id, token, rating_scale) VALUES ($assessment_id, $domain_id, $dimensionid, '$token', '$rating[0]')");
@@ -596,9 +426,10 @@ OR rating_scale != '' )", OBJECT_K );
 	$data = array_keys($data);
 	$ratings = $data[0];
 	
-	$score = ($ratings/($total_dimension*4))*100;
+	$score = ($ratings/$total_dimension);
 	return $score;
 }
+/*This function get dimension count for a domain where user rated on dimension only*/
 function get_dimensioncount_domainid($domainid, $token)
 {
 	global $wpdb;
@@ -609,12 +440,64 @@ OR rating_scale != '' )", OBJECT_K );
 	$data = array_keys($data);
 	return $total_dimension = $data[0];
 }
+/*This function get total rating count for a domain*/
+function get_ratingcount_domainid($domainid, $token)
+{
+	global $wpdb;
+	$results_table = PLUGIN_PREFIX . "results";
+	
+	$data = $wpdb->get_results("SELECT sum(rating_scale) FROM $results_table WHERE domain_id =$domainid && token='$token' &&( rating_scale != NULL
+OR rating_scale != '' )", OBJECT_K );
+	$data = array_keys($data);
+	return $ratings = $data[0];
+}
+/*Sidebar for progress indicator and priority domains*/
+function progress_indicator_sidebar($assessment_id, $token)
+{
+	global $wpdb;
+	$response_table = PLUGIN_PREFIX . "response";
+	$data = $wpdb->get_row("select * from $response_table where assessment_id=$assessment_id AND token='$token'");
+	if(!empty($data->email))
+	{
+		$email = explode("@", $data->email);
+		for($i=0; $i < strlen($email[0]); $i++)
+		{
+			if($i != 0)
+			{
+				$email[0][$i] = '*';
+			}
+		}
+		$email = $email[0].'@'.$email[1];
+	}
+	else
+	{
+		$email = '<a href="'. get_permalink().'?action=start-analysis">Set Your Email</a>';
+	}
+	
+	echo '<div class="gat_indicatorwidget">
+			<div class="meter">
+			  <span style="width: '.$data->progress.'%">'.ceil($data->progress).'%</span>
+		  	</div>
+			<div>
+				<span><b>Token : </b></span>
+				'.$token.'
+			</div>
+			<div>
+				<span><b>Email : </b></span>
+				'.$email.'
+			</div>
+			<div>
+				<span><b>Last Saved : </b></span>
+				'.$data->last_saved.'
+			</div>
+		  </div>';
+}
 function priority_domain_sidebar($assessment_id, $token)
 {
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
 	$results_table = PLUGIN_PREFIX . "results";
-	$data = $wpdb->get_results("SELECT distinct(a.domain_id), (SELECT (SUM(b.rating_scale)/(count(b.rating_scale)*4))*100 as totalRating FROM $results_table as b WHERE a.domain_id = b.domain_id AND token='$token') AS totalRating FROM $dimensiontable as a WHERE a.assessment_id=$assessment_id  ORDER BY totalRating");
+	$data = $wpdb->get_results("SELECT distinct(a.domain_id), (SELECT (SUM(b.rating_scale)/count(b.rating_scale)) as totalRating FROM $results_table as b WHERE a.domain_id = b.domain_id AND token='$token') AS totalRating FROM $dimensiontable as a WHERE a.assessment_id=$assessment_id  ORDER BY totalRating");
 	
 	$top = array(); $mid = array(); $last = array(); 
 	if(!empty($data))
@@ -642,15 +525,15 @@ function priority_domain_sidebar($assessment_id, $token)
 							echo get_the_title($result->domain_id);
 							echo '<ul class="gat_indicatorlights">';
 								echo '<li><a href="javascript:"><div class="get_indicator_btn red';
-									if($result->totalRating < 33){ echo " selected_indicatorlght"; }
+									if($result->totalRating > 0 && $result->totalRating <= 1.5){ echo " selected_indicatorlght"; }
 								echo '"></div></a></li>';
 								
 								echo '<li><a href="javascript:"><div class="get_indicator_btn yellow';
-									if($result->totalRating >= 33 && $result->totalRating < 75){ echo " selected_indicatorlght"; }
+									if($result->totalRating > 1.5 && $result->totalRating <= 2.5){ echo " selected_indicatorlght"; }
 								echo '"></div></a></li>';
 								
 								echo '<li><a href="javascript:"><div class="get_indicator_btn green';
-									if($result->totalRating >= 75){ echo " selected_indicatorlght"; }
+									if($result->totalRating > 2.5 && $result->totalRating <= 4){ echo " selected_indicatorlght"; }
 								echo '"></div></a></li>';
 							echo '</ul>';							
 					echo '</li>';
@@ -673,15 +556,15 @@ function priority_domain_sidebar($assessment_id, $token)
 							echo get_the_title($result->domain_id);
 							echo '<ul class="gat_indicatorlights">';
 								echo '<li><a href="javascript:"><div class="get_indicator_btn red';
-									if($result->totalRating < 33){ echo " selected_indicatorlght"; }
+									if($result->totalRating > 0 && $result->totalRating <= 1.5){ echo " selected_indicatorlght"; }
 								echo '"></div></a></li>';
 								
 								echo '<li><a href="javascript:"><div class="get_indicator_btn yellow';
-									if($result->totalRating >= 33 && $result->totalRating < 75){ echo " selected_indicatorlght"; }
+									if($result->totalRating > 1.5 && $result->totalRating <= 2.5){ echo " selected_indicatorlght"; }
 								echo '"></div></a></li>';
 								
 								echo '<li><a href="javascript:"><div class="get_indicator_btn green';
-									if($result->totalRating >= 75){ echo " selected_indicatorlght"; }
+									if($result->totalRating > 2.5 && $result->totalRating <= 4){ echo " selected_indicatorlght"; }
 								echo '"></div></a></li>';
 							echo '</ul>';							
 					echo '</li>';

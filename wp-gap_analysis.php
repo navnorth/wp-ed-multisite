@@ -22,7 +22,6 @@
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
 global $wpdb;
 define( 'GAT_PATH' , plugin_dir_path(__FILE__) );
 define( 'GAT_URL' , plugin_dir_url(__FILE__) );
@@ -34,26 +33,7 @@ function gat_table_create_function()
 {
 	//creating custom tables
 	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-    $table_name = PLUGIN_PREFIX . "rating";
-    $sql = "CREATE TABLE IF NOT EXISTS ". $table_name ."(
-		rating_id int(11) NOT NULL AUTO_INCREMENT,
-		rating_meta_id int(11) NOT NULL,
-		value int(11) NOT NULL,
-		label text NOT NULL,
-		description longtext NOT NULL,
-		display tinyint(1) NOT NULL,
-		PRIMARY KEY (rating_id)) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
-    dbDelta($sql);
-	
-	$table_name = PLUGIN_PREFIX . "ratingmeta";
-    $sql = "CREATE TABLE IF NOT EXISTS ". $table_name ."(
-        rating_meta_id int(11) NOT NULL AUTO_INCREMENT,
-		name tinytext NOT NULL,
-		description longtext NOT NULL,
-		PRIMARY KEY (rating_meta_id)) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
-	dbDelta($sql);
-	
-	$table_name = PLUGIN_PREFIX . "dimensions";
+    $table_name = PLUGIN_PREFIX . "dimensions";
     $sql = "CREATE TABLE IF NOT EXISTS ". $table_name ."(
         id int(11) NOT NULL AUTO_INCREMENT,
 		assessment_id int(11) NOT NULL,
@@ -82,6 +62,7 @@ function gat_table_create_function()
 		email varchar(250) NOT NULL,
 		email_verified varchar(250) NOT NULL,
 		state varchar(250) NOT NULL,
+		district varchar(250) NOT NULL,
 		organization_id varchar(250) NOT NULL,
 		organization text NOT NULL,
 		start_date datetime NOT NULL,
@@ -99,6 +80,20 @@ function gat_table_create_function()
 		dimension_id int(11) NOT NULL,
 		token varchar(250) NOT NULL,
 		rating_scale varchar(250) NOT NULL,
+		PRIMARY KEY (id)) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
+	dbDelta($sql);
+	
+	$table_name = PLUGIN_PREFIX . "resulted_video";
+    $sql = "CREATE TABLE IF NOT EXISTS ". $table_name ."(
+        id int(11) NOT NULL AUTO_INCREMENT,
+		assessment_id int(11) NOT NULL,
+		domain_id int(11) NOT NULL,
+		dimensions_id int(11) NOT NULL,
+		token varchar(250) NOT NULL,
+		youtubeid varchar(250) NOT NULL,
+		start varchar(250) NOT NULL,
+		end varchar(250) NOT NULL,
+		seek varchar(250) NOT NULL,
 		PRIMARY KEY (id)) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
 	dbDelta($sql);
 	
@@ -139,7 +134,6 @@ function gat_table_create_function()
 	  ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
 	dbDelta($sql);
 }
-
 //filte template for front end
 add_filter( 'template_include', 'gat_template_loader' );
 function gat_template_loader($template)
@@ -213,9 +207,4 @@ include_once( GAT_PATH ."/gat_state.php" );
 include_once( GAT_PATH ."/includes/init.php" );
 include_once( GAT_PATH ."/includes/save-post.php" );
 include_once( GAT_PATH ."/includes/ajax.php" );
-
-if(!term_exists( '1-4 scale', "scale" ))
-{
-	wp_insert_term("1-4 scale", 'scale', $args = array());
-}
 ?>

@@ -7,6 +7,10 @@
     float: left;
     width: 100%;
 }
+.leftpad
+{
+	padding-left: 0px !important;
+}
 .assmnt-left div
 {
 	float: none;
@@ -140,6 +144,7 @@
     border: 2px solid;
     padding: 10px;
 	float: left;
+	width: 100%;
 }
 .gat_indicatorwidget > div {
     line-height: 25px;
@@ -287,6 +292,7 @@ ul.gat_indicatorlights {
     width: 100%;
     float: left;
     margin: 5px 0;
+	position: relative;
 }
 .analysis_result .gat_priority_form
 {
@@ -319,4 +325,39 @@ ul.gat_indicatorlights {
     width: 75%;
     float: left;
     margin-left: 10px;
+	height: 40px;
+	overflow: hidden;
+}
+.gat_reslt_listvideos .gat_videodetails {
+    float: left;
+    width: 75%;
+}
+.gat_videodetails .meter {
+    float: right;
+    width: 100px !important;
+}
+.gat_videodetails > span {
+    float: right;
+    font-size: 20px;
+    margin: 0 15px;
+	cursor: pointer;
+}
+.unclickable {
+	display: none;
+	cursor: pointer;
+   /*background: #000 none repeat scroll 0 0;*/
+	opacity: 0.6;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.gat_error {
+    border-left: 3px solid #00529f;
+    box-shadow: 0 0px 2px;
+    float: left;
+    margin-bottom: 10px;
+    padding: 10px 25px;
+    width: 100%;
 }

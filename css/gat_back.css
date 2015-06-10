@@ -135,7 +135,7 @@
 {
 	width: 97.4%; float: left; border: 1px solid #ccc; height: 200px; overflow: scroll; padding: 10px;
 }
-.gap_analysis_tool ul li:nth-child(6), .gap_analysis_tool ul li:nth-child(7), .gap_analysis_tool ul li:nth-child(8)
+.gap_analysis_tool ul li:nth-child(7), .gap_analysis_tool ul li:nth-child(8), .gap_analysis_tool ul li:nth-child(9)
 {
 	display: none;
 }

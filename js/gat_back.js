@@ -1,6 +1,7 @@
 function initareaodoo()
 {
-	tinymce.init({
+	return false;
+	/*tinymce.init({
  		selector: "div.gat_editablediv",
 		theme: "modern",
 		plugins: [
@@ -11,7 +12,7 @@ function initareaodoo()
 		inline: true,
 		toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image     | print preview media",
 		statusbar: false
-	});
+	});*/
 }
 function add_dimension(ref)
 {
@@ -31,9 +32,27 @@ function add_dimension(ref)
 }
 function delete_dimension(ref)
 {
-	jQuery(ref).parents(".gat_dimention_wrpr").addClass("removedele");
-	jQuery(ref).parents(".removedele").removeClass("gat_dimention_wrpr");
-	jQuery(ref).parents(".removedele").remove()
+	var dimensionid = jQuery(ref).attr("data-dimensionid");
+	if(typeof dimensionid != 'undefined')
+	{
+		jQuery.ajax({
+			url: ajaxurl,
+			type: "post",
+			data: "dimensionid="+dimensionid+"&action=delete_dimensions",
+			success: function(msg)
+			{
+				jQuery(ref).parents(".gat_dimention_wrpr").addClass("removedele");
+				jQuery(ref).parents(".removedele").removeClass("gat_dimention_wrpr");
+				jQuery(ref).parents(".removedele").remove()
+			}
+		});
+	}
+	else
+	{
+		jQuery(ref).parents(".gat_dimention_wrpr").addClass("removedele");
+		jQuery(ref).parents(".removedele").removeClass("gat_dimention_wrpr");
+		jQuery(ref).parents(".removedele").remove()
+	}
 	update_anchor("delete");
 	update_count();
 }

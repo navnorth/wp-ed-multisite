@@ -28,7 +28,8 @@
 {
     font-weight: bold;
     list-style: outside none number;
-    margin: 10px 0;
+    padding: 10px 0 0 0;
+	height: 45px;
 }
 .col-md-7 .get_domainlist_button
 {
@@ -132,13 +133,13 @@
 {
 	display: block !important;
 }
-
 .get_domainlist label {
     border: 1px solid #ccc;
     float: right;
     margin-right: 20px;
     padding: 2px 25px;
 	cursor: pointer;
+	height: 27px;
 }
 .gat_indicatorwidget {
     border: 2px solid;
@@ -215,7 +216,7 @@ ul.gat_indicatorlights {
     float: right;
     padding: 0 5px;
     width: auto;
-	height: auto;
+	height: 30px;
 	margin-right: 20px;
 }
 .gat_indicatorlights li
@@ -342,16 +343,20 @@ ul.gat_indicatorlights {
     margin: 0 15px;
 	cursor: pointer;
 }
-.unclickable {
+.loadvideo
+{
+	position: relative;
+}
+.unclickable,.unclickablevideo {
 	display: none;
 	cursor: pointer;
-   /*background: #000 none repeat scroll 0 0;*/
+	/*background: #000 none repeat scroll 0 0;*/
 	opacity: 0.6;
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
 }
 .gat_error {
     border-left: 3px solid #00529f;
@@ -360,4 +365,8 @@ ul.gat_indicatorlights {
     margin-bottom: 10px;
     padding: 10px 25px;
     width: 100%;
+}
+.get_domainlist a:first-child {
+    color: #4b4e53;
+    text-decoration: none;
 }

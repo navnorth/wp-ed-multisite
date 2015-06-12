@@ -22,36 +22,38 @@
 				$total_rating = get_ratingcount_domainid($domainid, $_COOKIE['GAT_token']);
 				                
                 echo '<li>';
-                        echo $domain->post_title;
+                        echo '<a href="'.get_permalink().'?action=token-saved&list='.$i.'">'.$domain->post_title.'</a>';
                         echo '<ul class="gat_indicatorlights">';
                         if($total_rating != 0)
                         {
 							$progress = ($total_rating/$total_dmnsn);
 							$progress = round( $progress, 1, PHP_ROUND_HALF_UP);
-							if($progress > 2.5 && $progress <= 4)
+							$resultpage_url = get_permalink($post->ID).'?action=analysis-result';
+							
+							if($progress > SCORE_HIGH_DOWN && $progress <= SCORE_HIGH_UPPER)
                             {
-                                echo '<li><a href="javascript:"><div class="get_indicator_btn red"></div></a></li>
-                                      <li><a href="javascript:"><div class="get_indicator_btn yellow"></div></a></li>
-                                      <li><a href="javascript:"><div class="get_indicator_btn green selected_indicatorlght"></div></a></li>';
+                                echo '<li><a href="'.$resultpage_url.'"><div class="get_indicator_btn red"></div></a></li>
+                                      <li><a href="'.$resultpage_url.'"><div class="get_indicator_btn yellow"></div></a></li>
+                                      <li><a href="'.$resultpage_url.'"><div class="get_indicator_btn green selected_indicatorlght"></div></a></li>';
                             }
-                            elseif($progress > 1.5 && $progress <= 2.5)
+                            elseif($progress > SCORE_LOW_UPPER && $progress <= SCORE_HIGH_DOWN)
                             {
-                                echo '<li><a href="javascript:"><div class="get_indicator_btn red"></div></a></li>
-                                      <li><a href="javascript:"><div class="get_indicator_btn yellow selected_indicatorlght"></div></a></li>
-                                      <li><a href="javascript:"><div class="get_indicator_btn green"></div></a></li>';
+                                echo '<li><a href="'.$resultpage_url.'"><div class="get_indicator_btn red"></div></a></li>
+                                      <li><a href="'.$resultpage_url.'"><div class="get_indicator_btn yellow selected_indicatorlght"></div></a></li>
+                                      <li><a href="'.$resultpage_url.'"><div class="get_indicator_btn green"></div></a></li>';
                             }
-							elseif($progress > 0 && $progress <= 1.5)
+							elseif($progress > SCORE_LOW_DOWN && $progress <= SCORE_LOW_UPPER)
                             {
-                                echo '<li><a href="javascript:"><div class="get_indicator_btn red selected_indicatorlght"></div></a></li>
-									  <li><a href="javascript:"><div class="get_indicator_btn yellow"></div></a></li>
-									  <li><a href="javascript:"><div class="get_indicator_btn green"></div></a></li>';
+                                echo '<li><a href="'.$resultpage_url.'"><div class="get_indicator_btn red selected_indicatorlght"></div></a></li>
+									  <li><a href="'.$resultpage_url.'"><div class="get_indicator_btn yellow"></div></a></li>
+									  <li><a href="'.$resultpage_url.'"><div class="get_indicator_btn green"></div></a></li>';
                             }
                         }
                         else
                         {
-                            echo '<li><a href="javascript:"><div class="get_indicator_btn red selected_indicatorlght"></div></a></li>
-                                  <li><a href="javascript:"><div class="get_indicator_btn yellow"></div></a></li>
-                                  <li><a href="javascript:"><div class="get_indicator_btn green"></div></a></li>';
+                            echo '<li><a href="'.$resultpage_url.'"><div class="get_indicator_btn red selected_indicatorlght"></div></a></li>
+                                  <li><a href="'.$resultpage_url.'"><div class="get_indicator_btn yellow"></div></a></li>
+                                  <li><a href="'.$resultpage_url.'"><div class="get_indicator_btn green"></div></a></li>';
                         }
                         echo '</ul>';
                   		echo '<a href="'.get_permalink().'?action=token-saved&list='.$i.'">';

@@ -17,7 +17,7 @@
 <?php
 	if(isset($_COOKIE['GAT_token']) && !empty($_COOKIE['GAT_token']))
 	{
-    	$token = $_COOKIE['GAT_token'];
+		$token = $_COOKIE['GAT_token'];
 		$status = check_token_exists($post->ID, $token);
 	}
 	else
@@ -364,13 +364,13 @@
                </div>
                
                <div class="col-md-12 col-sm-12 col-xs-12 leftpad">
-                    <?php
+               		<?php
 						$video = get_post_meta($post->ID, "assessment_featurevideo", true);
 						if(!empty($video))
 						{
 						 echo '<iframe width="100%" height="250px" src="https://www.youtube.com/embed/'.$video.'" frameborder="0" allowfullscreen></iframe>';
                     	}
-					?> 
+					?>    
                </div>
                 
             </div>

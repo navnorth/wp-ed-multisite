@@ -525,15 +525,15 @@ function priority_domain_sidebar($assessment_id, $token)
 							echo get_the_title($result->domain_id);
 							echo '<ul class="gat_indicatorlights">';
 								echo '<li><a href="javascript:"><div class="get_indicator_btn red';
-									if($result->totalRating > 0 && $result->totalRating <= 1.5){ echo " selected_indicatorlght"; }
+									if($result->totalRating > SCORE_LOW_DOWN && $result->totalRating <= SCORE_LOW_UPPER){ echo " selected_indicatorlght"; }
 								echo '"></div></a></li>';
 								
 								echo '<li><a href="javascript:"><div class="get_indicator_btn yellow';
-									if($result->totalRating > 1.5 && $result->totalRating <= 2.5){ echo " selected_indicatorlght"; }
+									if($result->totalRating > SCORE_LOW_UPPER && $result->totalRating <= SCORE_HIGH_DOWN){ echo " selected_indicatorlght"; }
 								echo '"></div></a></li>';
 								
 								echo '<li><a href="javascript:"><div class="get_indicator_btn green';
-									if($result->totalRating > 2.5 && $result->totalRating <= 4){ echo " selected_indicatorlght"; }
+									if($result->totalRating > SCORE_HIGH_DOWN && $result->totalRating <= SCORE_HIGH_UPPER){ echo " selected_indicatorlght"; }
 								echo '"></div></a></li>';
 							echo '</ul>';							
 					echo '</li>';
@@ -556,15 +556,15 @@ function priority_domain_sidebar($assessment_id, $token)
 							echo get_the_title($result->domain_id);
 							echo '<ul class="gat_indicatorlights">';
 								echo '<li><a href="javascript:"><div class="get_indicator_btn red';
-									if($result->totalRating > 0 && $result->totalRating <= 1.5){ echo " selected_indicatorlght"; }
+									if($result->totalRating > SCORE_LOW_DOWN && $result->totalRating <= SCORE_LOW_UPPER){ echo " selected_indicatorlght"; }
 								echo '"></div></a></li>';
 								
 								echo '<li><a href="javascript:"><div class="get_indicator_btn yellow';
-									if($result->totalRating > 1.5 && $result->totalRating <= 2.5){ echo " selected_indicatorlght"; }
+									if($result->totalRating > SCORE_LOW_UPPER && $result->totalRating <= SCORE_HIGH_DOWN){ echo " selected_indicatorlght"; }
 								echo '"></div></a></li>';
 								
 								echo '<li><a href="javascript:"><div class="get_indicator_btn green';
-									if($result->totalRating > 2.5 && $result->totalRating <= 4){ echo " selected_indicatorlght"; }
+									if($result->totalRating > SCORE_HIGH_DOWN && $result->totalRating <= SCORE_HIGH_UPPER){ echo " selected_indicatorlght"; }
 								echo '"></div></a></li>';
 							echo '</ul>';							
 					echo '</li>';

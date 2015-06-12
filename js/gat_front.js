@@ -145,6 +145,11 @@ function gat_districtcode(ref)
 }
 function gat_play_utubevdo(ref)
 {
+	if(jQuery(".loadvideo").find("div.unclickablevideo").length != 0)
+    {
+		jQuery("div.unclickablevideo").remove();
+	}
+ 
 	var utubeid = jQuery(ref).attr("data-youtubeid");
 	var currenid = jQuery(ref).attr("data-resultedid");
 	jQuery("#player").attr("data-resultedid", currenid );

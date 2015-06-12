@@ -20,7 +20,7 @@ function gat_districtcode_function()
 	global $wpdb;
 	$organization = PLUGIN_PREFIX . "organizations";
 	extract($_POST);
-	$disticts = $wpdb->get_results("SELECT distinct LEAID, LEANM FROM $organization WHERE LSTATE='$state'");
+	$disticts = $wpdb->get_results("SELECT distinct LEAID, LEANM FROM $organization WHERE LSTATE='$state' ORDER BY LEANM ASC");
 	if(!empty($disticts))
 	{
 		$return = '<label for="district">District</label>

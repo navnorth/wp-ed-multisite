@@ -39,9 +39,10 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND 
 				</select>
 			</form>
 		 </div>
-		 <div class="gat_player_videos">
+		 <div class="gat_player_videos loadvideo">
 			<div id="player" data-resultedid=''></div>
-		 </div>
+            <div class="unclickablevideo" style="display: block;" title="Play from Playlist"></div>
+         </div>
 		 <ul class="gat_reslt_listvideos">
 			<?php
 				if(!empty($data_rslts))
@@ -54,6 +55,11 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND 
 								  height: '260',
 								  width: '420',
 								  videoId: '',
+								  playerVars: { 
+									  'autoplay': 0,
+									  'controls': 1, 
+									  'rel' : 1
+								  },
 								  events: {
 									'onReady': onPlayerReady,
 									'onStateChange': onPlayerStateChange
@@ -62,7 +68,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND 
 							 }
 							 function onPlayerReady(event)
 							 {
-								event.target.playVideo();
+								//event.target.playVideo();
 							 }
 							 function onPlayerStateChange(event)
 							 {

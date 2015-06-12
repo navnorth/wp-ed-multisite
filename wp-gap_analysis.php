@@ -26,7 +26,13 @@ global $wpdb;
 define( 'GAT_PATH' , plugin_dir_path(__FILE__) );
 define( 'GAT_URL' , plugin_dir_url(__FILE__) );
 define( 'PLUGIN_DOMAIN' , plugin_basename(__FILE__) );
-define( 'PLUGIN_PREFIX' , 'gat_'.$wpdb->prefix);
+define( 'PLUGIN_PREFIX' , $wpdb->prefix.'gat_');
+
+/*Score Limit*/
+define( 'SCORE_HIGH_UPPER' , 4);
+define( 'SCORE_HIGH_DOWN' , 2.5);
+define( 'SCORE_LOW_UPPER' , 1.5);
+define( 'SCORE_LOW_DOWN' , 0);
 
 register_activation_hook(__FILE__,'gat_table_create_function');
 function gat_table_create_function()
@@ -42,7 +48,7 @@ function gat_table_create_function()
 		description longtext NOT NULL,
 		PRIMARY KEY (id)) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
 	dbDelta($sql);
-
+	
 	$table_name = PLUGIN_PREFIX . "videos";
     $sql = "CREATE TABLE IF NOT EXISTS ". $table_name ."(
         id int(11) NOT NULL AUTO_INCREMENT,
@@ -53,7 +59,7 @@ function gat_table_create_function()
 		rating_scale varchar(250) NOT NULL,
 		PRIMARY KEY (id)) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
 	dbDelta($sql);
-
+	
 	$table_name = PLUGIN_PREFIX . "response";
     $sql = "CREATE TABLE IF NOT EXISTS ". $table_name ."(
         id int(11) NOT NULL AUTO_INCREMENT,
@@ -71,7 +77,7 @@ function gat_table_create_function()
 		overall_score varchar(250) NOT NULL,
 		PRIMARY KEY (id)) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
 	dbDelta($sql);
-
+	
 	$table_name = PLUGIN_PREFIX . "results";
     $sql = "CREATE TABLE IF NOT EXISTS ". $table_name ."(
         id int(11) NOT NULL AUTO_INCREMENT,
@@ -82,7 +88,7 @@ function gat_table_create_function()
 		rating_scale varchar(250) NOT NULL,
 		PRIMARY KEY (id)) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
 	dbDelta($sql);
-
+	
 	$table_name = PLUGIN_PREFIX . "resulted_video";
     $sql = "CREATE TABLE IF NOT EXISTS ". $table_name ."(
         id int(11) NOT NULL AUTO_INCREMENT,
@@ -96,40 +102,40 @@ function gat_table_create_function()
 		seek varchar(250) NOT NULL,
 		PRIMARY KEY (id)) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
 	dbDelta($sql);
-
+	
 	$table_name = PLUGIN_PREFIX . "organizations";
     $sql = "CREATE TABLE IF NOT EXISTS ". $table_name ."(
         `organization_id` bigint(20) NOT NULL AUTO_INCREMENT,
-		`FIPST` char(2) NOT NULL,
-		`LEAID` char(9) NOT NULL,
-		`SCHNO` char(7) NOT NULL,
-		`STID` char(5) NOT NULL,
-		`SEASCH` char(6) NOT NULL,
-		`LEANM` text NOT NULL,
-		`SCHNAM` text NOT NULL,
-		`PHONE` char(12) NOT NULL,
-		`MSTREE` text NOT NULL,
-		`MCITY` text NOT NULL,
-		`MSTATE` char(2) NOT NULL,
-		`MZIP` char(5) NOT NULL,
-		`MZIP4` char(9) NOT NULL,
-		`LSTREE` text NOT NULL,
-		`LCITY` text NOT NULL,
-		`LSTATE` char(2) NOT NULL,
-		`LZIP` char(5) NOT NULL,
-		`LZIP4` char(9) NOT NULL,
-		`TYPE` tinyint(2) NOT NULL,
-		`STATUS` tinyint(2) NOT NULL,
-		`UNION` char(3) NOT NULL,
-		`ULOCAL` tinyint(2) NOT NULL,
-		`LATCOD` decimal(10,6) NOT NULL,
-		`LONCOD` decimal(10,6) NOT NULL,
-		`CONUM` char(5) NOT NULL,
-		`CONAME` text NOT NULL,
-		`CDCODE` char(4) NOT NULL,
-		`GSLO` char(2) NOT NULL,
-		`GSHI` char(2) NOT NULL,
-		`CHARTR` char(1) NOT NULL,
+		`FIPST` char(2) NOT NULL COMMENT 'ANSI1 State Code',
+		`LEAID` char(9) NOT NULL COMMENT 'NCES Local Education Agency ID',
+		`SCHNO` char(7) NOT NULL COMMENT 'NCES School ID',
+		`STID` char(5) NOT NULL COMMENT 'State Local Education Agency ID',
+		`SEASCH` char(6) NOT NULL COMMENT 'State School ID',
+		`LEANM` text NOT NULL COMMENT 'Name of Education Agency',
+		`SCHNAM` text NOT NULL COMMENT 'Name of School',
+		`PHONE` char(12) NOT NULL COMMENT 'Area code + Telephone Number',
+		`MSTREE` text NOT NULL COMMENT 'Mailing Street',
+		`MCITY` text NOT NULL COMMENT 'Mailing City',
+		`MSTATE` char(2) NOT NULL COMMENT 'Mailing State (PO Abbreviation)',
+		`MZIP` char(5) NOT NULL COMMENT 'Mailing ZIP Code',
+		`MZIP4` char(9) NOT NULL COMMENT 'Mailing ZIP Code + 4',
+		`LSTREE` text NOT NULL COMMENT 'Location Street',
+		`LCITY` text NOT NULL COMMENT 'Location City',
+		`LSTATE` char(2) NOT NULL COMMENT 'Location State',
+		`LZIP` char(5) NOT NULL COMMENT 'Location Zip Code',
+		`LZIP4` char(9) NOT NULL COMMENT 'Location Zip Code + 4',
+		`TYPE` tinyint(2) NOT NULL COMMENT 'School Type Code [1] Regular school [2] Special education school 3: Vocational education school 4:  Alternative/other school 5: Reportable programSchool Type Code [1] Regular school [2] Special education school [3] Vocational education school [4]  Alternative/other school [5] Reportable program',
+		`STATUS` tinyint(2) NOT NULL COMMENT 'Operational Status Code [1] School was operational at the time of the last report and is currently operational [2] School has closed since the time of the last report [3] School has been opened since the time of the last report [4] School was in existence, but not reported in a previous year’s CCD school universe survey, and is now being added [5] School was listed in previous year’s CCD school universe as being affiliated with a different education agency [6] School is temporarily closed and may reopen within 3 years [7] School is scheduled to be operational within 2 years [8] School was closed on a previous year’s file but has reopened',
+		`UNION` char(3) NOT NULL COMMENT ' Supervisory Union Identification Number',
+		`ULOCAL` tinyint(2) NOT NULL COMMENT 'Urban-centric Locale Code [11] City, Large [12] City, Midsize [13] City, Small [21] Suburb, Large [22] Suburb, Midsize [23] Suburb, Small [31] Town, Fringe [32] Town, Distant [33] Town, Remote [41] Rural, Fringe [42]  Rural, Distant [43] Rural, Remote',
+		`LATCOD` decimal(10,6) NOT NULL COMMENT 'Latitude',
+		`LONCOD` decimal(10,6) NOT NULL COMMENT 'Longitude',
+		`CONUM` char(5) NOT NULL COMMENT 'ANSI County Code',
+		`CONAME` text NOT NULL COMMENT 'County Name',
+		`CDCODE` char(4) NOT NULL COMMENT '113th Congressional District Code',
+		`GSLO` char(2) NOT NULL COMMENT 'Low Grade Span Offered',
+		`GSHI` char(2) NOT NULL COMMENT 'High Grade Span Offered',
+		`CHARTR` char(1) NOT NULL COMMENT 'Charter Status [1] Yes [2] No',
 		PRIMARY KEY (`organization_id`)
 	  ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
 	dbDelta($sql);
@@ -149,7 +155,7 @@ function gat_template_loader($template)
 		$file 	= 'archive-assessment.php';
 		$path  = GAT_PATH."templates/".$file;
 	}
-
+	
 	if ( isset($path) && !empty($path) )
 	{
 		$template = $path;

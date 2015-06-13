@@ -9,10 +9,11 @@
 ?>
 <?php global $post, $wpdb;?>
 <script type="text/javascript">
-	__gaTracker('send', 'pageview', {
+	ga('send', 'pageview', {
 	  'page': '<?php echo $_SERVER["REQUEST_URI"];?>',
 	  'title': '<?php echo get_the_title($post->ID);?>'
 	});
+	ga("create", "UA-64073151-1", { "userId": "<?php echo $_COOKIE['GAT_token'];?>" })
 </script>
 <?php
 	if(isset($_COOKIE['GAT_token']) && !empty($_COOKIE['GAT_token']))

@@ -30,6 +30,30 @@ function pluginname_ajaxurl()
     </script>
 <?php
 }
+add_action( 'wp_footer', 'gat_footer_function', 100 );
+function gat_footer_function()
+{
+	$yoast = get_option("yst_ga");
+	if(!empty($yoast))
+	{
+		$yoastid = $yoast['ga_general']['manual_ua_code_field'];
+	}
+	else
+	{
+		$yoastid = '';
+	}
+	?>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	
+	  ga('create', <?php echo $yoastid; ?>, 'auto');
+	  ga('send', 'pageview');
+	</script>
+<?php
+}
 /*Enqueue script in footer for domain posttype on backend*/
 add_action('admin_footer', 'gat_post_validation');
 function gat_post_validation()

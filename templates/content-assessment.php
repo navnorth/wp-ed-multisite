@@ -8,12 +8,23 @@
  */
 ?>
 <?php global $post, $wpdb;?>
+<?php
+	$yoast = get_option("yst_ga");
+	if(!empty($yoast))
+	{
+		$yoastid = $yoast['ga_general']['manual_ua_code_field'];
+	}
+	else
+	{
+		$yoastid = '';
+	}
+?>
 <script type="text/javascript">
-	ga('send', 'pageview', {
+	__gaTracker('send', 'pageview', {
 	  'page': '<?php echo $_SERVER["REQUEST_URI"];?>',
 	  'title': '<?php echo get_the_title($post->ID);?>'
 	});
-	ga("create", "UA-64073151-1", { "userId": "<?php echo $_COOKIE['GAT_token'];?>" })
+	__gaTracker("create", "<?php echo $yoastid; ?>", { "userId": "<?php echo $_COOKIE['GAT_token'];?>" })
 </script>
 <?php
 	if(isset($_COOKIE['GAT_token']) && !empty($_COOKIE['GAT_token']))

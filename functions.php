@@ -18,20 +18,6 @@ function gat_front_enqueue_script()
 /*Enqueue youtube script and ajax url on frontend*/
 add_action('wp_head','pluginname_ajaxurl');
 function pluginname_ajaxurl()
-{?>
-	<script type="text/javascript">
-		var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
-	</script>
-    <script>
-      var tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    </script>
-<?php
-}
-add_action( 'wp_footer', 'gat_footer_function', 100 );
-function gat_footer_function()
 {
 	$yoast = get_option("yst_ga");
 	if(!empty($yoast))
@@ -43,17 +29,22 @@ function gat_footer_function()
 		$yoastid = '';
 	}
 	?>
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-	
-	  ga('create', <?php echo $yoastid; ?>, 'auto');
-	  ga('send', 'pageview');
+	<script type="text/javascript">
+		var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+	</script>
+    <script>
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    </script>
+    <script>
+	  __gaTracker('create', <?php echo $yoastid; ?>, 'auto');
+	  __gaTracker('send', 'pageview');
 	</script>
 <?php
 }
+
 /*Enqueue script in footer for domain posttype on backend*/
 add_action('admin_footer', 'gat_post_validation');
 function gat_post_validation()

@@ -48,6 +48,53 @@ jQuery(document).ready(function(e) {
 		}
 		gat_play_utubevdo(this);
 	});
+        
+        /*Override URL shared by Simple Share Buttons*/
+	jQuery(".ssba-wrap a").each(function(){
+	    var shareUrl = jQuery(this).attr('href');
+	    var linkClass = jQuery(this).attr('class');
+	    /* Current Url */
+	    var origUrl = window.location.href;
+	    var index = 0;
+	    var newURL = origUrl;
+	    /* Find query string starting operator ? */
+	    index = origUrl.indexOf('?');
+	    if(index == -1){
+		index = origUrl.indexOf('#');
+	    }
+	    /* if ? is found, remove string succeeding characters including the ? sign */
+	    if(index != -1){
+		newURL = origUrl.substring(0, index);
+	    }
+	    var newShareUrl = shareUrl;
+	    var sUrl = shareUrl;
+	    switch (linkClass){
+		case 'ssba_facebook_share':
+		    index = shareUrl.indexOf('u=');
+		    newShareUrl = shareUrl.substring(index+2,shareUrl.length);
+		    sUrl = shareUrl.replace(newShareUrl,newURL);
+		    break;
+		case 'ssba_google_share':
+		    index = shareUrl.indexOf('url=');
+		    newShareUrl = shareUrl.substring(index+4,shareUrl.length);
+		    sUrl = shareUrl.replace(newShareUrl,newURL);
+		    break;
+		case 'ssba_pinterest_share':
+		    break;
+		case 'ssba_twitter_share':
+		    index = shareUrl.indexOf('url=');
+		    var index2 = shareUrl.indexOf('&text');
+		    newShareUrl = shareUrl.substring(index+4,index2);
+		    sUrl = shareUrl.replace(newShareUrl,newURL);
+		    break;
+		default:
+		    index = shareUrl.indexOf('url=');
+		    newShareUrl = shareUrl.substring(index+4,shareUrl.length);
+		    sUrl = shareUrl.replace(newShareUrl,newURL);
+		    break;
+	    }
+	    jQuery(this).attr('href',sUrl);
+	});
 });
 
 function add_focus(ref)

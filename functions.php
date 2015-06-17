@@ -335,7 +335,8 @@ function check_token_exists($assessment_id, $token, $value = NULL)
 {
 	global $wpdb;
 	$response_table = PLUGIN_PREFIX . "response";
-	$data = $wpdb->get_row("select * from $response_table where assessment_id=$assessment_id AND token='$token'");
+	$sql = $wpdb->prepare( "select * from $response_table where assessment_id= %d AND token= %s", $assessment_id, $token );
+	$data = $wpdb->get_row($sql);
 	if(isset($data) && !empty($data))
 	{
 		if(!empty($value) && $value == 'id')
@@ -471,7 +472,8 @@ function progress_indicator_sidebar($assessment_id, $token)
 {
 	global $wpdb;
 	$response_table = PLUGIN_PREFIX . "response";
-	$data = $wpdb->get_row("select * from $response_table where assessment_id=$assessment_id AND token='$token'");
+	$sql = $wpdb->prepare( "select * from $response_table where assessment_id= %d AND token= %s", $assessment_id, $token );
+	$data = $wpdb->get_row($sql);
 	if(!empty($data->email))
 	{
 		$email = explode("@", $data->email);

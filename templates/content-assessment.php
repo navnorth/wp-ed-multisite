@@ -114,7 +114,8 @@
 			extract($_POST);
 			global $wpdb;
 			$response_table = PLUGIN_PREFIX . "response";
-			$data = $wpdb->get_row("select * from $response_table where token='$token'");
+			$sql = $wpdb->prepare( "select * from $response_table where token= %s", $token );
+			$data = $wpdb->get_row($sql);
 			
 			if( date('d') == 31 || (date('m') == 1 && date('d') > 28)){
 				$date = strtotime('last day of next month');
@@ -259,7 +260,8 @@
 		{
 			$token = $_COOKIE['GAT_token'];
 			$response_table = PLUGIN_PREFIX . "response";
-			$data = $wpdb->get_row("select * from $response_table where token='$token'");
+			$sql = $wpdb->prepare( "select * from $response_table where token= %s", $token );
+			$data = $wpdb->get_row($sql);
 			?>
             <div class="col-md-12 col-sm-12 col-xs-12 leftpad">
                 <h3><?php echo get_the_title($post->ID); ?></h3>

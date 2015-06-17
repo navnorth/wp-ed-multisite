@@ -10,11 +10,11 @@
 		switch ($_GET["sortby"]) {
 			case "priority":
 				$data_rslts = $wpdb->get_results("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
-where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND b.assessment_id=$post->ID AND a.`rating_scale` LIKE CONCAT('%', b. `rating_scale`, '%')  group by a.dimensions_id ORDER BY b.rating_scale ASC");
+where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND b.assessment_id=$post->ID AND a.`rating_scale` LIKE CONCAT('%', b. `rating_scale`, '%')  ORDER BY b.rating_scale ASC");
 				break;
 			case "domains":
 				$data_rslts = $wpdb->get_results("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
-where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND b.assessment_id=$post->ID AND a.`rating_scale` LIKE CONCAT('%', b. `rating_scale`, '%')  group by a.dimensions_id ORDER BY b.domain_id ASC");
+where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND b.assessment_id=$post->ID AND a.`rating_scale` LIKE CONCAT('%', b. `rating_scale`, '%')  ORDER BY b.domain_id ASC");
 				break;
 			case "watched":
 				$data_rslts = $wpdb->get_results("SELECT a.*, ((a.seek/a.end)*100) as percent FROM $watchtable as a where assessment_id=$post->ID AND token='$token' ORDER BY CAST(percent as DECIMAL(10,5)) DESC");
@@ -24,7 +24,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND 
 	else
 	{
 		$data_rslts = $wpdb->get_results("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
-where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND b.assessment_id=$post->ID AND a.`rating_scale` LIKE CONCAT('%', b. `rating_scale`, '%')  group by a.dimensions_id ORDER BY b.rating_scale ASC");
+where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND b.assessment_id=$post->ID AND a.`rating_scale` LIKE CONCAT('%', b. `rating_scale`, '%') ORDER BY b.rating_scale ASC");
 	}
 	?>
 	<div class="col-md-9 col-sm-12 col-xs-12 analysis_result leftpad">
@@ -141,7 +141,8 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND 
 					foreach($data_rslts as $data_rslt)
 					{
 						$resulted_video = PLUGIN_PREFIX . "resulted_video";
-						$exists = $wpdb->get_row("select * from $resulted_video where assessment_id = $post->ID AND domain_id = $data_rslt->domain_id AND dimensions_id = $data_rslt->dimensions_id AND token='$token'");
+						$sql = $wpdb->prepare( "select * from $resulted_video where assessment_id = %d AND domain_id = %d AND dimensions_id = %d AND token= %s AND youtubeid= %s", $post->ID, $data_rslt->domain_id, $data_rslt->dimensions_id, $token, $data_rslt->youtubeid );
+						$exists = $wpdb->get_row($sql);
 						if(!empty($exists))
 						{
 							echo '<li>';

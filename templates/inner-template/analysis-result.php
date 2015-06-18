@@ -4,7 +4,7 @@
 	$videotable = PLUGIN_PREFIX . "videos";
 	$watchtable = PLUGIN_PREFIX . "resulted_video";
 	$token = $_COOKIE['GAT_token'];
-	
+
 	if(isset($_GET["sortby"]) && !empty($_GET["sortby"]))
 	{
 		switch ($_GET["sortby"]) {
@@ -55,9 +55,9 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND 
 								  height: '260',
 								  width: '420',
 								  videoId: '',
-								  playerVars: { 
+								  playerVars: {
 									  'autoplay': 0,
-									  'controls': 1, 
+									  'controls': 1,
 									  'rel' : 1
 								  },
 								  events: {
@@ -96,11 +96,11 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND 
 												jQuery(this).children('.unclickable').attr('title','Please pause/stop current video to play this video!');
 											}
 										});
-										
+
 										if (cleanTime() == 0) {
-											__gaTracker('send', 'event', 'video', 'started', videoId);
+											ga('send', 'event', 'video', 'started', videoId);
 										} else {
-											__gaTracker('send', 'event', 'video', 'played', 'v: ' + videoId + ' | t: ' + cleanTime());
+											ga('send', 'event', 'video', 'played', 'v: ' + videoId + ' | t: ' + cleanTime());
 										};
 									break;
 									case YT.PlayerState.PAUSED:
@@ -113,9 +113,9 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND 
 										{
 											trackrecordbyid(resultedid);
 										}
-										
+
 										if (player.getDuration() - player.getCurrentTime() != 0) {
-											__gaTracker('send', 'event', 'video', 'paused', 'v: ' + videoId + ' | t: ' + cleanTime());
+											ga('send', 'event', 'video', 'paused', 'v: ' + videoId + ' | t: ' + cleanTime());
 										};
 									break;
 									case YT.PlayerState.ENDED:
@@ -128,8 +128,8 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND 
 										{
 											trackrecordbyid(resultedid);
 										}
-										
-										__gaTracker('send', 'event', 'video', 'ended', videoId );
+
+										ga('send', 'event', 'video', 'ended', videoId );
 									break;
 								};
 							 }
@@ -179,7 +179,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND 
 										}
 										echo '<div class="meter"><span style="width: '.$complete.'%">'.$complete.'%</span></div>';
 									}
-								echo '</div>';	
+								echo '</div>';
 								echo '<div class="unclickable"></div>';
 							echo '</li>';
 						}
@@ -210,11 +210,11 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND 
 			<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default">Back to Domains</a></li>
 			<li><input type="submit" class="btn btn-default" name="gat_results" value="Email Results" /></li>
 			<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default">Continue Analysis</a></li>
-		  </ul> 
+		  </ul>
 	</div>
 	<div class="col-md-3 col-sm-12 col-xs-12">
 		<h4>Priority Domains</h4>
 		<?php priority_domain_sidebar($post->ID, $token); ?>
 		<?php progress_indicator_sidebar($post->ID, $token); ?>
 	</div>
-        
+

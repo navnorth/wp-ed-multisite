@@ -8,24 +8,7 @@
  */
 ?>
 <?php global $post, $wpdb;?>
-<?php
-	$yoast = get_option("yst_ga");
-	if(!empty($yoast))
-	{
-		$yoastid = $yoast['ga_general']['manual_ua_code_field'];
-	}
-	else
-	{
-		$yoastid = '';
-	}
-?>
-<script type="text/javascript">
-	__gaTracker('send', 'pageview', {
-	  'page': '<?php echo $_SERVER["REQUEST_URI"];?>',
-	  'title': '<?php echo get_the_title($post->ID);?>'
-	});
-	__gaTracker("create", "<?php echo $yoastid; ?>", { "userId": "<?php echo $_COOKIE['GAT_token'];?>" })
-</script>
+
 <?php
 	if(isset($_COOKIE['GAT_token']) && !empty($_COOKIE['GAT_token']))
 	{
@@ -59,7 +42,7 @@
 			}
 			die;
 		}
-		
+
 		if(isset($_POST['gat_results']))
 		{
 			$result = gat_save_domaindata($_POST);
@@ -68,7 +51,7 @@
 				echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=analysis-result"</script>';
 			}
 		}
-		
+
 		//Action perform when continue to next domain
 		if(isset($_POST['domain_submit']))
 		{
@@ -78,17 +61,17 @@
 				extract($_POST);
 				if($next_domain != 'resume')
 				{
-					echo '<script type="text/javascript">__gaTracker("send", "event", "Submit Domain", "'.count($dimension_id).'");</script>';
+					echo '<script type="text/javascript">ga("send", "event", "Submit Domain", "'.count($dimension_id).'");</script>';
 					echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=token-saved&list='.$next_domain.'"</script>';
 				}
 				else
 				{
-					echo '<script type="text/javascript">__gaTracker("send", "event", "Submit Domain", "'.count($dimension_id).'");</script>';
+					echo '<script type="text/javascript">ga("send", "event", "Submit Domain", "'.count($dimension_id).'");</script>';
 					echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=resume-analysis"</script>';
 				}
 			}
 		}
-		
+
 		//Action perform when first time token save for assessment
 		if(isset($_POST['save_token']))
 		{
@@ -107,7 +90,7 @@
 			}
 			echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=token-saved&list=1"</script>';
 		}
-		
+
 		//Action perform when resum from existing token
 		if(isset($_POST['restart_token']))
 		{
@@ -116,7 +99,7 @@
 			$response_table = PLUGIN_PREFIX . "response";
 			$sql = $wpdb->prepare( "select * from $response_table where token= %s", $token );
 			$data = $wpdb->get_row($sql);
-			
+
 			if( date('d') == 31 || (date('m') == 1 && date('d') > 28)){
 				$date = strtotime('last day of next month');
 			} else {
@@ -124,7 +107,7 @@
 			}
 			$expire = date("l j F Y h:i:s A", $date);
 			$path = parse_url(get_option('siteurl'), PHP_URL_PATH);
-			
+
 			if(isset($data) && !empty($data))
 			{
 				if (isset($_COOKIE['GAT_token']))
@@ -190,34 +173,34 @@
             </div>
             <?php
 		}
-		
+
 		// last stage where user wants to view his resulting video
 		if(isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] == 'analysis-result')
 		{
 			?>
 			<script type="text/javascript">
-				__gaTracker('send', 'pageview', {
+				ga('send', 'pageview', {
 				  'page': '<?php echo $_SERVER["REQUEST_URI"];?>',
 				  'title': 'Analysis Result'
 				});
 			</script>
-			<?php 
+			<?php
 			include_once( GAT_PATH ."/templates/inner-template/analysis-result.php" );
 		}
-		
+
 		// third stage if user select resume analysis and after token is verified from db
 		if(isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] == 'resume-analysis')
 		{
 			include_once( GAT_PATH ."/templates/inner-template/resume-analysis.php" );
 		}
-		
+
 		// third stage if user select start analysis and after token is saved in db
 		if(isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] == 'token-saved')
 		{
 			include_once( GAT_PATH ."/templates/inner-template/token-saved.php" );
 		}
-		
-		// second stage if user select resume analysis (form display for enter token) 
+
+		// second stage if user select resume analysis (form display for enter token)
 		if(isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] == 'restart_token')
 		{
 			?>
@@ -254,7 +237,7 @@
             </div>
             <?php
 		}
-		
+
 		// second stage if user select start analysis
 		if(isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] == 'start-analysis')
 		{
@@ -333,7 +316,7 @@
                         ?>
                     </p>
                  </div>
-                 
+
                  <div class="col-md-12 col-sm-12 col-xs-12 leftpad">
                     <ul class="get_domainlist">
                     <?php
@@ -349,7 +332,7 @@
                                             <label>
                                                 <i class="fa fa-play"></i>
                                             </label>
-                                        </a>	
+                                        </a>
                                       </li>';
                             }
                         }
@@ -359,16 +342,16 @@
                         <a class="btn btn-default" href="<?php echo get_permalink()."?action=start-analysis"; ?>" role="button">Start Analysis</a>
                    </div>
                 </div>
-                
+
             </div>
-            
+
             <!--Right Section-->
             <div class="col-md-3 col-sm-12 col-xs-12 assmnt-left">
                <div class="gat_sharing_widget">
                     <p class="pblctn_scl_icn_hedng"> Share the GAP analysis tool </p>
-                    <div class="pblctn_scl_icns">	
+                    <div class="pblctn_scl_icns">
                         <?php echo do_shortcode("[ssba]"); ?>
-                    </div>    
+                    </div>
                </div>
                <div>
                     <a class="btn btn-default" href="<?php echo get_permalink()."?action=start-analysis"; ?>" role="button">Start Analysis</a>
@@ -376,7 +359,7 @@
                <div>
                     <a class="btn btn-default" href="<?php echo get_permalink()."?action=restart_token"; ?>" role="button">Resume / Result</a>
                </div>
-               
+
                <div class="col-md-12 col-sm-12 col-xs-12 leftpad">
                		<?php
 						$video = get_post_meta($post->ID, "assessment_featurevideo", true);
@@ -384,11 +367,11 @@
 						{
 						 echo '<iframe width="100%" height="250px" src="https://www.youtube.com/embed/'.$video.'" frameborder="0" allowfullscreen></iframe>';
                     	}
-					?>    
+					?>
                </div>
-                
+
             </div>
         <?php
 		}
 	}
-?>	
+?>

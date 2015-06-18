@@ -38,10 +38,6 @@ function pluginname_ajaxurl()
       var firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     </script>
-    <script>
-	  __gaTracker('create', <?php echo $yoastid; ?>, 'auto');
-	  __gaTracker('send', 'pageview');
-	</script>
 <?php
 }
 
@@ -65,7 +61,7 @@ function gat_post_validation()
 			jQuery(".gat_editablediv").each(function() {
 				var value = jQuery(this).html();
 				jQuery(this).prev("textarea.gat_editabletextarea").text(value);
-				
+
 				if(i == length)
 				{
 					error = false;
@@ -91,14 +87,14 @@ function delete_post_metadata_function($postid)
 	{
 		wp_delete_post($domainid);
 	}
-	$wpdb->query("DELETE a,b 
-		FROM $dimensiontable AS a 
-		INNER JOIN $videotable AS b ON a.id = b.dimensions_id 
+	$wpdb->query("DELETE a,b
+		FROM $dimensiontable AS a
+		INNER JOIN $videotable AS b ON a.id = b.dimensions_id
 		WHERE a.assessment_id = $postid");
 }
 /*add action for adding class on plugin menu*/
 add_action("admin_init", "wpse_60168_var_dump_and_die");
-function wpse_60168_var_dump_and_die() 
+function wpse_60168_var_dump_and_die()
 {
     global $menu,$submenu;
 	if(!empty($menu))
@@ -206,7 +202,7 @@ function get_dimensions_data($postid)
 									$rating_scale = unserialize($video->rating_scale);
 									if(isset($rating_scale) && !empty($rating_scale))
 									{
-										
+
 									}
 									else
 									{
@@ -413,16 +409,16 @@ function gat_progress_totle($assessment_id, $token)
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
 	$results_table = PLUGIN_PREFIX . "results";
-	
+
 	$data = $wpdb->get_results( "SELECT COUNT(*) FROM $dimensiontable where assessment_id=$assessment_id", OBJECT_K );
 	$data = array_keys($data);
 	$total_dimension = $data[0];
-	
+
 	$data = $wpdb->get_results( "SELECT count(*) AS cnt FROM $results_table WHERE assessment_id =$assessment_id && token='$token' &&( rating_scale != NULL
 OR rating_scale != '' )", OBJECT_K );
 	$data = array_keys($data);
 	$total_rated = $data[0];
-	
+
 	$progress = ($total_rated/$total_dimension)*100;
 	return $progress;
 }
@@ -431,17 +427,17 @@ function gat_overall_score($assessment_id, $token)
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
 	$results_table = PLUGIN_PREFIX . "results";
-	
+
 	$data = $wpdb->get_results("SELECT count(*) AS cnt FROM $results_table WHERE assessment_id =$assessment_id && token='$token' &&( rating_scale != NULL
 OR rating_scale != '' )", OBJECT_K );
 	$data = array_keys($data);
 	$total_dimension = $data[0];
-	
+
 	$data = $wpdb->get_results( "SELECT sum(rating_scale) FROM $results_table WHERE assessment_id =$assessment_id && token='$token' &&( rating_scale != NULL
 OR rating_scale != '' )", OBJECT_K );
 	$data = array_keys($data);
 	$ratings = $data[0];
-	
+
 	$score = ($ratings/$total_dimension);
 	return $score;
 }
@@ -450,7 +446,7 @@ function get_dimensioncount_domainid($domainid, $token)
 {
 	global $wpdb;
 	$results_table = PLUGIN_PREFIX . "results";
-	
+
 	$data = $wpdb->get_results("SELECT count(*) AS cnt FROM $results_table WHERE domain_id =$domainid && token='$token' &&( rating_scale != NULL
 OR rating_scale != '' )", OBJECT_K );
 	$data = array_keys($data);
@@ -461,7 +457,7 @@ function get_ratingcount_domainid($domainid, $token)
 {
 	global $wpdb;
 	$results_table = PLUGIN_PREFIX . "results";
-	
+
 	$data = $wpdb->get_results("SELECT sum(rating_scale) FROM $results_table WHERE domain_id =$domainid && token='$token' &&( rating_scale != NULL
 OR rating_scale != '' )", OBJECT_K );
 	$data = array_keys($data);
@@ -490,7 +486,7 @@ function progress_indicator_sidebar($assessment_id, $token)
 	{
 		$email = '<a href="'. get_permalink().'?action=start-analysis">Set Your Email</a>';
 	}
-	
+
 	echo '<div class="gat_indicatorwidget">
 			<div class="meter">
 			  <span style="width: '.$data->progress.'%">'.ceil($data->progress).'%</span>
@@ -515,8 +511,8 @@ function priority_domain_sidebar($assessment_id, $token)
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
 	$results_table = PLUGIN_PREFIX . "results";
 	$data = $wpdb->get_results("SELECT distinct(a.domain_id), (SELECT (SUM(b.rating_scale)/count(b.rating_scale)) as totalRating FROM $results_table as b WHERE a.domain_id = b.domain_id AND token='$token') AS totalRating FROM $dimensiontable as a WHERE a.assessment_id=$assessment_id  ORDER BY totalRating");
-	
-	$top = array(); $mid = array(); $last = array(); 
+
+	$top = array(); $mid = array(); $last = array();
 	if(!empty($data))
 	{
 		$key = count($data);
@@ -544,15 +540,15 @@ function priority_domain_sidebar($assessment_id, $token)
 								echo '<li><a href="javascript:"><div class="get_indicator_btn red';
 									if($result->totalRating > SCORE_LOW_DOWN && $result->totalRating <= SCORE_LOW_UPPER){ echo " selected_indicatorlght"; }
 								echo '"></div></a></li>';
-								
+
 								echo '<li><a href="javascript:"><div class="get_indicator_btn yellow';
 									if($result->totalRating > SCORE_LOW_UPPER && $result->totalRating <= SCORE_HIGH_DOWN){ echo " selected_indicatorlght"; }
 								echo '"></div></a></li>';
-								
+
 								echo '<li><a href="javascript:"><div class="get_indicator_btn green';
 									if($result->totalRating > SCORE_HIGH_DOWN && $result->totalRating <= SCORE_HIGH_UPPER){ echo " selected_indicatorlght"; }
 								echo '"></div></a></li>';
-							echo '</ul>';							
+							echo '</ul>';
 					echo '</li>';
 				}
 			}
@@ -575,15 +571,15 @@ function priority_domain_sidebar($assessment_id, $token)
 								echo '<li><a href="javascript:"><div class="get_indicator_btn red';
 									if($result->totalRating > SCORE_LOW_DOWN && $result->totalRating <= SCORE_LOW_UPPER){ echo " selected_indicatorlght"; }
 								echo '"></div></a></li>';
-								
+
 								echo '<li><a href="javascript:"><div class="get_indicator_btn yellow';
 									if($result->totalRating > SCORE_LOW_UPPER && $result->totalRating <= SCORE_HIGH_DOWN){ echo " selected_indicatorlght"; }
 								echo '"></div></a></li>';
-								
+
 								echo '<li><a href="javascript:"><div class="get_indicator_btn green';
 									if($result->totalRating > SCORE_HIGH_DOWN && $result->totalRating <= SCORE_HIGH_UPPER){ echo " selected_indicatorlght"; }
 								echo '"></div></a></li>';
-							echo '</ul>';							
+							echo '</ul>';
 					echo '</li>';
 				}
 			}

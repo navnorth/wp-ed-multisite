@@ -33,10 +33,10 @@ function pluginname_ajaxurl()
 		var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
 	</script>
     <script>
-      var tag = document.createElement('script');
+      /*var tag = document.createElement('script');
       tag.src = "https://www.youtube.com/iframe_api";
       var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);*/
     </script>
 <?php
 }
@@ -87,10 +87,11 @@ function delete_post_metadata_function($postid)
 	{
 		wp_delete_post($domainid);
 	}
-	$wpdb->query("DELETE a,b
-		FROM $dimensiontable AS a
-		INNER JOIN $videotable AS b ON a.id = b.dimensions_id
-		WHERE a.assessment_id = $postid");
+	$sql = $wpdb->prepare("DELETE a,b 
+		FROM $dimensiontable AS a 
+		INNER JOIN $videotable AS b ON a.id = b.dimensions_id 
+		WHERE a.assessment_id = %d", $postid);
+	$wpdb->query($sql);
 }
 /*add action for adding class on plugin menu*/
 add_action("admin_init", "wpse_60168_var_dump_and_die");
@@ -130,7 +131,8 @@ function get_dimensions_data($postid)
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
 	$videotable = PLUGIN_PREFIX . "videos";
-	$datas = $wpdb->get_results("select * from $dimensiontable where domain_id=$postid");
+	$sql = $wpdb->prepare("select * from $dimensiontable where domain_id=%d", $postid);
+	$datas = $wpdb->get_results($sql);
 	if(isset($datas) && !empty($datas))
 	{
 		$i = 1;
@@ -195,14 +197,14 @@ function get_dimensions_data($postid)
                             </thead>
                             <tbody>
                             <?php
-                            	$videos = $wpdb->get_results("select * from $videotable where dimensions_id=$data->id");
+								$sql = $wpdb->prepare("select * from $videotable where dimensions_id=%d", $data->id);
+                            	$videos = $wpdb->get_results($sql);
 								$j = 0;
 								foreach($videos as $video)
 								{
 									$rating_scale = unserialize($video->rating_scale);
 									if(isset($rating_scale) && !empty($rating_scale))
 									{
-
 									}
 									else
 									{
@@ -267,7 +269,8 @@ function get_assessmentid_by_domainid($postid)
 {
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
-	$data = $wpdb->get_row("select assessment_id from $dimensiontable where domain_id=$postid");
+	$sql = $wpdb->prepare("select assessment_id from $dimensiontable where domain_id=%d", $postid);
+	$data = $wpdb->get_row($sql);
 	if(isset($data) && !empty($data))
 	{
 		return $data->assessment_id;
@@ -282,7 +285,8 @@ function get_domainid_by_assementid($postid)
 {
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
-	$data = $wpdb->get_results("select domain_id from $dimensiontable where assessment_id=$postid", OBJECT_K);
+	$sql = $wpdb->prepare("select domain_id from $dimensiontable where assessment_id=%d", $postid);
+	$data = $wpdb->get_results($sql, OBJECT_K);
 	if(isset($data) && !empty($data))
 	{
 		$domainid = array_keys($data);
@@ -298,7 +302,8 @@ function get_dimensioncount($domainid)
 {
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
-	$data = $wpdb->get_results( "SELECT COUNT(*) FROM $dimensiontable where domain_id=$domainid", OBJECT_K );
+	$sql = $wpdb->prepare("SELECT COUNT(*) FROM $dimensiontable where domain_id=%d", $domainid);
+	$data = $wpdb->get_results( $sql, OBJECT_K );
 	$data = array_keys($data);
 	return  $data[0];
 }
@@ -307,7 +312,8 @@ function get_videocount($domainid)
 {
 	global $wpdb;
 	$videotable = PLUGIN_PREFIX . "videos";
-	$data = $wpdb->get_results( "SELECT COUNT(*) FROM $videotable where domain_id=$domainid", OBJECT_K  );
+	$sql = $wpdb->prepare("SELECT COUNT(*) FROM $videotable where domain_id=%d", $domainid);
+	$data = $wpdb->get_results( $sql, OBJECT_K  );
 	$data = array_keys($data);
 	return  $data[0];
 }
@@ -316,7 +322,8 @@ function get_alldimension_domainid($domainid)
 {
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
-	$data = $wpdb->get_results( "SELECT * FROM $dimensiontable where domain_id=$domainid");
+	$sql = $wpdb->prepare("SELECT * FROM $dimensiontable where domain_id=%d", $domainid);
+	$data = $wpdb->get_results($sql);
 	if(isset($data) && !empty($data))
 	{
 		return $data;
@@ -390,13 +397,18 @@ function gat_save_domaindata($post)
 			{
 				$rating[0] = 1;
 			}
-			$wpdb->query("delete from $results_table where dimension_id = $dimensionid && token = '$token'");
-			$wpdb->query("INSERT INTO $results_table (assessment_id, domain_id, dimension_id, token, rating_scale) VALUES ($assessment_id, $domain_id, $dimensionid, '$token', '$rating[0]')");
+			$sql = $wpdb->prepare("delete from $results_table where dimension_id = %d && token = %s", $dimensionid, $token);
+			$wpdb->query($sql);
+			
+			$sql = $wpdb->prepare("INSERT INTO $results_table (assessment_id, domain_id, dimension_id, token, rating_scale) VALUES (%d, %d, %d, %s, %s)", $assessment_id, $domain_id, $dimensionid, $token, $rating[0]);
+			$wpdb->query($sql);
 		}
 	}
 	$progress = gat_progress_totle($assessment_id, $token);
 	$overallscore = gat_overall_score($assessment_id, $token);
-	$wpdb->query("UPDATE $response_table SET progress='$progress', overall_score='$overallscore', last_saved=now() where assessment_id = $assessment_id && token = '$token'");
+	
+	$sql = $wpdb->prepare("UPDATE $response_table SET progress=%s, overall_score=%s, last_saved=now() where assessment_id = %d && token = %s", $progress, $overallscore, $assessment_id, $token);
+	$wpdb->query($sql);
 	return true;
 }
 function filter_callback($val)
@@ -409,13 +421,15 @@ function gat_progress_totle($assessment_id, $token)
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
 	$results_table = PLUGIN_PREFIX . "results";
-
-	$data = $wpdb->get_results( "SELECT COUNT(*) FROM $dimensiontable where assessment_id=$assessment_id", OBJECT_K );
+	
+	$sql = $wpdb->prepare("SELECT COUNT(*) FROM $dimensiontable where assessment_id=%d", $assessment_id );
+	$data = $wpdb->get_results( $sql, OBJECT_K );
 	$data = array_keys($data);
 	$total_dimension = $data[0];
-
-	$data = $wpdb->get_results( "SELECT count(*) AS cnt FROM $results_table WHERE assessment_id =$assessment_id && token='$token' &&( rating_scale != NULL
-OR rating_scale != '' )", OBJECT_K );
+	
+	$sql = $wpdb->prepare("SELECT count(*) AS cnt FROM $results_table WHERE assessment_id = %d && token=%s &&( rating_scale != NULL
+OR rating_scale != '' )", $assessment_id, $token );
+	$data = $wpdb->get_results( $sql, OBJECT_K );
 	$data = array_keys($data);
 	$total_rated = $data[0];
 
@@ -427,14 +441,16 @@ function gat_overall_score($assessment_id, $token)
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
 	$results_table = PLUGIN_PREFIX . "results";
-
-	$data = $wpdb->get_results("SELECT count(*) AS cnt FROM $results_table WHERE assessment_id =$assessment_id && token='$token' &&( rating_scale != NULL
-OR rating_scale != '' )", OBJECT_K );
+	
+	$sql = $wpdb->prepare("SELECT count(*) AS cnt FROM $results_table WHERE assessment_id =%d && token=%s &&( rating_scale != NULL
+OR rating_scale != '' )", $assessment_id, $token);
+	$data = $wpdb->get_results( $sql, OBJECT_K );
 	$data = array_keys($data);
 	$total_dimension = $data[0];
-
-	$data = $wpdb->get_results( "SELECT sum(rating_scale) FROM $results_table WHERE assessment_id =$assessment_id && token='$token' &&( rating_scale != NULL
-OR rating_scale != '' )", OBJECT_K );
+	
+	$sql = $wpdb->prepare("SELECT sum(rating_scale) FROM $results_table WHERE assessment_id =%d && token=%s &&( rating_scale != NULL
+OR rating_scale != '' )", $assessment_id, $token);
+	$data = $wpdb->get_results( $sql, OBJECT_K );
 	$data = array_keys($data);
 	$ratings = $data[0];
 
@@ -446,9 +462,10 @@ function get_dimensioncount_domainid($domainid, $token)
 {
 	global $wpdb;
 	$results_table = PLUGIN_PREFIX . "results";
-
-	$data = $wpdb->get_results("SELECT count(*) AS cnt FROM $results_table WHERE domain_id =$domainid && token='$token' &&( rating_scale != NULL
-OR rating_scale != '' )", OBJECT_K );
+	
+	$sql = $wpdb->prepare("SELECT count(*) AS cnt FROM $results_table WHERE domain_id =%d && token=%s &&( rating_scale != NULL
+OR rating_scale != '' )", $domainid, $token);
+	$data = $wpdb->get_results( $sql, OBJECT_K );
 	$data = array_keys($data);
 	return $total_dimension = $data[0];
 }
@@ -457,9 +474,10 @@ function get_ratingcount_domainid($domainid, $token)
 {
 	global $wpdb;
 	$results_table = PLUGIN_PREFIX . "results";
-
-	$data = $wpdb->get_results("SELECT sum(rating_scale) FROM $results_table WHERE domain_id =$domainid && token='$token' &&( rating_scale != NULL
-OR rating_scale != '' )", OBJECT_K );
+	
+	$sql = $wpdb->prepare("SELECT sum(rating_scale) FROM $results_table WHERE domain_id =%d && token=%s &&( rating_scale != NULL
+OR rating_scale != '' )", $domainid, $token);
+	$data = $wpdb->get_results( $sql, OBJECT_K );
 	$data = array_keys($data);
 	return $ratings = $data[0];
 }
@@ -510,9 +528,11 @@ function priority_domain_sidebar($assessment_id, $token)
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
 	$results_table = PLUGIN_PREFIX . "results";
-	$data = $wpdb->get_results("SELECT distinct(a.domain_id), (SELECT (SUM(b.rating_scale)/count(b.rating_scale)) as totalRating FROM $results_table as b WHERE a.domain_id = b.domain_id AND token='$token') AS totalRating FROM $dimensiontable as a WHERE a.assessment_id=$assessment_id  ORDER BY totalRating");
-
-	$top = array(); $mid = array(); $last = array();
+	
+	$sql = $wpdb->prepare("SELECT distinct(a.domain_id), (SELECT (SUM(b.rating_scale)/count(b.rating_scale)) as totalRating FROM $results_table as b WHERE a.domain_id = b.domain_id AND token=%s) AS totalRating FROM $dimensiontable as a WHERE a.assessment_id=%d  ORDER BY totalRating", $token, $assessment_id);
+	$data = $wpdb->get_results($sql);
+	
+	$top = array(); $mid = array(); $last = array(); 
 	if(!empty($data))
 	{
 		$key = count($data);

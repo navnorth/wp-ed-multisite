@@ -9,27 +9,39 @@
 	{
 		switch ($_GET["sortby"]) {
 			case "priority":
+				/*$sql = $wpdb->prepare("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
+where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND a.`rating_scale` LIKE CONCAT('%', b. `rating_scale`, '%') ORDER BY b.rating_scale ASC", $token, $post->ID);*/
 				$data_rslts = $wpdb->get_results("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
-where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND b.assessment_id=$post->ID AND a.`rating_scale` LIKE CONCAT('%', b. `rating_scale`, '%')  ORDER BY b.rating_scale ASC");
+where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND b.assessment_id=$post->ID AND a.`rating_scale` LIKE CONCAT('%', b. `rating_scale`, '%') ORDER BY b.rating_scale ASC");
 				break;
 			case "domains":
+				/*$sql = $wpdb->prepare("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
+where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND a.`rating_scale` LIKE CONCAT('%', b. `rating_scale`, '%')  ORDER BY b.domain_id ASC", $token, $post->ID);*/
 				$data_rslts = $wpdb->get_results("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
 where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND b.assessment_id=$post->ID AND a.`rating_scale` LIKE CONCAT('%', b. `rating_scale`, '%')  ORDER BY b.domain_id ASC");
 				break;
 			case "watched":
-				$data_rslts = $wpdb->get_results("SELECT a.*, ((a.seek/a.end)*100) as percent FROM $watchtable as a where assessment_id=$post->ID AND token='$token' ORDER BY CAST(percent as DECIMAL(10,5)) DESC");
+				$sql = $wpdb->prepare("SELECT a.*, ((a.seek/a.end)*100) as percent FROM $watchtable as a where assessment_id=%d AND token=%s ORDER BY CAST(percent as DECIMAL(10,5)) DESC", $post->ID, $token);
+				$data_rslts = $wpdb->get_results($sql);
 				break;
 		}
 	}
 	else
 	{
+		/*$sql = $wpdb->prepare("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
+where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND a.`rating_scale` LIKE CONCAT('%', b. `rating_scale`, '%') ORDER BY b.rating_scale ASC", $token, $post->ID);*/
 		$data_rslts = $wpdb->get_results("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
 where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND b.assessment_id=$post->ID AND a.`rating_scale` LIKE CONCAT('%', b. `rating_scale`, '%') ORDER BY b.rating_scale ASC");
 	}
 	?>
 	<div class="col-md-9 col-sm-12 col-xs-12 analysis_result leftpad">
 		 <h3><?php echo get_the_title($post->ID); ?></h3>
-		 <p><?php echo apply_filters("the_content", get_the_content($post->ID)); ?></p>
+		 <p>
+		 	<?php 
+				$content = get_post_meta($post->ID, "result_content", true);
+				echo apply_filters("the_content", $content);
+			?>
+         </p>
 		 <div class="gat_priority_form">
 			<form method="get" action="<?php echo get_permalink($post->ID); ?>?action=analysis-result&sortby=" id="gat_priorityfrm">
 				<select name="sortby" onchange="priority_submit(this);">
@@ -48,6 +60,10 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND 
 				if(!empty($data_rslts))
 				{
 					echo "<script type='text/javascript'>
+							var tag = document.createElement('script');
+							tag.src = 'https://www.youtube.com/iframe_api';
+							var firstScriptTag = document.getElementsByTagName('script')[0];
+      						firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 							var player;
 							function onYouTubeIframeAPIReady()
 							{
@@ -78,6 +94,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND 
 								{
 									var videoId = match[1];
 								}
+								videoId = String(videoId);
 								switch (event.data) {
 									case YT.PlayerState.PLAYING:
 										if(jQuery('.currentmeter').prev('span').children('i.fa').hasClass('fa-play'))
@@ -185,7 +202,8 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND 
 						}
 						else
 						{
-							$wpdb->query("insert into $resulted_video (assessment_id, domain_id, dimensions_id, token, youtubeid) values ($post->ID, $data_rslt->domain_id, $data_rslt->dimensions_id, '$token', '$data_rslt->youtubeid')");
+							$sql = $wpdb->prepare("insert into $resulted_video (assessment_id, domain_id, dimensions_id, token, youtubeid) values (%d, %d, %d, %s, %s)", $post->ID, $data_rslt->domain_id, $data_rslt->dimensions_id, $token, $data_rslt->youtubeid);
+							$wpdb->query($sql);
 							$lastid = $wpdb->insert_id;
 							echo '<li>';
 								echo '<div class="gat_imgcntnr">
@@ -217,4 +235,3 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token='$token' AND 
 		<?php priority_domain_sidebar($post->ID, $token); ?>
 		<?php progress_indicator_sidebar($post->ID, $token); ?>
 	</div>
-

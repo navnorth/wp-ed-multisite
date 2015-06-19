@@ -198,6 +198,7 @@ function gat_play_utubevdo(ref)
 	}
  
 	var utubeid = jQuery(ref).attr("data-youtubeid");
+	utubeid = String(utubeid);
 	var currenid = jQuery(ref).attr("data-resultedid");
 	jQuery("#player").attr("data-resultedid", currenid );
 	
@@ -205,8 +206,12 @@ function gat_play_utubevdo(ref)
 	{
 		jQuery(ref).children("i.fa").removeClass("fa-play");
 		jQuery(ref).children("i.fa").addClass("fa-pause")
-		player.loadVideoById(utubeid);
-		player.seekTo(jQuery(ref).attr("data-seekto"));
+		//player.loadVideoById(utubeid);
+		var seek_to = jQuery(ref).attr("data-seekto");
+		seek_to = new Number(seek_to);
+		seek_to = seek_to.toFixed(2);
+		player.loadVideoById(utubeid, seek_to);
+		//player.seekTo(seek_to);
 	}
 	else if(jQuery(ref).children("i.fa").hasClass("fa-pause"))
 	{
@@ -219,8 +224,12 @@ function gat_play_utubevdo(ref)
 	{
 		jQuery(ref).children("i.fa").removeClass("fa-check");
 		jQuery(ref).children("i.fa").addClass("fa-pause")
-		player.loadVideoById(utubeid);
-		player.seekTo(jQuery(ref).attr("data-seekto"));
+		//player.loadVideoById(utubeid);
+		var seek_to = jQuery(ref).attr("data-seekto");
+		seek_to = new Number(seek_to);
+		seek_to = seek_to.toFixed(2);
+		player.loadVideoById(utubeid, seek_to);
+		//player.seekTo(seek_to);
 	}
 	jQuery(".gat_reslt_listvideos").children("li").children(".gat_videodetails").children(".meter").each(function() {
         if(jQuery(this).hasClass("currentmeter"))
@@ -228,7 +237,7 @@ function gat_play_utubevdo(ref)
 			jQuery(this).removeClass("currentmeter");
 		}
     });
-	jQuery(ref).next(".meter").addClass("currentmeter")
+	jQuery(ref).next(".meter").addClass("currentmeter");
 }
 function trackrecordbyid(resultedid)
 {

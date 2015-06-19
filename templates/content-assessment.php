@@ -8,7 +8,6 @@
  */
 ?>
 <?php global $post, $wpdb;?>
-
 <?php
 	if(isset($_COOKIE['GAT_token']) && !empty($_COOKIE['GAT_token']))
 	{
@@ -27,7 +26,8 @@
 		{
 			extract($_POST);
 			$table = PLUGIN_PREFIX."response";
-			$result = $wpdb->get_row("SELECT token FROM $table WHERE email = '$email' ORDER BY id DESC ");
+			$sql = $wpdb->prepare("SELECT token FROM $table WHERE email = %s ORDER BY id DESC ", $email);
+			$result = $wpdb->get_row($sql);
 			if(isset($result->token) && !empty($result->token))
 			{
 				$to      = $email;
@@ -42,7 +42,6 @@
 			}
 			die;
 		}
-
 		if(isset($_POST['gat_results']))
 		{
 			$result = gat_save_domaindata($_POST);
@@ -51,7 +50,6 @@
 				echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=analysis-result"</script>';
 			}
 		}
-
 		//Action perform when continue to next domain
 		if(isset($_POST['domain_submit']))
 		{
@@ -71,7 +69,6 @@
 				}
 			}
 		}
-
 		//Action perform when first time token save for assessment
 		if(isset($_POST['save_token']))
 		{
@@ -79,18 +76,20 @@
 			$id = check_token_exists($post->ID, $token, "id");
 			$response_table = PLUGIN_PREFIX . "response";
 			$organizations = PLUGIN_PREFIX . "organizations";
-			$org_label = $wpdb->get_row("SELECT DISTINCT LEANM FROM $organizations WHERE LEAID = '$district'");
+			$sql = $wpdb->prepare("SELECT DISTINCT LEANM FROM $organizations WHERE LEAID = %s", $district);
+			$org_label = $wpdb->get_row($sql);
 			if(!empty($id))
 			{
-				$wpdb->query("UPDATE $response_table SET email='$email', state='$state', district='$district', organization_id='$district', organization = '$org_label->LEANM', last_saved=now() WHERE id=$id");
+				$sql = $wpdb->prepare("UPDATE $response_table SET email=%s, state=%s, district=%s, organization_id=%s, organization = %s, last_saved=now() WHERE id=%d", $email, $state, $district, $district, $org_label->LEANM, $id);
+				$wpdb->query($sql);
 			}
 			else
 			{
-				$wpdb->query("INSERT INTO $response_table (assessment_id, token, email, email_verified, state, district, organization_id, organization, start_date, last_saved, progress, overall_score) VALUES ($post->ID, '$token', '$email', '', '$state', '$district', '$district', '$org_label->LEANM', now(), '', '0', '0')");
+				$sql = $wpdb->prepare("INSERT INTO $response_table (assessment_id, token, email, email_verified, state, district, organization_id, organization, start_date, last_saved, progress, overall_score) VALUES (%d, %s, %s, '', %s, %s, %s, %s, now(), '', '0', '0')", $post->ID, $token, $email, $state, $district, $district, $org_label->LEANM);
+				$wpdb->query($sql);
 			}
 			echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=token-saved&list=1"</script>';
 		}
-
 		//Action perform when resum from existing token
 		if(isset($_POST['restart_token']))
 		{
@@ -99,7 +98,6 @@
 			$response_table = PLUGIN_PREFIX . "response";
 			$sql = $wpdb->prepare( "select * from $response_table where token= %s", $token );
 			$data = $wpdb->get_row($sql);
-
 			if( date('d') == 31 || (date('m') == 1 && date('d') > 28)){
 				$date = strtotime('last day of next month');
 			} else {
@@ -107,7 +105,6 @@
 			}
 			$expire = date("l j F Y h:i:s A", $date);
 			$path = parse_url(get_option('siteurl'), PHP_URL_PATH);
-
 			if(isset($data) && !empty($data))
 			{
 				if (isset($_COOKIE['GAT_token']))
@@ -124,7 +121,8 @@
 				}
 				else
 				{
-					$wpdb->query("INSERT INTO $response_table (assessment_id, token, email, email_verified, state, district, organization_id, organization, start_date, last_saved, progress, overall_score) VALUES ($post->ID, '$token', '$data->email', '', '$data->state', '$data->district', '$data->organization_id', '$data->organization', now(), '', '0', '0')");
+					$sql = $wpdb->prepare("INSERT INTO $response_table (assessment_id, token, email, email_verified, state, district, organization_id, organization, start_date, last_saved, progress, overall_score) VALUES (%d, %s, %s, '', %s, %s, %s, %s, now(), '', '0', '0')", $post->ID, $token, $data->email, $data->state, $data->district, $data->organization_id, $data->organization);
+					$wpdb->query($sql);
 					echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=token-saved&list=1"</script>';
 				}
 			}
@@ -173,7 +171,6 @@
             </div>
             <?php
 		}
-
 		// last stage where user wants to view his resulting video
 		if(isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] == 'analysis-result')
 		{
@@ -187,20 +184,18 @@
 			<?php
 			include_once( GAT_PATH ."/templates/inner-template/analysis-result.php" );
 		}
-
 		// third stage if user select resume analysis and after token is verified from db
 		if(isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] == 'resume-analysis')
 		{
 			include_once( GAT_PATH ."/templates/inner-template/resume-analysis.php" );
 		}
-
 		// third stage if user select start analysis and after token is saved in db
 		if(isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] == 'token-saved')
 		{
 			include_once( GAT_PATH ."/templates/inner-template/token-saved.php" );
 		}
-
-		// second stage if user select resume analysis (form display for enter token)
+		
+		// second stage if user select resume analysis (form display for enter token) 
 		if(isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] == 'restart_token')
 		{
 			?>
@@ -237,7 +232,6 @@
             </div>
             <?php
 		}
-
 		// second stage if user select start analysis
 		if(isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] == 'start-analysis')
 		{
@@ -316,7 +310,6 @@
                         ?>
                     </p>
                  </div>
-
                  <div class="col-md-12 col-sm-12 col-xs-12 leftpad">
                     <ul class="get_domainlist">
                     <?php

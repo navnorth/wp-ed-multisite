@@ -73,8 +73,10 @@ function gat_delete_dimensions_func()
 	extract($_POST);
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
 	$videotable = PLUGIN_PREFIX . "videos";
-	$wpdb->query("delete from $dimensiontable where id=$dimensionid");
-	$wpdb->query("delete from $videotable where dimensions_id=$dimensionid");
+	$sql = $wpdb->prepare("delete from $dimensiontable where id=%d", $dimensionid);
+	$wpdb->query($sql);
+	$sql = $wpdb->prepare("delete from $videotable where dimensions_id=%d",$dimensionid);
+	$wpdb->query($sql);
 	die;
 }
 
@@ -87,8 +89,10 @@ function delete_domain_function()
 	$videotable = PLUGIN_PREFIX . "videos";
 	extract($_POST);
 	wp_delete_post($domainid);
-	$wpdb->query("DELETE FROM $dimensiontable WHERE domain_id=$domainid");
-	$wpdb->query("DELETE FROM $videotable WHERE domain_id=$domainid");
+	$sql = $wpdb->prepare("DELETE FROM $dimensiontable WHERE domain_id=%d", $domainid);
+	$wpdb->query($sql);
+	$sql = $wpdb->prepare("DELETE FROM $videotable WHERE domain_id=%d", $domainid);
+	$wpdb->query($sql);
 	die;
 }
 
@@ -102,7 +106,8 @@ function save_assessment_function()
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
 	$results_table = PLUGIN_PREFIX . "results";
 	
-	$data = $wpdb->get_results( "SELECT COUNT(*) FROM $dimensiontable where assessment_id=$assessment_id", OBJECT_K );
+	$sql = $wpdb->prepare("SELECT COUNT(*) FROM $dimensiontable where assessment_id=%d", $assessment_id);
+	$data = $wpdb->get_results( $sql, OBJECT_K );
 	$data = array_keys($data);
 	$total_dimension = $data[0];
 	
@@ -119,8 +124,9 @@ function save_assessment_function()
 	}
 	$dimension_id = implode(",", $dimension_id);
 	
-	$data = $wpdb->get_results( "SELECT count(*) AS cnt FROM $results_table WHERE assessment_id =$assessment_id && token='$token' &&( rating_scale != NULL
-OR rating_scale != '' ) && dimension_id NOT IN ($dimension_id) ", OBJECT_K );
+	$sql = $wpdb->prepare("SELECT count(*) AS cnt FROM $results_table WHERE assessment_id =%d && token=%s &&( rating_scale != NULL
+OR rating_scale != '' ) && dimension_id NOT IN ($dimension_id) ", $assessment_id, $token);
+	$data = $wpdb->get_results($sql, OBJECT_K );
 	$data = array_keys($data);
 	$total_rated = $data[0];
 	
@@ -139,7 +145,8 @@ function gat_trackrecord_func()
 	extract($_POST);
 	if(isset($resultedid) && !empty($resultedid))
 	{
-		$wpdb->query("update $resulted_video set start='0', end='$videottltime', seek='$videocrrnttime' where id = $resultedid");
+		$sql = $wpdb->prepare("update $resulted_video set start='0', end=%s, seek=%s where id = %d", $videottltime, $videocrrnttime, $resultedid);
+		$wpdb->query($sql);
 		$seek = ceil($videocrrnttime);
 		$end = ceil($videottltime);
 		$complete = 0;

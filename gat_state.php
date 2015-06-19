@@ -3,7 +3,8 @@ function gat_state($state=NULL)
 {
 	global $wpdb;
 	$organization = PLUGIN_PREFIX . "organizations";
-	$states = $wpdb->get_results("select distinct LSTATE from $organization");
+	$sql = $wpdb->prepare("select distinct LSTATE from $organization");
+	$states = $wpdb->get_results($sql);
 	if(!empty($states))
 	{
 		foreach($states as $state)
@@ -20,7 +21,8 @@ function gat_districtcode_function()
 	global $wpdb;
 	$organization = PLUGIN_PREFIX . "organizations";
 	extract($_POST);
-	$disticts = $wpdb->get_results("SELECT distinct LEAID, LEANM FROM $organization WHERE LSTATE='$state' ORDER BY LEANM ASC");
+	$sql = $wpdb->prepare("SELECT distinct LEAID, LEANM FROM $organization WHERE LSTATE=%s ORDER BY LEANM ASC", $state);
+	$disticts = $wpdb->get_results($sql);
 	if(!empty($disticts))
 	{
 		$return = '<label for="district">District</label>

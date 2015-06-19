@@ -4,7 +4,8 @@
 		global $wpdb;
 		extract($_POST);
 		$responces = PLUGIN_PREFIX . "response";
-		$results = $wpdb->get_results("select * from $responces where assessment_id=$assessment");
+		$sql = $wpdb->prepare("select * from $responces where assessment_id=%d", $assessment);
+		$results = $wpdb->get_results($sql);
 		
 		header("Content-type: text/csv; charset=UTF-8");
 		header('Content-Disposition: attachment; filename=Export.csv');

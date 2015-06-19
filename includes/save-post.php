@@ -14,19 +14,22 @@ function gat_domain_save()
 	$videotable = PLUGIN_PREFIX . "videos";
 	if(isset($dimension_id) && !empty($dimension_id))
 	{
-		$wpdb->query("delete from $videotable where domain_id=$post->ID");
+		$sql = $wpdb->prepare("delete from $videotable where domain_id=%d", $post->ID);
+		$wpdb->query($sql);
 		if(isset($dimension_title) && !empty($dimension_title))
 		{
 			for($i = 0; $i < count($dimension_title); $i++)
 			{
 				if(isset($dimension_id[$i]) && !empty($dimension_id[$i]))
 				{
-					$wpdb->query('update '.$dimensiontable.' SET assessment_id='.$assessmentid.', domain_id='.$post->ID.', title="'.$dimension_title[$i].'", description = "'.$dimension_content[$i].'" where id='.$dimension_id[$i].'');
+					$sql = $wpdb->prepare('update '.$dimensiontable.' SET assessment_id=%d, domain_id=%d, title=%s, description = %s where id=%d', $assessmentid, $post->ID, $dimension_title[$i], $dimension_content[$i], $dimension_id[$i]);
+					$wpdb->query($sql);
 					$lastid = $dimension_id[$i];
 				}
 				else
 				{
-					$wpdb->query('insert into '.$dimensiontable.' (assessment_id, domain_id, title, description) VALUES ('.$assessmentid.','.$post->ID.' ,"'.$dimension_title[$i].'", "'.$dimension_content[$i].'")');
+					$sql = $wpdb->prepare('insert into '.$dimensiontable.' (assessment_id, domain_id, title, description) VALUES (%d, %d , %s, %s)', $assessmentid, $post->ID, $dimension_title[$i], $dimension_content[$i]);
+					$wpdb->query($sql);
 					$lastid = $wpdb->insert_id;
 				}
 				$var = $i+1;
@@ -42,7 +45,8 @@ function gat_domain_save()
 						{
 							$ratingscale = '';
 						}
-						$wpdb->query("insert into $videotable (domain_id, dimensions_id, label, youtubeid, rating_scale) VALUES ($post->ID, $lastid , '".${'dimension_' . $var .'_videolabel'}[$j]."', '".${'dimension_' . $var .'_videoid'}[$j]."', '".$ratingscale."')");
+						$sql = $wpdb->prepare("insert into $videotable (domain_id, dimensions_id, label, youtubeid, rating_scale) VALUES (%d, %d , %s, %s, %s)", $post->ID, $lastid, ${'dimension_' . $var .'_videolabel'}[$j], ${'dimension_' . $var .'_videoid'}[$j], $ratingscale);
+						$wpdb->query($sql);
 					}//video loop end here
 				}
 			}//dimension loop end here
@@ -54,7 +58,8 @@ function gat_domain_save()
 		{
 			for($i = 0; $i < count($dimension_title); $i++)
 			{
-				$wpdb->query('insert into '.$dimensiontable.' (assessment_id, domain_id, title, description) VALUES ('.$assessmentid.','.$post->ID.' ,"'.$dimension_title[$i].'", "'.$dimension_content[$i].'")');
+				$sql = $wpdb->prepare('insert into '.$dimensiontable.' (assessment_id, domain_id, title, description) VALUES (%d, %d ,%s, %s)', $assessmentid, $post->ID, $dimension_title[$i], $dimension_content[$i]);
+				$wpdb->query($sql);
 				$lastid = $wpdb->insert_id;
 				$var = $i+1;
 				if(isset(${'dimension_' . $var .'_videolabel'}) && !empty(${'dimension_' . $var .'_videolabel'}))
@@ -69,7 +74,8 @@ function gat_domain_save()
 						{
 							$ratingscale = '';
 						}
-						$wpdb->query("insert into $videotable (domain_id, dimensions_id, label, youtubeid, rating_scale) VALUES ($post->ID, $lastid , '".${'dimension_' . $var .'_videolabel'}[$j]."', '".${'dimension_' . $var .'_videoid'}[$j]."', '".$ratingscale."')");
+						$sql = $wpdb->prepare("insert into $videotable (domain_id, dimensions_id, label, youtubeid, rating_scale) VALUES (%d, %d, %s, %s, %s)", $post->ID, $lastid, ${'dimension_' . $var .'_videolabel'}[$j], ${'dimension_' . $var .'_videoid'}[$j], $ratingscale);
+						$wpdb->query($sql);
 					}//video loop end here
 				}
 			}//dimension loop end here

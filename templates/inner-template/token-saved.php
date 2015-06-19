@@ -42,7 +42,8 @@ $rating_scale = get_post_meta($post->ID, "rating_scale", true);
 				echo '<b>'.$i.': '.$dimension->title.'</b>';
 				echo '<p>'.$dimension->description.'</p>';
 				$scales = get_rating_scale($rating_scale);
-				$result = $wpdb->get_row("SELECT rating_scale from $table where dimension_id=$dimension->id && token='".$_COOKIE['GAT_token']."'");
+				$sql = $wpdb->prepare("SELECT rating_scale from $table where dimension_id=%d && token=%s", $dimension->id, $_COOKIE['GAT_token']);
+				$result = $wpdb->get_row($sql);
 				if(!empty($result->rating_scale))
 				{
 					$scale_slctd = $result->rating_scale;

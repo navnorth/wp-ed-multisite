@@ -25,7 +25,7 @@ $rating_scale = get_post_meta($post->ID, "rating_scale", true);
 <form method="post" id="assessment_data">
 	<input type="hidden" name="assessment_id" value="<?php echo $post->ID; ?>" />
 	<input type="hidden" name="domain_id" value="<?php echo $domain->ID; ?>" />
-	<input type="hidden" name="token" value="<?php echo $_COOKIE['GAT_token']; ?>" />
+	<input type="hidden" name="token" value="<?php echo htmlspecialchars($_COOKIE['GAT_token']); ?>" />
 	<input type="hidden" name="next_domain" value="<?php echo $nextdomain; ?>" />
 	
 	<h2><?php echo $post->post_title; ?></h2>
@@ -42,7 +42,7 @@ $rating_scale = get_post_meta($post->ID, "rating_scale", true);
 				echo '<b>'.$i.': '.$dimension->title.'</b>';
 				echo '<p>'.$dimension->description.'</p>';
 				$scales = get_rating_scale($rating_scale);
-				$sql = $wpdb->prepare("SELECT rating_scale from $table where dimension_id=%d && token=%s", $dimension->id, $_COOKIE['GAT_token']);
+				$sql = $wpdb->prepare("SELECT rating_scale from $table where dimension_id=%d && token=%s", $dimension->id, htmlspecialchars($_COOKIE['GAT_token']));
 				$result = $wpdb->get_row($sql);
 				if(!empty($result->rating_scale))
 				{
@@ -67,7 +67,7 @@ $rating_scale = get_post_meta($post->ID, "rating_scale", true);
 							}
 						?>
 						<li tabindex="0" onclick="select_rating(this)" class="rating_scaleli <?php echo $licls;?>" data-rating="<?php echo $j;?>">
-							<?php echo $j.' '.$scale->post_title; ?>
+							<?php echo $scale->post_title; ?>
 							<input type="hidden" name="rating_<?php echo $dimension->id; ?>[]" value="<?php echo $scale_slctd; ?>" />
 							<div class="rating_scale_description">
 								<?php echo $scale->post_content; ?>
@@ -85,12 +85,12 @@ $rating_scale = get_post_meta($post->ID, "rating_scale", true);
 		}
 		?>
 	  <ul class="gat_domainsbmt_btn">
-		<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default">Back to Domains</a></li>
-		<li><input type="submit" class="btn btn-default" name="gat_results" value="Get Results Now" /></li>
-		<li><input type="submit" class="btn btn-default" name="domain_submit" value="Continue to next Domain"/></li>
+		<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_buttton" onclick = "return confirm('Confirm Navigation... your changes will be lost!')">Back to Domains</a></li>
+		<li><input type="submit" class="btn btn-default gat_buttton" name="gat_results" value="Get Results Now" /></li>
+		<li><input type="submit" class="btn btn-default gat_buttton" name="domain_submit" value="Continue to next Domain"/></li>
 	  </ul>  
 	</div>
 </form>
 <div class="col-md-3 col-sm-12 col-xs-12">
-	<?php progress_indicator_sidebar($post->ID, $_COOKIE['GAT_token']); ?>
+	<?php progress_indicator_sidebar($post->ID, htmlspecialchars($_COOKIE['GAT_token'])); ?>
 </div>

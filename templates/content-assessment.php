@@ -11,7 +11,7 @@
 <?php
 	if(isset($_COOKIE['GAT_token']) && !empty($_COOKIE['GAT_token']))
 	{
-		$token = $_COOKIE['GAT_token'];
+		$token = htmlspecialchars($_COOKIE['GAT_token']);
 		$status = check_token_exists($post->ID, $token);
 	}
 	else
@@ -78,6 +78,8 @@
 			$organizations = PLUGIN_PREFIX . "organizations";
 			$sql = $wpdb->prepare("SELECT DISTINCT LEANM FROM $organizations WHERE LEAID = %s", $district);
 			$org_label = $wpdb->get_row($sql);
+			$token = htmlspecialchars($token);
+			$email = htmlspecialchars($email);
 			if(!empty($id))
 			{
 				$sql = $wpdb->prepare("UPDATE $response_table SET email=%s, state=%s, district=%s, organization_id=%s, organization = %s, last_saved=now() WHERE id=%d", $email, $state, $district, $district, $org_label->LEANM, $id);
@@ -165,7 +167,7 @@
                                 <input type="email" name="email" value="" class="form-control gatfields" />
                             </div>
                         </div>
-                    	<button type="submit" name="retrive_token" class="btn btn-default gat_tokenfrm_btn">Submit Email</button>
+                    	<button type="submit" name="retrive_token" class="btn btn-default gat_buttton">Submit Email</button>
                     </form>
                 </div>
             </div>
@@ -226,7 +228,7 @@
                                 <input type="text" name="token" value="" class="form-control gatfields" />
                             </div>
                         </div>
-                    	<button type="submit" name="restart_token" class="btn btn-default gat_tokenfrm_btn">Continue</button>
+                    	<button type="submit" name="restart_token" class="btn btn-default gat_buttton">Continue</button>
                     </form>
                 </div>
             </div>
@@ -235,7 +237,7 @@
 		// second stage if user select start analysis
 		if(isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] == 'start-analysis')
 		{
-			$token = $_COOKIE['GAT_token'];
+			$token = htmlspecialchars($_COOKIE['GAT_token']);
 			$response_table = PLUGIN_PREFIX . "response";
 			$sql = $wpdb->prepare( "select * from $response_table where token= %s", $token );
 			$data = $wpdb->get_row($sql);
@@ -281,7 +283,7 @@
                             	Read our <a href="#">privacy policy</a>
                             </div>
                         </div>
-                    	<button type="submit" name="save_token" class="btn btn-default gat_tokenfrm_btn">Save / Continue</button>
+                    	<button type="submit" name="save_token" class="btn btn-default gat_buttton">Save / Continue</button>
                     </form>
                 </div>
             </div>
@@ -332,7 +334,7 @@
                     ?>
                     </ul>
                     <div class="get_domainlist_button">
-                        <a class="btn btn-default" href="<?php echo get_permalink()."?action=start-analysis"; ?>" role="button">Start Analysis</a>
+                        <a class="btn btn-default gat_buttton" href="<?php echo get_permalink()."?action=start-analysis"; ?>" role="button">Start Analysis</a>
                    </div>
                 </div>
 
@@ -347,10 +349,10 @@
                     </div>
                </div>
                <div>
-                    <a class="btn btn-default" href="<?php echo get_permalink()."?action=start-analysis"; ?>" role="button">Start Analysis</a>
+                    <a class="btn btn-default gat_buttton" href="<?php echo get_permalink()."?action=start-analysis"; ?>" role="button">Start Analysis</a>
                </div>
                <div>
-                    <a class="btn btn-default" href="<?php echo get_permalink()."?action=restart_token"; ?>" role="button">Resume / Result</a>
+                    <a class="btn btn-default gat_buttton" href="<?php echo get_permalink()."?action=restart_token"; ?>" role="button">Resume / Result</a>
                </div>
 
                <div class="col-md-12 col-sm-12 col-xs-12 leftpad">

@@ -3,15 +3,17 @@
 	$results_table = PLUGIN_PREFIX . "results";
 	$videotable = PLUGIN_PREFIX . "videos";
 	$watchtable = PLUGIN_PREFIX . "resulted_video";
-	$token = $_COOKIE['GAT_token'];
+	$token = htmlspecialchars($_COOKIE['GAT_token']);
 
 	if(isset($_GET["sortby"]) && !empty($_GET["sortby"]))
 	{
 		switch ($_GET["sortby"]) {
 			case "priority":
 				$sql = $wpdb->prepare("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
-where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND <condition> ORDER BY b.rating_scale ASC", $token, $post->ID);
-				$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b. `rating_scale`, '".'"'."%')", $sql));
+        where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND <condition> ORDER BY b.rating_scale ASC", $token, $post->ID);
+				$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%', b.rating_scale, '%') OR
+				 a.`rating_scale` LIKE IF((b.rating_scale = NULL OR b.rating_scale = ''), '%1%', b.rating_scale)", $sql));
+				
 				$data_rslts = $wpdb->get_results($sql);
 				break;
 			case "domains":
@@ -28,9 +30,15 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 	}
 	else
 	{
-		$sql = $wpdb->prepare("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
-where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND <condition> ORDER BY b.rating_scale ASC", $token, $post->ID);
-		$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b. `rating_scale`, '".'"'."%')", $sql));
+		//$sql = $wpdb->prepare("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
+        //where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND <condition> ORDER BY b.rating_scale ASC", $token, $post->ID);
+		//$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b. `rating_scale`, '".'"'."%')", $sql));
+        
+        $sql = $wpdb->prepare("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
+        where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND <condition> ORDER BY b.rating_scale ASC", $token, $post->ID);
+        $sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%', b.rating_scale, '%') OR
+         a.`rating_scale` LIKE IF((b.rating_scale = NULL OR b.rating_scale = ''), '%1%', b.rating_scale)", $sql));
+		
 		$data_rslts = $wpdb->get_results($sql);
 	}
 	?>
@@ -225,9 +233,9 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 			?>
 		 </ul>
 		 <ul class="gat_domainsbmt_btn">
-			<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default">Back to Domains</a></li>
-			<li><input type="submit" class="btn btn-default" name="gat_results" value="Email Results" /></li>
-			<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default">Continue Analysis</a></li>
+			<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_buttton">Back to Domains</a></li>
+			<li><input type="submit" class="btn btn-default gat_buttton" name="gat_results" value="Email Results" /></li>
+			<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_buttton">Continue Analysis</a></li>
 		  </ul>
 	</div>
 	<div class="col-md-3 col-sm-12 col-xs-12">

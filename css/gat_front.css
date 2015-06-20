@@ -61,15 +61,17 @@
 	float: left;
 	text-align: right;
 	margin-right:20px;
+	margin-top: 10px;
 }
 .form-group .gatfields
 {
 	float:left;
 	margin-right:10px;
 }
-.form-group span
-{
+.form-group span{
 	float:left;
+	margin-top: 10px;
+	
 }
 .form-group.gatprivacylink
 {
@@ -78,10 +80,11 @@
 }
 .gat_tokenfrm_brd
 {
-	border: 3px solid #ccc;
-	float: left;
+	border: 1px solid #ccc;
+	display: inline-block;
 	padding: 20px 10px;
 	width: 100%;
+	border-radius:3px;
 }
 .gat_tokenfrm_btn
 {
@@ -117,7 +120,7 @@
 	display: none;
 }
 .gat_scaledescription_cntnr {
-    border: 2px solid #0CF;
+    border: 1px solid #ccc;
     float: left;
     margin: -15px 0 10px;
     padding: 10px;
@@ -125,9 +128,9 @@
     width: 100%;
 	display: none;
 }
-.selectedli
-{
-	background-color: #0CF;
+.selectedli {
+    background-color: #00529f;
+    color: #fff;
 }
 .selectedarea
 {
@@ -142,7 +145,7 @@
 	height: 27px;
 }
 .gat_indicatorwidget {
-    border: 2px solid;
+    border: 1px solid #ccc;
     padding: 10px;
 	float: left;
 	width: 100%;
@@ -158,7 +161,7 @@
 	position: relative;
 	padding: 10px;
 	box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
-	border: 2px solid #555;
+	border:1px solid #ccc;
 }
 label.meter
 {
@@ -166,6 +169,17 @@ label.meter
 	width: 67px !important;
 }
 .meter > span {
+    background-color: #00529f;
+    color: #fff;
+    display: block;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    top: 0;
+}
+/*.meter > span {
   display: block;
   height: 100%;
   background-color: #ccc;
@@ -182,7 +196,7 @@ label.meter
   top: 0px;
   left: 0px;
   text-align: center;
-}
+}*/
 .gat_domainsbmt_btn {
     float: left;
     list-style: outside none none;
@@ -190,9 +204,14 @@ label.meter
     padding: 0;
     width: 100%;
 }
-.gat_domainsbmt_btn  li {
-    float: left;
-    width: 33.33%;
+.gat_domainsbmt_btn li {
+    display: inline-block;
+}
+.gat_domainsbmt_btn > li {
+    width: 33%;
+}
+.gat_domainsbmt_btn li .gat_buttton {
+    float: none !important;
 }
 .gat_domainsbmt_btn  li:nth-child(1)
 {
@@ -302,7 +321,7 @@ ul.gat_indicatorlights {
 	margin: 5px 0 10px;
 }
 .gat_prioritydomaind_list {
-    border: 2px solid;
+    border:1px solid #ccc;
     float: left;
     list-style: outside none none;
     margin: 0 0 32px;
@@ -369,4 +388,105 @@ ul.gat_indicatorlights {
 .get_domainlist a:first-child {
     color: #4b4e53;
     text-decoration: none;
+}
+/*my*/
+.gat_buttton{
+background: #00529f !important;
+background: -moz-linear-gradient(top, #00529f 0%, #0062b2 100%, #7db9e8 100%) !important;
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00529f), color-stop(100%,#0062b2), color-stop(100%,#7db9e8)) !important; /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #00529f 0%,#0062b2 100%,#7db9e8 100%) !important; /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #00529f 0%,#0062b2 100%,#7db9e8 100%) !important; /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #00529f 0%,#0062b2 100%,#7db9e8 100%) !important; /* IE10+ */
+background: linear-gradient(to bottom, #00529f 0%,#0062b2 100%,#7db9e8 100%) !important; /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00529f', endColorstr='#7db9e8',GradientType=0 ) !important; /* IE6-9 */
+border:none !important;
+color:#fff !important;
+font-family: "Raleway-Regular";
+float: right;
+
+}
+.gat_buttton:hover{
+background: #7db9e8 !important; /* Old browsers */
+background: -moz-linear-gradient(top, #7db9e8 0%, #0062b2 0%, #00529f 100%) !important; /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7db9e8), color-stop(0%,#0062b2), color-stop(100%,#00529f)) !important; /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #7db9e8 0%,#0062b2 0%,#00529f 100%) !important; /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #7db9e8 0%,#0062b2 0%,#00529f 100%) !important; /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #7db9e8 0%,#0062b2 0%,#00529f 100%) !important; /* IE10+ */
+background: linear-gradient(to bottom, #7db9e8 0%,#0062b2 0%,#00529f 100%) !important; /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#00529f',GradientType=0 ) !important;
+}
+
+@media screen and (max-width: 724px) {
+.form-group label {
+    text-align: left;
+}
+.form-group .gatfields {
+    width: 100% !important;
+}
+}
+@media screen and (max-width: 750px){
+.gat_domain_rating_scale li {
+    font-size: 14px;
+}
+}
+@media screen and (max-width: 554px) {
+.gat_domain_rating_scale li {
+	width: 100%;
+}
+}
+@media screen and (max-width: 991px) {
+.analysis_result .gat_player_videos {
+    width: 100%;
+}
+.gat_player_videos.loadvideo iframe {
+    width: 100%;
+}
+.analysis_result .gat_reslt_listvideos {
+    height: auto;
+    width: 100%;
+}
+}
+@media screen and (max-width: 430px) {
+.gat_reslt_listvideos .gat_imgcntnr {
+    width: 30%;
+}
+.gat_reslt_listvideos .gat_desccntnr {
+    width: 60%;
+}
+.gat_reslt_listvideos .gat_videodetails {
+    width: 60%;
+}
+}
+.form-control {
+    background-color: #fff !important;
+}
+.col-md-3.col-sm-12.col-xs-12.assmnt-left a {
+    float: none;
+}
+.form-control-feedback {
+    margin: 0 !important;
+}
+/*select{
+   -webkit-appearance: none;
+   -moz-appearance:none;
+   appearance:none;
+   background-image:url(images/down-arrow-sel.png);
+}*/
+.fa.fa-play {
+    color: #00529f !important;
+}
+@media screen and (max-width: 1199px) {
+.gat_domainsbmt_btn > li {
+    width: 32%;
+}
+}
+@media screen and (max-width: 600px) {
+.gat_domainsbmt_btn > li {
+    text-align: center !important;
+    width: 100%;
+}
+.gat_domainsbmt_btn li {
+    display: block;
+    margin-top: 5px;
+}
 }

@@ -18,8 +18,8 @@
             {
                 $domain = get_post($domainid);
                 $total_dmnsn = get_dimensioncount($domainid);
-                $total_dmnsn_rated = get_dimensioncount_domainid($domainid, $_COOKIE['GAT_token']);
-				$total_rating = get_ratingcount_domainid($domainid, $_COOKIE['GAT_token']);
+                $total_dmnsn_rated = get_dimensioncount_domainid($domainid, htmlspecialchars($_COOKIE['GAT_token']));
+				$total_rating = get_ratingcount_domainid($domainid, htmlspecialchars($_COOKIE['GAT_token']));
 				                
                 echo '<li>';
                         echo '<a href="'.get_permalink().'?action=token-saved&list='.$i.'">'.$domain->post_title.'</a>';
@@ -81,7 +81,7 @@
     ?>
     </ul>
     <div class="get_domainlist_button">
-        <a class="btn btn-default" href="<?php echo get_permalink()."?action=token-saved&list=1"; ?>" role="button">Continue Analysis</a>
+        <a class="btn btn-default gat_buttton" href="<?php echo get_permalink()."?action=token-saved&list=1"; ?>" role="button">Continue Analysis</a>
    </div>
 </div>
 
@@ -92,5 +92,5 @@
             <?php echo do_shortcode("[ssba]"); ?>
         </div>    
     </div>	
-    <?php progress_indicator_sidebar($post->ID, $_COOKIE['GAT_token']); ?>
+    <?php progress_indicator_sidebar($post->ID, htmlspecialchars($_COOKIE['GAT_token'])); ?>
 </div>

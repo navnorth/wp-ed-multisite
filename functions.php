@@ -395,7 +395,7 @@ function gat_save_domaindata($post)
 			}
 			else
 			{
-				$rating[0] = 1;
+				$rating[0] = '';
 			}
 			$sql = $wpdb->prepare("delete from $results_table where dimension_id = %d && token = %s", $dimensionid, $token);
 			$wpdb->query($sql);
@@ -404,7 +404,7 @@ function gat_save_domaindata($post)
 			$wpdb->query($sql);
 		}
 	}
-	$progress = gat_progress_totle($assessment_id, $token);
+	$progress = gat_progress_total($assessment_id, $token);
 	$overallscore = gat_overall_score($assessment_id, $token);
 	
 	$sql = $wpdb->prepare("UPDATE $response_table SET progress=%s, overall_score=%s, last_saved=now() where assessment_id = %d && token = %s", $progress, $overallscore, $assessment_id, $token);
@@ -416,7 +416,7 @@ function filter_callback($val)
 	$val = trim($val);
 	return $val != '';
 }
-function gat_progress_totle($assessment_id, $token)
+function gat_progress_total($assessment_id, $token)
 {
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
@@ -433,7 +433,7 @@ OR rating_scale != '' )", $assessment_id, $token );
 	$data = array_keys($data);
 	$total_rated = $data[0];
 
-	$progress = ($total_rated/$total_dimension)*100;
+	$progress = @($total_rated/$total_dimension)*100;
 	return $progress;
 }
 function gat_overall_score($assessment_id, $token)

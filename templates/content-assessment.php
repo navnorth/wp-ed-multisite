@@ -153,11 +153,11 @@
                 	<?php
 						if(isset($_GET['tkn_error']))
 						{
-							echo '<div class="gat_error">Email does not exists ?</div>';
+							echo '<div class="gat_error"><p>Email address not found. Please try again.</p><p><strong>Note:</strong> Token can only be retrieved by email if you specified your email address when accessing the tool with your token.</p></div>';
 						}
 						if(isset($_GET['tkn_msg']))
 						{
-							echo '<div class="gat_error">Token send to your email address !</div>';
+							echo '<div class="gat_error">Token has been sent to your email. If you have trouble locating the message, be sure to check your spam folder.</div>';
 						}
 					?>
                     <form method="post">
@@ -196,8 +196,8 @@
 		{
 			include_once( GAT_PATH ."/templates/inner-template/token-saved.php" );
 		}
-		
-		// second stage if user select resume analysis (form display for enter token) 
+
+		// second stage if user select resume analysis (form display for enter token)
 		if(isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] == 'restart_token')
 		{
 			?>
@@ -218,7 +218,7 @@
                 	<?php
 						if(isset($_GET['tkn_error']))
 						{
-							echo '<div class="gat_error">Token you enter is not found !</div>';
+							echo '<div class="gat_error">The token you entered could not be found. Please try again, or if you provided your email address, you can <a href="' . get_permalink(). '?action=retrive-token"; ?>">have your token emailed to you</a>.</div>';
 						}
 					?>
                     <form method="post">
@@ -304,6 +304,8 @@
             <div class="col-md-9 col-sm-12 col-xs-12 leftpad">
                 <div class="col-md-12 pblctn_paramtr leftpad">
                     <h3><?php echo get_the_title($post->ID); ?></h3>
+                 </div>
+                 <div class="col-md-12 col-sm-12 col-xs-12 leftpad">
                     <p>
                         <?php
                             $content = get_the_content($post->ID);
@@ -311,8 +313,7 @@
                             echo do_shortcode($content);
                         ?>
                     </p>
-                 </div>
-                 <div class="col-md-12 col-sm-12 col-xs-12 leftpad">
+
                     <ul class="get_domainlist">
                     <?php
                         $domainids = get_domainid_by_assementid($post->ID);

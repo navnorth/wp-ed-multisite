@@ -1,13 +1,14 @@
-<h3><?php echo get_the_title($post->ID); ?></h3>
-<p>
-    <?php
-        $content = get_the_content($post->ID);
-        $content = apply_filters('the_content', $content);
-        echo substr(strip_tags($content), 0, 250)." [...]";
-    ?>
-</p>
-
 <div class="col-md-9 col-sm-12 col-xs-12">
+    <h3><?php echo get_the_title($post->ID); ?></h3>
+
+    <p>
+        <?php
+            $content = get_the_content($post->ID);
+            $content = apply_filters('the_content', $content);
+            echo substr(strip_tags($content), 0, 250)." [...]";
+        ?>
+    </p>
+
     <ul class="get_domainlist">
     <?php
         $domainids = get_domainid_by_assementid($post->ID);
@@ -20,7 +21,7 @@
                 $total_dmnsn = get_dimensioncount($domainid);
                 $total_dmnsn_rated = get_dimensioncount_domainid($domainid, htmlspecialchars($_COOKIE['GAT_token']));
 				$total_rating = get_ratingcount_domainid($domainid, htmlspecialchars($_COOKIE['GAT_token']));
-				                
+
                 echo '<li>';
                         echo '<a href="'.get_permalink().'?action=token-saved&list='.$i.'">'.$domain->post_title.'</a>';
                         echo '<ul class="gat_indicatorlights">';
@@ -29,7 +30,7 @@
 							$progress = ($total_rating/$total_dmnsn);
 							$progress = round( $progress, 1, PHP_ROUND_HALF_UP);
 							$resultpage_url = get_permalink($post->ID).'?action=analysis-result';
-							
+
 							if($progress > SCORE_HIGH_DOWN && $progress <= SCORE_HIGH_UPPER)
                             {
                                 echo '<li><a href="'.$resultpage_url.'"><div class="get_indicator_btn red"></div></a></li>
@@ -75,7 +76,7 @@
                             }
                     	echo '</a>';
                 echo '</li>';
-                $i++;	  
+                $i++;
             }
         }
     ?>
@@ -88,9 +89,9 @@
 <div class="col-md-3 col-sm-12 col-xs-12">
     <div class="gat_sharing_widget">
         <p class="pblctn_scl_icn_hedng"> Share the GAP analysis tool </p>
-        <div class="pblctn_scl_icns">	
+        <div class="pblctn_scl_icns">
             <?php echo do_shortcode("[ssba]"); ?>
-        </div>    
-    </div>	
+        </div>
+    </div>
     <?php progress_indicator_sidebar($post->ID, htmlspecialchars($_COOKIE['GAT_token'])); ?>
 </div>

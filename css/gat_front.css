@@ -24,7 +24,7 @@
 	float: left;
 	padding: 10px 0 10px 35px;
 }
-.get_domainlist > li 
+.get_domainlist > li
 {
     font-weight: bold;
     list-style: outside none number;
@@ -71,7 +71,7 @@
 .form-group span{
 	float:left;
 	margin-top: 10px;
-	
+
 }
 .form-group.gatprivacylink
 {
@@ -102,7 +102,7 @@
 	float: left;
 	margin: 15px 0;
 	padding: 0;
-	border: 1px solid #ccc; 
+	border: 1px solid #ccc;
 }
 .gat_domain_rating_scale li
 {
@@ -156,7 +156,7 @@
 .gat_indicatorwidget div:nth-child(4) {
     margin-top: 10px;
 }
-.meter { 
+.meter {
 	height: 30px;
 	position: relative;
 	padding: 10px;
@@ -188,7 +188,7 @@ label.meter
     rgb(43,194,83) 37%,
     rgb(84,240,84) 69%
   );
-  box-shadow: 
+  box-shadow:
     inset 0 2px 9px  rgba(255,255,255,0.3),
     inset 0 -2px 6px rgba(0,0,0,0.4);
   position: absolute;
@@ -227,6 +227,9 @@ label.meter
 }
 .gat_sharing_widget {
     margin-bottom: 10px;
+}
+.gat_sharing_widget .pblctn_scl_icn_hedng {
+  text-align: left;
 }
 ul.gat_indicatorlights {
     background: rgba(51,51,51, .8);

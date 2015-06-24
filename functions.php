@@ -113,11 +113,24 @@ function GAT_setcookie()
 {
 	if(isset($_COOKIE['GAT_token']) && !empty($_COOKIE['GAT_token']))
 	{
-		//
+		if(isset($_REQUEST['token']) && !empty($_REQUEST['token']) && ( $_REQUEST['action'] == 'resume-analysis' || $_REQUEST['action'] == 'analysis-result' ))
+		{
+			$token = htmlspecialchars($_REQUEST['token']);
+			$path = parse_url(get_option('siteurl'), PHP_URL_PATH);
+			$host = parse_url(get_option('siteurl'), PHP_URL_HOST);
+			setcookie("GAT_token", $token, time() + 2678400, $path, $host);
+		}
     }
 	else
 	{
-		$token = generateRandomString(8);
+		if(isset($_REQUEST['token']) && !empty($_REQUEST['token']) && ( $_REQUEST['action'] == 'resume-analysis' || $_REQUEST['action'] == 'analysis-result' ))
+		{
+			$token = htmlspecialchars($_REQUEST['token']);
+		}
+		else
+		{
+			$token = generateRandomString(8);
+		}
 		$path = parse_url(get_option('siteurl'), PHP_URL_PATH);
 		$host = parse_url(get_option('siteurl'), PHP_URL_HOST);
 		setcookie("GAT_token", $token, time() + 2678400, $path, $host);
@@ -605,5 +618,9 @@ function priority_domain_sidebar($assessment_id, $token)
 			}
 		echo '</ul>';
 	}
+}
+function set_html_content_type()
+{
+    return 'text/html';
 }
 ?>

@@ -26,14 +26,21 @@
 		{
 			extract($_POST);
 			$table = PLUGIN_PREFIX."response";
-			$sql = $wpdb->prepare("SELECT token FROM $table WHERE email = %s ORDER BY id DESC ", $email);
+			$sql = $wpdb->prepare("SELECT token, assessment_id FROM $table WHERE email = %s ORDER BY id DESC ", $email);
 			$result = $wpdb->get_row($sql);
 			if(isset($result->token) && !empty($result->token))
 			{
 				$to      = $email;
-				$subject = 'Forgot Token';
-				$message = 'Your Token :' . $result->token;
-				wp_mail( $to, $subject, $message );
+				$subject = get_bloginfo('name','raw').' '.get_the_title($result->assessment_id).' Token';
+				$token 	 = htmlspecialchars($result->token);
+				$message = 'Your Token: ' . '<a href="'.get_permalink($post->ID).'?action=resume-analysis&token='.$token.'">'.$token.'</a>';
+				$headers = 'From: info@' .$_SERVER['HTTP_HOST']. "\r\n" .
+							'Reply-To: info@' . $_SERVER['HTTP_HOST']."\r\n" .
+							'X-Mailer: PHP/' . phpversion();
+							
+				add_filter( 'wp_mail_content_type', 'set_html_content_type' );
+				wp_mail( $to, $subject, $message, $headers );
+				remove_filter( 'wp_mail_content_type', 'set_html_content_type' ); 
 				echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=retrive-token&tkn_msg=true"</script>';
 			}
 			else
@@ -176,6 +183,10 @@
 		// last stage where user wants to view his resulting video
 		if(isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] == 'analysis-result')
 		{
+			if(isset($_REQUEST['token']) && !empty($_REQUEST['token']))
+			{
+				echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=analysis-result"</script>';
+			}
 			?>
 			<script type="text/javascript">
 				ga('send', 'pageview', {
@@ -189,6 +200,10 @@
 		// third stage if user select resume analysis and after token is verified from db
 		if(isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] == 'resume-analysis')
 		{
+			if(isset($_REQUEST['token']) && !empty($_REQUEST['token']))
+			{
+				echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=resume-analysis"</script>';
+			}
 			include_once( GAT_PATH ."/templates/inner-template/resume-analysis.php" );
 		}
 		// third stage if user select start analysis and after token is saved in db

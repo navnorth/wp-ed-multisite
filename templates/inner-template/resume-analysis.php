@@ -1,13 +1,13 @@
 <div class="col-md-9 col-sm-12 col-xs-12">
     <h3><?php echo get_the_title($post->ID); ?></h3>
 
-    <p>
+    <div class="gat_moreContent">
         <?php
             $content = get_the_content($post->ID);
             $content = apply_filters('the_content', $content);
-            echo substr(strip_tags($content), 0, 250)." [...]";
+            echo strip_tags($content);
         ?>
-    </p>
+    </div>
 
     <ul class="get_domainlist">
     <?php

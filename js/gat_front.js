@@ -1,3 +1,32 @@
+//for hide and show text
+jQuery(document).ready(function() {
+    // Configure/customize these variables.
+    var showChar = 250;  // How many characters are shown by default
+    var moretext = "[...]";
+    var lesstext = "[Read Less]";
+    jQuery('.gat_moreContent').each(function() {
+        var content = jQuery(this).html();
+        if(content.length > showChar) {
+            var c = content.substr(0, showChar);
+            var h = content.substr(showChar, content.length - showChar);
+            var html = '<p>'+ c + '<span class="morecontent"><span>' + h + '</span></span><label class="morelink">' + moretext + '</label></p>';
+            jQuery(this).html(html);
+        }
+    });
+    jQuery(".morelink").click(function(){
+        if(jQuery(this).hasClass("less"))
+		{
+            jQuery(this).removeClass("less");
+            jQuery(this).html(moretext);
+        } else {
+            jQuery(this).addClass("less");
+            jQuery(this).html(lesstext);
+        }
+        jQuery(this).prev().children().toggle();
+        jQuery(this).prev().toggle();
+        return false;
+    });
+});
 jQuery(document).ready(function(e) {
    jQuery('.rating_scaleli').keypress(function(e) {
 		if (e.which == 13)

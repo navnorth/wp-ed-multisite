@@ -149,13 +149,13 @@
 			?>
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <h3><?php echo get_the_title($post->ID); ?></h3>
-                <p>
+                <div class="gat_moreContent">
                     <?php
                         $content = get_the_content($post->ID);
                         $content = apply_filters('the_content', $content);
-                        echo substr(strip_tags($content), 0, 250)." [...]";
+                        echo strip_tags($content);
                     ?>
-                </p>
+                </div>
                 <div class="gat_emailform">
                 	<?php
 						if(isset($_GET['tkn_error']))
@@ -218,13 +218,13 @@
 			?>
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <h3><?php echo get_the_title($post->ID); ?></h3>
-                <p>
+                <div class="gat_moreContent">
                     <?php
                         $content = get_the_content($post->ID);
                         $content = apply_filters('the_content', $content);
-                        echo substr(strip_tags($content), 0, 250)." [...]";
+                        echo strip_tags($content);
                     ?>
-                </p>
+                </div>
                 <span class="gat_alreadytoken">
                 	Already have a token?
                 	<a href="<?php echo get_permalink()."?action=retrive-token"; ?>">Forgot Token</a>
@@ -259,13 +259,13 @@
 			?>
             <div class="col-md-12 col-sm-12 col-xs-12 leftpad">
                 <h3><?php echo get_the_title($post->ID); ?></h3>
-                <p>
+                <div class="gat_moreContent">
                     <?php
                         $content = get_the_content($post->ID);
                         $content = apply_filters('the_content', $content);
-                        echo substr(strip_tags($content), 0, 250)." [...]";
+                        echo strip_tags($content);
                     ?>
-                </p>
+                </div>
                 <div class="gat_genratedtoken">
 	            	<?php echo 'Your Token : '.$token; ?>
                 </div>
@@ -321,13 +321,13 @@
                     <h3><?php echo get_the_title($post->ID); ?></h3>
                  </div>
                  <div class="col-md-12 col-sm-12 col-xs-12 leftpad">
-                    <p>
+                    <div class="gat_moreContent">
                         <?php
                             $content = get_the_content($post->ID);
                             $content = apply_filters('the_content', $content);
-                            echo do_shortcode($content);
+                            echo strip_tags($content);
                         ?>
-                    </p>
+                    </div>
 
                     <ul class="get_domainlist">
                     <?php

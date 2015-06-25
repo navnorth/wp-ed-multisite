@@ -90,12 +90,12 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 	?>
 	<div class="col-md-9 col-sm-12 col-xs-12 analysis_result leftpad">
 		 <h3><?php echo get_the_title($post->ID); ?></h3>
-		 <p>
+		 <div class="gat_moreContent">
 		 	<?php 
 				$content = get_post_meta($post->ID, "result_content", true);
 				echo apply_filters("the_content", $content);
 			?>
-         </p>
+         </div>
 		 <div class="gat_priority_form">
 			<form method="get" action="<?php echo get_permalink($post->ID); ?>?action=analysis-result&sortby=" id="gat_priorityfrm">
 				<select name="sortby" onchange="priority_submit(this);">

@@ -31,7 +31,7 @@ $rating_scale = get_post_meta($post->ID, "rating_scale", true);
 	<h2><?php echo $post->post_title; ?></h2>
 	<div class="col-md-9 col-sm-12 col-xs-12">
 		<h4><?php echo $title; ?></h4>
-		<div class="gat_moreContent"><div class="gat_content"><?php echo $content; ?></div></div>
+		<div class="gat_moreContent"><?php echo $content; ?></div>
 		<hr />
 		<?php
 		if(isset($dimensions) && !empty($dimensions))

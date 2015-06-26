@@ -23,7 +23,7 @@
 				$total_rating = get_ratingcount_domainid($domainid, htmlspecialchars($_COOKIE['GAT_token']));
 
                 echo '<li>';
-                        echo '<a href="'.get_permalink().'?action=token-saved&list='.$i.'">'.$domain->post_title.'</a>';
+                        echo '<h4 style="float:left;"><a href="'.get_permalink().'?action=token-saved&list='.$i.'">'.$domain->post_title.'</a></h4>';
                         echo '<ul class="gat_indicatorlights">';
                         if($total_rating != 0)
                         {

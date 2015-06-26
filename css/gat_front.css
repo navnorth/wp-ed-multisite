@@ -26,10 +26,13 @@
 }
 .get_domainlist > li
 {
-    font-weight: bold;
-    list-style: outside none number;
-    padding: 10px 0 0 0;
-	height: 45px;
+  font-weight: bold;
+  list-style: none;
+  padding: 10px 0 0 0;
+  height: 45px;
+}
+.get_domainlist > li > h4 {
+  margin: 3px 0 2px -10px;
 }
 .col-md-7 .get_domainlist_button
 {
@@ -110,10 +113,16 @@
 	float: left;
 	display:inline;
 	border-left: 1px solid #ccc;
-	font-size: 20px;
+	font-size: 16px;
 	padding: 10px 20px;
-	height: 100px;
+	height: 65px;
 	overflow: hidden;
+}
+.gat_dimension_header {
+  margin-bottom: 5px;
+}
+.gat_dimension_desc {
+  margin:10px 0 0 0;
 }
 .rating_scale_description
 {

@@ -37,10 +37,10 @@
 				$headers = 'From: info@' .$_SERVER['HTTP_HOST']. "\r\n" .
 							'Reply-To: info@' . $_SERVER['HTTP_HOST']."\r\n" .
 							'X-Mailer: PHP/' . phpversion();
-							
+
 				add_filter( 'wp_mail_content_type', 'set_html_content_type' );
 				wp_mail( $to, $subject, $message, $headers );
-				remove_filter( 'wp_mail_content_type', 'set_html_content_type' ); 
+				remove_filter( 'wp_mail_content_type', 'set_html_content_type' );
 				echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=retrive-token&tkn_msg=true"</script>';
 			}
 			else
@@ -321,13 +321,12 @@
                     <h3><?php echo get_the_title($post->ID); ?></h3>
                  </div>
                  <div class="col-md-12 col-sm-12 col-xs-12 leftpad">
-                    <div class="gat_moreContent">
-                        <?php
-                            $content = get_the_content($post->ID);
-                            $content = apply_filters('the_content', $content);
-                            echo strip_tags($content);
-                        ?>
-                    </div>
+
+                    <?php
+                        $content = get_the_content($post->ID);
+                        $content = apply_filters('the_content', $content);
+                        echo do_shortcode($content);
+                    ?>
 
                     <ul class="get_domainlist">
                     <?php
@@ -337,8 +336,8 @@
                             foreach($domainids as $domainid)
                             {
                                 $domain = get_post($domainid);
-                                echo '<li>
-                                        '.$domain->post_title.'
+                                echo '<li><a href="'.get_permalink().'?action=start-analysis">
+                                        <h4 style="float:left;">'.$domain->post_title.'</a></h4>
                                         <a href="'.get_permalink().'?action=start-analysis">
                                             <label>
                                                 <i class="fa fa-play"></i>

@@ -13,7 +13,7 @@
         where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND <condition> ORDER BY b.rating_scale ASC", $token, $post->ID);
 				$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('".'"'."%', b.rating_scale, '".'"'."%') OR
 				 a.`rating_scale` LIKE IF((b.rating_scale = NULL OR b.rating_scale = ''), '%1%', b.rating_scale)", $sql));
-				
+
 				$data_rslts = $wpdb->get_results($sql);
 				break;
 			case "domains":
@@ -34,15 +34,15 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
         where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND <condition> ORDER BY b.rating_scale ASC", $token, $post->ID);
         $sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b.rating_scale, '".'"'."%') OR
          a.`rating_scale` LIKE IF((b.rating_scale = NULL OR b.rating_scale = ''), '%1%', b.rating_scale)", $sql));
-		
+
 		$data_rslts = $wpdb->get_results($sql);
 	}
-	
+
 	//Email Result POST
 	if(isset($_POST['email_results']))
 	{
 		extract($_POST);
-		
+
 		$assign = "";
 		if(!empty($data_rslts))
 		{
@@ -53,7 +53,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 				{
 					$sql = $wpdb->prepare("SELECT title FROM wp_gat_dimensions as a WHERE id = %d", $data->dimensions_id);
 					$dimensionTitle = $wpdb->get_row($sql);
-					$assign .= '<ul>  
+					$assign .= '<ul>
 									<li>
 										<a href="'.get_permalink($assessment_id).'?action=analysis-result&token='.$token.'">
 											'.get_the_title($data->domain_id).' - '.$dimensionTitle->title.' - '.$data->label.'
@@ -65,33 +65,33 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 				{
 					break;
 				}
-				$i++;			
+				$i++;
 			}
 		}
-		
+
 		$to = $email;
 		$subject = get_bloginfo('name','raw').' '.get_the_title($assessment_id).' Token';
-		
+
 		$message = '<p>Thank you for participating in the '.get_the_title($assessment_id).' Assessment. If you would like to access the tool again to update your results and gauge your progress in addressing identified gaps, use this token: <a href="'.get_permalink($assessment_id).'?action=resume-analysis&token='.$token.'">'.$token.'</a></p>';
-		
-		$message .= '<p>Here are the top '.$i.' videos selected for you based on your self-assessment:</p>';
-		
+
+		$message .= '<p>Here are the top videos selected for you based on your self-assessment:</p>';
+
 		$message .= $assign;
 		$message .= 'View Complete List of Video <a href="'.get_permalink($assessment_id).'?action=analysis-result&token='.$token.'"> Selections '.$token.'</a>';
-		
+
 		$headers = 'From: info@' .$_SERVER['HTTP_HOST']. "\r\n" .
 					'Reply-To: info@' . $_SERVER['HTTP_HOST']."\r\n" .
 					'X-Mailer: PHP/' . phpversion();
-					
+
 		add_filter( 'wp_mail_content_type', 'set_html_content_type' );
 		wp_mail( $to, $subject, $message, $headers );
-		remove_filter( 'wp_mail_content_type', 'set_html_content_type' ); 			
+		remove_filter( 'wp_mail_content_type', 'set_html_content_type' );
 	}
 	?>
 	<div class="col-md-9 col-sm-12 col-xs-12 analysis_result leftpad">
 		 <h3><?php echo get_the_title($post->ID); ?></h3>
 		 <div class="gat_moreContent">
-		 	<?php 
+		 	<?php
 				$content = get_post_meta($post->ID, "result_content", true);
 				echo apply_filters("the_content", $content);
 			?>
@@ -282,13 +282,13 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 			<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_buttton">Back to Domains</a></li>
 			<li>
             	<?php
-					$response = PLUGIN_PREFIX . "response";  
+					$response = PLUGIN_PREFIX . "response";
 					$sql = $wpdb->prepare("select email from $response where assessment_id = %d", $post->ID);
 					$result = $wpdb->get_row($sql);
 				?>
             	<form method="post">
                 	<input type="hidden" name="email" value="<?php echo $result->email; ?>" />
-                	<input type="hidden" name="assessment_id" value="<?php echo $post->ID; ?>" /> 
+                	<input type="hidden" name="assessment_id" value="<?php echo $post->ID; ?>" />
                 	<input type="submit" class="btn btn-default gat_buttton" name="email_results" value="Email Results" />
                 </form>
             </li>

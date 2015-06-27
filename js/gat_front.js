@@ -28,6 +28,9 @@ jQuery(document).ready(function() {
     });
 });
 jQuery(document).ready(function(e) {
+   
+   jQuery('.gat_error').delay(2000).fadeOut();
+   
    jQuery('.rating_scaleli').keypress(function(e) {
 		if (e.which == 13)
 		{

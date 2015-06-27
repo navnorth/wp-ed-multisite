@@ -70,6 +70,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 		}
 
 		$to = $email;
+		$from = get_option( 'admin_email' );
 		$subject = get_bloginfo('name','raw').' '.get_the_title($assessment_id).' Token';
 
 		$message = '<p>Thank you for participating in the '.get_the_title($assessment_id).' Assessment. If you would like to access the tool again to update your results and gauge your progress in addressing identified gaps, use this token: <a href="'.get_permalink($assessment_id).'?action=resume-analysis&token='.$token.'">'.$token.'</a></p>';
@@ -79,17 +80,21 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 		$message .= $assign;
 		$message .= 'View Complete List of Video <a href="'.get_permalink($assessment_id).'?action=analysis-result&token='.$token.'"> Selections '.$token.'</a>';
 
-		$headers = 'From: info@' .$_SERVER['HTTP_HOST']. "\r\n" .
-					'Reply-To: info@' . $_SERVER['HTTP_HOST']."\r\n" .
+		$headers = 'From: ' .$from. "\r\n" .
+					'Reply-To: ' . $from."\r\n" .
 					'X-Mailer: PHP/' . phpversion();
-
+					
 		add_filter( 'wp_mail_content_type', 'set_html_content_type' );
-		wp_mail( $to, $subject, $message, $headers );
-		remove_filter( 'wp_mail_content_type', 'set_html_content_type' );
+		if(wp_mail( $to, $subject, $message, $headers ))
+		{
+			$alert_message = 'Your assessment result sent';
+		}
+		remove_filter( 'wp_mail_content_type', 'set_html_content_type' ); 			
 	}
 	?>
 	<div class="col-md-9 col-sm-12 col-xs-12 analysis_result leftpad">
 		 <h3><?php echo get_the_title($post->ID); ?></h3>
+         <div class="gat_error"><?php echo $alert_message; ?></div>
 		 <div class="gat_moreContent">
 		 	<?php
 				$content = get_post_meta($post->ID, "result_content", true);
@@ -282,8 +287,8 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 			<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_buttton">Back to Domains</a></li>
 			<li>
             	<?php
-					$response = PLUGIN_PREFIX . "response";
-					$sql = $wpdb->prepare("select email from $response where assessment_id = %d", $post->ID);
+					$response = PLUGIN_PREFIX . "response";  
+					$sql = $wpdb->prepare("select email from $response where assessment_id = %d AND token = %s", $post->ID, $token);
 					$result = $wpdb->get_row($sql);
 				?>
             	<form method="post">

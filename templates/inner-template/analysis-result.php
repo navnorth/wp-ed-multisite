@@ -94,7 +94,12 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 	?>
 	<div class="col-md-9 col-sm-12 col-xs-12 analysis_result leftpad">
 		 <h3><?php echo get_the_title($post->ID); ?></h3>
-         <div class="gat_error"><?php echo $alert_message; ?></div>
+          <?php
+			  if(isset($alert_message) && !empty($alert_message))
+				 { 
+					echo '<div class="gat_error">'.$alert_message.'</div>'; 
+				 }
+		 ?>
 		 <div class="gat_moreContent">
 		 	<?php
 				$content = get_post_meta($post->ID, "result_content", true);

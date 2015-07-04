@@ -491,6 +491,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
 .gat_domainsbmt_btn > li {
     width: 32%;
 }
+.analysis_result .gat_reslt_listvideos {
+    height: auto;
+    width: 100%;
+}
 }
 @media screen and (max-width: 600px) {
 .gat_domainsbmt_btn > li {
@@ -513,4 +517,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
 	cursor: pointer;
 	margin-left: 8px;
 	color: #00529f;
+}
+.analysis_result .gat_player_videos {
+    margin-bottom: 19px;
+}
+@media screen and (max-width:540px) {
+.get_domainlist li h4 {
+    //float: none !important;
+}
 }

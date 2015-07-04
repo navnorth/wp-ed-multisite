@@ -13,6 +13,8 @@ function gat_front_enqueue_script()
 {
 	wp_enqueue_style( 'gat_front_style', plugin_dir_url( __FILE__ ).'css/gat_front.css' );
 	wp_enqueue_style( 'gat_front_style', plugin_dir_url( __FILE__ ).'css/font-awesome.min.css' );
+	
+	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'gat_front_script', plugin_dir_url( __FILE__ ).'js/gat_front.js' );
 }
 /*Enqueue youtube script and ajax url on frontend*/
@@ -111,29 +113,61 @@ function wpse_60168_var_dump_and_die()
 add_action('init', 'GAT_setcookie');
 function GAT_setcookie()
 {
+	$path = parse_url(get_option('siteurl'), PHP_URL_PATH);
+	$host = parse_url(get_option('siteurl'), PHP_URL_HOST);
+	
 	if(isset($_COOKIE['GAT_token']) && !empty($_COOKIE['GAT_token']))
 	{
-		if(isset($_REQUEST['token']) && !empty($_REQUEST['token']) && ( $_REQUEST['action'] == 'resume-analysis' || $_REQUEST['action'] == 'analysis-result' ))
+		if(isset($_REQUEST['token']) && !empty($_REQUEST['token']) && ( $_REQUEST['action'] == 'resume-analysis' || $_REQUEST['action'] == 'analysis-result' || $_REQUEST['action'] == 'restart_token'))
 		{
-			$token = htmlspecialchars($_REQUEST['token']);
-			$path = parse_url(get_option('siteurl'), PHP_URL_PATH);
-			$host = parse_url(get_option('siteurl'), PHP_URL_HOST);
-			setcookie("GAT_token", $token, time() + 2678400, $path, $host);
+			if($_REQUEST['action'] == 'restart_token')
+			{
+				global $wpdb;
+				extract($_POST);
+				$response_table = PLUGIN_PREFIX . "response";
+				$sql = $wpdb->prepare( "select * from $response_table where token= %s", $token );
+				$data = $wpdb->get_row($sql);
+				if(isset($data) && !empty($data))
+				{
+					$token = htmlspecialchars($token);
+					setcookie("GAT_token", $token, time() + 2678400, $path, $host);
+				}
+			}
+			else
+			{
+				$token = htmlspecialchars($_REQUEST['token']);
+				setcookie("GAT_token", $token, time() + 2678400, $path, $host);
+			}
 		}
     }
 	else
 	{
-		if(isset($_REQUEST['token']) && !empty($_REQUEST['token']) && ( $_REQUEST['action'] == 'resume-analysis' || $_REQUEST['action'] == 'analysis-result' ))
+		if(isset($_REQUEST['token']) && !empty($_REQUEST['token']) && ( $_REQUEST['action'] == 'resume-analysis' || $_REQUEST['action'] == 'analysis-result' || $_REQUEST['action'] == 'restart_token'))
 		{
-			$token = htmlspecialchars($_REQUEST['token']);
+			if($_REQUEST['action'] == 'restart_token')
+			{
+				global $wpdb;
+				extract($_POST);
+				$response_table = PLUGIN_PREFIX . "response";
+				$sql = $wpdb->prepare( "select * from $response_table where token= %s", $token );
+				$data = $wpdb->get_row($sql);
+				if(isset($data) && !empty($data))
+				{
+					$token = htmlspecialchars($token);
+					setcookie("GAT_token", $token, time() + 2678400, $path, $host);
+				}
+			}
+			else
+			{
+				$token = htmlspecialchars($_REQUEST['token']);
+				setcookie("GAT_token", $token, time() + 2678400, $path, $host);
+			}
 		}
 		else
 		{
 			$token = generateRandomString(8);
+			setcookie("GAT_token", $token, time() + 2678400, $path, $host);
 		}
-		$path = parse_url(get_option('siteurl'), PHP_URL_PATH);
-		$host = parse_url(get_option('siteurl'), PHP_URL_HOST);
-		setcookie("GAT_token", $token, time() + 2678400, $path, $host);
 	}
 }
 

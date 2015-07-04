@@ -50,6 +50,10 @@ $rating_scale = get_post_meta($post->ID, "rating_scale", true);
 					$scale_slctd = $result->rating_scale;
 					$divcls = 'selectedarea';
 				}
+				else
+				{
+					$scale_slctd = '';
+				}
 				?>
 					<input type="hidden" name="dimension_id[]" value="<?php echo $dimension->id; ?>" />
 					<ul class="gat_domain_rating_scale">

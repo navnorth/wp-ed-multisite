@@ -142,7 +142,8 @@ function add_focus(ref)
 	if(area == true)
 	{
 		var desc = jQuery(ref).children(".rating_scale_description").text();
-		jQuery(ref).css("background-color", "#0CF");
+		jQuery(ref).css("background-color", "#00529f");
+		jQuery(ref).css("color", "#fff");
 		jQuery(ref).parents("ul").next("div.gat_scaledescription_cntnr").css("display", "block").text(desc);
 	}
 }
@@ -160,6 +161,7 @@ function remove_focus(ref)
 	if(area == true)
 	{
 		jQuery(ref).css("background-color", "");
+		jQuery(ref).css("color", "");
 		jQuery(ref).parents("ul").next("div.gat_scaledescription_cntnr").css("display", "none");
 	}
 }
@@ -173,6 +175,7 @@ function select_rating(ref)
 			jQuery(this).removeClass("selectedli");
 			jQuery(this).parents("ul").next("div.gat_scaledescription_cntnr").removeClass("selectedarea");
 			jQuery(this).css("background-color", "");
+			jQuery(this).css("color", "");
 			jQuery(this).children("input").val('');
 		}
 	});

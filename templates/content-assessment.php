@@ -9,17 +9,6 @@
 ?>
 <?php global $post, $wpdb;?>
 <?php
-	if(isset($_COOKIE['GAT_token']) && !empty($_COOKIE['GAT_token']))
-	{
-		$token = htmlspecialchars($_COOKIE['GAT_token']);
-		$status = check_token_exists($post->ID, $token);
-	}
-	else
-	{
-		echo '<script type="text/javascript">location.reload();</script>';
-	}
-?>
-<?php
 	if(!empty($_POST))
 	{
 		if(isset($_POST['retrive_token']))
@@ -107,23 +96,8 @@
 			$response_table = PLUGIN_PREFIX . "response";
 			$sql = $wpdb->prepare( "select * from $response_table where token= %s", $token );
 			$data = $wpdb->get_row($sql);
-			if( date('d') == 31 || (date('m') == 1 && date('d') > 28)){
-				$date = strtotime('last day of next month');
-			} else {
-				$date = strtotime('+1 months');
-			}
-			$expire = date("l j F Y h:i:s A", $date);
-			$path = parse_url(get_option('siteurl'), PHP_URL_PATH);
 			if(isset($data) && !empty($data))
 			{
-				if (isset($_COOKIE['GAT_token']))
-				{
-					unset($_COOKIE['GAT_token']);
-					@setcookie('GAT_token', '', time() - 3600);
-				}
-				echo "<script>
-						document.cookie = 'GAT_token=$token; expires=$expire; path=$path'
-					  </script>";
 				if($data->assessment_id == $post->ID)
 				{
 					echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=resume-analysis"</script>';
@@ -141,6 +115,18 @@
 			}
 		}
 	}
+	
+	//Check for token
+	if(isset($_COOKIE['GAT_token']) && !empty($_COOKIE['GAT_token']))
+	{
+		$token = htmlspecialchars($_COOKIE['GAT_token']);
+		$status = check_token_exists($post->ID, $token);
+	}
+	else
+	{
+		echo '<script type="text/javascript">location.reload();</script>';
+	}
+
 	if(!empty($_GET))
 	{
 		//retrive token from email

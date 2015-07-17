@@ -43,12 +43,16 @@ jQuery(document).ready(function(e) {
 	jQuery('.rating_scaleli').focusout(function(e) {
 		remove_focus(this);
 	});
-	jQuery('.rating_scaleli').mouseover(function(e) {
-		add_focus(this);
-	});
-	jQuery('.rating_scaleli').mouseout(function(e) {
-		remove_focus(this);
-	});
+	
+	if(!is_touch_device())
+	{
+		jQuery('.rating_scaleli').mouseover(function(e) {
+			add_focus(this);
+		});
+		jQuery('.rating_scaleli').mouseout(function(e) {
+			remove_focus(this);
+		});
+	}
 	
 	jQuery(".cntrollorbtn").click(function(){
 		var id = jQuery(this).attr("data-resultedid");

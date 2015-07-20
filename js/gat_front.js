@@ -44,7 +44,7 @@ jQuery(document).ready(function(e) {
 		remove_focus(this);
 	});
 	
-	if(!is_touch_device())
+	if(!('ontouchstart' in window || 'onmsgesturechange' in window))
 	{
 		jQuery('.rating_scaleli').mouseover(function(e) {
 			add_focus(this);

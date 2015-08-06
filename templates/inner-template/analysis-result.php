@@ -231,8 +231,8 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 										<img src="http://img.youtube.com/vi/'.$exists->youtubeid.'/0.jpg" width="80" height="80" />
 									  </div>';
 								echo '<div class="gat_desccntnr">';
-									echo '<span>'.get_the_title($exists->domain_id).' : </span>';
-									echo '<span>'.$data_rslt->label.'</span>';
+									echo '<span>'.stripslashes(get_the_title($exists->domain_id)).' : </span>';
+									echo '<span>'.stripslashes($data_rslt->label).'</span>';
 								echo '</div>';
 								echo '<div class="gat_videodetails">';
 									if($exists->seek == NULL || $exists->seek == '')

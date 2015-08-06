@@ -39,8 +39,8 @@ $rating_scale = get_post_meta($post->ID, "rating_scale", true);
 			$i=1;
 			foreach($dimensions as $dimension)
 			{
-				echo '<h4 class="gat_dimension_header">'.$i.': '.$dimension->title.'</h4>';
-				echo '<p class="gat_dimension_desc">'.$dimension->description.'</p>';
+				echo '<h4 class="gat_dimension_header">'.$i.': '.stripslashes($dimension->title).'</h4>';
+				echo '<p class="gat_dimension_desc">'.stripslashes($dimension->description).'</p>';
 				$scales = get_rating_scale($rating_scale);
 				$sql = $wpdb->prepare("SELECT rating_scale from $table where dimension_id=%d && token=%s", $dimension->id, htmlspecialchars($_COOKIE['GAT_token']));
 				$result = $wpdb->get_row($sql);

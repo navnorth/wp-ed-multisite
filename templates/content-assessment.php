@@ -20,9 +20,9 @@
 			if(isset($result->token) && !empty($result->token))
 			{
 				$to      = $email;
-				$subject = get_bloginfo('name','raw').' '.get_the_title($result->assessment_id).' Token';
+				$subject = get_bloginfo('name','raw').' '.get_the_title($result->assessment_id).' Access Code';
 				$token 	 = htmlspecialchars($result->token);
-				$message = 'Your Token: ' . '<a href="'.get_permalink($post->ID).'?action=resume-analysis&token='.$token.'">'.$token.'</a>';
+				$message = 'Your Access Code: ' . '<a href="'.get_permalink($post->ID).'?action=resume-analysis&token='.$token.'">'.$token.'</a>';
 				$headers = 'From: info@' .$_SERVER['HTTP_HOST']. "\r\n" .
 							'Reply-To: info@' . $_SERVER['HTTP_HOST']."\r\n" .
 							'X-Mailer: PHP/' . phpversion();
@@ -146,11 +146,11 @@
                 	<?php
 						if(isset($_GET['tkn_error']))
 						{
-							echo '<div class="gat_error"><p>Email address not found. Please try again.</p><p><strong>Note:</strong> Token can only be retrieved by email if you specified your email address when accessing the tool with your token.</p></div>';
+							echo '<div class="gat_error"><p>Email address not found. Please try again.</p><p><strong>Note:</strong> Access code can only be retrieved by email if you specified your email address when accessing the tool with your access code.</p></div>';
 						}
 						if(isset($_GET['tkn_msg']))
 						{
-							echo '<div class="gat_error">Token has been sent to your email. If you have trouble locating the message, be sure to check your spam folder.</div>';
+							echo '<div class="gat_error">Access code has been sent to your email. If you have trouble locating the message, be sure to check your spam folder.</div>';
 						}
 					?>
                     <form method="post">
@@ -212,20 +212,20 @@
                     ?>
                 </div>
                 <span class="gat_alreadytoken">
-                	Already have a token?
-                	<a href="<?php echo get_permalink()."?action=retrive-token"; ?>">Forgot Token</a>
+                	Already have an access code?
+                	<a href="<?php echo get_permalink()."?action=retrive-token"; ?>">Forgot Access Code</a>
                 </span>
                 <div class="gat_tokenform">
                 	<?php
 						if(isset($_GET['tkn_error']))
 						{
-							echo '<div class="gat_error">The token you entered could not be found. Please try again, or if you provided your email address, you can <a href="' . get_permalink(). '?action=retrive-token"; ?>">have your token emailed to you</a>.</div>';
+							echo '<div class="gat_error">The access code you entered could not be found. Please try again, or if you provided your email address, you can <a href="' . get_permalink(). '?action=retrive-token"; ?>">have your access code emailed to you</a>.</div>';
 						}
 					?>
                     <form method="post">
                         <div class="gat_tokenfrm_brd">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Your Token</label>
+                                <label for="exampleInputEmail1">Your Access Code</label>
                                 <input type="text" name="token" value="" class="form-control gatfields" />
                             </div>
                         </div>
@@ -253,10 +253,10 @@
                     ?>
                 </div>
                 <div class="gat_genratedtoken">
-	            	<?php echo 'Your Token : '.$token; ?>
+	            	<?php echo 'Your Access Code : '.$token; ?>
                 </div>
                 <span class="gat_alreadytoken">
-                	Already have a token?
+                	Already have an access code?
                 	<a href="<?php echo get_permalink()."?action=restart_token"; ?>"> Continue your analysis</a>
                 </span>
                 <div class="gat_savetokenform">
@@ -266,7 +266,7 @@
                                 <label for="exampleInputEmail1">Email address</label>
                                 <input type="text" name="email" class="form-control gatfields" value="<?php echo $data->email;?>">
                                 <input type="hidden" name="token" value="<?php echo $token; ?>" />
-                                <span>If you forget your token, this is the only way to retrieve it.</span>
+                                <span>If you forget your access code, this is the only way to retrieve it.</span>
                             </div>
                             <div class="form-group">
                                 <label for="state">State</label>

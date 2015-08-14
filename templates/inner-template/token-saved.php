@@ -90,9 +90,9 @@ $rating_scale = get_post_meta($post->ID, "rating_scale", true);
 		}
 		?>
 	  <ul class="gat_domainsbmt_btn">
-		<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_buttton" onclick = "return confirm('Confirm Navigation... your changes will be lost!')">Back to Domains</a></li>
+		<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_buttton" onclick = "return confirm('Confirm Navigation... your changes will be lost!')">Back to Focus Areas</a></li>
 		<li><input type="submit" class="btn btn-default gat_buttton" name="gat_results" value="Get Results Now" /></li>
-		<li><input type="submit" class="btn btn-default gat_buttton" name="domain_submit" value="Continue to next Domain"/></li>
+		<li><input type="submit" class="btn btn-default gat_buttton" name="domain_submit" value="Continue to next Focus Area"/></li>
 	  </ul>
 	</div>
 </form>

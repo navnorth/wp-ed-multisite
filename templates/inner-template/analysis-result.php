@@ -71,9 +71,9 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 
 		$to = $email;
 		$from = get_option( 'admin_email' );
-		$subject = get_bloginfo('name','raw').' '.get_the_title($assessment_id).' Token';
+		$subject = get_bloginfo('name','raw').' '.get_the_title($assessment_id).' Access Code';
 
-		$message = '<p>Thank you for participating in the '.get_the_title($assessment_id).' Assessment. If you would like to access the tool again to update your results and gauge your progress in addressing identified gaps, use this token: <a href="'.get_permalink($assessment_id).'?action=resume-analysis&token='.$token.'">'.$token.'</a></p>';
+		$message = '<p>Thank you for participating in the '.get_the_title($assessment_id).' Assessment. If you would like to access the tool again to update your results and gauge your progress in addressing identified gaps, use this access code: <a href="'.get_permalink($assessment_id).'?action=resume-analysis&token='.$token.'">'.$token.'</a></p>';
 
 		$message .= '<p>Here are the top videos selected for you based on your self-assessment:</p>';
 
@@ -110,7 +110,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 			<form method="get" action="<?php echo get_permalink($post->ID); ?>?action=analysis-result&sortby=" id="gat_priorityfrm">
 				<select name="sortby" onchange="priority_submit(this);">
 					<option value="priority" <?php echo $a = ($_GET["sortby"] == 'priority') ? 'selected="selected"' : ''; ?>>Priority</option>
-					<option value="domains" <?php echo $a = ($_GET["sortby"] == 'domains') ? 'selected="selected"' : ''; ?> >Domains</option>
+					<option value="domains" <?php echo $a = ($_GET["sortby"] == 'domains') ? 'selected="selected"' : ''; ?> >Focus Areas</option>
 					<option value="watched" <?php echo $a= ($_GET["sortby"] == 'watched') ? 'selected="selected"' : ''; ?> >Previously Watched</option>
 				</select>
 			</form>
@@ -289,7 +289,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 			?>
 		 </ul>
 		 <ul class="gat_domainsbmt_btn">
-			<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_buttton">Back to Domains</a></li>
+			<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_buttton">Back to Focus Areas</a></li>
 			<li>
             	<?php
 					$response = PLUGIN_PREFIX . "response";  
@@ -306,7 +306,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 		  </ul>
 	</div>
 	<div class="col-md-3 col-sm-12 col-xs-12">
-		<h4>Priority Domains</h4>
+		<h4>Priority Focus Areas</h4>
 		<?php priority_domain_sidebar($post->ID, $token); ?>
 		<?php progress_indicator_sidebar($post->ID, $token); ?>
 	</div>

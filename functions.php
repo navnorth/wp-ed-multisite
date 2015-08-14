@@ -557,7 +557,7 @@ function progress_indicator_sidebar($assessment_id, $token)
 			  <span style="width: '.$data->progress.'%">'.ceil($data->progress).'%</span>
 		  	</div>
 			<div>
-				<span><b>Token : </b></span>
+				<span><b>Access Code : </b></span>
 				'.$token.'
 			</div>
 			<div>

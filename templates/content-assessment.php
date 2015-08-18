@@ -183,6 +183,23 @@
 			<?php
 			include_once( GAT_PATH ."/templates/inner-template/analysis-result.php" );
 		}
+		
+		if(isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] == 'video-playlist')
+		{
+			if(isset($_REQUEST['token']) && !empty($_REQUEST['token']))
+			{
+				echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=analysis-result"</script>';
+			}
+			?>
+			<script type="text/javascript">
+				ga('send', 'pageview', {
+				  'page': '<?php echo $_SERVER["REQUEST_URI"];?>',
+				  'title': 'Analysis Result'
+				});
+			</script>
+			<?php
+			include_once( GAT_PATH ."/templates/inner-template/video-playlist.php" );
+		}
 		// third stage if user select resume analysis and after token is verified from db
 		if(isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] == 'resume-analysis')
 		{

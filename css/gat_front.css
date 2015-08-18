@@ -219,7 +219,7 @@ label.meter
     display: inline-block;
 }
 .gat_domainsbmt_btn > li {
-    width: 33%;
+    width: 32%;
 }
 .gat_domainsbmt_btn li .gat_buttton {
     float: none !important;
@@ -252,6 +252,7 @@ ul.gat_indicatorlights {
 	height: 30px;
 	margin-right: 20px;
 }
+
 .gat_indicatorlights li
 {
     float: left;
@@ -402,6 +403,9 @@ ul.gat_indicatorlights {
 .get_domainlist a:first-child {
     color: #4b4e53;
     text-decoration: none;
+}
+.gat-video-sidebar {
+    margin-top:25px;
 }
 /*my*/
 .gat_buttton{

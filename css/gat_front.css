@@ -167,6 +167,17 @@
 .gat_indicatorwidget div:nth-child(4) {
     margin-top: 10px;
 }
+.gat_indicatorwidget #do-clear-analysis {
+    color: inherit;
+    text-decoration: none;
+}
+.gat_indicatorwidget .access-code .fa {
+    margin-left: 5px;
+    display: none;
+}
+.gat_indicatorwidget .access-code:hover .fa {
+    display: inline-block;
+}
 .meter {
 	height: 30px;
 	position: relative;
@@ -406,7 +417,28 @@ ul.gat_indicatorlights {
 }
 .gat-video-sidebar {
     margin-top:25px;
+    border: 1px solid #CDCDCD;
+    padding:0 !important;
 }
+.gat-video-sidebar .gat_reslt_listvideos {
+    max-height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-bottom:0;
+}
+.gat_priority_form {
+    padding: 10px 15px;
+    border-bottom: 1px solid #CDCDCD;
+}
+#gat_priorityfrm label {
+    float:left;
+    margin-top:5px;
+    margin-bottom:0;
+}
+#gat_priorityfrm select {
+    float:right;
+}
+.clear { clear:both; }
 /*my*/
 .gat_buttton{
 background: #00529f !important;

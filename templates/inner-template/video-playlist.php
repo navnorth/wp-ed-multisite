@@ -130,11 +130,27 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
         <div class="col-md-4 col-sm-12 col-xs-12 gat-video-sidebar">
                  <div class="gat_priority_form">
 			<form method="get" action="<?php echo get_permalink($post->ID); ?>?action=analysis-result&sortby=" id="gat_priorityfrm">
+				<label>Show Videos:</label>
 				<select name="sortby" onchange="priority_submit(this);">
-					<option value="priority" <?php echo $a = ($_GET["sortby"] == 'priority') ? 'selected="selected"' : ''; ?>>Priority</option>
-					<option value="domains" <?php echo $a = ($_GET["sortby"] == 'domains') ? 'selected="selected"' : ''; ?> >Focus Areas</option>
-					<option value="watched" <?php echo $a= ($_GET["sortby"] == 'watched') ? 'selected="selected"' : ''; ?> >Previously Watched</option>
+					<option value="priority" <?php echo $a = ($_GET["sortby"] == 'priority') ? 'selected="selected"' : ''; ?>>Recommended For You</option>
+					<option value="watched" <?php echo $a= ($_GET["sortby"] == 'watched') ? 'selected="selected"' : ''; ?> >Unwatched</option>
+					<!--<option value="domains" <?php echo $a = ($_GET["sortby"] == 'domains') ? 'selected="selected"' : ''; ?> >Focus Areas</option>-->
+					<option value="domains" <?php echo $a = ($_GET["sortby"] == 'domains') ? 'selected="selected"' : ''; ?> >All Videos</option>
+					<?php
+						$args = array(
+							      'post_type' => 'domain',
+							      'orderby' => 'id',
+							      'order' => 'ASC'
+							);
+						$domains = get_posts($args);
+						foreach($domains as $domain){
+							?>
+								<option value="<?php echo $domain->post_name ?>" <?php echo $a = ($_GET["sortby"] == $domain->post_name) ? 'selected="selected"' : ''; ?> > - <?php echo $domain->post_title; ?></option>
+							<?php
+						}
+					?>
 				</select>
+				<div class="clear"></div>
 			</form>
 		 </div>
 		 <ul class="gat_reslt_listvideos">
@@ -150,7 +166,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 							function onYouTubeIframeAPIReady()
 							{
 								player = new YT.Player('player', {
-								  height: '445',
+								  height: '400',
 								  width: '720',
 								  videoId: '',
 								  playerVars: {
@@ -252,7 +268,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 									echo '<span>'.stripslashes(get_the_title($exists->domain_id)).' : </span>';
 									echo '<span>'.stripslashes($data_rslt->label).'</span>';
 								echo '</div>';
-								echo '<div class="gat_videodetails">';
+								/*echo '<div class="gat_videodetails">';
 									if($exists->seek == NULL || $exists->seek == '')
 									{
 										echo '<span class="cntrollorbtn" data-seekto="0"  data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'"><i class="fa fa-play"></i></span>';
@@ -278,7 +294,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 										}
 										echo '<div class="meter"><span style="width: '.$complete.'%">'.$complete.'%</span></div>';
 									}
-								echo '</div>';
+								echo '</div>';*/
 								echo '<div class="unclickable"></div>';
 							echo '</li>';
 						}

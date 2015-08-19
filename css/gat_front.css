@@ -338,7 +338,12 @@ ul.gat_indicatorlights {
     width: 100%;
     float: left;
     margin: 5px 0;
-	position: relative;
+    position: relative;
+    border-bottom: 1px solid #CDCDCD;
+    padding: 5px 0 15px;
+}
+.gat_reslt_listvideos li:last-child {
+    border-bottom:none;
 }
 .analysis_result .gat_priority_form
 {
@@ -368,11 +373,19 @@ ul.gat_indicatorlights {
     width: auto;
 }
 .gat_reslt_listvideos .gat_desccntnr {
-    width: 75%;
+    width: 60%;
     float: left;
     margin-left: 10px;
-	height: 40px;
-	overflow: hidden;
+    height: 40px;
+    /*overflow: hidden;*/
+}
+.gat_reslt_listvideos .video-title {
+    display: block;
+    font-weight: bold;
+}
+.gat_reslt_listvideos .video-domain-title {
+    font-size: 14px;
+    font-style:italic;
 }
 .gat_reslt_listvideos .gat_videodetails {
     float: left;
@@ -425,6 +438,8 @@ ul.gat_indicatorlights {
     overflow-y: scroll;
     overflow-x: hidden;
     margin-bottom:0;
+    padding:10px 15px;
+    list-style:none;
 }
 .gat_priority_form {
     padding: 10px 15px;

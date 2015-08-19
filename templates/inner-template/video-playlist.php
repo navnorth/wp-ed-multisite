@@ -265,8 +265,8 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 										<img src="http://img.youtube.com/vi/'.$exists->youtubeid.'/default.jpg" />
 									  </div>';
 								echo '<div class="gat_desccntnr">';
-									echo '<span>'.stripslashes(get_the_title($exists->domain_id)).' : </span>';
-									echo '<span>'.stripslashes($data_rslt->label).'</span>';
+									echo '<span class="video-title">'.ucwords(stripslashes($data_rslt->label)).'</span>';
+									echo '<span class="video-domain-title"> - '.ucwords(stripslashes(get_the_title($exists->domain_id))).' </span>';
 								echo '</div>';
 								/*echo '<div class="gat_videodetails">';
 									if($exists->seek == NULL || $exists->seek == '')
@@ -308,8 +308,8 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 										<img src="http://img.youtube.com/vi/'.$data_rslt->youtubeid.'/default.jpg" />
 									  </div>';
 								echo '<div class="gat_desccntnr">';
-									echo '<span>'.get_the_title($data_rslt->domain_id).' : </span>';
-									echo '<span>'.$data_rslt->label.'</span>';
+									echo '<span class="video-title">'.ucwords(stripslashes($data_rslt->label)).'</span>';
+									echo '<span class="video-domain-title"> - '.ucwords(stripslashes(get_the_title($exists->domain_id))).' </span>';
 								echo '</div>';
 								echo '<div class="gat_videodetails">';
 									echo '<span class="cntrollorbtn" data-seekto="0" data-resultedid="'.$lastid.'" data-youtubeid="'.$data_rslt->youtubeid.'"><i class="fa fa-play"></i></span>';

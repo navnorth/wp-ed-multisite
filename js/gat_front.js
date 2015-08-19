@@ -1,3 +1,29 @@
+/**
+ * Clear Analysis
+ * Description
+ */
+jQuery(document).ready(function() {
+    jQuery('#clear-analysis #do-clear-analysis').click(function(event) {
+	event.preventDefault()
+	
+	var clear = confirm('Are you sure you want to clear your Analysis on this browser?')
+	
+	if (clear) {
+	    jQuery('#clear-analysis').submit();
+	}
+    })
+})
+/**
+ * Unload Confirmation
+ * Description
+ */
+//jQuery(document).ready(function() {
+//    jQuery('input[name="domain_submit"]').click(function() {
+//	if (typeof window.onbeforeunload === 'function') {
+//	    window.onbeforeunload = null
+//	}
+//    })
+//})
 //for hide and show text
 jQuery(document).ready(function() {
     // Configure/customize these variables.
@@ -206,7 +232,13 @@ function select_rating(ref)
 		data: formdata+"&action=save_assessment",
 		success: function(msg)
 		{
-			jQuery(".gat_indicatorwidget").children(".meter").children("span").css("width", msg+"%").text(msg+"%");
+		//    if (typeof window.onbeforeunload !== 'function') {
+		//	window.onbeforeunload = function() {
+		//	    return 'Leave this page without saving your self-assessment responses?'
+		//	}
+		//    }
+		    
+		    jQuery(".gat_indicatorwidget").children(".meter").children("span").css("width", msg+"%").text(msg+"%");
 		}
 	});
 }

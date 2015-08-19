@@ -113,64 +113,83 @@ function wpse_60168_var_dump_and_die()
 add_action('init', 'GAT_setcookie');
 function GAT_setcookie()
 {
-	$path = parse_url(get_option('siteurl'), PHP_URL_PATH);
-	$host = parse_url(get_option('siteurl'), PHP_URL_HOST);
+    $path = parse_url(get_option('siteurl'), PHP_URL_PATH);
+    $host = parse_url(get_option('siteurl'), PHP_URL_HOST);
+    
+    if(isset($_POST['clear-analysis']))
+    {
+	$name = 'gat-clear-analysis-nonce';
 	
-	if(isset($_COOKIE['GAT_token']) && !empty($_COOKIE['GAT_token']))
+	$nonce = (isset($_POST[$name]) AND wp_verify_nonce($_POST[$name], '55d470caefa93'));
+	$token = (isset($_COOKIE['GAT_token']) AND isset($_POST['clear-analysis']) AND $_COOKIE['GAT_token'] == $_POST['clear-analysis']);
+	
+	if($nonce AND $token)
 	{
-		if(isset($_REQUEST['token']) && !empty($_REQUEST['token']) && ( $_REQUEST['action'] == 'resume-analysis' || $_REQUEST['action'] == 'analysis-result' || $_REQUEST['action'] == 'restart_token'))
-		{
-			if($_REQUEST['action'] == 'restart_token')
-			{
-				global $wpdb;
-				extract($_POST);
-				$response_table = PLUGIN_PREFIX . "response";
-				$sql = $wpdb->prepare( "select * from $response_table where token= %s", $token );
-				$data = $wpdb->get_row($sql);
-				if(isset($data) && !empty($data))
-				{
-					$token = htmlspecialchars($token);
-					setcookie("GAT_token", $token, time() + 2678400, $path, $host);
-				}
-			}
-			else
-			{
-				$token = htmlspecialchars($_REQUEST['token']);
-				setcookie("GAT_token", $token, time() + 2678400, $path, $host);
-			}
-		}
+	    unset($_COOKIE['GAT_token']);
+	    setcookie('GAT_token', '', time() + 2678400, $path, $host);
+	}
     }
+    
+    // Has GAT Token
+    if(isset($_COOKIE['GAT_token']) && empty($_COOKIE['GAT_token']) == FALSE)
+    {
+	$action = array('resume-analysis', 'analysis-result', 'restart_token');
+	
+	if(isset($_REQUEST['token']) AND empty($_REQUEST['token']) == FALSE AND in_array($_REQUEST['action'], $action))
+	{
+	    if($_REQUEST['action'] == 'restart_token')
+	    {
+		global $wpdb;
+		extract($_POST);
+		$response_table = PLUGIN_PREFIX . "response";
+		$sql = $wpdb->prepare( "select * from $response_table where token = %s", $token );
+		$data = $wpdb->get_row($sql);
+		if(isset($data) && !empty($data))
+		{
+		    $token = htmlspecialchars($token);
+		    setcookie("GAT_token", $token, time() + 2678400, $path, $host);
+		}
+	    }
+	    else
+	    {
+		$token = htmlspecialchars($_REQUEST['token']);
+		setcookie("GAT_token", $token, time() + 2678400, $path, $host);
+	    }
+	}
+    }
+    // No GAT Token
+    else
+    {
+	$action = array('resume-analysis', 'analysis-result', 'restart_token');
+	
+	if(isset($_REQUEST['token']) AND empty($_REQUEST['token']) == FALSE AND in_array($_REQUEST['action'], $action))
+	{
+	    if($_REQUEST['action'] == 'restart_token')
+	    {
+		global $wpdb;
+		extract($_POST);
+		$response_table = PLUGIN_PREFIX . "response";
+		$sql = $wpdb->prepare( "select * from $response_table where token= %s", $token );
+		$data = $wpdb->get_row($sql);
+		if(isset($data) && !empty($data))
+		{
+		    $token = htmlspecialchars($token);
+		    setcookie("GAT_token", $token, time() + 2678400, $path, $host);
+		}
+	    }
+	    else
+	    {
+		$token = htmlspecialchars($_REQUEST['token']);
+		setcookie("GAT_token", $token, time() + 2678400, $path, $host);
+	    }
+	}
 	else
 	{
-		if(isset($_REQUEST['token']) && !empty($_REQUEST['token']) && ( $_REQUEST['action'] == 'resume-analysis' || $_REQUEST['action'] == 'analysis-result' || $_REQUEST['action'] == 'restart_token'))
-		{
-			if($_REQUEST['action'] == 'restart_token')
-			{
-				global $wpdb;
-				extract($_POST);
-				$response_table = PLUGIN_PREFIX . "response";
-				$sql = $wpdb->prepare( "select * from $response_table where token= %s", $token );
-				$data = $wpdb->get_row($sql);
-				if(isset($data) && !empty($data))
-				{
-					$token = htmlspecialchars($token);
-					setcookie("GAT_token", $token, time() + 2678400, $path, $host);
-				}
-			}
-			else
-			{
-				$token = htmlspecialchars($_REQUEST['token']);
-				setcookie("GAT_token", $token, time() + 2678400, $path, $host);
-			}
-		}
-		else
-		{
-			$token = generateRandomString(8);
-			setcookie("GAT_token", $token, time() + 2678400, $path, $host);
-		}
+	    $token = generateRandomString(8);
+	    setcookie("GAT_token", $token, time() + 2678400, $path, $host);
 	}
+    }
 }
-
 //Fatch data functions
 /*This function get dimentions data on metboxs*/
 function get_dimensions_data($postid)
@@ -557,8 +576,17 @@ function progress_indicator_sidebar($assessment_id, $token)
 			  <span style="width: '.$data->progress.'%">'.ceil($data->progress).'%</span>
 		  	</div>
 			<div>
-				<span><b>Access Code : </b></span>
-				'.$token.'
+				<form id="clear-analysis" method="post" action="' . get_permalink() . '">
+					' . wp_nonce_field('55d470caefa93', 'gat-clear-analysis-nonce') . '
+					<input type="hidden" name="clear-analysis" value="' . $token . '" />
+					<a href="#" id="do-clear-analysis">
+						<span class="access-code">
+							<b>Access Code : </b>'
+							. $token .
+							'<span class="fa fa-times text-danger"></span>
+						</span>
+					</a>
+				</form>
 			</div>
 			<div>
 				<span><b>Email : </b></span>

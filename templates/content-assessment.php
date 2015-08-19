@@ -114,6 +114,9 @@
 				echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=restart_token&tkn_error=true"</script>';
 			}
 		}
+	
+		
+	
 	}
 	
 	//Check for token
@@ -125,7 +128,7 @@
 	else
 	{
 		echo '<script type="text/javascript">location.reload();</script>';
-	}
+	}	
 
 	if(!empty($_GET))
 	{

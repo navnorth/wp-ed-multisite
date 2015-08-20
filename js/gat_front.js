@@ -9,6 +9,10 @@ jQuery(document).ready(function() {
 	var clear = confirm('Are you sure you want to clear your Analysis on this browser?')
 	
 	if (clear) {
+	    if (typeof window.onbeforeunload === 'function') {
+		window.onbeforeunload = null
+	    }
+	    
 	    jQuery('#clear-analysis').submit();
 	}
     })
@@ -17,13 +21,13 @@ jQuery(document).ready(function() {
  * Unload Confirmation
  * Description
  */
-//jQuery(document).ready(function() {
-//    jQuery('input[name="domain_submit"]').click(function() {
-//	if (typeof window.onbeforeunload === 'function') {
-//	    window.onbeforeunload = null
-//	}
-//    })
-//})
+jQuery(document).ready(function() {
+    jQuery('input[name="domain_submit"], input[name="gat_results"]').click(function() {
+	if (typeof window.onbeforeunload === 'function') {
+	    window.onbeforeunload = null
+	}
+    })
+})
 //for hide and show text
 jQuery(document).ready(function() {
     // Configure/customize these variables.
@@ -232,11 +236,11 @@ function select_rating(ref)
 		data: formdata+"&action=save_assessment",
 		success: function(msg)
 		{
-		//    if (typeof window.onbeforeunload !== 'function') {
-		//	window.onbeforeunload = function() {
-		//	    return 'Leave this page without saving your self-assessment responses?'
-		//	}
-		//    }
+		    if (typeof window.onbeforeunload !== 'function') {
+			window.onbeforeunload = function() {
+			    return 'Leave this page without saving your self-assessment responses?'
+			}
+		    }
 		    
 		    jQuery(".gat_indicatorwidget").children(".meter").children("span").css("width", msg+"%").text(msg+"%");
 		}

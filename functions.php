@@ -573,7 +573,7 @@ function progress_indicator_sidebar($assessment_id, $token)
 
 	echo '<div class="gat_indicatorwidget">
 			<div class="meter">
-			  <span style="width: '.$data->progress.'%">'.ceil($data->progress).'%</span>
+			  <span style="width: ' . ceil($data->progress) . '%">'.ceil($data->progress).'%</span>
 		  	</div>
 			<div>
 				<form id="clear-analysis" method="post" action="' . get_permalink() . '">

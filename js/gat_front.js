@@ -1,3 +1,5 @@
+var inquire
+
 /**
  * Clear Analysis
  * Description
@@ -16,6 +18,8 @@ jQuery(document).ready(function() {
 	    jQuery('#clear-analysis').submit();
 	}
     })
+    
+    inquire = jQuery('input[name="inquire"]').detach()
 })
 /**
  * Unload Confirmation
@@ -202,33 +206,45 @@ function remove_focus(ref)
 
 function select_rating(ref)
 {
+
 	jQuery(ref).parents("ul").children("li.rating_scaleli").each(function(index, element)
 	{
-		if(jQuery(this).attr("data-rating") != jQuery(ref).attr("data-rating"))
-		{
-			jQuery(this).removeClass("selectedli");
-			jQuery(this).parents("ul").next("div.gat_scaledescription_cntnr").removeClass("selectedarea");
-			jQuery(this).css("background-color", "");
-			jQuery(this).css("color", "");
-			jQuery(this).children("input").val('');
-		}
+	    if(jQuery(this).attr("data-rating") != jQuery(ref).attr("data-rating"))
+	    {
+		jQuery(this).removeClass("selectedli");
+		jQuery(this).parents("ul").next("div.gat_scaledescription_cntnr").removeClass("selectedarea");
+		jQuery(this).css("background-color", "");
+		jQuery(this).css("color", "");
+		jQuery(this).children("input").val('');
+	    }
 	});
+	
 	if(jQuery(ref).hasClass("selectedli"))
 	{
-		jQuery(ref).removeClass("selectedli");
-		jQuery(ref).parents("ul").next("div.gat_scaledescription_cntnr").removeClass("selectedarea");
-		jQuery(ref).parents("ul").next("div.gat_scaledescription_cntnr").text('');
-		jQuery(ref).children("input").val('');
+	    jQuery(ref).removeClass("selectedli");
+	    jQuery(ref).parents("ul").next("div.gat_scaledescription_cntnr").removeClass("selectedarea");
+	    jQuery(ref).parents("ul").next("div.gat_scaledescription_cntnr").text('');
+	    jQuery(ref).children("input").val('');
 	}
 	else
 	{
-		jQuery(ref).addClass("selectedli");
-		jQuery(ref).parents("ul").next("div.gat_scaledescription_cntnr").addClass("selectedarea");
-		
-		jQuery(ref).children("input").val(jQuery(ref).attr("data-rating"));
-		var desc = jQuery(ref).children(".rating_scale_description").text();
-		jQuery(ref).parents("ul").next("div.gat_scaledescription_cntnr").text(desc);
+	    jQuery(ref).addClass("selectedli");
+	    jQuery(ref).parents("ul").next("div.gat_scaledescription_cntnr").addClass("selectedarea");
+	    
+	    jQuery(ref).children("input").val(jQuery(ref).attr("data-rating"));
+	    var desc = jQuery(ref).children(".rating_scale_description").text();
+	    jQuery(ref).parents("ul").next("div.gat_scaledescription_cntnr").text(desc);
 	}
+	
+	if (inquire.length) {
+	    if (jQuery('.rating_scaleli.selectedli').length) {
+		if (jQuery('input[name="inquire"]').length == 0)
+		    inquire.appendTo('form#assessment_data')
+	    } else {
+		inquire = jQuery('input[name="inquire"]').detach()
+	    }
+	}
+	
 	var formdata = jQuery('#assessment_data').serialize();
 	jQuery.ajax({
 		url: ajaxurl,

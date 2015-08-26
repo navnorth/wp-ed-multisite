@@ -230,7 +230,19 @@ label.meter
     display: inline-block;
 }
 .gat_domainsbmt_btn > li {
-    width: 32%;
+    width: 33%;
+}
+.gat_twobuttons > li {
+    width: 49.75%;
+}
+.gat_twobuttons li:nth-child(2) {
+    text-align:right !important;
+}
+.gat_thirddomain > li {
+    width:26%;
+}
+.gat_thirddomain li:nth-child(3) {
+    width:47%;
 }
 .gat_domainsbmt_btn li .gat_buttton {
     float: none !important;

@@ -135,7 +135,7 @@
     padding: 10px;
     text-align: justify;
     width: 100%;
-    display: none;
+    display: block !important;
     min-height:65px;
     margin-bottom:25px;
 }

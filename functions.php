@@ -568,7 +568,8 @@ function progress_indicator_sidebar($assessment_id, $token)
 	}
 	else
 	{
-		$email = '<a href="'. get_permalink().'?action=start-analysis">Set Your Email</a>';
+	    // $email = '<a href="'. get_permalink().'?action=start-analysis">Set Your Email</a>';
+	    $email = '<a herf="#" data-toggle="modal" data-target="#gat-user-info-modal">Set Your E-mail</a>';
 	}
 
 	echo '<div class="gat_indicatorwidget">
@@ -684,5 +685,17 @@ function priority_domain_sidebar($assessment_id, $token)
 function set_html_content_type()
 {
     return 'text/html';
+}
+/**
+ * 
+ */
+add_action('wp_ajax_register_user_info', 'register_user_info_callback');
+add_action( 'wp_ajax_nopriv_register_user_info', 'register_user_info_callback' );
+
+function register_user_info_callback()
+{
+    print_r($_POST);
+    
+    wp_die();
 }
 ?>

@@ -14,60 +14,9 @@ get_header(); ?>
 	<?php get_assessment_template_part( 'content', 'assessment' ); ?>
 
     <?php endwhile; // end of the loop. ?>
-	<script type="text/javascript">
-	    jQuery(document).ready(function() {
-		jQuery('#gat-user-info-modal #submit-gat-user-info').click(function() {
-		    jQuery('#gat-user-info-modal input[name="email"]').parents('.form-group').removeClass('has-error')
-		    
-		    var email = jQuery('#gat-user-info-modal input[name="email"]')
-		    var state = jQuery('#gat-user-info-modal input[name="state"]')
-		    var district = jQuery('#gat-user-info-modal input[name="district"]')
-		    
-		    if (email.val() || state.val() || district.val()) {
-			var proceed = true
-			
-			if (email.val()) {
-			    var regex = /^(?:[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
-			
-			    if (regex.exec(email.val()) === null) {
-				proceed = false
-				jQuery('#gat-user-info-modal input[name="email"]').parents('.form-group').addClass('has-error')
-			    }
-			    
-			    if (proceed) {
-				var data = jQuery('#gat-user-info-modal form').serializeArray()
-				    data.push({
-					name: 'action',
-					value: 'register_user_info'
-				    })
-				    
-				jQuery.ajax({
-				    url: ajaxurl,
-				    type: 'post',
-				    data: data
-				})
-			    }
-			}
-		    }
-		    else
-		    {
-			jQuery('#gat-user-info-modal').modal('hide')
-		    }
-		})
-	    })
-	</script>
-	<style>
-	    .modal-container .modal .modal-content {
-		border-radius: 0;
-	    }
-	</style>
 	<div class="modal-container">
 	<?php
-	    $token = htmlspecialchars($_COOKIE['GAT_token']);
-	    $response_table = PLUGIN_PREFIX . "response";
-	    
-	    $sql = $wpdb->prepare( "SELECT * FROM `" . $response_table . "` WHERE `token` = %s", $token );
-	    $response = $wpdb->get_row($sql); ?>
+	    $token = htmlspecialchars($_COOKIE['GAT_token']); ?>
 	    
 	    <div class="modal fade" id="gat-user-info-modal">
 		<div class="modal-dialog">
@@ -86,9 +35,10 @@ get_header(); ?>
 				<?php wp_nonce_field("55e80bfb3ea74", "gat-user-information-nonce"); ?>
 				
 				<input type="hidden" name="token" value="<?php echo $token; ?>" />
+				
 				<div class="form-group">
 				    <label class="control-label">E-mail address</label>
-				    <input type="text" name="email" class="form-control" />
+				    <input type="text" name="email" class="form-control" value="" />
 				</div>
 				
 				<div class="row">
@@ -111,9 +61,12 @@ get_header(); ?>
 				    </div>
 				</div>
 			    </form>
+			    <p class="text-right">
+				Read our <a href="http://www2.ed.gov/notices/privacy/index.html?src=future-ready-gap-analysis" target="_blank">privacy policy</a>.
+			    </p>
 			</div>
 			<div class="modal-footer">
-			    <button type="button" id="submit-gat-user-info" class="btn btn-default gat_buttton">Submit</button>
+			    <button type="button" id="submit-gat-user-info" data-loading-text="Submitting..." class="btn btn-default gat_buttton">Submit</button>
 			</div>
 		    </div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->

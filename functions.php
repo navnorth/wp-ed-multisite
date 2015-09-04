@@ -1,4 +1,11 @@
 <?php
+
+if( ! defined('GAT_INQUIRE_USER_COOKIE'))
+    define('GAT_INQUIRE_USER_COOKIE', 'GAT-inquire-user-information');
+
+if( ! defined('GAT_TOKEN_COOKIE'))
+    define('GAT_TOKEN_COOKIE', 'GAT_token');
+    
 /*Enqueue script and style on backend*/
 add_action( 'admin_enqueue_scripts', 'gat_back_enqueue_script' );
 function gat_back_enqueue_script()
@@ -31,14 +38,16 @@ function pluginname_ajaxurl()
 		$yoastid = '';
 	}
 	?>
-	<script type="text/javascript">
-		var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
-	</script>
+    <script type="text/javascript">
+	var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+    </script>
     <script>
-      /*var tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);*/
+    /**
+	var tag = document.createElement('script');
+	tag.src = "https://www.youtube.com/iframe_api";
+	var firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    */
     </script>
 <?php
 }
@@ -126,12 +135,14 @@ function GAT_setcookie()
 	if($nonce AND $token)
 	{
 	    unset($_COOKIE['GAT_token']);
-	    setcookie('GAT_token', '', time() + 2678400, $path, $host);
+	    $t = time();
+	    
+	    setcookie('GAT_token', '', $t + 2678400, $path, $host);
 	}
     }
     
     // Has GAT Token
-    if(isset($_COOKIE['GAT_token']) && empty($_COOKIE['GAT_token']) == FALSE)
+    if(isset($_COOKIE['GAT_token']) && ! empty($_COOKIE['GAT_token']))
     {
 	$action = array('resume-analysis', 'analysis-result', 'restart_token');
 	
@@ -144,16 +155,25 @@ function GAT_setcookie()
 		$response_table = PLUGIN_PREFIX . "response";
 		$sql = $wpdb->prepare( "select * from $response_table where token = %s", $token );
 		$data = $wpdb->get_row($sql);
+		
 		if(isset($data) && !empty($data))
 		{
 		    $token = htmlspecialchars($token);
 		    setcookie("GAT_token", $token, time() + 2678400, $path, $host);
+		    
+		    if($data->email == NULL)
+			setcookie(GAT_INQUIRE_USER_COOKIE, '1', time() + 2678400, $path, $host);
 		}
 	    }
 	    else
 	    {
+		$time = time() + 2678400;
+		
 		$token = htmlspecialchars($_REQUEST['token']);
-		setcookie("GAT_token", $token, time() + 2678400, $path, $host);
+		setcookie("GAT_token", $token, $time, $path, $host);
+		
+		if( ! isset($_COOKIE[GAT_INQUIRE_USER_COOKIE]))
+		    setcookie(GAT_INQUIRE_USER_COOKIE, '1', $time, $path, $host);
 	    }
 	}
     }
@@ -171,10 +191,14 @@ function GAT_setcookie()
 		$response_table = PLUGIN_PREFIX . "response";
 		$sql = $wpdb->prepare( "select * from $response_table where token= %s", $token );
 		$data = $wpdb->get_row($sql);
+		
 		if(isset($data) && !empty($data))
 		{
 		    $token = htmlspecialchars($token);
 		    setcookie("GAT_token", $token, time() + 2678400, $path, $host);
+		    
+		    if($data->email == NULL)
+			setcookie(GAT_INQUIRE_USER_COOKIE, '1', time() + 2678400, $path, $host);
 		}
 	    }
 	    else
@@ -183,10 +207,15 @@ function GAT_setcookie()
 		setcookie("GAT_token", $token, time() + 2678400, $path, $host);
 	    }
 	}
+	// Nothing, not even a token.
 	else
 	{
+	    $t = time();
+	    
 	    $token = generateRandomString(8);
-	    setcookie("GAT_token", $token, time() + 2678400, $path, $host);
+	    
+	    setcookie("GAT_token", $token, $t + 2678400, $path, $host);
+	    setcookie(GAT_INQUIRE_USER_COOKIE, '1', $t + 2678400, $path, $host);
 	}
     }
 }
@@ -550,27 +579,23 @@ OR rating_scale != '' )", $domainid, $token);
 /*Sidebar for progress indicator and priority domains*/
 function progress_indicator_sidebar($assessment_id, $token)
 {
-	global $wpdb;
-	$response_table = PLUGIN_PREFIX . "response";
-	$sql = $wpdb->prepare( "select * from $response_table where assessment_id= %d AND token= %s", $assessment_id, $token );
-	$data = $wpdb->get_row($sql);
-	if(!empty($data->email))
-	{
-		$email = explode("@", $data->email);
-		for($i=0; $i < strlen($email[0]); $i++)
-		{
-			if($i != 0)
-			{
-				$email[0][$i] = '*';
-			}
-		}
-		$email = $email[0].'@'.$email[1];
-	}
-	else
-	{
-	    // $email = '<a href="'. get_permalink().'?action=start-analysis">Set Your Email</a>';
-	    $email = '<a herf="#" data-toggle="modal" data-target="#gat-user-info-modal">Set Your E-mail</a>';
-	}
+    $data = get_GAT_response($assessment_id, $token);
+    
+    if( ! empty($data->email))
+    {
+	$email = explode("@", $data->email);
+	
+	for($i = 1; $i < strlen($email[0]); $i++)
+	    $email[0][$i] = '*';
+	
+	$email = $email[0].'@'.$email[1];
+    }
+    // Doesn't Have E-mail
+    else
+    {
+	// $email = '<a href="'. get_permalink().'?action=start-analysis">Set Your Email</a>';
+	$email = '<span class="gat-user-email"><a herf="#" id="show-gat-user-info-modal">Set Your E-mail</a></span>';
+    }
 
 	echo '<div class="gat_indicatorwidget">
 			<div class="meter">
@@ -687,15 +712,146 @@ function set_html_content_type()
     return 'text/html';
 }
 /**
- * 
+ * Register User Information Action Hook
+ * Description
  */
 add_action('wp_ajax_register_user_info', 'register_user_info_callback');
 add_action( 'wp_ajax_nopriv_register_user_info', 'register_user_info_callback' );
-
+/**
+ * Register User Information Callback
+ * Description
+ */
 function register_user_info_callback()
 {
-    print_r($_POST);
+    $name = 'gat-user-information-nonce';
+    $nonce = (isset($_POST[$name]) AND wp_verify_nonce($_POST[$name], '55e80bfb3ea74'));
+    
+    if($nonce)
+    {
+	global $wpdb;
+	
+	$assessment = url_to_postid($_POST['_wp_http_referer']);
+	
+	if(check_token_exists($assessment, $_POST['token']) == FALSE)
+	    register_GAT_response($assessment, $_POST['token']);
+	
+	$organization = NULL;
+	
+	if($_POST['district'])
+	{
+	    $organization_table = PLUGIN_PREFIX . "organizations";
+	    
+	    $organization_sql = $wpdb->prepare("SELECT DISTINCT LEANM FROM `" . $organization_table . "` WHERE `LEAID` = %s", $_POST['district']);
+	    $organization_row = $wpdb->get_row($organization_sql);
+	    
+	    $organization = $organization_row->LEANM;
+	}
+	
+	$response_table = PLUGIN_PREFIX . "response";
+	$sql = $wpdb->prepare("UPDATE
+	    `" . $response_table . "`
+	SET
+	    `email` = %s, `state` = %s,
+	    `district` = %s, `organization_id` = %s, `organization_id` = %s 
+	WHERE
+	    `assessment_id` = %d AND
+	    `token` = %s",
+	    $_POST['email'], $_POST['state'],
+	    $_POST['district'], $_POST['district'], $organization,
+	    $assessment,
+	    $_POST['token']
+	);
+	
+	$reply = array(
+	    "status" => (FALSE === $wpdb->query($sql)) ? 'error' : 'success'
+	);
+	
+	echo json_encode($reply);
+    }
+    else
+    {
+	echo json_encode(array("status" => "error"));
+    }
     
     wp_die();
+}
+/**
+ * GET GAT Response
+ * Description
+ *
+ * @param integer $assessment The assessment ID.
+ * @param string $token The user token.
+ *
+ * @return object The response.
+ */
+function get_GAT_response($assessment, $token)
+{
+    global $wpdb;
+    
+    $response_table = PLUGIN_PREFIX . "response";
+    
+    $sql = $wpdb->prepare( "SELECT
+	*
+    FROM
+	`" . $response_table . "`
+    WHERE
+	`assessment_id` = %d AND
+	`token` = %s",
+    $assessment, $token);
+    
+    $data = $wpdb->get_row($sql);
+
+    return $data;
+}
+/**
+ * Register GAT Response
+ * Register GAT response to OET database.
+ *
+ * @param array $GAT The response data.
+ */
+function register_GAT_response($assessment = 0, $token = '', $email = '', $state = '', $district = '', $progress = 0, $score = 0)
+{
+    if($assessment == 0 OR $token == NULL)
+	return FALSE;
+    
+    global $wpdb;
+    
+    $organization = NULL;
+    
+    if($district)
+    {
+	$organization_table = PLUGIN_PREFIX . "organizations";
+	
+	$organization_sql = $wpdb->prepare("SELECT DISTINCT LEANM FROM `" . $organization_table . "` WHERE `LEAID` = %s", $district);
+	$organization_row = $wpdb->get_row($organization_sql);
+	
+	$organization = $organization_row->LEANM;
+    }
+    
+    $response_table = PLUGIN_PREFIX . "response";
+    
+    // Build Query
+    $response_sql = $wpdb->prepare("INSERT INTO
+	`" . $response_table . "`
+	(
+	    `assessment_id`, `token`, `email`,
+	    `state`, `district`, `organization_id`, 
+	    `organization`, `progress`, `overall_score`,
+	    `start_date`, `last_saved`, `email_verified`
+	)
+    VALUES
+	(
+	    %d, %s, %s,
+	    %s, %s, %s,
+	    %s, %f, %f,
+	    NOW(), NOW(), ''
+	)",
+	$assessment, $token, $email,
+	$state, $district, $district,
+	$organization, $progress, $score
+    );
+    
+    // Send Query and return result
+    return $wpdb->query($response_sql);
 }
 ?>

@@ -51,14 +51,7 @@
     <input type="hidden" name="domain_id" value="<?php echo $domain->ID; ?>" />
     <input type="hidden" name="token" value="<?php echo htmlspecialchars($_COOKIE['GAT_token']); ?>" />
     <input type="hidden" name="next_domain" value="<?php echo $nextdomain; ?>" />
-<?php
     
-    if($response->progress == 0)
-    {
-    $arguments = ("resume" == $nextdomain) ? array("action" => "resume-analysis") : array("action" => "token-saved", "list" => $nextdomain); ?>
-    <input type="hidden" name="inquire" value="<?php echo add_query_arg($arguments, get_permalink()); ?>" />
-<?php
-    } ?>
     <h2><?php echo $post->post_title; ?></h2>
     <div class="col-md-9 col-sm-12 col-xs-12">
 	<h3 class="gat_domain_header"><?php echo $title; ?></h3>

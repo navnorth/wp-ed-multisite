@@ -7,7 +7,7 @@
  * @since Twenty Twelve 1.0
  */
     global $post, $wpdb;
-
+    
     if( ! empty($_POST))
     {
 	/**
@@ -53,13 +53,46 @@
 	 */
 	if(isset($_POST['gat_results']))
 	{
+	    /**
+	     * @see wp-gap-analysis/functions.php
+	     * check_token_exists(assessment, token, column)
+	     */
+	    $response_id = check_token_exists($post->ID, $_POST['token'], "id");
+	    
+	    // Suppose to update but do nothing for awhile
+	    if($response_id)
+	    {
+		
+	    }
+	    // Save
+	    else
+	    {
+		/**
+		 * @see wp-gap-analysis/functions.php
+		 */
+		register_GAT_response($post->ID, $_POST['token']);
+	    }
+	    
+	    /**
+	     * gat_save_domaindata(POST) will fail if there were no 
+	     * response saved for the current assessment and token.
+	     */
 	    $result = gat_save_domaindata($_POST);
 	    
 	    if($result)
 	    {
-		$location = (array_key_exists("inquire", $_POST)) ?
-		    get_permalink() . "?action=start-analysis&continue=" . urlencode(get_permalink($post->ID) . "?action=analysis-result") :
-		    get_permalink($post->ID) . "?action=analysis-result";
+		$user_response = NULL;
+		
+		if($response_id)
+		{
+		    /**
+		     * @see wp-gap-analysis/functions.php
+		     * get_GAT_response(assessment, token)
+		     */
+		    $user_response = get_GAT_response($_POST['assessment_id'], $_POST['token']);
+		}
+		
+		$location = get_permalink($post->ID) . "?action=analysis-result" . (($user_response->email OR $_COOKIE[GAT_INQUIRE_USER_COOKIE] == NULL) ? '' : '&inquire=true');
 		
 		echo '<script type="text/javascript">window.location = "' . $location . '"</script>';
 	    }
@@ -76,7 +109,31 @@
 	 */
 	if(isset($_POST['domain_submit']))
 	{
-	    $result = gat_save_domaindata($_POST);
+	    /**
+	     * @see wp-gap-analysis/functions.php
+	     * check_token_exists(assessment, token, column)
+	     */
+	    $response_id = check_token_exists($post->ID, $_POST['token'], "id");
+	    
+	    // Suppose to update but do nothing for awhile
+	    if($response_id)
+	    {
+		
+	    }
+	    // Save
+	    else
+	    {
+		/**
+		 * @see wp-gap-analysis/functions.php
+		 */
+		register_GAT_response($post->ID, $_POST['token']);
+	    }
+	    
+	    /**
+	     * gat_save_domaindata(POST) will fail if there were no 
+	     * response saved for the current assessment and token.
+	     */
+	    $result = gat_save_domaindata($_POST); // @see functions.php
 	    
 	    if($result)
 	    {
@@ -84,13 +141,25 @@
 		
 		echo '<script type="text/javascript">ga("send", "event", "Submit Domain", "'.count($dimension_id).'");</script>';
 		
-		if($inquire)
-		    $location = get_permalink() . "?action=start-analysis&continue=" . urlencode($inquire);
-		else 
+		$location = get_permalink($post->ID);
+		
+		if($next_domain == 'resume')
 		{
-		    $location = get_permalink($post->ID);
+		    $location .= '?action=resume-analysis';
+		}
+		else
+		{
+		    $user_response = NULL;
 		    
-		    $location .= ($next_domain == 'resume') ? "?action=resume-analysis" : "?action=token-saved&list=" . $next_domain;
+		    if($response_id)
+		    {
+			/**
+			 * @see wp-gap-analysis/functions.php
+			 * get_GAT_response(assessment, token)
+			 */
+			$user_response  = get_GAT_response($post->ID, $token);
+		    }
+		    $location .= '?action=token-saved&list=' . $next_domain . (($user_response->email OR $_COOKIE[GAT_INQUIRE_USER_COOKIE] == NULL) ? '' :'&inquire=true');
 		}
 		
 		echo '<script type="text/javascript">window.location = "' . $location . '"</script>';
@@ -105,6 +174,7 @@
 	 * Save Token
 	 * Action perform when first time token save for assessment.
 	 * @code begin
+	 * @deprecated
 	 */
 	if(isset($_POST['save_token']))
 	{
@@ -145,13 +215,14 @@
 		
 		$wpdb->query($sql);
 	    }
-	    
-	    if(array_key_exists("continue", $_POST))
-		echo '<script type="text/javascript">window.location = "' . $_POST["continue"] . '"</script>';
-	    else 
-		echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=token-saved&list=1"</script>';
+	        
+	    echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=token-saved&list=1"</script>';
 	}
-	    
+	/**
+	 * Save Token
+	 * @code end
+	 */
+	
 	/**
 	 * Restart Token
 	 * Action perform when resuming from existing token.
@@ -160,6 +231,7 @@
 	if(isset($_POST['restart_token']))
 	{
 	    extract($_POST);
+	    
 	    global $wpdb;
 	    $response_table = PLUGIN_PREFIX . "response";
 	    $sql = $wpdb->prepare( "select * from $response_table where token= %s", $token );
@@ -171,6 +243,7 @@
 		{
 		    echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=resume-analysis"</script>';
 		}
+		// Breaking Point
 		else
 		{
 		    $sql = $wpdb->prepare("INSERT INTO $response_table (assessment_id, token, email, email_verified, state, district, organization_id, organization, start_date, last_saved, progress, overall_score) VALUES (%d, %s, %s, '', %s, %s, %s, %s, now(), '', '0', '0')", $post->ID, $token, $data->email, $data->state, $data->district, $data->organization_id, $data->organization);
@@ -472,7 +545,10 @@
 		<?php
 		    $content = get_the_content($post->ID);
 		    $content = apply_filters('the_content', $content);
+		    
 		    echo do_shortcode($content);
+		    
+		    $user_response = get_GAT_response($post->ID, $_COOKIE['GAT_token']);
 		?>
 
                 <ul class="get_domainlist">
@@ -484,14 +560,18 @@
 			foreach($domainids as $key => $domainid)
 			{
 			    $domain = get_post($domainid);
-			    echo '<li><a href="' . $permalink . '?action=token-saved&list=' . ($key + 1) . '">
-				    <h4 style="float:left;">'.$domain->post_title.'</a></h4>
-				    <a href="' . $permalink .'?action=token-saved&list=' . ($key + 1) . '">
-					<label>
-					    <i class="fa fa-play"></i>
-					</label>
-				    </a>
-				  </li>';
+			    $href = $permalink . '?action=token-saved&list=' . ($key + 1);
+			    
+			    echo '<li>
+				<a href="' . $href . '">
+				    <h4 style="float:left;">'.$domain->post_title.'</h4>
+				</a>
+				<a href="' . $href . '">
+				    <label>
+					<i class="fa fa-play"></i>
+				    </label>
+			        </a>
+			    </li>';
 			}
 		    } ?>
                 </ul>

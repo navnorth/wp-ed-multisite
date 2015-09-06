@@ -26,6 +26,12 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 				$sql = $wpdb->prepare("SELECT a.*, ((a.seek/a.end)*100) as percent FROM $watchtable as a where assessment_id=%d AND token=%s ORDER BY CAST(percent as DECIMAL(10,5)) DESC", $post->ID, $token);
 				$data_rslts = $wpdb->get_results($sql);
 				break;
+			default:
+				$sql = $wpdb->prepare("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
+where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.domain_id=%d AND <condition> ORDER BY b.assessment_id ASC", $token, $_GET["sortby"]);
+				$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b. `rating_scale`, '".'"'."%')", $sql));
+				$data_rslts = $wpdb->get_results($sql);
+				break;
 		}
 	}
 	else
@@ -37,7 +43,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 
 		$data_rslts = $wpdb->get_results($sql);
 	}
-
+	
 	//Email Result POST
 	if(isset($_POST['email_results']))
 	{
@@ -129,7 +135,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 	</div>
         <div class="col-md-4 col-sm-12 col-xs-12 gat-video-sidebar">
                  <div class="gat_priority_form">
-			<form method="get" action="<?php echo get_permalink($post->ID); ?>?action=analysis-result&sortby=" id="gat_priorityfrm">
+			<form method="get" action="<?php echo get_permalink($post->ID); ?>?action=video-playlist&sortby=" id="gat_priorityfrm">
 				<label>Show Videos:</label>
 				<select name="sortby" onchange="priority_submit(this);">
 					<option value="priority" <?php echo $a = ($_GET["sortby"] == 'priority') ? 'selected="selected"' : ''; ?>>Recommended For You</option>
@@ -145,7 +151,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 						$domains = get_posts($args);
 						foreach($domains as $domain){
 							?>
-								<option value="<?php echo $domain->post_name ?>" <?php echo $a = ($_GET["sortby"] == $domain->post_name) ? 'selected="selected"' : ''; ?> > - <?php echo $domain->post_title; ?></option>
+								<option value="<?php echo $domain->ID ?>" <?php echo $a = ($_GET["sortby"] == $domain->ID) ? 'selected="selected"' : ''; ?> > - <?php echo $domain->post_title; ?></option>
 							<?php
 						}
 					?>

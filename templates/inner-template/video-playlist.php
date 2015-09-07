@@ -22,8 +22,8 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 				$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b. `rating_scale`, '".'"'."%')", $sql));
 				$data_rslts = $wpdb->get_results($sql);
 				break;
-			case "watched":
-				$sql = $wpdb->prepare("SELECT a.*, ((a.seek/a.end)*100) as percent FROM $watchtable as a where assessment_id=%d AND token=%s ORDER BY CAST(percent as DECIMAL(10,5)) DESC", $post->ID, $token);
+			case "unwatched":
+				$sql = $wpdb->prepare("SELECT a.*, ((a.seek/a.end)*100) as percent, b.* FROM $watchtable as a INNER JOIN oet_gat_videos as b ON (a.domain_id=b.domain_id AND a.dimensions_id=b.dimensions_id) where assessment_id=%d AND token=%s AND ((a.seek/a.end)*100) is null ORDER BY CAST(percent as DECIMAL(10,5)) DESC", $post->ID, $token);
 				$data_rslts = $wpdb->get_results($sql);
 				break;
 			default:
@@ -98,7 +98,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 		remove_filter( 'wp_mail_content_type', 'set_html_content_type' ); 			
 	}
 	?>
-	<div class="col-md-8 col-sm-12 col-xs-12 analysis_result leftpad">
+	<div class="col-md-8 col-sm-12 col-xs-12 video-playlist-result leftpad">
 		 <h3><?php echo get_the_title($post->ID); ?></h3>
           <?php
 			  if(isset($alert_message) && !empty($alert_message))
@@ -127,7 +127,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
             	<form method="post">
                 	<input type="hidden" name="email" value="<?php echo $result->email; ?>" />
                 	<input type="hidden" name="assessment_id" value="<?php echo $post->ID; ?>" />
-                	<input type="submit" class="btn btn-default gat_buttton" name="email_results" value="Email Results" />
+                	<input type="submit" class="btn btn-default gat_buttton" name="email_results" value="Email Results & Playlist" />
                 </form>
             </li>
 			<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_buttton">Continue Analysis</a></li>
@@ -139,7 +139,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 				<label>Show Videos:</label>
 				<select name="sortby" onchange="priority_submit(this);">
 					<option value="priority" <?php echo $a = ($_GET["sortby"] == 'priority') ? 'selected="selected"' : ''; ?>>Recommended For You</option>
-					<option value="watched" <?php echo $a= ($_GET["sortby"] == 'watched') ? 'selected="selected"' : ''; ?> >Unwatched</option>
+					<option value="unwatched" <?php echo $a= ($_GET["sortby"] == 'unwatched') ? 'selected="selected"' : ''; ?> >Unwatched</option>
 					<!--<option value="domains" <?php echo $a = ($_GET["sortby"] == 'domains') ? 'selected="selected"' : ''; ?> >Focus Areas</option>-->
 					<option value="domains" <?php echo $a = ($_GET["sortby"] == 'domains') ? 'selected="selected"' : ''; ?> >All Videos</option>
 					<?php

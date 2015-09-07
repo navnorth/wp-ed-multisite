@@ -232,6 +232,9 @@ label.meter
 .gat_domainsbmt_btn > li {
     width: 33%;
 }
+.video-playlist-result .gat_domainsbmt_btn > li {
+    width:32%;
+}
 .gat_twobuttons > li {
     width: 49.75%;
 }

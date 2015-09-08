@@ -232,20 +232,21 @@ label.meter
 .gat_domainsbmt_btn > li {
     width: 33%;
 }
+.gat_token_saved > li {
+    width:21%;
+}
 .video-playlist-result .gat_domainsbmt_btn > li {
     width:32%;
 }
 .gat_twobuttons > li {
-    width: 49.75%;
+    width: 33%;
 }
-.gat_twobuttons li:nth-child(2) {
+.gat_twobuttons li:nth-child(3) {
     text-align:right !important;
 }
-.gat_thirddomain > li {
-    width:26%;
-}
-.gat_thirddomain li:nth-child(3) {
-    width:47%;
+.gat_thirddomain li:nth-child(2),
+.gat_thirddomain li:nth-child(3){
+    width:18%;
 }
 .gat_domainsbmt_btn li .gat_buttton {
     float: none !important;
@@ -261,6 +262,23 @@ label.meter
 .gat_domainsbmt_btn  li:nth-child(3)
 {
 	text-align: right;
+}
+.gat_token_saved > li:nth-child(3) {
+    text-align:center;
+}
+.gat_token_saved > li:nth-child(4) {
+    width:35%;
+    text-align:right;
+}
+.gat_thirddomain li:nth-child(2),
+.gat_thirddomain li:nth-child(3){
+    width:18%;
+}
+.gat_thirddomain li:nth-child(1) {
+    width:20%;
+}
+.gat_thirddomain li:nth-child(4) {
+    width:42.5%;
 }
 .gat_sharing_widget {
     margin-bottom: 10px;

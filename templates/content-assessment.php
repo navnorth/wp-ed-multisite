@@ -98,6 +98,61 @@
 	    }
 	}
 	/**
+	 * GAT Videos
+	 * @code end
+	 */
+	
+	/**
+	 * GAT Results
+	 * @code begin
+	 */
+	if(isset($_POST['gat_videos']))
+	{
+	    /**
+	     * @see wp-gap-analysis/functions.php
+	     * check_token_exists(assessment, token, column)
+	     */
+	    $response_id = check_token_exists($post->ID, $_POST['token'], "id");
+	    
+	    // Suppose to update but do nothing for awhile
+	    if($response_id)
+	    {
+		
+	    }
+	    // Save
+	    else
+	    {
+		/**
+		 * @see wp-gap-analysis/functions.php
+		 */
+		register_GAT_response($post->ID, $_POST['token']);
+	    }
+	    
+	    /**
+	     * gat_save_domaindata(POST) will fail if there were no 
+	     * response saved for the current assessment and token.
+	     */
+	    $result = gat_save_domaindata($_POST);
+	    
+	    if($result)
+	    {
+		$user_response = NULL;
+		
+		if($response_id)
+		{
+		    /**
+		     * @see wp-gap-analysis/functions.php
+		     * get_GAT_response(assessment, token)
+		     */
+		    $user_response = get_GAT_response($_POST['assessment_id'], $_POST['token']);
+		}
+		
+		$location = get_permalink($post->ID) . "?action=video-playlist" . (($user_response->email OR $_COOKIE[GAT_INQUIRE_USER_COOKIE] == NULL) ? '' : '&inquire=true');
+		
+		echo '<script type="text/javascript">window.location = "' . $location . '"</script>';
+	    }
+	}
+	/**
 	 * GAT Results
 	 * @code end
 	 */

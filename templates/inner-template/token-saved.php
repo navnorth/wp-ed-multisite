@@ -65,7 +65,7 @@
 	
 	foreach($dimensions as $dimension)
 	{
-	    echo '<h4 class="gat_dimension_header">'.$i.': '.stripslashes($dimension->title).'</h4>';
+	    echo '<h4 class="gat_dimension_header" id="gat'.$i.'">'.$i.': '.stripslashes($dimension->title).'</h4>';
 	    echo '<p class="gat_dimension_desc">'.stripslashes($dimension->description).'</p>';
 	    
 	    $sql = $wpdb->prepare("SELECT rating_scale from $table where dimension_id=%d && token=%s", $dimension->id, htmlspecialchars($_COOKIE['GAT_token']));

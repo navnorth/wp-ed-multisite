@@ -854,4 +854,24 @@ function register_GAT_response($assessment = 0, $token = '', $email = '', $state
     // Send Query and return result
     return $wpdb->query($response_sql);
 }
+/**
+ *
+ * Get Rating Scale based on dimension id and domain id
+ *
+ **/
+function get_rating_by_dimensionid($dimensionid, $token){
+	global $wpdb;
+	$rating = 0;
+	$result_table = PLUGIN_PREFIX . "results";
+	
+	$sql = $wpdb->prepare("SELECT rating_scale from $result_table where dimension_id=%d && token=%s", $dimensionid, $token);
+	$result = $wpdb->get_row($sql);
+	
+	if( ! empty($result->rating_scale))
+	{
+	    $rating = $result->rating_scale;
+	}
+	
+	return $rating;
+}
 ?>

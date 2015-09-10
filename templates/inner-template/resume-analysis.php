@@ -24,7 +24,7 @@
 
                 echo '<li>';
                         echo '<h4 style="float:left;"><a href="'.get_permalink().'?action=token-saved&list='.$i.'">'.$domain->post_title.'</a></h4>';
-                        echo '<ul class="gat_indicatorlights">';
+                        /*echo '<ul class="gat_indicatorlights">';
                         if($total_rating != 0)
                         {
 							$progress = ($total_rating/$total_dmnsn);
@@ -56,7 +56,7 @@
                                   <li><a href="'.$resultpage_url.'"><div class="get_indicator_btn yellow"></div></a></li>
                                   <li><a href="'.$resultpage_url.'"><div class="get_indicator_btn green"></div></a></li>';
                         }
-                        echo '</ul>';
+                        echo '</ul>';*/
                   		echo '<a href="'.get_permalink().'?action=token-saved&list='.$i.'">';
                             if($total_dmnsn_rated != 0)
                             {

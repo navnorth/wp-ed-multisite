@@ -305,7 +305,11 @@ jQuery(document).ready(function(e) {
 		});
 	}
 	
-	jQuery(".cntrollorbtn").click(function(){
+	/** Load Default Video **/
+	var defvideo = jQuery('.defaultvideo');
+	gat_play_utubevdo(defvideo);
+	
+	/*jQuery(".cntrollorbtn").click(function(){
 		var id = jQuery(this).attr("data-resultedid");
 		if(jQuery(this).children("i.fa").hasClass("fa-play") || jQuery(this).children("i.fa").hasClass("fa-check"))
 		{
@@ -334,7 +338,7 @@ jQuery(document).ready(function(e) {
         	});
 		}
 		gat_play_utubevdo(this);
-	});
+	});*/
         
         /*Override URL shared by Simple Share Buttons*/
 	jQuery(".ssba-wrap a").each(function(){
@@ -501,7 +505,7 @@ function gat_districtcode(ref)
 function gat_play_utubevdo(ref)
 {
 	if(jQuery(".loadvideo").find("div.unclickablevideo").length != 0)
-    {
+	{
 		jQuery("div.unclickablevideo").remove();
 	}
  

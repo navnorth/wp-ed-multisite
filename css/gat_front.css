@@ -592,6 +592,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
     bottom: 0;
     padding:1px 2px;
 }
+.cntrollorbtn { display:block; cursor:pointer; }
 @media screen and (max-width: 1199px) {
 .gat_domainsbmt_btn > li {
     width: 32%;

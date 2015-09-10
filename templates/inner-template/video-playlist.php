@@ -114,7 +114,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
          </div>
 		 <div class="gat_player_videos loadvideo">
 			<div id="player" data-resultedid=''></div>
-            <div class="unclickablevideo" style="display: block;" title="Play from Playlist"></div>
+            <!--<div class="unclickablevideo" style="display: block;" title="Play from Playlist"></div>-->
          </div>
 		 <ul class="gat_domainsbmt_btn">
 			<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_buttton">Back to Focus Areas</a></li>
@@ -174,7 +174,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 								player = new YT.Player('player', {
 								  height: '400',
 								  width: '720',
-								  videoId: '',
+								  videoId: '".$data_rslts[0]->youtubeid."',
 								  playerVars: {
 									  'autoplay': 0,
 									  'controls': 1,
@@ -258,9 +258,23 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 							 {
 								return Math.round(player.getCurrentTime());
 							 }
-						  </script>";
+						  </script>
+						  <script>
+							jQuery(document).ready(function(e) {
+								jQuery('.cntrollorbtn').click(function(){
+									var utubeid = jQuery(this).attr('data-youtubeid');
+									utubeid = String(utubeid);
+									var currenid = jQuery(this).attr('data-resultedid');
+									jQuery('#player').attr('data-resultedid', currenid );
+									player.loadVideoById(utubeid);
+								});
+							});
+						  </script>
+						  ";
+					$i=0;
 					foreach($data_rslts as $data_rslt)
 					{
+						$defaultvideo = ($i==0)?' defaultvideo':'';
 						$resulted_video = PLUGIN_PREFIX . "resulted_video";
 						$sql = $wpdb->prepare( "select * from $resulted_video where assessment_id = %d AND domain_id = %d AND dimensions_id = %d AND token= %s AND youtubeid= %s", $post->ID, $data_rslt->domain_id, $data_rslt->dimensions_id, $token, $data_rslt->youtubeid );
 						$exists = $wpdb->get_row($sql);
@@ -268,17 +282,17 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 						{
 							echo '<li>';
 								echo '<div class="gat_imgcntnr">
-										<img src="http://img.youtube.com/vi/'.$exists->youtubeid.'/default.jpg" />';
+										<span class="cntrollorbtn'.$defaultvideo.'" data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'"><img src="http://img.youtube.com/vi/'.$exists->youtubeid.'/default.jpg" /></span>';
 										
 								if (!($exists->seek == NULL || $exists->seek == '')){
 									echo '<span class="watched">Watched</span>';
 								}
 								echo '	  </div>';
 								echo '<div class="gat_desccntnr">';
-									echo '<span class="video-title">'.ucwords(stripslashes($data_rslt->label)).'</span>';
+									echo '<span class="video-title cntrollorbtn" data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'">'.ucwords(stripslashes($data_rslt->label)).'</span>';
 									echo '<span class="video-domain-title"> - '.ucwords(stripslashes(get_the_title($exists->domain_id))).' </span>';
 								echo '</div>';
-								/*echo '<div class="gat_videodetails">';
+								/*echo '<div class="gat_videodetails" style="display:none;>';
 									if($exists->seek == NULL || $exists->seek == '')
 									{
 										echo '<span class="cntrollorbtn" data-seekto="0"  data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'"><i class="fa fa-play"></i></span>';
@@ -304,8 +318,8 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 										}
 										echo '<div class="meter"><span style="width: '.$complete.'%">'.$complete.'%</span></div>';
 									}
-								echo '</div>';*/
-								echo '<div class="unclickable"></div>';
+								echo '</div>';
+								echo '<div class="unclickable" style="display:none"></div>';*/
 							echo '</li>';
 						}
 						else
@@ -328,6 +342,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 								echo '<div class="unclickable"></div>';
 							echo '</li>';
 						}
+						$i++;
 					}
 				} else {
 					echo '<li>No videos found!</li>';

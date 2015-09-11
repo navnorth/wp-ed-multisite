@@ -50,7 +50,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 			{
 				if($i <= 3)
 				{
-					$sql = $wpdb->prepare("SELECT title FROM wp_gat_dimensions as a WHERE id = %d", $data->dimensions_id);
+					$sql = $wpdb->prepare("SELECT title FROM ".PLUGIN_PREFIX."dimensions as a WHERE id = %d", $data->dimensions_id);
 					$dimensionTitle = $wpdb->get_row($sql);
 					$assign .= '<ul>
 									<li>

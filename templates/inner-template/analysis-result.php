@@ -139,20 +139,20 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 									$title_alt = ($rating==0)?" (Not Answered)":"";
 									$rating = ($rating==0)?1:$rating;
 									$dmnsn_percent = 100/$total_dmnsn*($rating/$max_rating);
-									$barClass = $x<$total_dmnsn_rated ? 'bar' : 'bar-last';
-									echo '<li class="'.$barClass.'" style="width:'.floor($dmnsn_percent).'%;background-color:transparent;"><a href="'.get_permalink().'?action=token-saved&list='.$i.'#gat'.$x.'" title="'.$dimension->title.$title_alt.'">&nbsp;</a></li>';
 									$x++;
+									$barClass = $x===count($dimensions) ? 'bar-last' : 'bar';
+									echo '<li class="'.$barClass.'" style="width:'.round($dmnsn_percent).'%;"><a href="'.get_permalink().'?action=token-saved&list='.$i.'#gat'.$x.'" title="'.$dimension->title.$title_alt.'">&nbsp;</a></li>';
 									if ($x>=$half_total)
 										$n++;
 									else{
 										$n--;
 										if ($n==0) $n=1;
 									}
-									$barWidth += floor($dmnsn_percent);
+									$barWidth += round($dmnsn_percent);
 								}
 
 								// final block is white, covering what's left
-								echo '<li class="bar-end-spacer" style="width:'.round(100-$barWidth).'%;background-color:#fff;">&nbsp;</a></li>';
+								echo '<li class="bar-end-spacer" style="width:'.(100-$barWidth).'%;">&nbsp;</a></li>';
 
 							echo '</ul>';
 						} else {

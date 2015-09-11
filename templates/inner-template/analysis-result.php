@@ -42,7 +42,6 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 	if(isset($_POST['email_results']))
 	{
 		extract($_POST);
-
 		$assign = "";
 		if(!empty($data_rslts))
 		{
@@ -137,8 +136,8 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 									$rating = get_rating_by_dimensionid($dimension->id,htmlspecialchars($_COOKIE['GAT_token']));
 									if ($rating==0) $bgColor = "transparent";
 									$title_alt = ($rating==0)?"No Answer - ":"";
-									echo '<li class="bar" style="width:'.$dmnsn_percent.'%;background-color:'.$bgColor.';"><a href="'.get_permalink().'?action=token-saved&list='.$i.'#gat'.$dimension->id.'" title="'.$title_alt.$dimension->title.'">&nbsp;</a></li>';
 									$x++;
+									echo '<li class="bar" style="width:'.$dmnsn_percent.'%;background-color:'.$bgColor.';"><a href="'.get_permalink().'?action=token-saved&list='.$i.'#gat'.$x.'" title="'.$title_alt.$dimension->title.'">&nbsp;</a></li>';
 									if ($x>=$half_total)
 										$n++;
 									else{

@@ -498,7 +498,8 @@ function gat_districtcode(ref)
 		data: "state="+state+"&action=gat_districtcode",
 		success: function(msg)
 		{
-			jQuery(ref).parents(".form-group").next(".form-group").html(msg);
+			/*jQuery(ref).parents(".form-group").next(".form-group").html(msg);*/
+			jQuery(ref).parents(".select-group").next(".select-group").find(".form-group").html(msg);
 		}
 	});
 }

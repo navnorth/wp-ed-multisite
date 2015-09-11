@@ -26,7 +26,7 @@ function gat_districtcode_function()
 	if(!empty($disticts))
 	{
 		$return = '<label for="district">District</label>
-                   <select name="district" class="form-control gatfields">';
+                   <select name="district" class="form-control">';
 					foreach($disticts as $distict)
 					{
 						$return .= '<option value="'.$distict->LEAID.'">'.$distict->LEANM.'</option>';

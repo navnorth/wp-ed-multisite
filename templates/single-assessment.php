@@ -16,7 +16,11 @@ get_header(); ?>
     <?php endwhile; // end of the loop. ?>
 	<div class="modal-container">
 	<?php
-	    $token = htmlspecialchars($_COOKIE['GAT_token']); ?>
+	    $token = htmlspecialchars($_COOKIE['GAT_token']);
+	    $response_table = PLUGIN_PREFIX . "response";
+	    $sql = $wpdb->prepare( "SELECT * FROM `$response_table` WHERE `token` = %s", $token );
+	    $data = $wpdb->get_row($sql);
+	    ?>
 	    
 	    <div class="modal fade" id="gat-user-info-modal">
 		<div class="modal-dialog">
@@ -42,16 +46,17 @@ get_header(); ?>
 				</div>
 				
 				<div class="row">
-				    <div class="col-sm-6 col-md-6">
+				    <div class="col-sm-6 col-md-6 select-group">
 					<div class="form-group">
 					    <label>State</label>
-					    <select name="state" class="form-control">
+					    <select name="state" class="form-control" onchange="gat_districtcode(this);">
 						<option value="">Select State</option>
+						<?php gat_state($data->state); ?>
 					    </select>
 					</div>
 				    </div>
 				    
-				    <div class="col-sm-6 col-md-6">
+				    <div class="col-sm-6 col-md-6 select-group">
 					<div class="form-group">
 					    <label>District</label>
 					    <select name="district" class="form-control">

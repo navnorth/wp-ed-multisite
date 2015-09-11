@@ -82,7 +82,11 @@
     ?>
     </ul>
     <div class="get_domainlist_button">
-        <a class="btn btn-default gat_buttton" href="<?php echo get_permalink()."?action=token-saved&list=1"; ?>" role="button">Continue Analysis</a>
+	<ul class="gat_domainsbmt_btn">
+	    <li><a href="<?php echo get_permalink($post->ID); ?>?action=analysis-result" class="btn btn-default gat_buttton">Get Results</a></li>
+	    <li><a href="<?php echo get_permalink($post->ID); ?>?action=video-playlist" class="btn btn-default gat_buttton">Get Your Video Playlist</a></li>
+	    <li><a class="btn btn-default gat_buttton" href="<?php echo get_permalink()."?action=token-saved&list=1"; ?>" role="button">Continue Analysis</a></li>
+	</ul>
    </div>
 </div>
 

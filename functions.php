@@ -874,4 +874,24 @@ function get_rating_by_dimensionid($dimensionid, $token){
 	
 	return $rating;
 }
+/**
+ *
+ * Get Maximum Possible Scale based on dimension id
+ *
+ **/
+function get_max_rating_scale(){
+	global $wpdb;
+	$max_rating = 0;
+	$ratings_table = $wpdb->prefix . "term_taxonomy";
+	
+	$sql = $wpdb->prepare("SELECT count as max_rating_scale from $ratings_table where taxonomy='scale' and count>%d", 0);
+	$result = $wpdb->get_row($sql);
+	
+	if( ! empty($result->max_rating_scale))
+	{
+	    $max_rating = $result->max_rating_scale;
+	}
+	
+	return $max_rating;
+}
 ?>

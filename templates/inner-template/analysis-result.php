@@ -118,7 +118,6 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 				$total_dmnsn_rated = get_dimensioncount_domainid($domainid, htmlspecialchars($_COOKIE['GAT_token']));
 				$total_rating = get_ratingcount_domainid($domainid, htmlspecialchars($_COOKIE['GAT_token']));
 				$dimensions = get_alldimension_domainid($domainid);
-				$dmnsn_percent = 100/$total_dmnsn;
 				echo '<li>';
 					echo '<h4><a href="'.get_permalink().'?action=token-saved&list='.$i.'"><strong>'.$domain->post_title.'</strong></a></h4>';
 					echo '<div class="bar-result">';
@@ -134,8 +133,11 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 									else
 										$bgColor="rgb(".$n*$rVal.",0,0)";
 									$rating = get_rating_by_dimensionid($dimension->id,htmlspecialchars($_COOKIE['GAT_token']));
-									if ($rating==0) $bgColor = "transparent";
+									$max_rating = get_max_rating_scale();
+									//if ($rating==0) $bgColor = "transparent";
 									$title_alt = ($rating==0)?"No Answer - ":"";
+									$rating = ($rating==0)?1:$rating;
+									$dmnsn_percent = 100/$total_dmnsn*($rating/$max_rating);
 									$x++;
 									echo '<li class="bar" style="width:'.$dmnsn_percent.'%;background-color:'.$bgColor.';"><a href="'.get_permalink().'?action=token-saved&list='.$i.'#gat'.$x.'" title="'.$title_alt.$dimension->title.'">&nbsp;</a></li>';
 									if ($x>=$half_total)

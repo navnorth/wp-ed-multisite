@@ -122,11 +122,12 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 					echo '<h4><a href="'.get_permalink().'?action=token-saved&list='.$i.'"><strong>'.$domain->post_title.'</strong></a></h4>';
 					echo '<div class="bar-result">';
 						if ($total_dmnsn_rated>0) {
-							echo '<ul class="gat_bargraph">';
+							echo '<ul class="gat_bargraph bar-result-gradient">';
 								$half_total = ceil($total_dmnsn/2);
 								$rVal = floor(255/$half_total);
 								$n = $half_total;
 								$x=0;
+								$barWidth = 0;
 								foreach($dimensions as $dimension){
 									if ($x>=$half_total)
 										$bgColor="rgb(0,".$n*$rVal.",0)";
@@ -135,18 +136,24 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 									$rating = get_rating_by_dimensionid($dimension->id,htmlspecialchars($_COOKIE['GAT_token']));
 									$max_rating = get_max_rating_scale();
 									//if ($rating==0) $bgColor = "transparent";
-									$title_alt = ($rating==0)?"No Answer - ":"";
+									$title_alt = ($rating==0)?" (Not Answered)":"";
 									$rating = ($rating==0)?1:$rating;
 									$dmnsn_percent = 100/$total_dmnsn*($rating/$max_rating);
+									$barClass = $x<$total_dmnsn_rated ? 'bar' : 'bar-last';
+									echo '<li class="'.$barClass.'" style="width:'.floor($dmnsn_percent).'%;background-color:transparent;"><a href="'.get_permalink().'?action=token-saved&list='.$i.'#gat'.$x.'" title="'.$dimension->title.$title_alt.'">&nbsp;</a></li>';
 									$x++;
-									echo '<li class="bar" style="width:'.$dmnsn_percent.'%;background-color:'.$bgColor.';"><a href="'.get_permalink().'?action=token-saved&list='.$i.'#gat'.$x.'" title="'.$title_alt.$dimension->title.'">&nbsp;</a></li>';
 									if ($x>=$half_total)
 										$n++;
 									else{
 										$n--;
 										if ($n==0) $n=1;
 									}
+									$barWidth += floor($dmnsn_percent);
 								}
+
+								// final block is white, covering what's left
+								echo '<li class="bar-end-spacer" style="width:'.round(100-$barWidth).'%;background-color:#fff;">&nbsp;</a></li>';
+
 							echo '</ul>';
 						} else {
 							echo "<span>Not yet submitted! <a href='".get_permalink()."?action=token-saved&list=".$i."' class='domain-link'><strong>Complete the Analysis for this Focus Area Now</strong></a></span>";

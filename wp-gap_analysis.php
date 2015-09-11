@@ -3,7 +3,7 @@
  Plugin Name: Future-Ready Gap Analysis Tool
  Plugin URI: http://www.navigationnorth.com/wordpress/gat-tool
  Description: This a future-ready Gap Analysis Tool plugin of Navigation North.
- Version: 0.1.1
+ Version: 0.1.5
  Author: Navigation North
  Author URI: http://www.navigationnorth.com
 

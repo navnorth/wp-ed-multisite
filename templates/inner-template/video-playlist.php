@@ -13,7 +13,7 @@
         where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND <condition> ORDER BY b.rating_scale ASC", $token, $post->ID);
 				$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('".'"'."%', b.rating_scale, '".'"'."%') OR
 				 a.`rating_scale` LIKE IF((b.rating_scale = NULL OR b.rating_scale = ''), '%1%', b.rating_scale)", $sql));
-				
+
 				$data_rslts = $wpdb->get_results($sql);
 				break;
 			case "domains":
@@ -40,10 +40,10 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 		where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND <condition> ORDER BY b.rating_scale ASC", $token, $post->ID);
 		$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b.rating_scale, '".'"'."%') OR
 		 a.`rating_scale` LIKE IF((b.rating_scale = NULL OR b.rating_scale = ''), '%1%', b.rating_scale)", $sql));
-		
+
 		$data_rslts = $wpdb->get_results($sql);
 	}
-	
+
 	//Email Result POST
 	if(isset($_POST['email_results']))
 	{
@@ -89,27 +89,27 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 		$headers = 'From: ' .$from. "\r\n" .
 					'Reply-To: ' . $from."\r\n" .
 					'X-Mailer: PHP/' . phpversion();
-					
+
 		add_filter( 'wp_mail_content_type', 'set_html_content_type' );
 		if(wp_mail( $to, $subject, $message, $headers ))
 		{
 			$alert_message = 'Your assessment result sent';
 		}
-		remove_filter( 'wp_mail_content_type', 'set_html_content_type' ); 			
+		remove_filter( 'wp_mail_content_type', 'set_html_content_type' );
 	}
 	?>
 	<div class="col-md-8 col-sm-12 col-xs-12 video-playlist-result leftpad">
 		 <h3><?php echo get_the_title($post->ID); ?></h3>
           <?php
 			  if(isset($alert_message) && !empty($alert_message))
-				 { 
-					echo '<div class="gat_error">'.$alert_message.'</div>'; 
+				 {
+					echo '<div class="gat_error">'.$alert_message.'</div>';
 				 }
 		 ?>
-		 <div class="gat_moreContent">
+		 <div class="gat_playlist_content">
 		 	<?php
 				$content = get_post_meta($post->ID, "result_content", true);
-				echo apply_filters("the_content", $content);
+				echo '<p>' . $content . '</p>';
 			?>
          </div>
 		 <div class="gat_player_videos loadvideo">
@@ -120,7 +120,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 			<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_buttton">Back to Focus Areas</a></li>
 			<li>
             	<?php
-					$response = PLUGIN_PREFIX . "response";  
+					$response = PLUGIN_PREFIX . "response";
 					$sql = $wpdb->prepare("select email from $response where assessment_id = %d AND token = %s", $post->ID, $token);
 					$result = $wpdb->get_row($sql);
 				?>
@@ -283,7 +283,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 							echo '<li>';
 								echo '<div class="gat_imgcntnr">
 										<span class="cntrollorbtn'.$defaultvideo.'" data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'"><img src="http://img.youtube.com/vi/'.$exists->youtubeid.'/default.jpg" /></span>';
-										
+
 								if (!($exists->seek == NULL || $exists->seek == '')){
 									echo '<span class="watched">Watched</span>';
 								}

@@ -894,4 +894,72 @@ function get_max_rating_scale(){
 	
 	return $max_rating;
 }
+/**
+ *
+ * Email Results
+ *
+ **/
+function email_results($_params, $data_results, $token){
+	global $wpdb;
+	extract($_params);
+	$assign = "";
+	if(!empty($data_results))
+	{
+		$i = 1;
+		foreach($data_results as $data)
+		{
+			if($i <= 3)
+			{
+				$sql = $wpdb->prepare("SELECT title FROM ".PLUGIN_PREFIX."dimensions as a WHERE id = %d", $data->dimensions_id);
+				$dimensionTitle = $wpdb->get_row($sql);
+				$assign .= '<ul>
+								<li>
+									<a href="'.get_permalink($assessment_id).'?action=analysis-result&token='.$token.'">
+										'.get_the_title($data->domain_id).' - '.$dimensionTitle->title.' - '.$data->label.'
+									</a>
+								</li>
+							</ul>';
+			}
+			else
+			{
+				break;
+			}
+			$i++;
+		}
+	}
+
+	$to = $email;
+	
+	$from = "Ed.Tech@ed.gov";
+	
+	$subject = get_bloginfo('name','raw').' '.get_the_title($assessment_id).' Access Code';
+
+	$message = '<p>Thank you for participating in the '.get_the_title($assessment_id).' Assessment.  If you would like to return to the Assessment to continue your exploration, update your results, and gauge your progress in implementing promising practices identified in your selected videos, use this Access Code: <a href="'.get_permalink($assessment_id).'?action=resume-analysis&token='.$token.'">'.$token.'</a></p>';
+
+	$message .= '<p>Here is your personalized video playlist based on your self-assessment responses:</p>';
+
+	$message .= $assign;
+	$message .= 'View Complete List of Video <a href="'.get_permalink($assessment_id).'?action=analysis-result&token='.$token.'"> Selections '.$token.'</a><br/><br/>';
+	
+	// Contact Person
+	$message .= 'Marshal Conley<br/>
+		     Senior Education Consultant<br/>
+		     <a href="mailto:mconley@air.org">mconley@air.org</a><br/>
+		     309-944-3510 (office)<br/><br/>';
+		     
+	//Support Text
+	$message .= 'If you have any questions or need to contact us in regards to this assessment tool, please email: <a href="mailto:Ed.Tech@ed.gov">Ed.Tech@ed.gov</a>';
+
+	$headers = 'From: Ed Tech <' .$from. ">\r\n" .
+				'Reply-To: ' . $from."\r\n" .
+				'X-Mailer: PHP/' . phpversion();
+
+	add_filter( 'wp_mail_content_type', 'set_html_content_type' );
+	if(wp_mail( $to, $subject, $message, $headers ))
+	{
+		$alert_message = 'Your assessment result sent';
+	}
+	remove_filter( 'wp_mail_content_type', 'set_html_content_type' );
+	return $alert_message;
+}
 ?>

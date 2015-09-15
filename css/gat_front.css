@@ -601,19 +601,25 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
     height: auto;
     width: 100%;
 }
+.gat_player_videos iframe#player {
+    width:100%;
+}
 }
 @media screen and (max-width: 600px) {
-.gat_domainsbmt_btn > li {
-    text-align: center !important;
-    width: 100%;
-}
-.gat_domainsbmt_btn li {
-    display: block;
-    margin-top: 5px;
-}
-.gat_scaledescription_cntnr {
-    min-height:90px;
-}
+    .gat_domainsbmt_btn > li {
+	text-align: center !important;
+	width: 100%;
+    }
+    .gat_domainsbmt_btn li {
+	display: block;
+	margin-top: 5px;
+    }
+    .gat_scaledescription_cntnr {
+	min-height:90px;
+    }
+    .video-playlist-result .gat_domainsbmt_btn > li {
+	width:100%;
+    }
 }
 .morecontent{
 	display: none;

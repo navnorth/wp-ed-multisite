@@ -139,7 +139,7 @@ var inquire
 	 * Submit User Information Button Event Handler
 	 * Description
 	 */
-	jQuery('#gat-user-info-modal #submit-gat-user-info').click(function() {
+	jQuery('#gat-user-info-modal #submit-gat-user-info').on("click",function() {
 	    var button = this
 	    
 	    jQuery('#gat-user-info-modal input[name="email"]').parents('.form-group').removeClass('has-error')
@@ -209,6 +209,14 @@ var inquire
 		jQuery('#gat-user-info-modal').modal('hide')
 	    }
 	})
+	
+	/**
+	 * Submitting popup form handler
+	 **/
+	jQuery('#gat-user-info-form').submit(function(){
+	    jQuery('#gat-user-info-modal #submit-gat-user-info').trigger("click");
+	    return false;
+	});
     })
 /**
  * ------------------------------------------------------------------------

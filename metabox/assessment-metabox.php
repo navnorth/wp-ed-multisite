@@ -3,6 +3,7 @@
 function assessment_metabox_func()
 {
 	add_meta_box('assessment_result_contentid','Result Content','result_content_func','assessment','advanced');
+	add_meta_box('assessment_playlist_contentid','Playlist Content','playlist_content_func','assessment','advanced');
 	add_meta_box('assessment_rating_scale','Rating Scale','rating_scale_func','assessment','advanced');
 	add_meta_box('assessment_domain','Domains','domain_func','assessment','advanced');
 	add_meta_box('assessment_featurevideo','Feature Video','video_func','assessment','side');
@@ -19,6 +20,13 @@ function result_content_func()
 	$content = get_post_meta($post->ID, "result_content", true);
 	$editor_id = "result_content";
 	wp_editor( $content, $editor_id, $settings = array('textarea_name'=> 'result_content', 'textarea_rows'=> 5));
+}
+function playlist_content_func()
+{
+	global $post;
+	$content = get_post_meta($post->ID, "playlist_content", true);
+	$editor_id = "playlist_content";
+	wp_editor( $content, $editor_id, $settings = array('textarea_name'=> 'playlist_content', 'textarea_rows'=> 5));
 }
 function rating_scale_func()
 {

@@ -60,7 +60,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 		 ?>
 		 <div class="gat_playlist_content">
 		 	<?php
-				$content = get_post_meta($post->ID, "result_content", true);
+				$content = get_post_meta($post->ID, "playlist_content", true);
 				echo '<p>' . $content . '</p>';
 			?>
          </div>

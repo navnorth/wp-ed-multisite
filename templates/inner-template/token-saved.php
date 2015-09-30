@@ -115,7 +115,7 @@
     } ?>
 	<ul class="gat_domainsbmt_btn <?php if($list==$domain_count){ echo "gat_twobuttons"; } elseif ($list==3) { echo "gat_thirddomain"; } ?>">
 	    <li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_buttton" onclick = "return confirm('Confirm Navigation... your changes will be lost!')">Back to Focus Areas</a></li>
-	    <li><input type="submit" class="btn btn-default gat_buttton" name="gat_results" value="Get Results" /></li>
+	    <li><?php if ($list==$domain_count) : ?><input type="submit" class="btn btn-default gat_buttton" name="gat_results" value="Get Results" /><?php endif; ?></li>
 	    <!--<li><input type="submit" class="btn btn-default gat_buttton" name="gat_videos" value="Get Video Playlist" /></li>-->
 	<?php
 	    if($list < $domain_count): ?>

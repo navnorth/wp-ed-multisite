@@ -653,7 +653,7 @@
 	   </div>
 	   <div>
 		<a class="btn btn-default gat_buttton" href="<?php echo $permalink . "?action=restart_token"; ?>" role="button">
-		    Resume / Result
+		    Continue
 		</a>
 	   </div>
 

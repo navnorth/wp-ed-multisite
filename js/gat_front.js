@@ -265,12 +265,14 @@ jQuery(document).ready(function() {
     var lesstext = "[Read Less]";
     jQuery('.gat_moreContent').each(function() {
         var content = jQuery(this).html();
-        if(content.length > showChar) {
+	var html = '<p>'+ content + '</p>';
+        jQuery(this).html(html);
+        /*if(content.length > showChar) {
             var c = content.substr(0, showChar);
             var h = content.substr(showChar, content.length - showChar);
             var html = '<p>'+ c + '<span class="morecontent"><span>' + h + '</span></span><label class="morelink">' + moretext + '</label></p>';
             jQuery(this).html(html);
-        }
+        }*/
     });
     jQuery(".morelink").click(function(){
         if(jQuery(this).hasClass("less"))

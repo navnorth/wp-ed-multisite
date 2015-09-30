@@ -618,10 +618,10 @@ function progress_indicator_sidebar($assessment_id, $token)
 				<span><b>Email : </b></span>
 				'.$email.'
 			</div>
-			<div>
+			<!--<div>
 				<span><b>Last Saved : </b></span>
 				'.$data->last_saved.'
-			</div>
+			</div>-->
 		  </div>';
 }
 function priority_domain_sidebar($assessment_id, $token)

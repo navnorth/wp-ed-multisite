@@ -120,7 +120,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 		?>
 		</ul>
 		 <ul class="gat_domainsbmt_btn">
-			<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_buttton">Back to Focus Areas</a></li>
+			<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_buttton">Back to Home</a></li>
 			<li>
             	<?php
 					$response = PLUGIN_PREFIX . "response";

@@ -633,7 +633,7 @@
 		
 		<div class="get_domainlist_button">
 		    <a class="btn btn-default gat_buttton" href="<?php echo $permalink . "?action=token-saved&list=1"; ?>" role="button">
-			Start Analysis
+			Start
 		    </a>
 	       </div>
             </div>
@@ -648,7 +648,7 @@
 	   </div>
 	   <div>
 		<a class="btn btn-default gat_buttton" href="<?php echo $permalink . "?action=token-saved&list=1"; ?>" role="button">
-		    Start Analysis
+		    Start
 		</a>
 	   </div>
 	   <div>

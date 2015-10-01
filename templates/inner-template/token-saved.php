@@ -56,11 +56,23 @@
     <div class="col-md-9 col-sm-12 col-xs-12">
 	<div class="gat_moreContent"><?php echo $content; ?></div>
 	<hr />
+	<h4>Options</h4>
+	<ul class="key-options">
+	<?php
+		$scales = get_rating_scale($rating_scale);
+		foreach($scales as $scale) {
+			?>
+			<li><strong><?php echo $scale->post_title; ?>:</strong> <em><?php echo $scale->post_content; ?></em></li>
+			<?php
+		}
+	?>
+	</ul>
+	<hr />
 <?php
     if(isset($dimensions) && !empty($dimensions))
     {
 	$i=1;
-	$scales = get_rating_scale($rating_scale);
+	
 
 	foreach($dimensions as $dimension)
 	{
@@ -96,10 +108,10 @@
 		    endif;
 		} ?>
 	    <li tabindex="0" onclick="select_rating(this)" class="rating_scaleli <?php echo $licls;?>" data-rating="<?php echo $j;?>">
+		<input type="radio" name="rating_<?php echo $dimension->id; ?>[]" value="<?php echo $scale_slctd; ?>" <?php if ($j==$scale_slctd): ?>checked="true"<?php endif; ?> />
 		    <?php echo $scale->post_title; ?>
-		    <input type="hidden" name="rating_<?php echo $dimension->id; ?>[]" value="<?php echo $scale_slctd; ?>" />
 		    <div class="rating_scale_description">
-			<?php echo $scale->post_content; ?>
+			<?php //echo $scale->post_content; ?>
 		    </div>
 	    </li>
 	    <?php
@@ -107,7 +119,7 @@
 	    } ?>
 	    </ul>
 
-	    <div class="gat_scaledescription_cntnr <?php echo $divcls; ?>"><?php echo $selected_content; ?></div>
+	    <!--<div class="gat_scaledescription_cntnr <?php //echo $divcls; ?>"><?php //echo $selected_content; ?></div>-->
 	<?php
 	    $i++;
 	}

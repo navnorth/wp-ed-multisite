@@ -299,7 +299,7 @@ jQuery(document).ready(function(e) {
 		}
 	});
 	jQuery('.rating_scaleli').focus(function(e) {
-		add_focus(this);
+		/*add_focus(this);*/
 	});
 	jQuery('.rating_scaleli').focusout(function(e) {
 		remove_focus(this);
@@ -462,7 +462,7 @@ function select_rating(ref)
 	    jQuery(ref).addClass("selectedli");
 	    jQuery(ref).parents("ul").next("div.gat_scaledescription_cntnr").addClass("selectedarea");
 	    
-	    jQuery(ref).children("input").val(jQuery(ref).attr("data-rating"));
+	    jQuery(ref).children("input").val(jQuery(ref).attr("data-rating")).attr("checked",true);
 	    var desc = jQuery(ref).children(".rating_scale_description").text();
 	    jQuery(ref).parents("ul").next("div.gat_scaledescription_cntnr").text(desc);
 	}

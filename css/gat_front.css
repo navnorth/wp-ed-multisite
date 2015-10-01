@@ -103,7 +103,7 @@
 {
 	width: 100%;
 	float: left;
-	margin: 15px 0;
+	margin: 15px 0 25px;
 	padding: 0;
 	border: 1px solid #ccc;
 }
@@ -115,9 +115,11 @@
 	border-left: 1px solid #ccc;
 	font-size: 16px;
 	padding: 10px 20px;
-	height: 65px;
+	height: 85px;
 	overflow: hidden;
+	text-align:center;
 }
+.gat_domain_rating_scale li input[type=radio] { display:block; margin:5px auto; }
 .gat_dimension_header {
   margin-bottom: 5px;
 }
@@ -600,6 +602,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
 .cntrollorbtn { display:block; cursor:pointer; }
 .right { float:right; }
 .gat_domainsbmt_btn li .gat_button.btn-right { float:right !important; }
+.key-options { padding:0 15px; }
+.key-options li {
+    list-style: none;
+    padding: 0 5px 5px;
+}
 @media screen and (max-width: 1199px) {
 .gat_domainsbmt_btn > li {
     width: 32%;

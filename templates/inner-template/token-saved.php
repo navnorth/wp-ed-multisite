@@ -52,9 +52,8 @@
     <input type="hidden" name="token" value="<?php echo htmlspecialchars($_COOKIE['GAT_token']); ?>" />
     <input type="hidden" name="next_domain" value="<?php echo $nextdomain; ?>" />
 
-    <h2><?php echo $post->post_title; ?></h2>
+    <h3><?php echo $post->post_title . ': ' . $title; ?></h3>
     <div class="col-md-9 col-sm-12 col-xs-12">
-	<h3 class="gat_domain_header"><?php echo $title; ?></h3>
 	<div class="gat_moreContent"><?php echo $content; ?></div>
 	<hr />
 <?php

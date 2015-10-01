@@ -486,19 +486,22 @@
 
 	    <div class="gat_tokenform">
 		    <?php
-					    if(isset($_GET['tkn_error']))
-					    {
-						    echo '<div class="gat_error">The access code you entered could not be found. Please try again, or if you provided your email address, you can <a href="' . get_permalink(). '?action=retrive-token"; ?>">have your access code emailed to you</a>.</div>';
-					    }
-				    ?>
+			    if(isset($_GET['tkn_error']))
+			    {
+				    echo '<div class="gat_error">The access code you entered could not be found. Please try again, or if you provided your email address, you can <a href="' . get_permalink(). '?action=retrive-token"; ?>">have your access code emailed to you</a>.</div>';
+			    }
+			?>
 		<form method="post">
 		    <div class="gat_tokenfrm_brd">
-			<div class="form-group">
-			    <label for="exampleInputEmail1">Your Access Code</label>
-			    <input type="text" name="token" value="" class="form-control gatfields" />
-			</div>
+				<div class="form-group">
+				    <label for="exampleInputEmail1">Your Access Code</label>
+				    <input type="text" name="token" value="" class="form-control gatfields" />
+				</div>
 		    </div>
-		    <button type="submit" name="restart_token" class="btn btn-default gat_button_continue">Continue</button>
+		    <ul class="gat_domainsbmt_btn gat_twobuttons">
+	    		<li><a href="<?php echo get_permalink($post->ID); ?>" class="btn btn-default gat_button">Back to Home</a></li>
+	    		<li><button type="submit" name="restart_token" class="btn btn-default gat_button_continue">Continue</button></li>
+			</ul>
 		</form>
 	    </div>
 	</div>
@@ -545,30 +548,30 @@
 		<?php
 		    endif; ?>
 		    <div class="gat_tokenfrm_brd">
-			<div class="form-group">
-			    <label for="exampleInputEmail1">Email address</label>
-			    <input type="text" name="email" class="form-control gatfields" value="<?php echo $data->email;?>">
-			    <input type="hidden" name="token" value="<?php echo $token; ?>" />
-			    <span>If you forget your access code, this is the only way to retrieve it.</span>
-			</div>
+				<div class="form-group">
+				    <label for="exampleInputEmail1">Email address</label>
+				    <input type="text" name="email" class="form-control gatfields" value="<?php echo $data->email;?>">
+				    <input type="hidden" name="token" value="<?php echo $token; ?>" />
+				    <span>If you forget your access code, this is the only way to retrieve it.</span>
+				</div>
 
-			<div class="form-group">
-			    <label for="state">State</label>
-			    <select name="state" class="form-control gatfields" onchange="gat_districtcode(this);" >
-				<option value="">Select State</option>
-				<?php gat_state($data->state); ?>
-			    </select>
-			    <span>Location information is for statistical reporting only.</span>
-			</div>
+				<div class="form-group">
+				    <label for="state">State</label>
+				    <select name="state" class="form-control gatfields" onchange="gat_districtcode(this);" >
+					<option value="">Select State</option>
+					<?php gat_state($data->state); ?>
+				    </select>
+				    <span>Location information is for statistical reporting only.</span>
+				</div>
 
-			<div class="form-group">
-			    <label for="district">District</label>
-			    <select name="district" class="form-control gatfields" ></select>
-			</div>
+				<div class="form-group">
+				    <label for="district">District</label>
+				    <select name="district" class="form-control gatfields" ></select>
+				</div>
 
-			<div class="form-group gatprivacylink">
-			    Read our <a href="#">privacy policy</a>
-			</div>
+				<div class="form-group gatprivacylink">
+				    Read our <a href="#">privacy policy</a>
+				</div>
 		    </div>
 		    <button type="submit" name="save_token" class="btn btn-default gat_button">Save / Continue</button>
 		</form>
@@ -610,7 +613,7 @@
 
 	<div class="col-md-3 col-sm-12 col-xs-12 assmnt-left">
 	   <div class="gat_sharing_widget">
-		<p class="pblctn_scl_icn_hedng"> Share the GAP analysis tool </p>
+		<!-- p class="pblctn_scl_icn_hedng"> Share the GAP analysis tool </p -->
 		<div class="pblctn_scl_icns">
 		    <?php echo do_shortcode("[ssba]"); ?>
 		</div>
@@ -621,8 +624,8 @@
 		</a>
 	   </div>
 	   <div>
-		<a class="btn btn-default gat_button_continue" href="<?php echo $permalink . "?action=restart_token"; ?>" role="button">
-		    Continue
+		<a class="btn btn-default gat_button" href="<?php echo $permalink . "?action=restart_token"; ?>" role="button">
+		    Enter an Access Code
 		</a>
 	   </div>
 	</div> <!-- Right Section -->

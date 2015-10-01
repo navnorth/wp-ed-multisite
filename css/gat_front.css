@@ -60,7 +60,7 @@
 }
 .form-group label
 {
-	width: 100px;
+	width: 130px;
 	float: left;
 	text-align: right;
 	margin-right:20px;
@@ -285,6 +285,7 @@ label.meter
 }
 .gat_sharing_widget {
     margin-bottom: 10px;
+    padding-top: 20px;
 }
 .gat_sharing_widget .pblctn_scl_icn_hedng {
   text-align: left;

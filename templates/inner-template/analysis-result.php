@@ -138,7 +138,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 	</div>
 	<div class="col-md-3 col-sm-12 col-xs-12">
 		<div class="gat_sharing_widget">
-			<p class="pblctn_scl_icn_hedng"> Share the GAP analysis tool </p>
+		<!-- p class="pblctn_scl_icn_hedng"> Share the GAP analysis tool </p -->
 			<div class="pblctn_scl_icns">
 			    <?php echo do_shortcode("[ssba]"); ?>
 			</div>

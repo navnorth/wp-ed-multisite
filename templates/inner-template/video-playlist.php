@@ -86,31 +86,34 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 		  </ul>
 	</div>
         <div class="col-md-4 col-sm-12 col-xs-12 gat-video-sidebar">
-                 <div class="gat_priority_form">
+            <div class="gat_priority_form">
 			<form method="get" action="<?php echo get_permalink($post->ID); ?>?action=video-playlist&sortby=" id="gat_priorityfrm">
-				<label>Show Videos:</label>
-				<select name="sortby" onchange="priority_submit(this);">
-					<option value="priority" <?php echo $a = ($_GET["sortby"] == 'priority') ? 'selected="selected"' : ''; ?>>Recommended For You</option>
-					<option value="unwatched" <?php echo $a= ($_GET["sortby"] == 'unwatched') ? 'selected="selected"' : ''; ?> >Unwatched</option>
-					<!--<option value="domains" <?php echo $a = ($_GET["sortby"] == 'domains') ? 'selected="selected"' : ''; ?> >Focus Areas</option>-->
-					<option value="domains" <?php echo $a = ($_GET["sortby"] == 'domains') ? 'selected="selected"' : ''; ?> >All Videos</option>
-					<?php
-						$args = array(
-							      'post_type' => 'domain',
-							      'orderby' => 'id',
-							      'order' => 'ASC'
-							);
-						$domains = get_posts($args);
-						foreach($domains as $domain){
-							?>
-								<option value="<?php echo $domain->ID ?>" <?php echo $a = ($_GET["sortby"] == $domain->ID) ? 'selected="selected"' : ''; ?> > - <?php echo $domain->post_title; ?></option>
-							<?php
-						}
-					?>
-				</select>
-				<div class="clear"></div>
+				<div class="gat_priority_form_label"><label>Videos:</label></div>
+				<div class="gat_priority_form_selector">
+					<select name="sortby" onchange="priority_submit(this);">
+						<option value="priority" <?php echo $a = ($_GET["sortby"] == 'priority') ? 'selected="selected"' : ''; ?>>Recommended For You</option>
+						<option value="unwatched" <?php echo $a= ($_GET["sortby"] == 'unwatched') ? 'selected="selected"' : ''; ?> >Unwatched</option>
+						<!--<option value="domains" <?php echo $a = ($_GET["sortby"] == 'domains') ? 'selected="selected"' : ''; ?> >Focus Areas</option>-->
+						<option value="domains" <?php echo $a = ($_GET["sortby"] == 'domains') ? 'selected="selected"' : ''; ?> >All Videos</option>
+						<?php
+							$args = array(
+								      'post_type' => 'domain',
+								      'orderby' => 'id',
+								      'order' => 'ASC'
+								);
+							$domains = get_posts($args);
+							foreach($domains as $domain){
+								?>
+									<option value="<?php echo $domain->ID ?>" <?php echo $a = ($_GET["sortby"] == $domain->ID) ? 'selected="selected"' : ''; ?> > - <?php echo $domain->post_title; ?></option>
+								<?php
+							}
+						?>
+					</select>
+				</div>
+
 			</form>
-		 </div>
+			</div>
+			<!--<div class="clear"></div>-->
 		 <ul class="gat_reslt_listvideos">
 			<?php
 				if(!empty($data_rslts))

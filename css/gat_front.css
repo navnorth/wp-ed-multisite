@@ -387,6 +387,46 @@ ul.gat_indicatorlights {
 	float: left;
 	margin: 5px 0 10px;
 }
+
+/* video playlist selector */
+.gat_priority_form {
+    background: #00529f !important;
+    color: #fff;
+    font-size: 16px;
+}
+.gat_priority_form form {
+    padding: 10px 15px;
+    border-bottom: 1px solid #CDCDCD;}
+.gat_priority_form_label {
+    text-align: right;
+    padding-right:8px;
+    width:70px;
+    display:inline-block;
+    font-size: 16px;
+}
+.gat_priority_form_selector {
+   display:inline-block;
+   width: 255px;
+   height: 34px;
+   background: url(http://cdn.bavotasan.com/wp-content/uploads/2011/05/down_arrow_select.jpg) no-repeat right #ccc;
+   border: 1px solid #4b4e53;
+}
+.gat_priority_form_selector select {
+   display:inline-block;
+   background: transparent;
+   width: 268px;
+   padding: 5px 10px;
+   color: #00529f;
+   font-size: 16px;
+   font-weight: 700;
+   line-height: 1.5;
+   border: 0;
+   border-radius: 0;
+   height: 34px;
+   -webkit-appearance: none;
+}
+
+
 .gat_prioritydomaind_list {
     border:1px solid #ccc;
     float: left;
@@ -478,18 +518,7 @@ ul.gat_indicatorlights {
     padding:10px 15px;
     list-style:none;
 }
-.gat_priority_form {
-    padding: 10px 15px;
-    border-bottom: 1px solid #CDCDCD;
-}
-#gat_priorityfrm label {
-    float:left;
-    margin-top:5px;
-    margin-bottom:0;
-}
-#gat_priorityfrm select {
-    float:right;
-}
+
 .clear { clear:both; }
 /*my*/
 .gat_button, .gat_button_start, .gat_button_continue, .gat_button_saveinfo  {
@@ -619,6 +648,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
 .gat_player_videos iframe#player {
     width:100%;
 }
+  .gat_priority_form_label {
+    width:60px;
+  }
+  .gat_priority_form_selector {
+    width: 225px;
+  }
 }
 @media screen and (max-width: 600px) {
     .gat_domainsbmt_btn > li {

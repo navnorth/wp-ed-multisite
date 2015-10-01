@@ -3,7 +3,7 @@
     $table = PLUGIN_PREFIX . "results";
     $domainids = get_domainid_by_assementid($post->ID);
     $list = $_GET['list'];
-    
+
     $domain_count = count($domainids);
     $nextdomain = ($list == $domain_count) ? "resume" : $list + 1;
 
@@ -18,10 +18,10 @@
     WHERE
 	`assessment_id` = %d AND
 	`token` = %s",
-	$post->ID, 
+	$post->ID,
 	htmlspecialchars($_COOKIE["GAT_token"])
     );
-    
+
     $response = $wpdb->get_row($response_sql);
     /**
      * Get Response via Token
@@ -42,7 +42,7 @@
     {
 	$n_domain = get_post($domainids[$list]);
     }
-    
+
     $dimensions = get_alldimension_domainid($domain->ID);
     $rating_scale = get_post_meta($post->ID, "rating_scale", TRUE); ?>
 
@@ -51,7 +51,7 @@
     <input type="hidden" name="domain_id" value="<?php echo $domain->ID; ?>" />
     <input type="hidden" name="token" value="<?php echo htmlspecialchars($_COOKIE['GAT_token']); ?>" />
     <input type="hidden" name="next_domain" value="<?php echo $nextdomain; ?>" />
-    
+
     <h2><?php echo $post->post_title; ?></h2>
     <div class="col-md-9 col-sm-12 col-xs-12">
 	<h3 class="gat_domain_header"><?php echo $title; ?></h3>
@@ -62,16 +62,16 @@
     {
 	$i=1;
 	$scales = get_rating_scale($rating_scale);
-	
+
 	foreach($dimensions as $dimension)
 	{
 	    echo '<h4 class="gat_dimension_header" id="gat'.$i.'">'.$i.': '.stripslashes($dimension->title).'</h4>';
 	    echo '<p class="gat_dimension_desc">'.stripslashes($dimension->description).'</p>';
-	    
+
 	    $sql = $wpdb->prepare("SELECT rating_scale from $table where dimension_id=%d && token=%s", $dimension->id, htmlspecialchars($_COOKIE['GAT_token']));
 	    $result = $wpdb->get_row($sql);
 	    $divcls = '';
-	    
+
 	    if( ! empty($result->rating_scale))
 	    {
 		$scale_slctd = $result->rating_scale;
@@ -107,14 +107,14 @@
 		$j++;
 	    } ?>
 	    </ul>
-	    
+
 	    <div class="gat_scaledescription_cntnr <?php echo $divcls; ?>"><?php echo $selected_content; ?></div>
 	<?php
 	    $i++;
 	}
     } ?>
 	<ul class="gat_domainsbmt_btn <?php if($list==$domain_count){ echo "gat_twobuttons"; } elseif ($list==3) { echo "gat_thirddomain"; } ?>">
-	    <li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_buttton" onclick = "return confirm('Confirm Navigation... your changes will be lost!')">Back to Home</a></li>
+	    <li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_buttton">Back to Home</a></li>
 	    <li><?php if ($list==$domain_count) : ?><input type="submit" class="btn btn-default gat_buttton" name="gat_results" value="Get Results" /><?php endif; ?></li>
 	    <!--<li><input type="submit" class="btn btn-default gat_buttton" name="gat_videos" value="Get Video Playlist" /></li>-->
 	<?php

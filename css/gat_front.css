@@ -489,7 +489,7 @@ ul.gat_indicatorlights {
 }
 .clear { clear:both; }
 /*my*/
-.gat_buttton, .gat_button_start, .gat_button_continue {
+.gat_buttton, .gat_button_start, .gat_button_continue, .gat_button_saveinfo  {
 background: #00529f !important;
 background: -moz-linear-gradient(top, #00529f 0%, #0062b2 100%, #7db9e8 100%) !important;
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00529f), color-stop(100%,#0062b2), color-stop(100%,#7db9e8)) !important; /* Chrome,Safari4+ */
@@ -503,9 +503,11 @@ color:#fff !important;
 font-family: "Raleway-Regular";
 float: right;
 }
-.gat_button_start, .gat_button_continue {
+.gat_button_start, .gat_button_continue, .gat_button_saveinfo {
     width: 150px;
 }
+.gat_button_saveinfo { float:none; width: 165px; }
+.gat_saveinfo { text-align: center; margin: 10px 0px;}
 .gat_buttton:hover, .gat_button_start:hover, .gat_button_continue:hover,
 .gat_buttton:focus, .gat_button_start:focus, .gat_button_continue:focus {
 background: #7db9e8 !important; /* Old browsers */

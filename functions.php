@@ -5,7 +5,7 @@ if( ! defined('GAT_INQUIRE_USER_COOKIE'))
 
 if( ! defined('GAT_TOKEN_COOKIE'))
     define('GAT_TOKEN_COOKIE', 'GAT_token');
-    
+
 /*Enqueue script and style on backend*/
 add_action( 'admin_enqueue_scripts', 'gat_back_enqueue_script' );
 function gat_back_enqueue_script()
@@ -20,7 +20,7 @@ function gat_front_enqueue_script()
 {
 	wp_enqueue_style( 'gat_front_style', plugin_dir_url( __FILE__ ).'css/gat_front.css' );
 	wp_enqueue_style( 'gat_front_style', plugin_dir_url( __FILE__ ).'css/font-awesome.min.css' );
-	
+
 	wp_enqueue_script( 'jquery' );
 	wp_enqueue_script( 'gat_front_script', plugin_dir_url( __FILE__ ).'js/gat_front.js' );
 }
@@ -98,9 +98,9 @@ function delete_post_metadata_function($postid)
 	{
 		wp_delete_post($domainid);
 	}
-	$sql = $wpdb->prepare("DELETE a,b 
-		FROM $dimensiontable AS a 
-		INNER JOIN $videotable AS b ON a.id = b.dimensions_id 
+	$sql = $wpdb->prepare("DELETE a,b
+		FROM $dimensiontable AS a
+		INNER JOIN $videotable AS b ON a.id = b.dimensions_id
 		WHERE a.assessment_id = %d", $postid);
 	$wpdb->query($sql);
 }
@@ -124,28 +124,28 @@ function GAT_setcookie()
 {
     $path = parse_url(get_option('siteurl'), PHP_URL_PATH);
     $host = parse_url(get_option('siteurl'), PHP_URL_HOST);
-    
+
     if(isset($_POST['clear-analysis']))
     {
 	$name = 'gat-clear-analysis-nonce';
-	
+
 	$nonce = (isset($_POST[$name]) AND wp_verify_nonce($_POST[$name], '55d470caefa93'));
 	$token = (isset($_COOKIE['GAT_token']) AND isset($_POST['clear-analysis']) AND $_COOKIE['GAT_token'] == $_POST['clear-analysis']);
-	
+
 	if($nonce AND $token)
 	{
 	    unset($_COOKIE['GAT_token']);
 	    $t = time();
-	    
+
 	    setcookie('GAT_token', '', $t + 2678400, $path, $host);
 	}
     }
-    
+
     // Has GAT Token
     if(isset($_COOKIE['GAT_token']) && ! empty($_COOKIE['GAT_token']))
     {
 	$action = array('resume-analysis', 'analysis-result', 'restart_token');
-	
+
 	if(isset($_REQUEST['token']) AND empty($_REQUEST['token']) == FALSE AND in_array($_REQUEST['action'], $action))
 	{
 	    if($_REQUEST['action'] == 'restart_token')
@@ -155,12 +155,12 @@ function GAT_setcookie()
 		$response_table = PLUGIN_PREFIX . "response";
 		$sql = $wpdb->prepare( "select * from $response_table where token = %s", $token );
 		$data = $wpdb->get_row($sql);
-		
+
 		if(isset($data) && !empty($data))
 		{
 		    $token = htmlspecialchars($token);
 		    setcookie("GAT_token", $token, time() + 2678400, $path, $host);
-		    
+
 		    if($data->email == NULL)
 			setcookie(GAT_INQUIRE_USER_COOKIE, '1', time() + 2678400, $path, $host);
 		}
@@ -168,10 +168,10 @@ function GAT_setcookie()
 	    else
 	    {
 		$time = time() + 2678400;
-		
+
 		$token = htmlspecialchars($_REQUEST['token']);
 		setcookie("GAT_token", $token, $time, $path, $host);
-		
+
 		if( ! isset($_COOKIE[GAT_INQUIRE_USER_COOKIE]))
 		    setcookie(GAT_INQUIRE_USER_COOKIE, '1', $time, $path, $host);
 	    }
@@ -181,7 +181,7 @@ function GAT_setcookie()
     else
     {
 	$action = array('resume-analysis', 'analysis-result', 'restart_token');
-	
+
 	if(isset($_REQUEST['token']) AND empty($_REQUEST['token']) == FALSE AND in_array($_REQUEST['action'], $action))
 	{
 	    if($_REQUEST['action'] == 'restart_token')
@@ -191,12 +191,12 @@ function GAT_setcookie()
 		$response_table = PLUGIN_PREFIX . "response";
 		$sql = $wpdb->prepare( "select * from $response_table where token= %s", $token );
 		$data = $wpdb->get_row($sql);
-		
+
 		if(isset($data) && !empty($data))
 		{
 		    $token = htmlspecialchars($token);
 		    setcookie("GAT_token", $token, time() + 2678400, $path, $host);
-		    
+
 		    if($data->email == NULL)
 			setcookie(GAT_INQUIRE_USER_COOKIE, '1', time() + 2678400, $path, $host);
 		}
@@ -211,9 +211,9 @@ function GAT_setcookie()
 	else
 	{
 	    $t = time();
-	    
+
 	    $token = generateRandomString(8);
-	    
+
 	    setcookie("GAT_token", $token, $t + 2678400, $path, $host);
 	    setcookie(GAT_INQUIRE_USER_COOKIE, '1', $t + 2678400, $path, $host);
 	}
@@ -494,14 +494,14 @@ function gat_save_domaindata($post)
 			}
 			$sql = $wpdb->prepare("delete from $results_table where dimension_id = %d && token = %s", $dimensionid, $token);
 			$wpdb->query($sql);
-			
+
 			$sql = $wpdb->prepare("INSERT INTO $results_table (assessment_id, domain_id, dimension_id, token, rating_scale) VALUES (%d, %d, %d, %s, %s)", $assessment_id, $domain_id, $dimensionid, $token, $rating[0]);
 			$wpdb->query($sql);
 		}
 	}
 	$progress = gat_progress_total($assessment_id, $token);
 	$overallscore = gat_overall_score($assessment_id, $token);
-	
+
 	$sql = $wpdb->prepare("UPDATE $response_table SET progress=%s, overall_score=%s, last_saved=now() where assessment_id = %d && token = %s", $progress, $overallscore, $assessment_id, $token);
 	$wpdb->query($sql);
 	return true;
@@ -516,12 +516,12 @@ function gat_progress_total($assessment_id, $token)
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
 	$results_table = PLUGIN_PREFIX . "results";
-	
+
 	$sql = $wpdb->prepare("SELECT COUNT(*) FROM $dimensiontable where assessment_id=%d", $assessment_id );
 	$data = $wpdb->get_results( $sql, OBJECT_K );
 	$data = array_keys($data);
 	$total_dimension = $data[0];
-	
+
 	$sql = $wpdb->prepare("SELECT count(*) AS cnt FROM $results_table WHERE assessment_id = %d && token=%s &&( rating_scale != NULL
 OR rating_scale != '' )", $assessment_id, $token );
 	$data = $wpdb->get_results( $sql, OBJECT_K );
@@ -536,13 +536,13 @@ function gat_overall_score($assessment_id, $token)
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
 	$results_table = PLUGIN_PREFIX . "results";
-	
+
 	$sql = $wpdb->prepare("SELECT count(*) AS cnt FROM $results_table WHERE assessment_id =%d && token=%s &&( rating_scale != NULL
 OR rating_scale != '' )", $assessment_id, $token);
 	$data = $wpdb->get_results( $sql, OBJECT_K );
 	$data = array_keys($data);
 	$total_dimension = $data[0];
-	
+
 	$sql = $wpdb->prepare("SELECT sum(rating_scale) FROM $results_table WHERE assessment_id =%d && token=%s &&( rating_scale != NULL
 OR rating_scale != '' )", $assessment_id, $token);
 	$data = $wpdb->get_results( $sql, OBJECT_K );
@@ -557,7 +557,7 @@ function get_dimensioncount_domainid($domainid, $token)
 {
 	global $wpdb;
 	$results_table = PLUGIN_PREFIX . "results";
-	
+
 	$sql = $wpdb->prepare("SELECT count(*) AS cnt FROM $results_table WHERE domain_id =%d && token=%s &&( rating_scale != NULL
 OR rating_scale != '' )", $domainid, $token);
 	$data = $wpdb->get_results( $sql, OBJECT_K );
@@ -569,7 +569,7 @@ function get_ratingcount_domainid($domainid, $token)
 {
 	global $wpdb;
 	$results_table = PLUGIN_PREFIX . "results";
-	
+
 	$sql = $wpdb->prepare("SELECT sum(rating_scale) FROM $results_table WHERE domain_id =%d && token=%s &&( rating_scale != NULL
 OR rating_scale != '' )", $domainid, $token);
 	$data = $wpdb->get_results( $sql, OBJECT_K );
@@ -580,21 +580,22 @@ OR rating_scale != '' )", $domainid, $token);
 function progress_indicator_sidebar($assessment_id, $token)
 {
     $data = get_GAT_response($assessment_id, $token);
-    
+
     if( ! empty($data->email))
     {
 	$email = explode("@", $data->email);
-	
+
 	for($i = 1; $i < strlen($email[0]); $i++)
 	    $email[0][$i] = '*';
-	
-	$email = $email[0].'@'.$email[1];
+
+    $personal_info = '<div><span><b>Email : </b></span><span>'.$email[0].'@'.$email[1].'</span></div>';
     }
     // Doesn't Have E-mail
     else
     {
 	// $email = '<a href="'. get_permalink().'?action=start-analysis">Set Your Email</a>';
-	$email = '<span class="gat-user-email"><a herf="#" id="show-gat-user-info-modal">Set Your E-mail</a></span>';
+	// $personal_info = '<div><span><b>Email : </b></span><span class="gat-user-email"><a href="#" id="show-gat-user-info-modal">Set Your E-mail</a></span></div>';
+        $personal_info = '<div class="gat_saveinfo"><a class="btn btn-default gat_button_saveinfo" href="#" id="show-gat-user-info-modal" role="button">Save Your Progress</a></div>';
     }
 
 	echo '<div class="gat_indicatorwidget">
@@ -614,10 +615,8 @@ function progress_indicator_sidebar($assessment_id, $token)
 					</a>
 				</form>
 			</div>
-			<div>
-				<span><b>Email : </b></span>
-				'.$email.'
-			</div>
+			'.$personal_info.'
+
 			<!--<div>
 				<span><b>Last Saved : </b></span>
 				'.$data->last_saved.'
@@ -629,11 +628,11 @@ function priority_domain_sidebar($assessment_id, $token)
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
 	$results_table = PLUGIN_PREFIX . "results";
-	
+
 	$sql = $wpdb->prepare("SELECT distinct(a.domain_id), (SELECT (SUM(b.rating_scale)/count(b.rating_scale)) as totalRating FROM $results_table as b WHERE a.domain_id = b.domain_id AND token=%s) AS totalRating FROM $dimensiontable as a WHERE a.assessment_id=%d  ORDER BY totalRating", $token, $assessment_id);
 	$data = $wpdb->get_results($sql);
-	
-	$top = array(); $mid = array(); $last = array(); 
+
+	$top = array(); $mid = array(); $last = array();
 	if(!empty($data))
 	{
 		$key = count($data);
@@ -725,34 +724,34 @@ function register_user_info_callback()
 {
     $name = 'gat-user-information-nonce';
     $nonce = (isset($_POST[$name]) AND wp_verify_nonce($_POST[$name], '55e80bfb3ea74'));
-    
+
     if($nonce)
     {
 	global $wpdb;
-	
+
 	$assessment = url_to_postid($_POST['_wp_http_referer']);
-	
+
 	if(check_token_exists($assessment, $_POST['token']) == FALSE)
 	    register_GAT_response($assessment, $_POST['token']);
-	
+
 	$organization = NULL;
-	
+
 	if($_POST['district'])
 	{
 	    $organization_table = PLUGIN_PREFIX . "organizations";
-	    
+
 	    $organization_sql = $wpdb->prepare("SELECT DISTINCT LEANM FROM `" . $organization_table . "` WHERE `LEAID` = %s", $_POST['district']);
 	    $organization_row = $wpdb->get_row($organization_sql);
-	    
+
 	    $organization = $organization_row->LEANM;
 	}
-	
+
 	$response_table = PLUGIN_PREFIX . "response";
 	$sql = $wpdb->prepare("UPDATE
 	    `" . $response_table . "`
 	SET
 	    `email` = %s, `state` = %s,
-	    `district` = %s, `organization_id` = %s, `organization_id` = %s 
+	    `district` = %s, `organization_id` = %s, `organization_id` = %s
 	WHERE
 	    `assessment_id` = %d AND
 	    `token` = %s",
@@ -761,18 +760,18 @@ function register_user_info_callback()
 	    $assessment,
 	    $_POST['token']
 	);
-	
+
 	$reply = array(
 	    "status" => (FALSE === $wpdb->query($sql)) ? 'error' : 'success'
 	);
-	
+
 	echo json_encode($reply);
     }
     else
     {
 	echo json_encode(array("status" => "error"));
     }
-    
+
     wp_die();
 }
 /**
@@ -787,9 +786,9 @@ function register_user_info_callback()
 function get_GAT_response($assessment, $token)
 {
     global $wpdb;
-    
+
     $response_table = PLUGIN_PREFIX . "response";
-    
+
     $sql = $wpdb->prepare( "SELECT
 	*
     FROM
@@ -798,7 +797,7 @@ function get_GAT_response($assessment, $token)
 	`assessment_id` = %d AND
 	`token` = %s",
     $assessment, $token);
-    
+
     $data = $wpdb->get_row($sql);
 
     return $data;
@@ -813,29 +812,29 @@ function register_GAT_response($assessment = 0, $token = '', $email = '', $state
 {
     if($assessment == 0 OR $token == NULL)
 	return FALSE;
-    
+
     global $wpdb;
-    
+
     $organization = NULL;
-    
+
     if($district)
     {
 	$organization_table = PLUGIN_PREFIX . "organizations";
-	
+
 	$organization_sql = $wpdb->prepare("SELECT DISTINCT LEANM FROM `" . $organization_table . "` WHERE `LEAID` = %s", $district);
 	$organization_row = $wpdb->get_row($organization_sql);
-	
+
 	$organization = $organization_row->LEANM;
     }
-    
+
     $response_table = PLUGIN_PREFIX . "response";
-    
+
     // Build Query
     $response_sql = $wpdb->prepare("INSERT INTO
 	`" . $response_table . "`
 	(
 	    `assessment_id`, `token`, `email`,
-	    `state`, `district`, `organization_id`, 
+	    `state`, `district`, `organization_id`,
 	    `organization`, `progress`, `overall_score`,
 	    `start_date`, `last_saved`, `email_verified`
 	)
@@ -850,7 +849,7 @@ function register_GAT_response($assessment = 0, $token = '', $email = '', $state
 	$state, $district, $district,
 	$organization, $progress, $score
     );
-    
+
     // Send Query and return result
     return $wpdb->query($response_sql);
 }
@@ -863,15 +862,15 @@ function get_rating_by_dimensionid($dimensionid, $token){
 	global $wpdb;
 	$rating = 0;
 	$result_table = PLUGIN_PREFIX . "results";
-	
+
 	$sql = $wpdb->prepare("SELECT rating_scale from $result_table where dimension_id=%d && token=%s", $dimensionid, $token);
 	$result = $wpdb->get_row($sql);
-	
+
 	if( ! empty($result->rating_scale))
 	{
 	    $rating = $result->rating_scale;
 	}
-	
+
 	return $rating;
 }
 /**
@@ -883,15 +882,15 @@ function get_max_rating_scale(){
 	global $wpdb;
 	$max_rating = 0;
 	$ratings_table = $wpdb->prefix . "term_taxonomy";
-	
+
 	$sql = $wpdb->prepare("SELECT count as max_rating_scale from $ratings_table where taxonomy='scale' and count>%d", 0);
 	$result = $wpdb->get_row($sql);
-	
+
 	if( ! empty($result->max_rating_scale))
 	{
 	    $max_rating = $result->max_rating_scale;
 	}
-	
+
 	return $max_rating;
 }
 /**
@@ -929,9 +928,9 @@ function email_results($_params, $data_results, $token){
 	}
 
 	$to = $email;
-	
+
 	$from = "Ed.Tech@ed.gov";
-	
+
 	$subject = get_bloginfo('name','raw').' '.get_the_title($assessment_id).' Access Code';
 
 	$message = '<p>Thank you for participating in the '.get_the_title($assessment_id).' Assessment.  If you would like to return to the Assessment to continue your exploration, update your results, and gauge your progress in implementing promising practices identified in your selected videos, use this Access Code: <a href="'.get_permalink($assessment_id).'?action=resume-analysis&token='.$token.'">'.$token.'</a></p>';
@@ -940,13 +939,13 @@ function email_results($_params, $data_results, $token){
 
 	$message .= $assign;
 	$message .= 'View Complete List of Video <a href="'.get_permalink($assessment_id).'?action=analysis-result&token='.$token.'"> Selections '.$token.'</a><br/><br/>';
-	
+
 	// Contact Person
 	$message .= 'Marshal Conley<br/>
 		     Senior Education Consultant<br/>
 		     <a href="mailto:mconley@air.org">mconley@air.org</a><br/>
 		     309-944-3510 (office)<br/><br/>';
-		     
+
 	//Support Text
 	$message .= 'If you have any questions or need to contact us in regards to this assessment tool, please email: <a href="mailto:Ed.Tech@ed.gov">Ed.Tech@ed.gov</a>';
 

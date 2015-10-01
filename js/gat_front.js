@@ -19,18 +19,18 @@ var inquire
 	this.get = function(name) {
 	    var n = name + "=";
 	    var ca = document.cookie.split(';');
-	    
+
 	    for(var i = 0; i < ca.length; i++) {
 		var c = ca[i]
-		
+
 		while (c.charAt(0) == ' ') {
 		    c = c.substring(1)
 		}
-		
+
 		if (c.indexOf(n) == 0)
 		    return c.substring(n.length, c.length);
 	    }
-	    
+
 	    return "";
 	}
 	/**
@@ -44,14 +44,14 @@ var inquire
 	this.set = function(name, value, expires, domain, path) {
 	    var d = new Date()
 		d.setTime(d.getTime() + (expires * 24 * 60 *60 * 1000))
-	    
+
 	    var cookie = []
 		cookie.push(name + '=' + value);
 		cookie.push('expires=' + d.toUTCString())
-	    
+
 	    if (domain)
 		cookie.push('domain=' + domain)
-	    
+
 	    if (path)
 		cookie.push('path=' + path)
 	    console.log(cookie.join('; '))
@@ -65,34 +65,34 @@ var inquire
     function Querystring()
     {
 	var object = this
-	
+
 	this.get = function(name) {
 	    var all = object.all()
-	    
+
 	    if ( ! jQuery.isEmptyObject(all))
 	    {
 		for(var index in all)
 		{
 		    if (index == name)
 			return all[index]
-		}    
+		}
 	    }
-	    
+
 	    return ''
 	}
-	
+
 	this.all = function() {
 	    var q = []
-	
+
 	    var search = window.location.search.substr(1).split('&')
-	    
+
 	    if (search.length) {
 		jQuery.each(search, function(key, pair) {
 		    var p = pair.split('=')
 		    q[p[0]] = p[1]
 		})
 	    }
-	    
+
 	    return q
 	}
     }
@@ -103,11 +103,11 @@ var inquire
     jQuery(document).ready(function() {
 	var querystring = new Querystring()
 	var cookie = new Cookie()
-	
+
 	if (querystring.get('inquire') == 'true') {
 	    if (cookie.get('GAT-inquire-user-information')) {
 		jQuery('#gat-user-info-modal').data('initiate', 'auto')
-		jQuery('#gat-user-info-modal').modal('show')	
+		jQuery('#gat-user-info-modal').modal('show')
 	    }
 	}
 	/**
@@ -119,52 +119,52 @@ var inquire
 	    {
 		var path = window.location.pathname
 		var len = path.length
-		
+
 		if (path.substr(len - 1, len) == '/')
 		    path = path.substr(0, len - 1)
-		
+
 		var domain = '.' + window.location.host
-		
+
 		cookie.set('GAT-inquire-user-information', '', -1, domain, path)
 	    }
 	})
-	
+
 	jQuery('#show-gat-user-info-modal').click(function() {
 	    jQuery('#gat-user-info-modal').data('initiate', 'manual')
-	    
+
 	    jQuery('#gat-user-info-modal').modal('show')
 	})
-	
+
 	/**
 	 * Submit User Information Button Event Handler
 	 * Description
 	 */
 	jQuery('#gat-user-info-modal #submit-gat-user-info').on("click",function() {
 	    var button = this
-	    
+
 	    jQuery('#gat-user-info-modal input[name="email"]').parents('.form-group').removeClass('has-error')
-	    
+
 	    var email = jQuery('#gat-user-info-modal input[name="email"]')
 	    var state = jQuery('#gat-user-info-modal select[name="state"]')
 	    var district = jQuery('#gat-user-info-modal select[name="district"]')
-	    
+
 	    if (email.val() || state.val() || district.val()) {
 		var proceed = true
-		
+
 		if (email.val()) {
 		    var regex = /^(?:[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
-		
+
 		    if (regex.exec(email.val()) === null) {
 			proceed = false
 			jQuery('#gat-user-info-modal input[name="email"]').parents('.form-group').addClass('has-error')
 		    }
-		    
+
 		    if (proceed) {
 			jQuery('#gat-user-info-modal input[name="email"], #gat-user-info-modal input[name="state"], #gat-user-info-modal input[name="district"]').prop('disabled', true)
 			jQuery(button).button('loading')
-			
+
 			var data = jQuery('#gat-user-info-modal form').serializeArray()
-			    
+
 			    data.push({
 				name: 'action',
 				value: 'register_user_info'
@@ -172,7 +172,7 @@ var inquire
 				name: 'email',
 				value: email.val()
 			    })
-			    
+
 			jQuery.ajax({
 			    url: ajaxurl,
 			    type: 'post',
@@ -180,25 +180,25 @@ var inquire
 			    success: function(reply) {
 				try {
 				    reply = jQuery.parseJSON(reply)
-				    
+
 				    if ('success' == reply.status) {
 					email = email.val().split('@')
-					
+
 					var e = '';
 					for(var i = 0; i < email[0].length; i++)
 					    e = e + (i == 0 ? email[0].charAt(0) : '*')
-					
+
 					jQuery('.gat-user-email').html(e + '@' + email[1])
 				    }
 				} catch(e) {
-				    
+
 				}
 			    }
 			})
 			.always(function() {
 			    jQuery('#gat-user-info-modal input[name="email"], #gat-user-info-modal select[name="state"], #gat-user-info-modal select[name="district"]').prop('disabled', false)
 			    jQuery(button).button('reset')
-			    
+
 			    jQuery('#gat-user-info-modal').modal('hide')
 			})
 		    }
@@ -209,7 +209,7 @@ var inquire
 		jQuery('#gat-user-info-modal').modal('hide')
 	    }
 	})
-	
+
 	/**
 	 * Submitting popup form handler
 	 **/
@@ -232,18 +232,18 @@ var inquire
 jQuery(document).ready(function() {
     jQuery('#clear-analysis #do-clear-analysis').click(function(event) {
 	event.preventDefault()
-	
+
 	var clear = confirm('Are you sure you want to clear your Analysis on this browser?')
-	
+
 	if (clear) {
 	    if (typeof window.onbeforeunload === 'function') {
 		window.onbeforeunload = null
 	    }
-	    
+
 	    jQuery('#clear-analysis').submit();
 	}
     })
-    
+
     inquire = jQuery('input[name="inquire"]').detach()
 })
 /**
@@ -289,9 +289,9 @@ jQuery(document).ready(function() {
     });
 });
 jQuery(document).ready(function(e) {
-   
+
    jQuery('.gat_error').delay(2000).fadeOut();
-   
+
    jQuery('.rating_scaleli').keypress(function(e) {
 		if (e.which == 13)
 		{
@@ -304,7 +304,7 @@ jQuery(document).ready(function(e) {
 	jQuery('.rating_scaleli').focusout(function(e) {
 		remove_focus(this);
 	});
-	
+
 	if(!('ontouchstart' in window || 'onmsgesturechange' in window))
 	{
 		jQuery('.rating_scaleli').mouseover(function(e) {
@@ -314,11 +314,11 @@ jQuery(document).ready(function(e) {
 			remove_focus(this);
 		});
 	}
-	
+
 	/** Load Default Video **/
 	var defvideo = jQuery('.defaultvideo');
 	gat_play_utubevdo(defvideo);
-	
+
 	/*jQuery(".cntrollorbtn").click(function(){
 		var id = jQuery(this).attr("data-resultedid");
 		if(jQuery(this).children("i.fa").hasClass("fa-play") || jQuery(this).children("i.fa").hasClass("fa-check"))
@@ -349,7 +349,7 @@ jQuery(document).ready(function(e) {
 		}
 		gat_play_utubevdo(this);
 	});*/
-        
+
         /*Override URL shared by Simple Share Buttons*/
 	jQuery(".ssba-wrap a").each(function(){
 	    var shareUrl = jQuery(this).attr('href');
@@ -396,7 +396,7 @@ jQuery(document).ready(function(e) {
 	    }
 	    jQuery(this).attr('href',sUrl);
 	});
-	
+
 	/* Checked if all questions are answered before submitting */
 	jQuery('.gat_btn_submit').click(function(){
 	    if (jQuery('ul.gat_domain_rating_scale:not(:has(:radio:checked))').length) {
@@ -404,6 +404,7 @@ jQuery(document).ready(function(e) {
 		jQuery('.question-error').remove();
 		jQuery('ul.gat_domain_rating_scale:not(:has(:radio:checked))').parents('div.dimension_question').prepend('<div class="question-error red-text">Please select an answer before submitting.</div>');
 		radioB.find('li:first').focus();
+		alert('Please answer all of the questions on this page before proceeding.');
 		return false;
 	    }
 	});
@@ -411,7 +412,7 @@ jQuery(document).ready(function(e) {
 
 function add_focus(ref)
 {
-	var area = true; 
+	var area = true;
 	jQuery(ref).parents("ul").children("li.rating_scaleli").each(function(index, element)
 	{
         if(jQuery(this).hasClass("selectedli"))
@@ -430,7 +431,7 @@ function add_focus(ref)
 
 function remove_focus(ref)
 {
-	var area = true; 
+	var area = true;
 	jQuery(ref).parents("ul").children("li.rating_scaleli").each(function(index, element)
 	{
         if(jQuery(this).hasClass("selectedli"))
@@ -460,7 +461,7 @@ function select_rating(ref)
 		jQuery(this).children("input").val('');
 	    }
 	});
-	
+
 	if(jQuery(ref).hasClass("selectedli"))
 	{
 	    jQuery(ref).removeClass("selectedli");
@@ -472,12 +473,12 @@ function select_rating(ref)
 	{
 	    jQuery(ref).addClass("selectedli");
 	    jQuery(ref).parents("ul").next("div.gat_scaledescription_cntnr").addClass("selectedarea");
-	    
+
 	    jQuery(ref).children("input").val(jQuery(ref).attr("data-rating")).attr("checked",true);
 	    var desc = jQuery(ref).children(".rating_scale_description").text();
 	    jQuery(ref).parents("ul").next("div.gat_scaledescription_cntnr").text(desc);
 	}
-	
+
 	if (inquire.length) {
 	    if (jQuery('.rating_scaleli.selectedli').length) {
 		if (jQuery('input[name="inquire"]').length == 0)
@@ -486,7 +487,7 @@ function select_rating(ref)
 		inquire = jQuery('input[name="inquire"]').detach()
 	    }
 	}
-	
+
 	var formdata = jQuery('#assessment_data').serialize();
 	jQuery.ajax({
 		url: ajaxurl,
@@ -496,10 +497,10 @@ function select_rating(ref)
 		{
 		    if (typeof window.onbeforeunload !== 'function') {
 			window.onbeforeunload = function() {
-			    return 'Leave this page without saving your self-assessment responses?'
+			    return 'If you leave this page now, your new or changed answers won’t be recorded. To save your answers, click Stay on This Page, then click the Continue button to proceed to the next page.'
 			}
 		    }
-		    
+
 		    jQuery(".gat_indicatorwidget").children(".meter").children("span").css("width", msg+"%").text(msg+"%");
 		}
 	});
@@ -530,12 +531,12 @@ function gat_play_utubevdo(ref)
 	{
 		jQuery("div.unclickablevideo").remove();
 	}
- 
+
 	var utubeid = jQuery(ref).attr("data-youtubeid");
 	utubeid = String(utubeid);
 	var currenid = jQuery(ref).attr("data-resultedid");
 	jQuery("#player").attr("data-resultedid", currenid );
-	
+
 	if(jQuery(ref).children("i.fa").hasClass("fa-play"))
 	{
 		jQuery(ref).children("i.fa").removeClass("fa-play");

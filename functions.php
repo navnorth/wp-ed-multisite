@@ -595,7 +595,7 @@ function progress_indicator_sidebar($assessment_id, $token)
     {
 	// $email = '<a href="'. get_permalink().'?action=start-analysis">Set Your Email</a>';
 	// $personal_info = '<div><span><b>Email : </b></span><span class="gat-user-email"><a href="#" id="show-gat-user-info-modal">Set Your E-mail</a></span></div>';
-        $personal_info = '<div class="gat_saveinfo"><a class="btn btn-default gat_button_saveinfo" href="#" id="show-gat-user-info-modal" role="button">Save Your Progress</a></div>';
+        $personal_info = '<div class="gat_saveinfo"><a class="btn btn-default gat_button_saveinfo" href="#" id="show-gat-user-info-modal" role="button">Save Your Session</a></div>';
     }
 
 	echo '<div class="gat_indicatorwidget">

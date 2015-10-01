@@ -27,12 +27,11 @@ get_header(); ?>
 		    <div class="modal-content">
 			<div class="modal-header">
 			    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			    <h4 class="modal-title">Set Your E-mail</h4>
+			    <h4 class="modal-title">Save Your Session</h4>
 			</div>
 			<div class="modal-body">
 			    <p class="text-justify">
-				Your access code is displayed below. If you would like to continue this analysis or retrieve your results later, you will need this code. If you provide your email address, we will be able to assist you with retrieving it if necessary.
-				Location information is optional and helps us better report on analysis results
+				Your access code is displayed below. If you would like to return and view your playlist or revise your answers, you will need this code. Entering your email address and district name is optional, but doing so will enable you to access additional features of the tool.
 			    </p>
 			    <p class="gat_genratedtoken">Your Access Code : <?php echo $token; ?></p>
 			    <form id="gat-user-info-form">

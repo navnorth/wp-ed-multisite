@@ -396,6 +396,17 @@ jQuery(document).ready(function(e) {
 	    }
 	    jQuery(this).attr('href',sUrl);
 	});
+	
+	/* Checked if all questions are answered before submitting */
+	jQuery('.gat_btn_submit').click(function(){
+	    if (jQuery('ul.gat_domain_rating_scale:not(:has(:radio:checked))').length) {
+		var radioB = jQuery('ul.gat_domain_rating_scale:not(:has(:radio:checked)):first');
+		jQuery('.question-error').remove();
+		jQuery('ul.gat_domain_rating_scale:not(:has(:radio:checked))').parents('div.dimension_question').prepend('<div class="question-error red-text">Please select an answer before submitting.</div>');
+		radioB.find('li:first').focus();
+		return false;
+	    }
+	});
 });
 
 function add_focus(ref)

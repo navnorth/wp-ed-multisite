@@ -93,6 +93,7 @@
 		$scale_slctd = '';
 	    } ?>
 	<input type="hidden" name="dimension_id[]" value="<?php echo $dimension->id; ?>" />
+	<div class="dimension_question">
 	<ul class="gat_domain_rating_scale">
     <?php
 	    $j = 1;
@@ -118,7 +119,7 @@
 		$j++;
 	    } ?>
 	    </ul>
-
+	</div>
 	    <!--<div class="gat_scaledescription_cntnr <?php //echo $divcls; ?>"><?php //echo $selected_content; ?></div>-->
 	<?php
 	    $i++;
@@ -126,11 +127,11 @@
     } ?>
 	<ul class="gat_domainsbmt_btn <?php if($list==$domain_count){ echo "gat_twobuttons"; } elseif ($list==3) { echo "gat_thirddomain"; } ?>">
 	    <li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_button">Back to Home</a></li>
-	    <li><?php if ($list==$domain_count) : ?><input type="submit" class="btn btn-default gat_button" name="gat_results" value="Get Results" /><?php endif; ?></li>
+	    <li><?php if ($list==$domain_count) : ?><input type="submit" class="btn btn-default gat_button gat_btn_submit" name="gat_results" value="Get Results" /><?php endif; ?></li>
 	    <!--<li><input type="submit" class="btn btn-default gat_button" name="gat_videos" value="Get Video Playlist" /></li>-->
 	<?php
 	    if($list < $domain_count): ?>
-	    <li><input type="submit" class="btn btn-default gat_button" name="domain_submit" value="Continue to <?php echo $n_domain->post_title; ?>"/></li>
+	    <li><input type="submit" class="btn btn-default gat_button gat_btn_submit" name="domain_submit" value="Continue to <?php echo $n_domain->post_title; ?>"/></li>
 	<?php
 	    endif; ?>
 	</ul>

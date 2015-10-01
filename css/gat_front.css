@@ -103,7 +103,7 @@
 {
 	width: 100%;
 	float: left;
-	margin: 15px 0 25px;
+	margin: 5px 0 25px;
 	padding: 0;
 	border: 1px solid #ccc;
 }
@@ -120,6 +120,7 @@
 	text-align:center;
 }
 .gat_domain_rating_scale li input[type=radio] { display:block; margin:5px auto; }
+.question-error, .red-text { color:#ff0000; margin:5px 0 0; }
 .gat_dimension_header {
   margin-bottom: 5px;
 }

@@ -69,7 +69,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
             <!--<div class="unclickablevideo" style="display: block;" title="Play from Playlist"></div>-->
          </div>
 		 <ul class="gat_domainsbmt_btn">
-			<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_buttton">Back to Home</a></li>
+			<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_button">Back to Home</a></li>
 			<li>
             	<?php
 					$response = PLUGIN_PREFIX . "response";
@@ -79,10 +79,10 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
             	<form method="post">
                 	<input type="hidden" name="email" value="<?php echo $result->email; ?>" />
                 	<input type="hidden" name="assessment_id" value="<?php echo $post->ID; ?>" />
-                	<input type="submit" class="btn btn-default gat_buttton" name="email_results" value="Email Results & Playlist" />
+                	<input type="submit" class="btn btn-default gat_button" name="email_results" value="Email Results & Playlist" />
                 </form>
             </li>
-			<li><a href="<?php echo get_permalink($post->ID); ?>?action=analysis-result" class="btn btn-default gat_buttton">Get Results</a></li>
+			<li><a href="<?php echo get_permalink($post->ID); ?>?action=analysis-result" class="btn btn-default gat_button">Get Results</a></li>
 		  </ul>
 	</div>
         <div class="col-md-4 col-sm-12 col-xs-12 gat-video-sidebar">

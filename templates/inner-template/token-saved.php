@@ -114,12 +114,12 @@
 	}
     } ?>
 	<ul class="gat_domainsbmt_btn <?php if($list==$domain_count){ echo "gat_twobuttons"; } elseif ($list==3) { echo "gat_thirddomain"; } ?>">
-	    <li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_buttton">Back to Home</a></li>
-	    <li><?php if ($list==$domain_count) : ?><input type="submit" class="btn btn-default gat_buttton" name="gat_results" value="Get Results" /><?php endif; ?></li>
-	    <!--<li><input type="submit" class="btn btn-default gat_buttton" name="gat_videos" value="Get Video Playlist" /></li>-->
+	    <li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_button">Back to Home</a></li>
+	    <li><?php if ($list==$domain_count) : ?><input type="submit" class="btn btn-default gat_button" name="gat_results" value="Get Results" /><?php endif; ?></li>
+	    <!--<li><input type="submit" class="btn btn-default gat_button" name="gat_videos" value="Get Video Playlist" /></li>-->
 	<?php
 	    if($list < $domain_count): ?>
-	    <li><input type="submit" class="btn btn-default gat_buttton" name="domain_submit" value="Continue to <?php echo $n_domain->post_title; ?>"/></li>
+	    <li><input type="submit" class="btn btn-default gat_button" name="domain_submit" value="Continue to <?php echo $n_domain->post_title; ?>"/></li>
 	<?php
 	    endif; ?>
 	</ul>

@@ -368,7 +368,7 @@
 			</div>
 		    </div>
 
-		    <button type="submit" name="retrive_token" class="btn btn-default gat_buttton">Submit Email</button>
+		    <button type="submit" name="retrive_token" class="btn btn-default gat_button">Submit Email</button>
 		</form>
 	    </div>
 	</div>
@@ -498,7 +498,7 @@
 			    <input type="text" name="token" value="" class="form-control gatfields" />
 			</div>
 		    </div>
-		    <button type="submit" name="restart_token" class="btn btn-default gat_buttton">Continue</button>
+		    <button type="submit" name="restart_token" class="btn btn-default gat_button_continue">Continue</button>
 		</form>
 	    </div>
 	</div>
@@ -570,7 +570,7 @@
 			    Read our <a href="#">privacy policy</a>
 			</div>
 		    </div>
-		    <button type="submit" name="save_token" class="btn btn-default gat_buttton">Save / Continue</button>
+		    <button type="submit" name="save_token" class="btn btn-default gat_button">Save / Continue</button>
 		</form>
 	    </div>
 	</div>

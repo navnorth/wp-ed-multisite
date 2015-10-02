@@ -913,7 +913,7 @@ function email_results($_params, $data_results, $token){
 				$dimensionTitle = $wpdb->get_row($sql);
 				$assign .= '<ul>
 								<li>
-									<a href="'.get_permalink($assessment_id).'?action=analysis-result&token='.$token.'">
+									<a href="'.get_permalink($assessment_id).'?action=video-playlist&token='.$token.'">
 										'.get_the_title($data->domain_id).' - '.$dimensionTitle->title.' - '.$data->label.'
 									</a>
 								</li>

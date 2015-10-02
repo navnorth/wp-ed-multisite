@@ -938,7 +938,7 @@ function email_results($_params, $data_results, $token){
 	$message .= '<p>Here is your personalized video playlist based on your self-assessment responses:</p>';
 
 	$message .= $assign;
-	$message .= 'View your Custom Video playlist using this Access Code: <a href="'.get_permalink($assessment_id).'?action=analysis-result&token='.$token.'">  '.$token.'</a><br/><br/>';
+	$message .= 'View your Custom Video playlist using this Access Code: <a href="'.get_permalink($assessment_id).'?action=video-playlist&token='.$token.'">  '.$token.'</a><br/><br/>';
 
 	//Support Text
 	$message .= 'If you have any questions or need to contact us in regards to this assessment tool, please email: <a href="mailto:Ed.Tech@ed.gov">Ed.Tech@ed.gov</a>';

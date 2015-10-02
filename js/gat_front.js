@@ -408,6 +408,25 @@ jQuery(document).ready(function(e) {
 		return false;
 	    }
 	});
+	
+	/* Sticky Progress Box */
+	var $sidebar   = jQuery("#progress-box"), 
+	    $window    = jQuery(window),
+	    offset     = $sidebar.offset(),
+	    topPadding = 15;
+
+	$window.scroll(function() {
+	    if ($window.scrollTop() > offset.top) {
+		$sidebar.stop().animate({
+		    marginTop: $window.scrollTop() - offset.top + topPadding
+		},0);
+	    } else {
+		$sidebar.stop().animate({
+		    marginTop: 0
+		},10);
+	    }
+	});
+    
 });
 
 function add_focus(ref)

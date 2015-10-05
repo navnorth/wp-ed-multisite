@@ -3,8 +3,7 @@ function gat_state($state=NULL)
 {
 	global $wpdb;
 	$organization = PLUGIN_PREFIX . "organizations";
-	$sql = $wpdb->prepare("select distinct LSTATE from $organization");
-	$states = $wpdb->get_results($sql);
+	$states = $wpdb->get_results("select distinct LSTATE from $organization");
 	if(!empty($states))
 	{
 		foreach($states as $state)

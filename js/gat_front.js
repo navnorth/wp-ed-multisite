@@ -104,12 +104,13 @@ var inquire
 	var querystring = new Querystring()
 	var cookie = new Cookie()
 
-	if (querystring.get('inquire') == 'true') {
-	    if (cookie.get('GAT-inquire-user-information')) {
+	if (querystring.get('action')=='video-playlist') {
+	    if (cookie.get('GAT-inquire-user-information')=="1") {
 		jQuery('#gat-user-info-modal').data('initiate', 'auto')
 		jQuery('#gat-user-info-modal').modal('show')
 	    }
 	}
+	    
 	/**
 	 * Hidden GAT User Information Modal Event Handler
 	 * Description
@@ -125,7 +126,7 @@ var inquire
 
 		var domain = '.' + window.location.host
 
-		cookie.set('GAT-inquire-user-information', '', -1, domain, path)
+		cookie.set('GAT-inquire-user-information', '0', 1, domain, path)
 	    }
 	})
 
@@ -189,6 +190,14 @@ var inquire
 					    e = e + (i == 0 ? email[0].charAt(0) : '*')
 
 					jQuery('.gat-user-email').html(e + '@' + email[1])
+					var path = window.location.pathname
+					var len = path.length
+			    
+					if (path.substr(len - 1, len) == '/')
+					    path = path.substr(0, len - 1)
+			    
+					var domain = '.' + window.location.host
+					cookie.set('GAT-inquire-user-information', '0', 1, domain, path)
 				    }
 				} catch(e) {
 

@@ -214,7 +214,7 @@
 			 */
 			$user_response  = get_GAT_response($post->ID, $token);
 		    }
-		    $location .= '?action=token-saved&list=' . $next_domain . (($user_response->email OR $_COOKIE[GAT_INQUIRE_USER_COOKIE] == NULL) ? '' :'&inquire=true');
+		    $location .= '?action=token-saved&list=' . $next_domain . (($user_response->email OR $_COOKIE[GAT_INQUIRE_USER_COOKIE] == NULL) ? '' :'');
 		}
 
 		echo '<script type="text/javascript">window.location = "' . $location . '"</script>';
@@ -296,7 +296,18 @@
 	    {
 		if($data->assessment_id == $post->ID)
 		{
-		    echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=resume-analysis"</script>';
+		    echo '<script type="text/javascript">
+			var cookie = new Cookie();
+			var path = window.location.pathname
+			var len = path.length
+	    
+			if (path.substr(len - 1, len) == "/")
+			    path = path.substr(0, len - 1)
+	    
+			var domain = "." + window.location.host
+			cookie.set("GAT-inquire-user-information", "0", 1, domain, path);
+			window.location = "'.get_permalink($post->ID).'?action=resume-analysis"
+			</script>';
 		}
 		// Breaking Point
 		else

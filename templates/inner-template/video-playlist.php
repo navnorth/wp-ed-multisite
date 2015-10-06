@@ -290,11 +290,6 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 									echo '<span class="video-title">'.ucwords(stripslashes($data_rslt->label)).'</span>';
 									echo '<span class="video-domain-title"> - '.ucwords(stripslashes(get_the_title($exists->domain_id))).' </span>';
 								echo '</div>';
-								echo '<div class="gat_videodetails">';
-									echo '<span class="cntrollorbtn" data-seekto="0" data-resultedid="'.$lastid.'" data-youtubeid="'.$data_rslt->youtubeid.'"><i class="fa fa-play"></i></span>';
-										echo '<div class="meter"><span style="width: 0%"></span></div>';
-								echo '</div>';
-								echo '<div class="unclickable"></div>';
 							echo '</li>';
 						}
 						$i++;

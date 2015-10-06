@@ -101,11 +101,12 @@
 }
 .gat_domain_rating_scale
 {
-	width: 100%;
+	width: 95%;
 	float: left;
-	margin: 5px 0 25px;
+	margin: 5px 15px 25px 15px;
 	padding: 0;
 	border: 1px solid #ccc;
+  clear:both;
 }
 .gat_domain_rating_scale li
 {
@@ -113,9 +114,9 @@
 	float: left;
 	display:inline;
 	border-left: 1px solid #ccc;
-	font-size: 16px;
-	padding: 10px 20px;
-	height: 85px;
+	font-size: 14px;
+	padding: 3px 20px;
+	height: 75px;
 	overflow: hidden;
 	text-align:center;
 }
@@ -125,7 +126,7 @@
   margin-bottom: 5px;
 }
 .gat_dimension_desc {
-  margin:10px 0 0 0;
+  margin:10px 15px 0 15px;
 }
 .rating_scale_description
 {
@@ -596,7 +597,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
 @media screen and (max-width: 554px) {
 .gat_domain_rating_scale li {
 	width: 100%;
+  height:32px;
+  border-bottom: 1px solid #ccc;
+  text-align:left;
 }
+.gat_domain_rating_scale li input[type=radio] { display:inline; }
 }
 @media screen and (max-width: 991px) {
 .analysis_result .gat_player_videos {

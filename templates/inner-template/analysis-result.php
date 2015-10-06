@@ -82,10 +82,10 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 								$x=0;
 								$barWidth = 0;
 								foreach($dimensions as $dimension){
-									if ($x>=$half_total)
+									/*if ($x>=$half_total)
 										$bgColor="rgb(0,".$n*$rVal.",0)";
-									else
-										$bgColor="rgb(".$n*$rVal.",0,0)";
+									else*/
+									$bgColor="rgb(231,82,4,0)";
 									$rating = get_rating_by_dimensionid($dimension->id,htmlspecialchars($_COOKIE['GAT_token']));
 									$max_rating = get_max_rating_scale();
 									//if ($rating==0) $bgColor = "transparent";

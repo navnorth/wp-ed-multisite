@@ -23,7 +23,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 				$data_rslts = $wpdb->get_results($sql);
 				break;
 			case "unwatched":
-				$sql = $wpdb->prepare("SELECT a.*, ((a.seek/a.end)*100) as percent, b.* FROM $watchtable as a INNER JOIN oet_gat_videos as b ON (a.domain_id=b.domain_id AND a.dimensions_id=b.dimensions_id) where assessment_id=%d AND token=%s AND ((a.seek/a.end)*100) is null ORDER BY CAST(percent as DECIMAL(10,5)) DESC", $post->ID, $token);
+				$sql = $wpdb->prepare("SELECT a.*, ((a.seek/a.end)*100) as percent, b.* FROM $watchtable as a INNER JOIN $videotable as b ON (a.domain_id=b.domain_id AND a.dimensions_id=b.dimensions_id) where assessment_id=%d AND token=%s AND ((a.seek/a.end)*100) is null ORDER BY CAST(percent as DECIMAL(10,5)) DESC", $post->ID, $token);
 				$data_rslts = $wpdb->get_results($sql);
 				break;
 			default:

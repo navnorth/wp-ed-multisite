@@ -429,7 +429,7 @@
 		<script type="text/javascript">
 			ga('send', 'pageview', {
 			  'page': '<?php echo $_SERVER["REQUEST_URI"];?>',
-			  'title': 'Analysis Result'
+			  'title': 'Video Playlist'
 			});
 		</script>
 		<?php

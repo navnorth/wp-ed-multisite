@@ -51,7 +51,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 	}
 	?>
 	<div class="col-md-8 col-sm-12 col-xs-12 video-playlist-result leftpad">
-		 <h3><?php echo get_the_title($post->ID); ?></h3>
+		 <h3><?php echo get_the_title($post->ID) . ": " . "Your Custom Video Playlist"; ?></h3>
           <?php
 			  if(isset($alert_message) && !empty($alert_message))
 				 {

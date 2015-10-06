@@ -552,6 +552,9 @@ background: -ms-linear-gradient(top, #7db9e8 0%,#0062b2 0%,#00529f 100%) !import
 background: linear-gradient(to bottom, #7db9e8 0%,#0062b2 0%,#00529f 100%) !important; /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#00529f',GradientType=0 ) !important;
 }
+.gat_button:focus, .gat_button_start:focus, .gat_button_continue:focus {
+    border-color:#7692F8;
+}
 /**
  * ------------------------------------------------------------------
  * GAT User Information Modal

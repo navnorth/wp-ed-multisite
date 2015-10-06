@@ -68,7 +68,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 			<div id="player" data-resultedid=''></div>
             <!--<div class="unclickablevideo" style="display: block;" title="Play from Playlist"></div>-->
          </div>
-		 <ul class="gat_domainsbmt_btn">
+		 <!--<ul class="gat_domainsbmt_btn">
 			<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_button">Back to Home</a></li>
 			<li>
             	<?php
@@ -83,9 +83,10 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
                 </form>
             </li>
 			<li><a href="<?php echo get_permalink($post->ID); ?>?action=analysis-result" class="btn btn-default gat_button">Get Results</a></li>
-		  </ul>
+		  </ul>-->
 	</div>
-        <div class="col-md-4 col-sm-12 col-xs-12 gat-video-sidebar">
+        <div class="col-md-4 col-sm-12 col-xs-12 gat-video-list">
+		<div class="gat-video-sidebar">
             <div class="gat_priority_form">
 			<form method="get" action="<?php echo get_permalink($post->ID); ?>?action=video-playlist&sortby=" id="gat_priorityfrm">
 				<div class="gat_priority_form_label"><label>Videos:</label></div>
@@ -299,4 +300,18 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 				}
 			?>
 		 </ul>
+		 <div class="email-list"><?php
+					$response = PLUGIN_PREFIX . "response";
+					$sql = $wpdb->prepare("select email from $response where assessment_id = %d AND token = %s", $post->ID, $token);
+					$result = $wpdb->get_row($sql);
+				?>
+            	<form method="post">
+                	<input type="hidden" name="email" value="<?php echo $result->email; ?>" />
+                	<input type="hidden" name="assessment_id" value="<?php echo $post->ID; ?>" />
+                	<input type="submit" class="btn btn-default gat_button gat_email_results_button" name="email_results" value="Email My Playlist" />
+                </form></div><div class="clear"></div>
+		 </div>
+		 <div class="browse-library center">
+			<a href="<?php echo get_permalink($post->ID); ?>?action=full-video-library" class="btn btn-default gat_button gat_button_browse_library">Browse Full Video Library</a>
+		 </div><div class="clear"></div>
 	</div>

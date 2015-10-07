@@ -606,7 +606,7 @@
 	else
 	{
 	    $permalink = get_permalink(); ?>
-	<div class="col-md-9 col-sm-12 col-xs-12 leftpad">
+	<div id="content" class="col-md-9 col-sm-12 col-xs-12 leftpad">
 	    <div class="col-md-12 pblctn_paramtr leftpad">
 			<h3><?php echo get_the_title($post->ID); ?></h3>
 	    </div>

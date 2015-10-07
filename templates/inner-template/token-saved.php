@@ -46,7 +46,7 @@
     $dimensions = get_alldimension_domainid($domain->ID);
     $rating_scale = get_post_meta($post->ID, "rating_scale", TRUE); ?>
 
-<form method="post" id="assessment_data">
+<form id="content" method="post" id="assessment_data">
     <input type="hidden" name="assessment_id" value="<?php echo $post->ID; ?>" />
     <input type="hidden" name="domain_id" value="<?php echo $domain->ID; ?>" />
     <input type="hidden" name="token" value="<?php echo htmlspecialchars($_COOKIE['GAT_token']); ?>" />

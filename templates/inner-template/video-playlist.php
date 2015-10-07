@@ -224,6 +224,11 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 									jQuery('#player').attr('data-resultedid', currenid );
 									player.loadVideoById(utubeid);
 								});
+								jQuery('.cntrollorbtn').keypress(function(e){
+									var key = e.which;
+									if (key==13)
+										jQuery(this).trigger('click');
+								});
 							});
 						  </script>
 						  ";
@@ -238,14 +243,14 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 						{
 							echo '<li>';
 								echo '<div class="gat_imgcntnr">
-										<span class="cntrollorbtn'.$defaultvideo.'" data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'"><img src="http://img.youtube.com/vi/'.$exists->youtubeid.'/default.jpg" /></span>';
+										<span tabindex="0" class="cntrollorbtn'.$defaultvideo.'" data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'"><img src="http://img.youtube.com/vi/'.$exists->youtubeid.'/default.jpg" /></span>';
 
 								if (!($exists->seek == NULL || $exists->seek == '')){
 									echo '<span class="watched">Watched</span>';
 								}
 								echo '	  </div>';
 								echo '<div class="gat_desccntnr">';
-									echo '<span class="video-title cntrollorbtn" data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'">'.ucwords(stripslashes($data_rslt->label)).'</span>';
+									echo '<span  tabindex="0" class="video-title cntrollorbtn" data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'">'.ucwords(stripslashes($data_rslt->label)).'</span>';
 									echo '<span class="video-domain-title"> - '.ucwords(stripslashes(get_the_title($exists->domain_id))).' </span>';
 								echo '</div>';
 								/*echo '<div class="gat_videodetails" style="display:none;>';
@@ -308,10 +313,10 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
             	<form method="post">
                 	<input type="hidden" name="email" value="<?php echo $result->email; ?>" />
                 	<input type="hidden" name="assessment_id" value="<?php echo $post->ID; ?>" />
-                	<input type="submit" class="btn btn-default gat_button gat_email_results_button" name="email_results" value="Email My Playlist" />
+                	<input type="submit" tabindex="0" class="btn btn-default gat_button gat_email_results_button" name="email_results" value="Email My Playlist" />
                 </form></div><div class="clear"></div>
 		 </div>
 		 <div class="browse-library center">
-			<a href="<?php echo get_permalink($post->ID); ?>?action=full-video-library" class="btn btn-default gat_button gat_button_browse_library">Browse Full Video Library</a>
+			<a href="<?php echo get_permalink($post->ID); ?>?action=full-video-library" tabindex="0" class="btn btn-default gat_button gat_button_browse_library">Browse Full Video Library</a>
 		 </div><div class="clear"></div>
 	</div>

@@ -423,7 +423,7 @@
 	{
 		if(isset($_REQUEST['token']) && !empty($_REQUEST['token']))
 		{
-			echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=analysis-result"</script>';
+			echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=video-playlist"</script>';
 		}
 		?>
 		<script type="text/javascript">

@@ -54,8 +54,15 @@ var inquire
 
 	    if (path)
 		cookie.push('path=' + path)
-	    console.log(cookie.join('; '))
+	    /*console.log(cookie.join('; '))*/
 	    document.cookie = cookie.join('; ')
+	}
+	
+	/**
+	 * Delete Cookie
+	 **/
+	this.del = function(name) {
+	    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 	}
     }
     /**
@@ -183,6 +190,7 @@ var inquire
 				    reply = jQuery.parseJSON(reply)
 
 				    if ('success' == reply.status) {
+					var user_email = email.val();
 					email = email.val().split('@')
 
 					var e = '';
@@ -198,6 +206,17 @@ var inquire
 			    
 					var domain = '.' + window.location.host
 					cookie.set('GAT-inquire-user-information', '0', 1, domain, path)
+					
+					if (jQuery('#email_playlist_form').find('input#email').length) {
+					     jQuery('#email_playlist_form').find('input#email').val(user_email);
+					}
+					
+					 if (cookie.get('GAT-late-email-set')=="1") {
+					    cookie.del('GAT-late-email-set');
+					    cookie.set('GAT-late-email-set', '0', 1, domain, path);
+					    /*jQuery('#email_playlist_form').find('input#email').val(user_email);*/
+					    jQuery('#email_playlist_form .gat_email_results_button').trigger('click');
+					}
 				    }
 				} catch(e) {
 
@@ -225,6 +244,25 @@ var inquire
 	jQuery('#gat-user-info-form').submit(function(){
 	    jQuery('#gat-user-info-modal #submit-gat-user-info').trigger("click");
 	    return false;
+	});
+	
+	/**
+	 * Email My Playlist button handler
+	 **/
+	jQuery('#email_playlist_form').submit(function(){
+	    var path = window.location.pathname
+	    var len = path.length
+
+	    if (path.substr(len - 1, len) == '/')
+		path = path.substr(0, len - 1)
+
+	    var domain = '.' + window.location.host;
+	    var email = jQuery(this).find('input#email');
+	    
+	    if (email.val()=="") {
+		cookie.set('GAT-inquire-user-information', '1', 1, domain, path);
+		cookie.set('GAT-late-email-set', '1', 1, domain, path);
+	    }
 	});
     })
 /**

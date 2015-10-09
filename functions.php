@@ -926,7 +926,7 @@ function email_results($_params, $data_results, $token){
 			$i++;
 		}
 	}
-
+	
 	$to = $email;
 
 	$from = "Ed.Tech@ed.gov";
@@ -951,8 +951,9 @@ function email_results($_params, $data_results, $token){
 	if(wp_mail( $to, $subject, $message, $headers ))
 	{
 		$alert_message = 'Your assessment result sent';
-	}
+	} 
 	remove_filter( 'wp_mail_content_type', 'set_html_content_type' );
+	
 	return $alert_message;
 }
 ?>

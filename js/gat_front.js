@@ -473,6 +473,9 @@ jQuery(document).ready(function(e) {
 		},10);
 	    }
 	});
+	
+	/* Analysis Result Bar Graph Hover Effect */
+	jQuery('[data-toggle="tooltip"]').tooltip({trigger:'hover focus', html:true});
     
 });
 

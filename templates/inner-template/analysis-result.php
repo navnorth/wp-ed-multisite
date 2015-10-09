@@ -94,7 +94,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 									$dmnsn_percent = round(100/$total_dmnsn*($rating/$max_rating), 2)-.02;
 									$x++;
 									$barClass = $x===count($dimensions) ? 'bar-last' : 'bar';
-									echo '<li class="'.$barClass.'" style="width:'.$dmnsn_percent.'%;"><a href="'.get_permalink().'?action=token-saved&list='.$i.'#gat'.$x.'" title="'.$dimension->title.$title_alt.'">&nbsp;</a></li>';
+									echo '<li class="'.$barClass.'" style="width:'.$dmnsn_percent.'%;"><a href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom" title="<h4>'.$dimension->title.'</h4><p>'.$dimension->description.'</p>">&nbsp;</a></li>';
 									if ($x>=$half_total)
 										$n++;
 									else{

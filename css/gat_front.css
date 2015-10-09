@@ -563,6 +563,24 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
 .gat-video-list { padding:0 !important; }
 .browse-library { text-align:center; }
 .gat_button_browse_library { float:none; }
+
+/** Tooltip styles **/
+.tooltip > .tooltip-inner {
+    background-color: #ffffff; 
+    color: #000000; 
+    border: 1px solid #cccccc;
+    padding: 15px;
+    font-family: 'CharisSILR' !important;
+    max-width:350px;
+    text-align:left;
+    opacity:1;
+}
+.tooltip > .tooltip-inner h4 { font-size:20px;font-weight:bold; }
+.tooltip > .tooltip-inner p { font-size:13px; }
+/* Tooltip on bottom */
+.tooltip.bottom > .tooltip-arrow {
+    border-bottom: 5px solid #cccccc;
+}
 /**
  * ------------------------------------------------------------------
  * GAT User Information Modal

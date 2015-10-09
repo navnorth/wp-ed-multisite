@@ -109,7 +109,7 @@
 		    endif;
 		} ?>
 	    <li tabindex="0" onclick="select_rating(this)" class="rating_scaleli <?php echo $licls;?>" data-rating="<?php echo $j;?>">
-		<input type="radio" name="rating_<?php echo $dimension->id; ?>[]" value="<?php echo $scale_slctd; ?>" <?php if ($j==$scale_slctd): ?>checked="true"<?php endif; ?> />
+		<input tabindex="-1" type="radio" name="rating_<?php echo $dimension->id; ?>[]" value="<?php echo $scale_slctd; ?>" <?php if ($j==$scale_slctd): ?>checked="true"<?php endif; ?> />
 		    <?php echo $scale->post_title; ?>
 		    <div class="rating_scale_description">
 			<?php //echo $scale->post_content; ?>

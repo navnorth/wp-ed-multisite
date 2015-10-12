@@ -50,7 +50,8 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 		$alert_message = email_results($_POST, $data_rslts, $token);
 	}
 	?>
-	<div id="content" class="col-md-8 col-sm-12 col-xs-12 video-playlist-result leftpad">
+	<a id="content" tabindex="0"></a>
+	<div class="col-md-8 col-sm-12 col-xs-12 video-playlist-result leftpad">
 		 <h3><?php echo get_the_title($post->ID) . ": " . "Your Custom Video Playlist"; ?></h3>
           <?php
 			  if(isset($alert_message) && !empty($alert_message))

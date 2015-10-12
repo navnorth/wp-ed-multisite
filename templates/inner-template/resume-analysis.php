@@ -5,8 +5,8 @@
     // get progress, to display continue or results button
     $assess_data = get_GAT_response($post->ID, htmlspecialchars($_COOKIE['GAT_token']));
 ?>
-
-<div id="content" class="col-md-9 col-sm-12 col-xs-12">
+<a id="content" tabindex="0"></a>
+<div class="col-md-9 col-sm-12 col-xs-12">
     <h3><?php echo get_the_title($post->ID); ?></h3>
 
     <div class="gat_moreContent">

@@ -439,6 +439,31 @@
 	 * Video Playlist View
 	 * @code end
 	 */
+	
+	/**
+	 * Full Video Library View
+	 * @code begin
+	 */
+	if(isset($_GET['action']) && !empty($_GET['action']) && $_GET['action'] == 'full-video-library')
+	{
+		if(isset($_REQUEST['token']) && !empty($_REQUEST['token']))
+		{
+			echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'?action=full-video-library"</script>';
+		}
+		?>
+		<script type="text/javascript">
+			ga('send', 'pageview', {
+			  'page': '<?php echo $_SERVER["REQUEST_URI"];?>',
+			  'title': 'Full Video Library'
+			});
+		</script>
+		<?php
+		include_once( GAT_PATH ."/templates/inner-template/full-video-library.php" );
+	}
+	/**
+	 * Full Video Library View
+	 * @code end
+	 */
 
 	/**
 	 * Resume Analysis View

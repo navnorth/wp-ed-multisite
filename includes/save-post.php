@@ -98,6 +98,7 @@ function gat_assessment_save()
 	update_post_meta($post->ID, "assessment_featurevideo", $assessment_featurevideo);
 	update_post_meta($post->ID, "result_content", $result_content);
 	update_post_meta($post->ID, "playlist_content", $playlist_content);
+	update_post_meta($post->ID, "full_library_content", $full_library_content);
 	update_post_meta($post->ID, "rating_scale", $rating_scale);
 }
 //save metabox for rating

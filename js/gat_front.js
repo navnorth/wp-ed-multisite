@@ -463,14 +463,16 @@ jQuery(document).ready(function(e) {
 	    topPadding = 15;
 
 	$window.scroll(function() {
-	    if ($window.scrollTop() > offset.top) {
-		$sidebar.stop().animate({
-		    marginTop: $window.scrollTop() - offset.top + topPadding
-		},0);
-	    } else {
-		$sidebar.stop().animate({
-		    marginTop: 0
-		},10);
+	    if ($sidebar.length>0) {
+		if ($window.scrollTop() > offset.top) {
+		    $sidebar.stop().animate({
+			marginTop: $window.scrollTop() - offset.top + topPadding
+		    },0);
+		} else {
+		    $sidebar.stop().animate({
+			marginTop: 0
+		    },10);
+		}
 	    }
 	});
 	

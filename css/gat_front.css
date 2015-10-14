@@ -598,7 +598,28 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
  * ------------------------------------------------------------------
  * GAT User Information Modal
  */
-
+/**
+ * ------------------------------------------------------------------
+ * GAT Full Video Library - Begin
+ */
+.full-video-library { padding:0 !important; }
+.gat-library-videos {
+    white-space: nowrap;
+    border: 1px solid #cccccc;
+    overflow: auto;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    padding:10px 0;
+}
+.gat-library-videos ul { list-style:none; padding:0; margin:0; }
+.gat-library-videos ul li { display:inline-block;margin:0 10px; }
+.gat-library-videos p { margin:auto 10px; }
+.vlist h4 { margin:20px 0 5px; }
+.gat-library-videos .video-link { display:block;position:relative; }
+/**
+ * ------------------------------------------------------------------
+ * GAT Full Video Library - End
+ */
 @media screen and (max-width: 724px) {
 .form-group label {
     text-align: left;

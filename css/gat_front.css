@@ -455,7 +455,8 @@ ul.gat_indicatorlights {
     width: 60%;
     float: left;
     margin-left: 10px;
-    height: 40px;
+    margin-top: -4px;
+    /*height: 40px;*/
     /*overflow: hidden;*/
 }
 .gat_reslt_listvideos .video-title {
@@ -479,6 +480,10 @@ ul.gat_indicatorlights {
     font-size: 20px;
     margin: 0 15px;
 	cursor: pointer;
+}
+.gat_vid_thumbnail {
+  width:120px;
+  border: 1px solid #00529f;
 }
 .loadvideo
 {
@@ -651,16 +656,22 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
 .gat_domain_rating_scale li input[type=radio] { display:inline; }
 }
 @media screen and (max-width: 991px) {
-.analysis_result .gat_player_videos {
-    width: 100%;
-}
-.gat_player_videos.loadvideo iframe {
-    width: 100%;
-}
-.analysis_result .gat_reslt_listvideos {
-    height: auto;
-    width: 100%;
-}
+  .analysis_result .gat_player_videos {
+      width: 100%;
+  }
+  .gat_player_videos.loadvideo iframe {
+      width: 100%;
+  }
+  .analysis_result .gat_reslt_listvideos {
+      height: auto;
+      width: 100%;
+  }
+  .gat_reslt_listvideos .video-title {
+    font-size: 16px !important;
+  }
+  .gat_reslt_listvideos .video-domain-title {
+    font-size: 14px !important;
+  }
 }
 
 .form-control {
@@ -701,23 +712,33 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
     padding: 0 5px 5px;
 }
 @media screen and (max-width: 1199px) {
-.gat_domainsbmt_btn > li {
+  .gat_domainsbmt_btn > li {
     width: 32%;
-}
-.analysis_result .gat_reslt_listvideos {
+  }
+  .analysis_result .gat_reslt_listvideos {
     height: auto;
     width: 100%;
-}
-.gat_player_videos iframe#player {
+  }
+  .gat_player_videos iframe#player {
     width:100%;
-}
+  }
   .gat_priority_form_label {
     width:60px;
   }
   .gat_priority_form_selector {
     width: 225px;
   }
+  .gat_vid_thumbnail {
+    width:100px;
+  }
+  .gat_reslt_listvideos .video-title {
+    font-size: 13px;
+  }
+  .gat_reslt_listvideos .video-domain-title {
+    font-size: 12px;
+  }
 }
+
 @media screen and (max-width: 600px) {
     .gat_domainsbmt_btn > li {
 	text-align: center !important;

@@ -244,7 +244,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 						{
 							echo '<li>';
 								echo '<div class="gat_imgcntnr">
-										<span tabindex="0" class="cntrollorbtn'.$defaultvideo.'" data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'"><img src="http://img.youtube.com/vi/'.$exists->youtubeid.'/default.jpg" /></span>';
+										<span tabindex="0" class="cntrollorbtn'.$defaultvideo.'" data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'"><img src="http://img.youtube.com/vi/'.$exists->youtubeid.'/mqdefault.jpg" class="gat_vid_thumbnail" /></span>';
 
 								if (!($exists->seek == NULL || $exists->seek == '')){
 									echo '<span class="watched">Watched</span>';
@@ -291,7 +291,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 							$lastid = $wpdb->insert_id;
 							echo '<li>';
 								echo '<div class="gat_imgcntnr">
-										<img src="http://img.youtube.com/vi/'.$data_rslt->youtubeid.'/default.jpg" />
+										<img src="http://img.youtube.com/vi/'.$data_rslt->youtubeid.'/mqdefault.jpg" class="gat_vid_thumbnail"/>
 									  </div>';
 								echo '<div class="gat_desccntnr">';
 									echo '<span class="video-title">'.ucwords(stripslashes($data_rslt->label)).'</span>';

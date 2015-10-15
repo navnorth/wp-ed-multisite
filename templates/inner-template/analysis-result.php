@@ -46,7 +46,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 	?>
 	<a id="content" tabindex="0"></a>
 	<div class="col-md-9 col-sm-12 col-xs-12 analysis_result leftpad">
-		 <h3><?php echo get_the_title($post->ID); ?></h3>
+		 <h3><?php echo get_the_title($post->ID); ?>: Assessment Summary</h3>
           <?php
 			  if(isset($alert_message) && !empty($alert_message))
 				 {

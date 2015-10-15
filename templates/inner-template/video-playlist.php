@@ -314,7 +314,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
             	<form id="email_playlist_form" method="post">
                 	<input type="hidden" id="email" name="email" value="<?php echo $result->email; ?>" />
                 	<input type="hidden" id="assessment_id" name="assessment_id" value="<?php echo $post->ID; ?>" />
-                	<input type="submit" tabindex="0" class="btn btn-default gat_button gat_email_results_button" name="email_results" value="Email My Playlist" />
+                	<input type="submit" tabindex="0" id="gat_email_results_playlist_link" class="btn btn-default gat_button gat_email_results_button" name="email_results" value="Email My Playlist" />
                 </form></div><div class="clear"></div>
 		 </div>
 		 <div class="browse-library center">

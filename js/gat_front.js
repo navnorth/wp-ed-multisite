@@ -57,7 +57,7 @@ var inquire
 	    /*console.log(cookie.join('; '))*/
 	    document.cookie = cookie.join('; ')
 	}
-	
+
 	/**
 	 * Delete Cookie
 	 **/
@@ -117,7 +117,7 @@ var inquire
 		jQuery('#gat-user-info-modal').modal('show')
 	    }
 	}
-	    
+
 	/**
 	 * Hidden GAT User Information Modal Event Handler
 	 * Description
@@ -190,33 +190,33 @@ var inquire
 				    reply = jQuery.parseJSON(reply)
 
 				    if ('success' == reply.status) {
-					var user_email = email.val();
-					email = email.val().split('@')
+						var user_email = email.val();
+						email = email.val().split('@')
 
-					var e = '';
-					for(var i = 0; i < email[0].length; i++)
-					    e = e + (i == 0 ? email[0].charAt(0) : '*')
+						var e = '';
+						for(var i = 0; i < email[0].length; i++)
+						    e = e + (i == 0 ? email[0].charAt(0) : '*')
 
-					jQuery('.gat-user-email').html(e + '@' + email[1])
-					var path = window.location.pathname
-					var len = path.length
-			    
-					if (path.substr(len - 1, len) == '/')
-					    path = path.substr(0, len - 1)
-			    
-					var domain = '.' + window.location.host
-					cookie.set('GAT-inquire-user-information', '0', 1, domain, path)
-					
-					if (jQuery('#email_playlist_form').find('input#email').length) {
-					     jQuery('#email_playlist_form').find('input#email').val(user_email);
-					}
-					
-					 if (cookie.get('GAT-late-email-set')=="1") {
-					    cookie.del('GAT-late-email-set');
-					    cookie.set('GAT-late-email-set', '0', 1, domain, path);
-					    /*jQuery('#email_playlist_form').find('input#email').val(user_email);*/
-					    jQuery('#email_playlist_form .gat_email_results_button').trigger('click');
-					}
+						jQuery('.gat-user-email').html(e + '@' + email[1])
+						var path = window.location.pathname
+						var len = path.length
+
+						if (path.substr(len - 1, len) == '/')
+						    path = path.substr(0, len - 1)
+
+						var domain = '.' + window.location.host
+						cookie.set('GAT-inquire-user-information', '0', 1, domain, path)
+
+						if (jQuery('#email_playlist_form').find('input#email').length) {
+						     jQuery('#email_playlist_form').find('input#email').val(user_email);
+						}
+
+						if (cookie.get('GAT-late-email-set')=="1") {
+						    cookie.del('GAT-late-email-set');
+						    cookie.set('GAT-late-email-set', '0', 1, domain, path);
+						    /*jQuery('#email_playlist_form').find('input#email').val(user_email);*/
+						    jQuery('#email_playlist_form .gat_email_results_button').trigger('click');
+						}
 				    }
 				} catch(e) {
 
@@ -245,7 +245,7 @@ var inquire
 	    jQuery('#gat-user-info-modal #submit-gat-user-info').trigger("click");
 	    return false;
 	});
-	
+
 	/**
 	 * Email My Playlist button handler
 	 **/
@@ -254,14 +254,14 @@ var inquire
 	    var len = path.length
 
 	    if (path.substr(len - 1, len) == '/')
-		path = path.substr(0, len - 1)
+			path = path.substr(0, len - 1)
 
 	    var domain = '.' + window.location.host;
 	    var email = jQuery(this).find('input#email');
-	    
+
 	    if (email.val()=="") {
-		cookie.set('GAT-inquire-user-information', '1', 1, domain, path);
-		cookie.set('GAT-late-email-set', '1', 1, domain, path);
+			cookie.set('GAT-inquire-user-information', '1', 1, domain, path);
+			cookie.set('GAT-late-email-set', '1', 1, domain, path);
 	    }
 	});
     })
@@ -455,9 +455,9 @@ jQuery(document).ready(function(e) {
 		return false;
 	    }
 	});
-	
+
 	/* Sticky Progress Box */
-	var $sidebar   = jQuery("#progress-box"), 
+	var $sidebar   = jQuery("#progress-box"),
 	    $window    = jQuery(window),
 	    offset     = $sidebar.offset(),
 	    topPadding = 15;
@@ -475,10 +475,10 @@ jQuery(document).ready(function(e) {
 		}
 	    }
 	});
-	
+
 	/* Analysis Result Bar Graph Hover Effect */
 	jQuery('[data-toggle="tooltip"]').tooltip({trigger:'hover focus', html:true});
-    
+
 });
 
 function add_focus(ref)

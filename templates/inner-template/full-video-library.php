@@ -10,7 +10,7 @@
 <div class="col-md-12 col-sm-12 col-xs-12 full-video-library">
     <h3><?php echo get_the_title($post->ID) . ": " . "Full Video Library"; ?></h3>
     <div class="gat_content">
-        <?php 
+        <?php
             $content = get_post_meta($post->ID, "full_library_content", true);
 	    echo '<p>' . $content . '</p>';
         ?>
@@ -146,7 +146,7 @@
             $domainids = get_domainid_by_assementid($post->ID);
             foreach($domainids as $domainid){
                 $domain = get_post($domainid);
-		
+
 		//Get Videos per domain
 		$sql = $wpdb->prepare("SELECT a.* FROM $videotable as a
 				      INNER JOIN $dimensionstable as b
@@ -201,7 +201,7 @@
 			} else {
 			    ?>
 			    <p>No Videos Available!</p>
-			    <?php 
+			    <?php
 			}
 		    ?>
 		    </div>
@@ -210,4 +210,9 @@
             }
         ?>
     </div>
+
+    <ul class="gat_domainsbmt_btn">
+		<li><a href="<?php echo get_permalink($post->ID); ?>?action=video-playlist" class="btn btn-default gat_button">Get Your Custom Video Playlist</a></li>
+	</ul>
+
 </div>

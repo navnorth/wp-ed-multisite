@@ -410,7 +410,7 @@ ul.gat_indicatorlights {
    display:inline-block;
    width: 255px;
    height: 34px;
-   background: url(http://cdn.bavotasan.com/wp-content/uploads/2011/05/down_arrow_select.jpg) no-repeat right #ccc;
+   background: url(../images/down_arrow_select.jpg) no-repeat right #ccc;
    border: 1px solid #4b4e53;
 }
 .gat_priority_form_selector select {
@@ -523,7 +523,7 @@ ul.gat_indicatorlights {
 
 .clear { clear:both; }
 /*my*/
-.gat_button, .gat_button_start, .gat_button_continue, .gat_button_saveinfo  {
+.gat_button, .gat_button_start, .gat_button_continue, .gat_button_saveinfo, .gat_button_return  {
 background: #00529f !important;
 background: -moz-linear-gradient(top, #00529f 0%, #0062b2 100%, #7db9e8 100%) !important;
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00529f), color-stop(100%,#0062b2), color-stop(100%,#7db9e8)) !important; /* Chrome,Safari4+ */
@@ -537,13 +537,13 @@ color:#fff !important;
 font-family: "Raleway-Regular";
 float: right;
 }
-.gat_button_start, .gat_button_continue, .gat_button_saveinfo {
-    width: 150px;
+.gat_button_start, .gat_button_continue, .gat_button_saveinfo, .gat_button_return {
+    width: 165px;
 }
 .gat_button_saveinfo { float:none; width: 165px; }
 .gat_saveinfo { text-align: center; margin: 10px 0px;}
-.gat_button:hover, .gat_button_start:hover, .gat_button_continue:hover, .gat_button_saveinfo:hover,
-.gat_button:focus, .gat_button_start:focus, .gat_button_continue:focus, .gat_button_saveinfo:hover {
+.gat_button:hover, .gat_button_start:hover, .gat_button_continue:hover, .gat_button_saveinfo:hover, .gat_button_return:hover,
+.gat_button:focus, .gat_button_start:focus, .gat_button_continue:focus, .gat_button_saveinfo:focus, .gat_button_return:focus {
 background: #7db9e8 !important; /* Old browsers */
 background: -moz-linear-gradient(top, #7db9e8 0%, #0062b2 0%, #00529f 100%) !important; /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7db9e8), color-stop(0%,#0062b2), color-stop(100%,#00529f)) !important; /* Chrome,Safari4+ */
@@ -553,21 +553,24 @@ background: -ms-linear-gradient(top, #7db9e8 0%,#0062b2 0%,#00529f 100%) !import
 background: linear-gradient(to bottom, #7db9e8 0%,#0062b2 0%,#00529f 100%) !important; /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#00529f',GradientType=0 ) !important;
 }
-.gat_button:focus, .gat_button_start:focus, .gat_button_continue:focus {
+.gat_button:focus, .gat_button_start:focus, .gat_button_continue:focus, .gat_button_return:focus {
     border-color:#7692F8;
 }
-.gat_email_results_button {
+#gat_email_results_playlist_link {
     width: 100%;
     border-radius: 0 !important;
 }
+
 .gat-video-list { padding:0 !important; }
 .browse-library { text-align:center; }
 .gat_button_browse_library { float:none; }
+#gat_return_label { color: #4b4e53; font-family: 'Raleway-Light'; margin-bottom:6px; padding-top:18px; }
+
 
 /** Tooltip styles **/
 .tooltip > .tooltip-inner {
-    background-color: #ffffff; 
-    color: #000000; 
+    background-color: #ffffff;
+    color: #000000;
     border: 1px solid #cccccc;
     padding: 15px;
     font-family: 'CharisSILR' !important;

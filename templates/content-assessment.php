@@ -300,10 +300,10 @@
 			var cookie = new Cookie();
 			var path = window.location.pathname
 			var len = path.length
-	    
+
 			if (path.substr(len - 1, len) == "/")
 			    path = path.substr(0, len - 1)
-	    
+
 			var domain = "." + window.location.host
 			cookie.set("GAT-inquire-user-information", "0", 1, domain, path);
 			window.location = "'.get_permalink($post->ID).'?action=resume-analysis"
@@ -439,7 +439,7 @@
 	 * Video Playlist View
 	 * @code end
 	 */
-	
+
 	/**
 	 * Full Video Library View
 	 * @code begin
@@ -655,12 +655,13 @@
 		</div>
 	   </div>
 	   <div>
-		<a class="btn btn-default gat_button_start" href="<?php echo $permalink . "?action=token-saved&list=1"; ?>" role="button">
+		<a class="btn btn-default gat_button_start" href="<?php echo $permalink . "?action=token-saved&list=1"; ?>" role="button" title="Start Analysis">
 		    Start
 		</a>
 	   </div>
 	   <div>
-		<a class="btn btn-default gat_button" href="<?php echo $permalink . "?action=restart_token"; ?>" role="button">
+	   	<div id="gat_return_label">Already have a playlist?</div>
+		<a class="btn btn-default gat_button_return" href="<?php echo $permalink . "?action=restart_token"; ?>" role="button" title="Enter an Access Code">
 		    Enter an Access Code
 		</a>
 	   </div>

@@ -115,8 +115,7 @@
 	display:inline;
 	border-left: 1px solid #ccc;
 	font-size: 14px;
-	padding: 3px 20px;
-	height: 75px;
+	padding: 3px 20px 6px 20px;
 	overflow: hidden;
 	text-align:center;
 }
@@ -124,6 +123,8 @@
 .question-error, .red-text { color:#ff0000; margin:5px 0 0; }
 .gat_dimension_header {
   margin-bottom: 5px;
+  font-family: "Raleway-Bold" !important;
+  color: #e57200;
 }
 .gat_dimension_desc {
   margin:10px 15px 0 15px;
@@ -641,9 +642,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
     width: 100% !important;
 }
 }
-@media screen and (max-width: 750px){
+@media screen and (max-width: 767px){
 .gat_domain_rating_scale li {
     font-size: 14px;
+    height: 75px;
 }
 }
 @media screen and (max-width: 554px) {

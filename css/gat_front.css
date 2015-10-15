@@ -616,10 +616,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
     padding:10px 0;
 }
 .gat-library-videos ul { list-style:none; padding:0; margin:0; }
-.gat-library-videos ul li { display:inline-block;margin:0 10px; }
+.gat-library-videos ul li { display:inline-block;margin:0 10px; white-space: normal; vertical-align: top; }
 .gat-library-videos p { margin:auto 10px; }
 .vlist h4 { margin:20px 0 5px; }
 .gat-library-videos .video-link { display:block;position:relative; }
+.gat-library-videos .gat-video-title { max-width:240px; }
 /**
  * ------------------------------------------------------------------
  * GAT Full Video Library - End

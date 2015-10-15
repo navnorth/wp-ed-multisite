@@ -192,6 +192,7 @@
 						  }
 					    ?>
 					</a>
+					<div class="gat-video-title"><strong><?php echo stripslashes($video->label); ?></strong></div>
 				    </div>
 				</li>
 				<?php } ?>

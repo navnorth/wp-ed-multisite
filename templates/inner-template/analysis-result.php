@@ -128,10 +128,10 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 					$sql = $wpdb->prepare("select email from $response where assessment_id = %d AND token = %s", $post->ID, $token);
 					$result = $wpdb->get_row($sql);
 				?>
-            	<form method="post">
-                	<input type="hidden" name="email" value="<?php echo $result->email; ?>" />
-                	<input type="hidden" name="assessment_id" value="<?php echo $post->ID; ?>" />
-                	<input type="submit" class="btn btn-default gat_button" name="email_results" value="Email Results &amp; Playlist" />
+            	<form id="email_playlist_form" method="post">
+                	<input type="hidden" id="email" name="email" value="<?php echo $result->email; ?>" />
+                	<input type="hidden" id="assessment_id" name="assessment_id" value="<?php echo $post->ID; ?>" />
+                	<input type="submit" class="btn btn-default gat_button gat_email_results_button" name="email_results" value="Email Results &amp; Playlist" />
                 </form>
             </li>
 			<li><a href="<?php echo get_permalink($post->ID); ?>?action=video-playlist" class="btn btn-default gat_button">Get Your Video Playlist</a></li>

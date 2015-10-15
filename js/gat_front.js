@@ -111,7 +111,7 @@ var inquire
 	var querystring = new Querystring()
 	var cookie = new Cookie()
 
-	if (querystring.get('action')=='video-playlist') {
+	if (querystring.get('action')=='video-playlist' || (querystring.get('action')=='analysis-result' && cookie.get('GAT-late-email-set')=="1") ) {
 	    if (cookie.get('GAT-inquire-user-information')=="1") {
 		jQuery('#gat-user-info-modal').data('initiate', 'auto')
 		jQuery('#gat-user-info-modal').modal('show')

@@ -58,7 +58,24 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 				$content = get_post_meta($post->ID, "result_content", true);
 				echo '<p>' . $content . '</p>';
 			?>
-         </div>
+		</div>
+		<div class="gat-result-label">
+			<hr class="gat-top-x-line" />
+			<?php
+				$rating_scale = get_post_meta($post->ID, "rating_scale", TRUE);
+				$scales = get_rating_scale($rating_scale);
+				$i=0;
+				foreach($scales as $scale) {
+					$i++;
+				?>
+				<div class="gat-top-x-vline vline<?php echo $i; ?>">
+					<span>|</span>
+					<?php echo $scale->post_title; ?>
+				</div>
+				<?php
+				}
+			?><div class="clear"></div>
+		</div>
 		<ul class="get_domainlist analysis-result-list">
 		<?php
 		    $domainids = get_domainid_by_assementid($post->ID);

@@ -634,6 +634,45 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
  * ------------------------------------------------------------------
  * GAT Full Video Library - End
  */
+/**
+ * ------------------------------------------------------------------
+ * GAT Analysis Result - Begin
+ */
+.gat-top-x-line {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+.gat-result-label {
+    padding: 0 22px 0 25px;
+    clear:both;
+    margin-bottom:15px;
+}
+.gat-top-x-vline {
+    width:25%;
+    float:left;
+    position: relative;
+    margin-top: -32px;
+}
+.gat-top-x-vline span {
+    color: #000000;
+    display: block;
+}
+.vline1,.vline4{
+    width:10%;
+    text-align:center;
+}
+.vline2,.vline3 {
+    width:40%;
+    text-align:center;
+}
+.vline2 { padding-left:10%; }
+.vline3 { padding-right:10%; }
+/**
+ * ------------------------------------------------------------------
+ * GAT Analysis Result - End
+ */
 @media screen and (max-width: 724px) {
 .form-group label {
     text-align: left;

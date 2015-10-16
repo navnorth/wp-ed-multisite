@@ -5,6 +5,14 @@
 	$watchtable = PLUGIN_PREFIX . "resulted_video";
 	$token = htmlspecialchars($_COOKIE['GAT_token']);
 
+	//
+	$total_dimensions = get_total_dimensioncount($post->ID);
+	$total_rated = get_total_ratedcount($post->ID, $token);
+	
+	if ($total_rated<$total_dimensions){
+		echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'"</script>';
+	}
+	
 	if(isset($_GET["sortby"]) && !empty($_GET["sortby"]))
 	{
 		switch ($_GET["sortby"]) {

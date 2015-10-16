@@ -402,6 +402,16 @@ function get_dimensioncount($domainid)
 	$data = array_keys($data);
 	return  $data[0];
 }
+/*This function get total dimension count for the assessment*/
+function get_total_dimensioncount($assessmentid)
+{
+	global $wpdb;
+	$dimensiontable = PLUGIN_PREFIX . "dimensions";
+	$sql = $wpdb->prepare("SELECT COUNT(*) FROM $dimensiontable where assessment_id=%d", $assessmentid);
+	$data = $wpdb->get_results( $sql, OBJECT_K );
+	$data = array_keys($data);
+	return  $data[0];
+}
 /*This function get video count for domain id*/
 function get_videocount($domainid)
 {
@@ -560,6 +570,18 @@ function get_dimensioncount_domainid($domainid, $token)
 
 	$sql = $wpdb->prepare("SELECT count(*) AS cnt FROM $results_table WHERE domain_id =%d && token=%s &&( rating_scale != NULL
 OR rating_scale != '' )", $domainid, $token);
+	$data = $wpdb->get_results( $sql, OBJECT_K );
+	$data = array_keys($data);
+	return $total_dimension = $data[0];
+}
+/*This function get total number of dimentions where user rated in an assessment */
+function get_total_ratedcount($assessmentid, $token)
+{
+	global $wpdb;
+	$results_table = PLUGIN_PREFIX . "results";
+
+	$sql = $wpdb->prepare("SELECT count(*) AS cnt FROM $results_table WHERE assessment_id =%d && token=%s &&( rating_scale != NULL
+OR rating_scale != '' )", $assessmentid, $token);
 	$data = $wpdb->get_results( $sql, OBJECT_K );
 	$data = array_keys($data);
 	return $total_dimension = $data[0];

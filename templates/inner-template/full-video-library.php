@@ -159,7 +159,7 @@
                 ?>
                 <div class="vlist">
                     <h4><?php echo $domain->post_title; ?></h4>
-		    <div class="gat-library-videos">
+		    <div class="gat-library-videos" tabindex="0">
 		    <?php
 			//Show Videos in a list
 			if (!empty($vid_results)) {
@@ -192,7 +192,7 @@
 						  }
 					    ?>
 					</a>
-					<div class="gat-video-title"><strong><?php echo stripslashes($video->label); ?></strong></div>
+					<div class="gat-video-title"><a class="video-link<?php echo $current; ?>" <?php if (!empty($exists)) { echo 'data-resultedid="'.$exists->id.'"'; } ?> href="<?php echo get_permalink($post->ID); ?>?action=full-video-library&videoId=<?php echo $video->youtubeid; ?>" data-youtubeid="<?php echo $video->youtubeid; ?>"><strong><?php echo stripslashes($video->label); ?></strong></a></div>
 				    </div>
 				</li>
 				<?php } ?>

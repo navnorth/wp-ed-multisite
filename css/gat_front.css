@@ -623,7 +623,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
     overflow-y: hidden;
     overflow-x: scroll;
     padding:10px 0;
+    height:210px;
+    max-height:230px;
 }
+.gat-library-videos:focus { border-color:#00529f; }
 .gat-library-videos ul { list-style:none; padding:0; margin:0; }
 .gat-library-videos ul li { display:inline-block;margin:0 10px; white-space: normal; vertical-align: top; }
 .gat-library-videos p { margin:auto 10px; }
@@ -673,6 +676,32 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
  * ------------------------------------------------------------------
  * GAT Analysis Result - End
  */
+/**
+ * ------------------------------------------------------------------
+ * Scrollbar Styling
+ **/
+.video-list ::-webkit-scrollbar {
+      height: 15px;
+}
+.video-list ::-webkit-scrollbar-track {
+      background-color:#cccccc;
+} /* background color of scroll bar */
+ 
+.video-list ::-webkit-scrollbar-thumb {
+	background-color: #00529f;
+} /* setting the scroll bar color */
+ 
+.video-list ::-webkit-scrollbar-button {
+      background-color: #0C4284;
+} /* color of left and right scroll buttons */
+.video-list {
+     scrollbar-face-color: #00529f;
+     scrollbar-arrow-color: #00529f;
+}
+/**
+ * ------------------------------------------------------------------
+ * End of Scrollbar Styling
+ **/
 @media screen and (max-width: 724px) {
 .form-group label {
     text-align: left;

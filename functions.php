@@ -18,10 +18,14 @@ function gat_back_enqueue_script()
 add_action( 'wp_enqueue_scripts', 'gat_front_enqueue_script' );
 function gat_front_enqueue_script()
 {
+	wp_enqueue_style( 'jscrollpane_style', plugin_dir_url( __FILE__ ).'css/jquery.jscrollpane.css' );
 	wp_enqueue_style( 'gat_front_style', plugin_dir_url( __FILE__ ).'css/gat_front.css' );
 	wp_enqueue_style( 'gat_front_style', plugin_dir_url( __FILE__ ).'css/font-awesome.min.css' );
 
 	wp_enqueue_script( 'jquery' );
+	/* JScroll Pane */
+	wp_enqueue_script( 'jquery_mousewheel_script', plugin_dir_url( __FILE__ ).'js/jquery.mousewheel.js' );
+	wp_enqueue_script( 'jquery_jscrollpane_script', plugin_dir_url( __FILE__ ).'js/jquery.jscrollpane.min.js' );
 	wp_enqueue_script( 'gat_front_script', plugin_dir_url( __FILE__ ).'js/gat_front.js' );
 }
 /*Enqueue youtube script and ajax url on frontend*/

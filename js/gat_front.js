@@ -264,6 +264,13 @@ var inquire
 			cookie.set('GAT-late-email-set', '1', 10, domain, path);
 	    }
 	});
+	
+	/** Activate JScrollPane for non Webkit Browser **/
+	if (jQuery('.gat-library-videos').length>0) {
+	    if (!jQuery.browser.webkit && !jQuery.browser.msie) {
+		jQuery('.gat-library-videos').jScrollPane({showArrows:true});
+	    }
+	}
     })
 /**
  * ------------------------------------------------------------------------

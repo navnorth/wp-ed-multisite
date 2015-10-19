@@ -144,7 +144,7 @@ function GAT_setcookie()
     // Has GAT Token
     if(isset($_COOKIE['GAT_token']) && ! empty($_COOKIE['GAT_token']))
     {
-	$action = array('resume-analysis', 'analysis-result', 'restart_token');
+	$action = array('resume-analysis', 'analysis-result', 'restart_token', 'video-playlist');
 
 	if(isset($_REQUEST['token']) AND empty($_REQUEST['token']) == FALSE AND in_array($_REQUEST['action'], $action))
 	{
@@ -180,7 +180,7 @@ function GAT_setcookie()
     // No GAT Token
     else
     {
-	$action = array('resume-analysis', 'analysis-result', 'restart_token');
+	$action = array('resume-analysis', 'analysis-result', 'restart_token', 'video-playlist');
 
 	if(isset($_REQUEST['token']) AND empty($_REQUEST['token']) == FALSE AND in_array($_REQUEST['action'], $action))
 	{

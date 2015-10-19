@@ -174,6 +174,9 @@ function GAT_setcookie()
 
 		if( ! isset($_COOKIE[GAT_INQUIRE_USER_COOKIE]))
 		    setcookie(GAT_INQUIRE_USER_COOKIE, '1', $time, $path, $host);
+		else
+		    //When GAT-inquire-user-information is set, change it to 0 as not trigger popup info form
+		    setcookie(GAT_INQUIRE_USER_COOKIE, '0', $time, $path, $host);
 	    }
 	}
     }
@@ -205,6 +208,9 @@ function GAT_setcookie()
 	    {
 		$token = htmlspecialchars($_REQUEST['token']);
 		setcookie("GAT_token", $token, time() + 2678400, $path, $host);
+		
+		if( ! isset($_COOKIE[GAT_INQUIRE_USER_COOKIE]))
+		    setcookie(GAT_INQUIRE_USER_COOKIE, '0', $time, $path, $host);
 	    }
 	}
 	// Nothing, not even a token.

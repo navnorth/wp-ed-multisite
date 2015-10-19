@@ -72,7 +72,7 @@
     if(isset($dimensions) && !empty($dimensions))
     {
 	$i=1;
-	
+
 
 	foreach($dimensions as $dimension)
 	{
@@ -127,7 +127,7 @@
     } ?>
 	<ul class="gat_domainsbmt_btn <?php if($list==$domain_count){ echo "gat_twobuttons"; } elseif ($list==3) { echo "gat_thirddomain"; } ?>">
 	    <li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" tabindex="0" class="btn btn-default gat_button">Back to Home</a></li>
-	    <li><?php if ($list==$domain_count) : ?><input type="submit" class="btn btn-default gat_button gat_btn_submit" name="gat_results" value="Get Results" /><?php endif; ?></li>
+	    <li><?php if ($list==$domain_count) : ?><input type="submit" class="btn btn-default gat_button gat_btn_submit" name="gat_results" value="Finish" /><?php endif; ?></li>
 	    <!--<li><input type="submit" class="btn btn-default gat_button" name="gat_videos" value="Get Video Playlist" /></li>-->
 	<?php
 	    if($list < $domain_count): ?>

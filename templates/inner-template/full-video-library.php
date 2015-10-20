@@ -156,7 +156,7 @@
 				      ORDER BY a.dimensions_id",
 				      $post->ID, $domainid);
 		$vid_results = $wpdb->get_results($sql);
-		
+
 		//flag to disable button if there are no videos
 		$disabled = "";
 		if (empty($vid_results)) {
@@ -190,8 +190,8 @@
 					    $current = " current-video";
 					}
 				       ?>
-					<a class="video-link<?php echo $current; ?>" <?php if (!empty($exists)) { echo 'data-resultedid="'.$exists->id.'"'; } ?> href="<?php echo get_permalink($post->ID); ?>?action=full-video-library&videoId=<?php echo $video->youtubeid; ?>" data-youtubeid="<?php echo $video->youtubeid; ?>">
-					   <img src="http://img.youtube.com/vi/<?php echo $video->youtubeid; ?>/mqdefault.jpg" width="240" height="135">
+					<a class="video-link<?php echo $current; ?>" <?php if (!empty($exists)) { echo 'data-resultedid="'.$exists->id.'"'; } ?> href="<?php echo get_permalink($post->ID); ?>?action=full-video-library&videoId=<?php echo $video->youtubeid; ?>" data-youtubeid="<?php echo $video->youtubeid; ?>" title="Watch: <?php echo stripslashes($video->label); ?>">
+					   <img src="http://img.youtube.com/vi/<?php echo $video->youtubeid; ?>/mqdefault.jpg" width="240" height="135" alt="thumbnail: <?php echo stripslashes($video->label); ?>">
 					    <?php
 						if(!empty($exists))
 						  {

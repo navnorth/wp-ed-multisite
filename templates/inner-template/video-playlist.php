@@ -8,11 +8,11 @@
 	//
 	$total_dimensions = get_total_dimensioncount($post->ID);
 	$total_rated = get_total_ratedcount($post->ID, $token);
-	
+
 	if ($total_rated<$total_dimensions){
 		echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'"</script>';
 	}
-	
+
 	if(isset($_GET["sortby"]) && !empty($_GET["sortby"]))
 	{
 		switch ($_GET["sortby"]) {
@@ -252,7 +252,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 						{
 							echo '<li>';
 								echo '<div class="gat_imgcntnr">
-										<span tabindex="0" class="cntrollorbtn'.$defaultvideo.'" data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'"><img src="http://img.youtube.com/vi/'.$exists->youtubeid.'/mqdefault.jpg" class="gat_vid_thumbnail" /></span>';
+										<span tabindex="0" class="cntrollorbtn'.$defaultvideo.'" data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'"><img src="http://img.youtube.com/vi/'.$exists->youtubeid.'/mqdefault.jpg" class="gat_vid_thumbnail" alt="thumbnail: '.ucwords(stripslashes($data_rslt->label)).'" /></span>';
 
 								if (!($exists->seek == NULL || $exists->seek == '')){
 									echo '<span class="watched">Watched</span>';

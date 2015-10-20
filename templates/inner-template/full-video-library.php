@@ -156,11 +156,20 @@
 				      ORDER BY a.dimensions_id",
 				      $post->ID, $domainid);
 		$vid_results = $wpdb->get_results($sql);
+		
+		//flag to disable button if there are no videos
+		$disabled = "";
+		if (empty($vid_results)) {
+		    $disabled = "scroll-disabled";
+		}
                 ?>
                 <div class="vlist">
                     <h4><?php echo $domain->post_title; ?></h4>
-		    <div class="gat-library-videos" tabindex="0">
+		    <div class="scroll-left scroll-disabled"></div>
+		    <div class="gat-library-videos" tabindex="0" data-count="<?php echo count($vid_results); ?>">
 		    <?php
+			?>
+			<?php
 			//Show Videos in a list
 			if (!empty($vid_results)) {
 			    ?>
@@ -205,6 +214,7 @@
 			}
 		    ?>
 		    </div>
+		    <div class="scroll-right <?php echo $disabled ?>"></div>
                 </div>
                 <?php
             }

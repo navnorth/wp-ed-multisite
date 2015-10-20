@@ -271,6 +271,40 @@ var inquire
 		jQuery('.gat-library-videos').jScrollPane({showArrows:true});
 	    }
 	}
+	
+	/** Scroll Navigation Buttons at the left and right portion of the list **/
+	if (jQuery('.video-list').length>0) {
+	    jQuery('.vlist').each(function(){
+		var lstCnt = jQuery(this).find('.gat-library-videos').attr('data-count');
+		if (lstCnt<=4) {
+		    jQuery(this).find('.scroll-right').addClass('scroll-disabled');
+		}
+	    });
+	    
+	    jQuery('.gat-library-videos').scroll(function() {
+		if (jQuery(this).scrollLeft() >  0 ) {
+		    jQuery(this).parent().find('.scroll-left').removeClass('scroll-disabled');
+		} else {
+		    jQuery(this).parent().find('.scroll-left').addClass('scroll-disabled');
+		}
+		
+		if ((jQuery(this).scrollLeft() + jQuery(this).innerWidth()) >= jQuery(this)[0].scrollWidth ) {
+		    jQuery(this).parent().find('.scroll-right').addClass('scroll-disabled');
+		}   else {
+		    if (jQuery(this).parent().find('.scroll-right').hasClass('scroll-disabled')) {
+			jQuery(this).parent().find('.scroll-right').removeClass('scroll-disabled');
+		    }   
+		}
+	    });
+	    
+	    jQuery('.scroll-left').click(function() {
+		
+	    });
+	    
+	    jQuery('.scroll-right').click(function() {
+		
+	    });
+	}
     })
 /**
  * ------------------------------------------------------------------------

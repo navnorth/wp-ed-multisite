@@ -519,7 +519,7 @@ ul.gat_indicatorlights {
     padding:0 !important;
 }
 .gat-video-sidebar .gat_reslt_listvideos {
-    max-height: 475px;
+    max-height: 405px;
     overflow-y: scroll;
     overflow-x: hidden;
     margin-bottom:0;
@@ -719,11 +719,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
 .video-list ::-webkit-scrollbar-track {
       background-color:#cccccc;
 } /* background color of scroll bar */
- 
+
 .video-list ::-webkit-scrollbar-thumb {
 	background-color: #00529f;
 } /* setting the scroll bar color */
- 
+
 .video-list ::-webkit-scrollbar-button {
       background-color: #0C4284;
 } /* color of left and right scroll buttons */

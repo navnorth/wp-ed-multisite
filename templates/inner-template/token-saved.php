@@ -94,6 +94,8 @@
 	    } ?>
 	<input type="hidden" name="dimension_id[]" value="<?php echo $dimension->id; ?>" />
 	<div class="dimension_question">
+    <fieldset><legend><?php echo stripslashes($dimension->title) ?></legend>
+
 	<ul class="gat_domain_rating_scale">
     <?php
 	    $j = 1;
@@ -109,16 +111,17 @@
 		    endif;
 		} ?>
 	    <li tabindex="0" onclick="select_rating(this)" class="rating_scaleli <?php echo $licls;?>" data-rating="<?php echo $j;?>">
-		<input tabindex="-1" type="radio" name="rating_<?php echo $dimension->id; ?>[]" value="<?php echo $scale_slctd; ?>" <?php if ($j==$scale_slctd): ?>checked="true"<?php endif; ?> />
-		    <?php echo $scale->post_title; ?>
-		    <div class="rating_scale_description">
+		<input tabindex="-1" type="radio" name="rating_<?php echo $dimension->id; ?>[]" id="rat_<?php echo $dimension->id.'_'.$j; ?>" value="<?php echo $scale_slctd; ?>" <?php if ($j==$scale_slctd): ?>checked="true"<?php endif; ?> />
+		    <label for="rat_<?php echo $dimension->id.'_'.$j; ?>"><?php echo $scale->post_title; ?></label>
+		    <!-- <div class="rating_scale_description"> -->
 			<?php //echo $scale->post_content; ?>
-		    </div>
+		    <!-- </div> -->
 	    </li>
 	    <?php
 		$j++;
 	    } ?>
-	    </ul>
+    </ul>
+</fieldset>
 	</div>
 	    <!--<div class="gat_scaledescription_cntnr <?php //echo $divcls; ?>"><?php //echo $selected_content; ?></div>-->
 	<?php

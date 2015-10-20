@@ -963,17 +963,17 @@ function email_results($_params, $data_results, $token){
 
 	$from = "Ed.Tech@ed.gov";
 
-	$subject = get_bloginfo('name','raw').' '.get_the_title($assessment_id).' Access Code';
+	$subject = 'Link to your customized '.get_the_title($assessment_id).' playlist';
 
-	$message = '<p>Thank you for participating in the '.get_the_title($assessment_id).' Assessment.  If you would like to return to the Assessment to continue your exploration, update your results, and gauge your progress in implementing promising practices identified in your selected videos, use this Access Code: <a href="'.get_permalink($assessment_id).'?action=resume-analysis&token='.$token.'">'.$token.'</a></p>';
-
-	$message .= '<p>Here is your personalized video playlist based on your self-assessment responses:</p>';
+	$message = '<p>Thank you for participating in the '.get_the_title($assessment_id).' Assessment!  Based on the answers you provided we suggest you start by looking at the following videos:';
 
 	$message .= $assign;
-	$message .= 'View your Custom Video playlist using this Access Code: <a href="'.get_permalink($assessment_id).'?action=video-playlist&token='.$token.'">  '.$token.'</a><br/><br/>';
+	$message .= '<p>To view your entire customized playlist, <a href="'.get_permalink($assessment_id).'?action=video-playlist&token='.$token.'">click this link</a> (or go to '.get_permalink($assessment_id).' and enter this access code: <u>'.$token.'</u>)</p>';
+
+    $message .= '<p>If you would like to return to the questions to continue your exploration or update your results <a href="'.get_permalink($assessment_id).'?action=resume-analysis&token='.$token.'">click this link</a> or go to '.get_permalink($assessment_id).' and enter this access code: <u>'.$token.'</u></p>';
 
 	//Support Text
-	$message .= 'If you have any questions or need to contact us in regards to this assessment tool, please email: <a href="mailto:Ed.Tech@ed.gov">Ed.Tech@ed.gov</a>';
+	$message .= '<p>If you have any questions, please email us at <a href="mailto:tech@ed.gov">tech@ed.gov</a><br /><br />Enjoy!<br /><br />Office of Educational Technology Team<br />United States Department of Education';
 
 	$headers = 'From: Ed Tech <' .$from. ">\r\n" .
 				'Reply-To: ' . $from."\r\n" .

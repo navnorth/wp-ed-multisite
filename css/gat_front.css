@@ -742,6 +742,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
 .form-group .gatfields {
     width: 100% !important;
 }
+.scroll-left { left:-2.5%; }
+.scroll-right { right:-2.5%; }
 }
 @media screen and (max-width: 767px){
 .gat_domain_rating_scale li {

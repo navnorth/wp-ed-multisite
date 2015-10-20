@@ -274,13 +274,17 @@ var inquire
 	
 	/** Scroll Navigation Buttons at the left and right portion of the list **/
 	if (jQuery('.video-list').length>0) {
+	    jQuery(window).resize(function(){
+		jQuery('.gat-library-videos').trigger("scroll");
+	    });
+	    
 	    jQuery('.vlist').each(function(){
-		var lstCnt = jQuery(this).find('.gat-library-videos').attr('data-count');
-		if (lstCnt<=4) {
+		if (jQuery(this).find('.gat-library-videos').innerWidth() >= jQuery(this).find('.gat-library-videos')[0].scrollWidth ) {
 		    jQuery(this).find('.scroll-right').addClass('scroll-disabled');
 		}
 	    });
 	    
+	    /** Enable/Disable Scroll Buttons when using scrollbar **/
 	    jQuery('.gat-library-videos').scroll(function() {
 		if (jQuery(this).scrollLeft() >  0 ) {
 		    jQuery(this).parent().find('.scroll-left').removeClass('scroll-disabled');
@@ -297,12 +301,18 @@ var inquire
 		}
 	    });
 	    
+	    /** Scroll Left button click event handler **/
 	    jQuery('.scroll-left').click(function() {
-		
+		var scrollLength = jQuery(this).parent().width() - 40;
+		jQuery(this).parent().find('.gat-library-videos').scrollLeft(jQuery(this).parent().find('.gat-library-videos').scrollLeft() - scrollLength);
+		jQuery(this).parent().find('.gat-library-videos').trigger("scroll");
 	    });
 	    
+	    /** Scroll Right button click event handler **/
 	    jQuery('.scroll-right').click(function() {
-		
+		var scrollLength = jQuery(this).parent().width() - 40;
+		jQuery(this).parent().find('.gat-library-videos').scrollLeft(jQuery(this).parent().find('.gat-library-videos').scrollLeft() + scrollLength);
+		jQuery(this).parent().find('.gat-library-videos').trigger("scroll");
 	    });
 	}
     })

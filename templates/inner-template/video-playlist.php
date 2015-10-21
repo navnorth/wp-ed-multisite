@@ -18,7 +18,7 @@
 		switch ($_GET["sortby"]) {
 			case "priority":
 				$sql = $wpdb->prepare("SELECT DISTINCT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
-        where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND <condition> ORDER BY b.rating_scale ASC", $token, $post->ID);
+        where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND (<condition>) ORDER BY b.rating_scale ASC", $token, $post->ID);
 				$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('".'"'."%', b.rating_scale, '".'"'."%') OR
 				 a.`rating_scale` LIKE IF((b.rating_scale = NULL OR b.rating_scale = ''), '%1%', b.rating_scale)", $sql));
 
@@ -26,7 +26,7 @@
 				break;
 			case "domains":
 				$sql = $wpdb->prepare("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
-where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND <condition> ORDER BY b.domain_id ASC", $token, $post->ID);
+where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND (<condition>) ORDER BY b.domain_id ASC", $token, $post->ID);
 				$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b. `rating_scale`, '".'"'."%')", $sql));
 				$data_rslts = $wpdb->get_results($sql);
 				break;
@@ -35,9 +35,13 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.asse
 				$data_rslts = $wpdb->get_results($sql);
 				break;
 			default:
-				$sql = $wpdb->prepare("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
+				/*$sql = $wpdb->prepare("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
 where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.domain_id=%d AND <condition> ORDER BY b.assessment_id ASC", $token, $_GET["sortby"]);
-				$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b. `rating_scale`, '".'"'."%')", $sql));
+				$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b. `rating_scale`, '".'"'."%')", $sql));*/
+				$sql = $wpdb->prepare("SELECT DISTINCT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
+				where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND b.domain_id=%d AND (<condition>) ORDER BY b.rating_scale ASC", $token, $post->ID, $_GET['sortby']);
+				$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b.rating_scale, '".'"'."%') OR
+				 a.`rating_scale` LIKE IF((b.rating_scale = NULL OR b.rating_scale = ''), '%1%', b.rating_scale)", $sql));
 				$data_rslts = $wpdb->get_results($sql);
 				break;
 		}
@@ -45,7 +49,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 	else
 	{
 		$sql = $wpdb->prepare("SELECT DISTINCT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
-		where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND <condition> ORDER BY b.rating_scale ASC", $token, $post->ID);
+		where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND (<condition>) ORDER BY b.rating_scale ASC", $token, $post->ID);
 		$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b.rating_scale, '".'"'."%') OR
 		 a.`rating_scale` LIKE IF((b.rating_scale = NULL OR b.rating_scale = ''), '%1%', b.rating_scale)", $sql));
 
@@ -102,9 +106,6 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 				<div class="gat_priority_form_selector">
 					<select name="sortby" onchange="priority_submit(this);">
 						<option value="priority" <?php echo $a = ($_GET["sortby"] == 'priority') ? 'selected="selected"' : ''; ?>>Recommended For You</option>
-						<option value="unwatched" <?php echo $a= ($_GET["sortby"] == 'unwatched') ? 'selected="selected"' : ''; ?> >Unwatched</option>
-						<!--<option value="domains" <?php echo $a = ($_GET["sortby"] == 'domains') ? 'selected="selected"' : ''; ?> >Focus Areas</option>-->
-						<option value="domains" <?php echo $a = ($_GET["sortby"] == 'domains') ? 'selected="selected"' : ''; ?> >All Videos</option>
 						<?php
 							$args = array(
 								      'post_type' => 'domain',
@@ -118,6 +119,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 								<?php
 							}
 						?>
+						<option value="unwatched" <?php echo $a= ($_GET["sortby"] == 'unwatched') ? 'selected="selected"' : ''; ?> >Unwatched</option>
 					</select>
 				</div>
 
@@ -132,7 +134,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 							var tag = document.createElement('script');
 							tag.src = 'https://www.youtube.com/iframe_api';
 							var firstScriptTag = document.getElementsByTagName('script')[0];
-      						firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+							firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 							var player;
 							function onYouTubeIframeAPIReady()
 							{

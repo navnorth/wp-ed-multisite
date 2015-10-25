@@ -43,7 +43,7 @@ function pluginname_ajaxurl()
 	}
 	?>
     <script type="text/javascript">
-	var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+	var ajaxurl = '<?php echo admin_url('admin-ajax.php', 'admin'); ?>';
     </script>
     <script>
     /**

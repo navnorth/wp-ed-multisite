@@ -43,7 +43,8 @@ function pluginname_ajaxurl()
 	}
 	?>
     <script type="text/javascript">
-	var ajaxurl = '<?php echo admin_url('admin-ajax.php', 'admin'); ?>';
+    /* workaround to only use SSL when on SSL (avoid self-signed cert issues) */
+	var ajaxurl = '<?php echo admin_url("admin-ajax.php", ( is_ssl() ? "https" : "http") ); ?>';
     </script>
     <script>
     /**

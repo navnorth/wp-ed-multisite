@@ -845,6 +845,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0062b2', end
   .gat_reslt_listvideos .video-domain-title {
     font-size: 12px;
   }
+  .gat_indicatorwidget span {
+    font-size: 13px;
+  }
 }
 
 @media screen and (max-width: 600px) {

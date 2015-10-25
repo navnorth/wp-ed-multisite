@@ -112,7 +112,7 @@
 		} ?>
 	    <li tabindex="0" onclick="select_rating(this)" class="rating_scaleli <?php echo $licls;?>" data-rating="<?php echo $j;?>">
 		<input tabindex="-1" type="radio" name="rating_<?php echo $dimension->id; ?>[]" id="rat_<?php echo $dimension->id.'_'.$j; ?>" value="<?php echo $scale_slctd; ?>" <?php if ($j==$scale_slctd): ?>checked="true"<?php endif; ?> />
-		    <label for="rat_<?php echo $dimension->id.'_'.$j; ?>"><?php echo $scale->post_title; ?></label>
+		    <label for="rat_<?php echo $dimension->id.'_'.$j; ?>" onclick="select_rating(this.parentNode)"><?php echo $scale->post_title; ?></label>
 		    <!-- <div class="rating_scale_description"> -->
 			<?php //echo $scale->post_content; ?>
 		    <!-- </div> -->

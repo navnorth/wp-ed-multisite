@@ -142,6 +142,22 @@ var inquire
 
 	    jQuery('#gat-user-info-modal').modal('show')
 	})
+	
+	 jQuery('#gat-user-info-modal').on('hidden.bs.modal', function () {
+	    var path = window.location.pathname
+	    var len = path.length
+
+	    if (path.substr(len - 1, len) == '/')
+		path = path.substr(0, len - 1)
+
+	    var domain = '.' + window.location.host
+	    cookie.set('GAT-inquire-user-information', '0', 10, domain, path)
+
+	    if (cookie.get('GAT-late-email-set')=="1") {
+		cookie.del('GAT-late-email-set');
+		cookie.set('GAT-late-email-set', '0', 10, domain, path);
+	    }
+	})
 
 	/**
 	 * Submit User Information Button Event Handler

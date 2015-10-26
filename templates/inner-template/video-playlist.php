@@ -166,7 +166,8 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 								  playerVars: {
 									  'autoplay': 0,
 									  'controls': 1,
-									  'rel' : 0
+									  'rel' : 0,
+									  'wmode' : 'transparent'
 								  },
 								  events: {
 									'onReady': onPlayerReady,

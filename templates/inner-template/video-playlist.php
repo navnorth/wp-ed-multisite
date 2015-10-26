@@ -131,14 +131,33 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 				if(!empty($data_rslts))
 				{
 					echo "<script type='text/javascript'>
-							var tag = document.createElement('script');
+							function loadPlayer() { 
+								if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
+							      
+									var tag = document.createElement('script');
+									tag.src = 'https://www.youtube.com/iframe_api';
+									var firstScriptTag = document.getElementsByTagName('script')[0];
+									firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+								    
+									window.onYouTubeIframeAPIReady = function() {
+									  onYouTubeIframeAPIReady_LoadPlayer();
+									};
+							      
+								} else {
+							      
+									onYouTubeIframeAPIReady_LoadPlayer();
+							      
+								}
+							}
+							/*var tag = document.createElement('script');
 							tag.src = 'https://www.youtube.com/iframe_api';
 							
 							var firstScriptTag = document.getElementsByTagName('script')[0];
-							firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-							
+							firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);*/
+								
 							var player;
-							window.onYouTubeIframeAPIReady = function()
+							
+							function onYouTubeIframeAPIReady_LoadPlayer()
 							{
 								player = new YT.Player('player', {
 								  height: '400',
@@ -230,6 +249,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 						  </script>
 						  <script>
 							jQuery(document).ready(function(e) {
+								loadPlayer();
 								jQuery('.cntrollorbtn').click(function(){
 									var utubeid = jQuery(this).attr('data-youtubeid');
 									utubeid = String(utubeid);

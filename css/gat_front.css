@@ -247,7 +247,7 @@ label.meter
     width:32%;
 }
 .gat_twobuttons > li {
-    width: 49.7%;
+    width: 49.7% !important;
 }
 .gat_twobuttons li:nth-child(2) {
     text-align:right !important;

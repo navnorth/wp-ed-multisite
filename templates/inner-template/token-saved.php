@@ -128,15 +128,15 @@
 	    $i++;
 	}
     } ?>
-	<ul class="gat_domainsbmt_btn <?php if($list==$domain_count){ echo "gat_twobuttons"; } elseif ($list==3) { echo "gat_thirddomain"; } ?>">
+	<ul class="gat_domainsbmt_btn gat_twobuttons">
 	    <li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" tabindex="0" class="btn btn-default gat_button">Back to Home</a></li>
-	    <li><?php if ($list==$domain_count) : ?><input type="submit" class="btn btn-default gat_button gat_btn_submit" name="gat_results" value="Finish" /><?php endif; ?></li>
-	    <!--<li><input type="submit" class="btn btn-default gat_button" name="gat_videos" value="Get Video Playlist" /></li>-->
-	<?php
-	    if($list < $domain_count): ?>
-	    <li><input type="submit" class="btn btn-default gat_button gat_btn_submit" name="domain_submit" value="Continue to <?php echo $n_domain->post_title; ?>"/></li>
-	<?php
-	    endif; ?>
+	    <li>
+            <?php if ($list==$domain_count) : ?>
+                <input type="submit" class="btn btn-default gat_button gat_btn_submit" name="gat_results" value="Finish" />
+            <?php elseif ($list < $domain_count) : ?>
+                <input type="submit" class="btn btn-default gat_button gat_btn_submit" name="domain_submit" value="Continue to <?php echo $n_domain->post_title; ?>"/>
+            <?php endif; ?>
+        </li>
 	</ul>
     </div>
 </form>

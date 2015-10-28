@@ -142,7 +142,7 @@ var inquire
 
 	    jQuery('#gat-user-info-modal').modal('show')
 	})
-	
+
 	 jQuery('#gat-user-info-modal').on('hidden.bs.modal', function () {
 	    var path = window.location.pathname
 	    var len = path.length
@@ -280,26 +280,26 @@ var inquire
 			cookie.set('GAT-late-email-set', '1', 10, domain, path);
 	    }
 	});
-	
+
 	/** Activate JScrollPane for non Webkit Browser **/
 	if (jQuery('.gat-library-videos').length>0) {
 	    if (!jQuery.browser.webkit && !jQuery.browser.msie) {
 		jQuery('.gat-library-videos').jScrollPane({showArrows:true});
 	    }
 	}
-	
+
 	/** Scroll Navigation Buttons at the left and right portion of the list **/
 	if (jQuery('.video-list').length>0) {
 	    jQuery(window).resize(function(){
 		jQuery('.gat-library-videos').trigger("scroll");
 	    });
-	    
+
 	    jQuery('.vlist').each(function(){
 		if (jQuery(this).find('.gat-library-videos').innerWidth() >= jQuery(this).find('.gat-library-videos')[0].scrollWidth ) {
 		    jQuery(this).find('.scroll-right').addClass('scroll-disabled');
 		}
 	    });
-	    
+
 	    /** Enable/Disable Scroll Buttons when using scrollbar **/
 	    jQuery('.gat-library-videos').scroll(function() {
 		if (jQuery(this).scrollLeft() >  0 ) {
@@ -307,23 +307,23 @@ var inquire
 		} else {
 		    jQuery(this).parent().find('.scroll-left').addClass('scroll-disabled');
 		}
-		
+
 		if ((jQuery(this).scrollLeft() + jQuery(this).innerWidth()) >= jQuery(this)[0].scrollWidth ) {
 		    jQuery(this).parent().find('.scroll-right').addClass('scroll-disabled');
 		}   else {
 		    if (jQuery(this).parent().find('.scroll-right').hasClass('scroll-disabled')) {
 			jQuery(this).parent().find('.scroll-right').removeClass('scroll-disabled');
-		    }   
+		    }
 		}
 	    });
-	    
+
 	    /** Scroll Left button click event handler **/
 	    jQuery('.scroll-left').click(function() {
 		var scrollLength = jQuery(this).parent().width() - 40;
 		jQuery(this).parent().find('.gat-library-videos').scrollLeft(jQuery(this).parent().find('.gat-library-videos').scrollLeft() - scrollLength);
 		jQuery(this).parent().find('.gat-library-videos').trigger("scroll");
 	    });
-	    
+
 	    /** Scroll Right button click event handler **/
 	    jQuery('.scroll-right').click(function() {
 		var scrollLength = jQuery(this).parent().width() - 40;

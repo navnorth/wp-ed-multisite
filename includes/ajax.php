@@ -105,31 +105,31 @@ function save_assessment_function()
 	extract($_POST);
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
 	$results_table = PLUGIN_PREFIX . "results";
-	
+
 	$sql = $wpdb->prepare("SELECT COUNT(*) FROM $dimensiontable where assessment_id=%d", $assessment_id);
 	$data = $wpdb->get_results( $sql, OBJECT_K );
 	$data = array_keys($data);
 	$total_dimension = $data[0];
-	
+
 	$ratingcount = 0;
 	for($i=0; $i < count($dimension_id); $i++)
 	{
 		$dimensionid = $dimension_id[$i];
 		$rating = ${'rating_' . $dimensionid};
-		$filtered = array_filter($rating, 'filter_callback');
+        $filtered = is_array($rating) ? array_filter($rating, 'filter_callback') : '';
 		if(!empty($filtered))
 		{
 			$ratingcount++;
 		}
 	}
 	$dimension_id = implode(",", $dimension_id);
-	
+
 	$sql = $wpdb->prepare("SELECT count(*) AS cnt FROM $results_table WHERE assessment_id =%d && token=%s &&( rating_scale != NULL
 OR rating_scale != '' ) && dimension_id NOT IN ($dimension_id) ", $assessment_id, $token);
 	$data = $wpdb->get_results($sql, OBJECT_K );
 	$data = array_keys($data);
 	$total_rated = $data[0];
-	
+
 	$progress = (($total_rated+$ratingcount)/$total_dimension)*100;
 	echo ceil($progress);
 	die;

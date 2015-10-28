@@ -41,12 +41,16 @@ nocache_headers();
 /** This action is documented in wp-admin/admin.php */
 do_action( 'admin_init' );
 
-$core_actions_get = array(
+/*$core_actions_get = array(
 	'fetch-list', 'ajax-tag-search', 'wp-compression-test', 'imgedit-preview', 'oembed-cache',
+	'autocomplete-user', 'dashboard-widgets', 'logged-in',
+);*/
+$core_actions_get = array(
+	'fetch-list', 'ajax-tag-search', 
 	'autocomplete-user', 'dashboard-widgets', 'logged-in',
 );
 
-$core_actions_post = array(
+/*$core_actions_post = array(
 	'oembed-cache', 'image-editor', 'delete-comment', 'delete-tag', 'delete-link',
 	'delete-meta', 'delete-post', 'trash-post', 'untrash-post', 'delete-page', 'dim-comment',
 	'add-link-category', 'add-tag', 'get-tagcloud', 'get-comments', 'replyto-comment',
@@ -61,10 +65,25 @@ $core_actions_post = array(
 	'save-user-color-scheme', 'update-widget', 'query-themes', 'parse-embed', 'set-attachment-thumbnail',
 	'parse-media-shortcode', 'destroy-sessions', 'install-plugin', 'update-plugin', 'press-this-save-post',
 	'press-this-add-category', 'crop-image',
+);*/
+$core_actions_post = array(
+	'dim-comment',
+	'get-tagcloud', 'get-comments', 'replyto-comment',
+	'closed-postboxes',
+	'hidden-columns', 'menu-get-metabox', 'wp-link-ajax',
+	'menu-quick-search', 'meta-box-order', 'get-permalink',
+	'sample-permalink', 'inline-save', 'inline-save-tax', 'find_posts', 'widgets-order',
+	'date_format', 'time_format',
+	'dismiss-wp-pointer', 'get-attachment',
+	'query-attachments', 
+	'heartbeat', 'get-revision-diffs',
+	'query-themes', 'parse-embed', 
+	'parse-media-shortcode', 'destroy-sessions', 'press-this-save-post',
+	'press-this-add-category',
 );
 
 // Deprecated
-$core_actions_post[] = 'wp-fullscreen-save-post';
+//$core_actions_post[] = 'wp-fullscreen-save-post';
 
 // Register core Ajax calls.
 if ( ! empty( $_GET['action'] ) && in_array( $_GET['action'], $core_actions_get ) )

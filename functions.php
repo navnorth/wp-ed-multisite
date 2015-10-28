@@ -44,7 +44,11 @@ function pluginname_ajaxurl()
 	?>
     <script type="text/javascript">
     /* workaround to only use SSL when on SSL (avoid self-signed cert issues) */
+    <?php if (!strpos($_SERVER['REQUEST_URI'],"wp-admin")): ?>
 	var ajaxurl = '<?php echo GAT_URL ?>ajax.php';
+    <?php else: ?>
+	var ajaxurl = '<?php echo admin_url("admin-ajax.php", (is_ssl() ? "https": "http") ); ?>
+    <?php endif; ?>
     </script>
     <script>
     /**

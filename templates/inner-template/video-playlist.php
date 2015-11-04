@@ -131,32 +131,32 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 				if(!empty($data_rslts))
 				{
 					echo "<script type='text/javascript'>
-							function loadPlayer() { 
+							function loadPlayer() {
 								if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
-							      
+
 									var tag = document.createElement('script');
-									tag.src = 'https://www.youtube.com/iframe_api';
+									tag.src = '//www.youtube.com/iframe_api';
 									var firstScriptTag = document.getElementsByTagName('script')[0];
 									firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-								    
+
 									window.onYouTubeIframeAPIReady = function() {
 									  onYouTubeIframeAPIReady_LoadPlayer();
 									};
-							      
+
 								} else {
-							      
+
 									onYouTubeIframeAPIReady_LoadPlayer();
-							      
+
 								}
 							}
 							/*var tag = document.createElement('script');
-							tag.src = 'https://www.youtube.com/iframe_api';
-							
+							tag.src = '//www.youtube.com/iframe_api';
+
 							var firstScriptTag = document.getElementsByTagName('script')[0];
 							firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);*/
-								
+
 							var player;
-							
+
 							function onYouTubeIframeAPIReady_LoadPlayer()
 							{
 								player = new YT.Player('player', {
@@ -277,7 +277,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 						{
 							echo '<li>';
 								echo '<div class="gat_imgcntnr">
-										<span tabindex="0" class="cntrollorbtn'.$defaultvideo.'" data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'"><img src="http://img.youtube.com/vi/'.$exists->youtubeid.'/mqdefault.jpg" class="gat_vid_thumbnail" alt="thumbnail: '.ucwords(stripslashes($data_rslt->label)).'" /></span>';
+										<span tabindex="0" class="cntrollorbtn'.$defaultvideo.'" data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'"><img src="//img.youtube.com/vi/'.$exists->youtubeid.'/mqdefault.jpg" class="gat_vid_thumbnail" alt="thumbnail: '.ucwords(stripslashes($data_rslt->label)).'" /></span>';
 
 								if (!($exists->seek == NULL || $exists->seek == '')){
 									echo '<span class="watched">Watched</span>';
@@ -324,7 +324,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 							$lastid = $wpdb->insert_id;
 							echo '<li>';
 								echo '<div class="gat_imgcntnr">
-										<img src="http://img.youtube.com/vi/'.$data_rslt->youtubeid.'/mqdefault.jpg" class="gat_vid_thumbnail"/>
+										<img src="//img.youtube.com/vi/'.$data_rslt->youtubeid.'/mqdefault.jpg" class="gat_vid_thumbnail"/>
 									  </div>';
 								echo '<div class="gat_desccntnr">';
 									echo '<span class="video-title">'.ucwords(stripslashes($data_rslt->label)).'</span>';

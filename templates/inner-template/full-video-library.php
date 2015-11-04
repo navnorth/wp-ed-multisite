@@ -20,7 +20,7 @@
 	$videoId = $_GET['videoId'];
 	echo "<script type='text/javascript'>
 	    var tag = document.createElement('script');
-	    tag.src = 'https://www.youtube.com/iframe_api';
+	    tag.src = '//www.youtube.com/iframe_api';
 	    var firstScriptTag = document.getElementsByTagName('script')[0];
 	    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 	    var player;
@@ -191,7 +191,7 @@
 					}
 				       ?>
 					<a class="video-link<?php echo $current; ?>" <?php if (!empty($exists)) { echo 'data-resultedid="'.$exists->id.'"'; } ?> href="<?php echo get_permalink($post->ID); ?>?action=full-video-library&videoId=<?php echo $video->youtubeid; ?>" data-youtubeid="<?php echo $video->youtubeid; ?>" title="Watch: <?php echo stripslashes($video->label); ?>">
-					   <img src="http://img.youtube.com/vi/<?php echo $video->youtubeid; ?>/mqdefault.jpg" width="240" height="135" alt="thumbnail: <?php echo stripslashes($video->label); ?>">
+					   <img src="//img.youtube.com/vi/<?php echo $video->youtubeid; ?>/mqdefault.jpg" width="240" height="135" alt="thumbnail: <?php echo stripslashes($video->label); ?>">
 					    <?php
 						if(!empty($exists))
 						  {

@@ -8,7 +8,84 @@
 <a id="content" tabindex="0"></a>
 <div class="col-md-9 col-sm-12 col-xs-12">
     <h3><?php echo get_the_title($post->ID); ?></h3>
+   
+    <?php
+	//Tracking Video on Main Gat Page
+	echo "<script type='text/javascript'>
+	    function loadPlayer() {
+		if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
+		
+		    var tag = document.createElement('script');
+		    tag.src = '//www.youtube.com/iframe_api';
+		    var firstScriptTag = document.getElementsByTagName('script')[0];
+		    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+		    window.onYouTubeIframeAPIReady = function() {
+			onYouTubeIframeAPIReady_LoadPlayer();
+		    };
+
+		} else {
+
+		    onYouTubeIframeAPIReady_LoadPlayer();
+
+		}
+	    }
+	    var player;
+	    function onYouTubeIframeAPIReady_LoadPlayer()
+	    {
+		var iFrame = document.getElementsByTagName('iframe')[0];
+		var playerId = String(iFrame.getAttribute('id'));
+		    player = new YT.Player('player', {
+			height: '',
+			width: '',
+			videoId: '',
+			playerVars: {
+				'autoplay': 0,
+				'controls': 1,
+				'rel' : 1
+			},
+			events: {
+			      'onReady': onPlayerReady,
+			      'onStateChange': onPlayerStateChange
+			}
+		    });
+	     }
+	     function onPlayerReady(event)
+	     {
+		    //event.target.playVideo();
+	     }
+	     function onPlayerStateChange(event)
+	     {
+		console.log(event.data);
+		    var url = event.target.getVideoUrl();
+		    var match = url.match(/[?&]v=([^&]+)/);
+		    if( match != null)
+		    {
+			    var videoId = match[1];
+		    }
+		    switch (event.data) {
+			    case YT.PlayerState.PLAYING:
+				console.log('playing');
+				ga('send', 'event', 'video', 'started', videoId);
+			    break;
+			    case YT.PlayerState.PAUSED:
+				console.log('paused');
+				ga('send', 'event', 'video', 'paused', videoId);
+			    break;
+			    case YT.PlayerState.ENDED:
+				console.log('finished');
+				ga('send', 'event', 'video', 'ended', videoId );
+			    break;
+		    };
+	     }
+      </script>
+      <script>
+	jQuery(document).ready(function(e) {
+		loadPlayer();
+	});
+      </script>";
+    ?>
+   
     <div class="gat_moreContent">
         <?php echo $content; ?>
     </div>

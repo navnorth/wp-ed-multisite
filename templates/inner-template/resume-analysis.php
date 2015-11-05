@@ -35,7 +35,7 @@
 	    {
 		var iFrame = document.getElementsByTagName('iframe')[0];
 		var playerId = String(iFrame.getAttribute('id'));
-		    player = new YT.Player('player', {
+		    player = new YT.Player(playerId, {
 			height: '',
 			width: '',
 			videoId: '',

@@ -4,10 +4,11 @@
 
     // get progress, to display continue or results button
     $assess_data = get_GAT_response($post->ID, htmlspecialchars($_COOKIE['GAT_token']));
+    $title = get_the_title($post->ID);
 ?>
 <a id="content" tabindex="0"></a>
 <div class="col-md-9 col-sm-12 col-xs-12">
-    <h3><?php echo get_the_title($post->ID); ?></h3>
+    <h3><?php echo $title; ?></h3>
    
     <?php
 	//Tracking Video on Main Gat Page
@@ -42,7 +43,7 @@
 			playerVars: {
 				'autoplay': 0,
 				'controls': 1,
-				'rel' : 1
+				'rel' : 0
 			},
 			events: {
 			      'onReady': onPlayerReady,
@@ -56,7 +57,6 @@
 	     }
 	     function onPlayerStateChange(event)
 	     {
-		console.log(event.data);
 		    var url = event.target.getVideoUrl();
 		    var match = url.match(/[?&]v=([^&]+)/);
 		    if( match != null)
@@ -65,16 +65,13 @@
 		    }
 		    switch (event.data) {
 			    case YT.PlayerState.PLAYING:
-				console.log('playing');
-				ga('send', 'event', 'video', 'started', videoId);
+				ga('send', 'event', 'video', 'Play', 'GAT Video: " . $title . " (' + videoId + ')' );
 			    break;
 			    case YT.PlayerState.PAUSED:
-				console.log('paused');
-				ga('send', 'event', 'video', 'paused', videoId);
+				ga('send', 'event', 'video', 'Pause', 'GAT Video: " . $title . " (' + videoId + ')' );
 			    break;
 			    case YT.PlayerState.ENDED:
-				console.log('finished');
-				ga('send', 'event', 'video', 'ended', videoId );
+				ga('send', 'event', 'video', 'Finished', 'GAT Video: " . $title . " (' + videoId + ')' );
 			    break;
 		    };
 	     }

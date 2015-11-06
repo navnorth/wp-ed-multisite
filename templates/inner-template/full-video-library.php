@@ -18,13 +18,40 @@
     <?php
     if (isset($_GET['videoId'])) {
 	$videoId = $_GET['videoId'];
+	
+	//Get Video Label
+	$sql = $wpdb->prepare("select * from $videotable where youtubeid = %s", $videoId);
+	$vid_result = $wpdb->get_results($sql);
+	
+	if ($vid_result)
+	    $videoLabel = $vid_result[0]->label;
+	
 	echo "<script type='text/javascript'>
-	    var tag = document.createElement('script');
+	    function loadPlayer() {
+		    if (typeof(YT) == 'undefined' || typeof(YT.Player) == 'undefined') {
+
+			    var tag = document.createElement('script');
+			    tag.src = '//www.youtube.com/iframe_api';
+			    var firstScriptTag = document.getElementsByTagName('script')[0];
+			    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+			    window.onYouTubeIframeAPIReady = function() {
+			      onYouTubeIframeAPIReady_LoadPlayer();
+			    };
+
+		    } else {
+
+			    onYouTubeIframeAPIReady_LoadPlayer();
+
+		    }
+	    }
+	    /*var tag = document.createElement('script');
 	    tag.src = '//www.youtube.com/iframe_api';
 	    var firstScriptTag = document.getElementsByTagName('script')[0];
-	    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+	    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);*/
 	    var player;
-	    function onYouTubeIframeAPIReady()
+	    var videoLabel;
+	    function onYouTubeIframeAPIReady_LoadPlayer()
 	    {
 		    player = new YT.Player('player', {
 		      height: '480',
@@ -33,7 +60,8 @@
 		      playerVars: {
 			      'autoplay': 1,
 			      'controls': 1,
-			      'rel' : 0
+			      'rel' : 0,
+			      'wmode' : 'transparent'
 		      },
 		      events: {
 			    'onReady': onPlayerReady,
@@ -54,6 +82,7 @@
 			    var videoId = match[1];
 		    }
 		    videoId = String(videoId);
+		    videoLabel = '". $videoLabel . "';
 		    switch (event.data) {
 			    case YT.PlayerState.PLAYING:
 				    if (jQuery('.current-video').length>0){
@@ -77,9 +106,9 @@
 				    });
 
 				    if (cleanTime() == 0) {
-					    ga('send', 'event', 'video', 'started', videoId);
+					    ga('send', 'event', 'GAT Library Video: ' + videoLabel, 'Play', videoId);
 				    } else {
-					    ga('send', 'event', 'video', 'played', 'v: ' + videoId + ' | t: ' + cleanTime());
+					    ga('send', 'event', 'GAT Library Video: ' + videoLabel, 'Play', 'v: ' + videoId + ' | t: ' + cleanTime());
 				    };
 			    break;
 			    case YT.PlayerState.PAUSED:
@@ -94,7 +123,9 @@
 				    }
 
 				    if (player.getDuration() - player.getCurrentTime() != 0) {
-					    ga('send', 'event', 'video', 'paused', 'v: ' + videoId + ' | t: ' + cleanTime());
+					ga('send', 'event', 'GAT Library Video: ' + videoLabel, 'Pause', 'v: ' + videoId + ' | t: ' + cleanTime());
+				    } else {
+					ga('send', 'event', 'GAT Library Video: ' + videoLabel, 'Pause', videoId );
 				    };
 			    break;
 			    case YT.PlayerState.ENDED:
@@ -108,7 +139,7 @@
 					    trackrecordbyid(resultedid);
 				    }
 
-				    ga('send', 'event', 'video', 'ended', videoId );
+				    ga('send', 'event', 'GAT Library Video: ' + videoLabel, 'Finished', videoId);
 			    break;
 		    };
 	     }
@@ -119,18 +150,19 @@
       </script>
       <script>
 	    jQuery(document).ready(function(e) {
-		    jQuery('.video-link').click(function(){
-			    var utubeid = jQuery(this).attr('data-youtubeid');
-			    utubeid = String(utubeid);
-			    var currenid = jQuery(this).attr('data-resultedid');
-			    jQuery('#player').attr('data-resultedid', currenid );
-			    player.loadVideoById(utubeid);
-		    });
-		    jQuery('.video-link').keypress(function(e){
-			    var key = e.which;
-			    if (key==13)
-				    jQuery(this).trigger('click');
-		    });
+		loadPlayer();
+		jQuery('.video-link').click(function(){
+			var utubeid = jQuery(this).attr('data-youtubeid');
+			utubeid = String(utubeid);
+			var currenid = jQuery(this).attr('data-resultedid');
+			jQuery('#player').attr('data-resultedid', currenid );
+			player.loadVideoById(utubeid);
+		});
+		jQuery('.video-link').keypress(function(e){
+			var key = e.which;
+			if (key==13)
+				jQuery(this).trigger('click');
+		});
 	    });
       </script>
       ";
@@ -201,7 +233,7 @@
 						  }
 					    ?>
 					</a>
-					<div class="gat-video-title"><a class="video-link<?php echo $current; ?>" <?php if (!empty($exists)) { echo 'data-resultedid="'.$exists->id.'"'; } ?> href="<?php echo get_permalink($post->ID); ?>?action=full-video-library&videoId=<?php echo $video->youtubeid; ?>" data-youtubeid="<?php echo $video->youtubeid; ?>"><strong><?php echo stripslashes($video->label); ?></strong></a></div>
+					<div class="gat-video-title"><a class="video-link<?php echo $current; ?>" <?php if (!empty($exists)) { echo 'data-resultedid="'.$exists->id.'"'; } ?> href="<?php echo get_permalink($post->ID); ?>?action=full-video-library&videoId=<?php echo $video->youtubeid; ?>" data-youtubeid="<?php echo $video->youtubeid; ?>" title="Watch: <?php echo stripslashes($video->label); ?>"><strong><?php echo stripslashes($video->label); ?></strong></a></div>
 				    </div>
 				</li>
 				<?php } ?>

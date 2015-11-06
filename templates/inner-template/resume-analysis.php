@@ -65,13 +65,13 @@
 		    }
 		    switch (event.data) {
 			    case YT.PlayerState.PLAYING:
-				ga('send', 'event', 'video', 'Play', 'GAT Video: " . $title . " (' + videoId + ')' );
+				ga('send', 'event', 'GAT Video: " . $title . "', 'Play', videoId );
 			    break;
 			    case YT.PlayerState.PAUSED:
-				ga('send', 'event', 'video', 'Pause', 'GAT Video: " . $title . " (' + videoId + ')' );
+				ga('send', 'event', 'GAT Video: " . $title . "', 'Pause', videoId );
 			    break;
 			    case YT.PlayerState.ENDED:
-				ga('send', 'event', 'video', 'Finished', 'GAT Video: " . $title . " (' + videoId + ')' );
+				ga('send', 'event', 'GAT Video: " . $title . "', 'Finished', videoId );
 			    break;
 		    };
 	     }

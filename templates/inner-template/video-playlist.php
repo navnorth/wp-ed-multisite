@@ -188,6 +188,8 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 									var videoId = match[1];
 								}
 								videoId = String(videoId);
+								var videoLabel = '". $data_rslts[0]->label ."';
+								videoLabel = jQuery('.cntrollorbtn[data-youtubeid=' + videoId +'').attr('data-label');
 								switch (event.data) {
 									case YT.PlayerState.PLAYING:
 										if(jQuery('.currentmeter').prev('span').children('i.fa').hasClass('fa-play'))
@@ -206,11 +208,11 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 												jQuery(this).children('.unclickable').attr('title','Please pause/stop current video to play this video!');
 											}
 										});
-
+										
 										if (cleanTime() == 0) {
-											ga('send', 'event', 'video', 'started', videoId);
+											ga('send', 'event', 'GAT Playlist Video: ' + videoLabel, 'Play', videoId );
 										} else {
-											ga('send', 'event', 'video', 'played', 'v: ' + videoId + ' | t: ' + cleanTime());
+											ga('send', 'event', 'GAT Playlist Video: ' + videoLabel, 'Play', 'v: ' + videoId + ' | t: ' + cleanTime());
 										};
 									break;
 									case YT.PlayerState.PAUSED:
@@ -225,7 +227,9 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 										}
 
 										if (player.getDuration() - player.getCurrentTime() != 0) {
-											ga('send', 'event', 'video', 'paused', 'v: ' + videoId + ' | t: ' + cleanTime());
+											ga('send', 'event', 'GAT Playlist Video: ' + videoLabel, 'Pause', 'v: ' + videoId + ' | t: ' + cleanTime());
+										} else {
+											ga('send', 'event', 'GAT Playlist Video: ' + videoLabel, 'Pause', videoId );
 										};
 									break;
 									case YT.PlayerState.ENDED:
@@ -239,7 +243,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 											trackrecordbyid(resultedid);
 										}
 
-										ga('send', 'event', 'video', 'ended', videoId );
+										ga('send', 'event', 'GAT Playlist Video: ' + videoLabel, 'Finished', videoId );
 									break;
 								};
 							 }
@@ -254,8 +258,9 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 								jQuery('.cntrollorbtn').click(function(){
 									var utubeid = jQuery(this).attr('data-youtubeid');
 									utubeid = String(utubeid);
+									var videoTitle = jQuery(this).attr('data-label');
 									var currenid = jQuery(this).attr('data-resultedid');
-									jQuery('#player').attr('data-resultedid', currenid );
+									jQuery('#player').attr({'data-resultedid': currenid, 'data-label' : videoTitle });
 									player.loadVideoById(utubeid);
 								});
 								jQuery('.cntrollorbtn').keypress(function(e){
@@ -277,14 +282,14 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 						{
 							echo '<li>';
 								echo '<div class="gat_imgcntnr">
-										<span tabindex="0" class="cntrollorbtn'.$defaultvideo.'" data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'"><img src="//img.youtube.com/vi/'.$exists->youtubeid.'/mqdefault.jpg" class="gat_vid_thumbnail" alt="thumbnail: '.ucwords(stripslashes($data_rslt->label)).'" /></span>';
+										<span tabindex="0" class="cntrollorbtn'.$defaultvideo.'" data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'" data-label="'.ucwords(stripslashes($data_rslt->label)).'"><img src="//img.youtube.com/vi/'.$exists->youtubeid.'/mqdefault.jpg" class="gat_vid_thumbnail" alt="thumbnail: '.ucwords(stripslashes($data_rslt->label)).'" /></span>';
 
 								if (!($exists->seek == NULL || $exists->seek == '')){
 									echo '<span class="watched">Watched</span>';
 								}
 								echo '	  </div>';
 								echo '<div class="gat_desccntnr">';
-									echo '<span  tabindex="0" class="video-title cntrollorbtn" data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'">'.ucwords(stripslashes($data_rslt->label)).'</span>';
+									echo '<span  tabindex="0" class="video-title cntrollorbtn" data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'"  data-label="'.ucwords(stripslashes($data_rslt->label)).'">'.ucwords(stripslashes($data_rslt->label)).'</span>';
 									echo '<span class="video-domain-title"> - '.ucwords(stripslashes(get_the_title($exists->domain_id))).' </span>';
 								echo '</div>';
 								/*echo '<div class="gat_videodetails" style="display:none;>';

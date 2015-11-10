@@ -10,7 +10,10 @@
 		header("Content-type: text/csv; charset=UTF-8");
 		header('Content-Disposition: attachment; filename=Export.csv');
 		
-		$fd = fopen('Export.csv', "w");
+		// date the file is created in YYYYMMDD format
+		$fileDate = strftime( '%G%m%d' ,time());
+		
+		$fd = fopen(GAT_PATH.'GAT_Report_'.$fileDate.'.csv', "w");
 		$contents = "Token,Email,State,Organization Id,Organization,Start Date,Last saved,Progress,Overall Score\n";
 		if(!empty($results))
 		{
@@ -29,7 +32,7 @@
 		}
 		fwrite($fd, $contents);
 		fclose($fd);
-		echo '<script type="text/javascript">window.open("Export.csv", "_blank");</script>';
+		echo '<script type="text/javascript">window.open("'.GAT_URL.'GAT_Report_'.$fileDate.'.csv", "_blank");</script>';
 	}
 	
 	$args = array(
@@ -43,7 +46,7 @@
 	$posts = get_posts( $args );
 ?>
 <div class="wrap">
-    <h2>Export Responces</h2>
+    <h2>Export Responses</h2>
     <form enctype="multipart/form-data" method="post">
         <p>
         	<select name="assessment">

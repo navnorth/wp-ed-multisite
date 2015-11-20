@@ -323,7 +323,7 @@ function get_dimensions_data($postid)
 									?>
                                     	<tr>
                                         	<td>
-                                            	<input type="text" name="dimension_<?php echo $i; ?>_videolabel[]" value="<?php echo $video->label; ?>" />
+                                            	<input type="text" name="dimension_<?php echo $i; ?>_videolabel[]" value="<?php echo stripslashes($video->label); ?>" />
                                             </td>
                                             <td>
                                             	<input type="text" name="dimension_<?php echo $i; ?>_videoid[]" value="<?php echo $video->youtubeid; ?>" />

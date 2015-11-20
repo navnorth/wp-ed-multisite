@@ -13,47 +13,35 @@
 		echo '<script type="text/javascript">window.location = "'.get_permalink($post->ID).'"</script>';
 	}
 
-	if(isset($_GET["sortby"]) && !empty($_GET["sortby"]))
-	{
-		switch ($_GET["sortby"]) {
-			case "priority":
-				$sql = $wpdb->prepare("SELECT DISTINCT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
-        where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND (<condition>) ORDER BY b.rating_scale ASC", $token, $post->ID);
-				$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('".'"'."%', b.rating_scale, '".'"'."%') OR
-				 a.`rating_scale` LIKE IF((b.rating_scale = NULL OR b.rating_scale = ''), '%1%', b.rating_scale)", $sql));
+	// default to priority playlist
+	$playlist_selection = (isset($_GET["sortby"]) && !empty($_GET["sortby"])) ? $_GET["sortby"] : 'priority';
 
-				$data_rslts = $wpdb->get_results($sql);
-				break;
-			case "domains":
-				$sql = $wpdb->prepare("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
-where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND (<condition>) ORDER BY b.domain_id ASC", $token, $post->ID);
-				$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b. `rating_scale`, '".'"'."%')", $sql));
-				$data_rslts = $wpdb->get_results($sql);
-				break;
-			case "unwatched":
-				$sql = $wpdb->prepare("SELECT a.*, ((a.seek/a.end)*100) as percent, b.* FROM $watchtable as a INNER JOIN $videotable as b ON (a.domain_id=b.domain_id AND a.dimensions_id=b.dimensions_id) where assessment_id=%d AND token=%s AND ((a.seek/a.end)*100) is null ORDER BY CAST(percent as DECIMAL(10,5)) DESC", $post->ID, $token);
-				$data_rslts = $wpdb->get_results($sql);
-				break;
-			default:
-				/*$sql = $wpdb->prepare("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
-where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.domain_id=%d AND <condition> ORDER BY b.assessment_id ASC", $token, $_GET["sortby"]);
-				$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b. `rating_scale`, '".'"'."%')", $sql));*/
-				$sql = $wpdb->prepare("SELECT DISTINCT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
+	switch ($playlist_selection) {
+		case "priority":
+			$sql = $wpdb->prepare("SELECT DISTINCT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
+				where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND (<condition>) ORDER BY b.rating_scale ASC", $token, $post->ID);
+			$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b.rating_scale, '".'"'."%') OR
+	 			a.`rating_scale` LIKE IF((b.rating_scale = NULL OR b.rating_scale = ''), '%1%', b.rating_scale)", $sql));
+
+			$data_rslts = $wpdb->get_results($sql);
+			break;
+		case "domains":
+			$sql = $wpdb->prepare("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
+				where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND (<condition>) ORDER BY b.domain_id ASC", $token, $post->ID);
+			$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b. `rating_scale`, '".'"'."%')", $sql));
+			$data_rslts = $wpdb->get_results($sql);
+			break;
+		case "unwatched":
+			$sql = $wpdb->prepare("SELECT a.*, ((a.seek/a.end)*100) as percent, b.* FROM $watchtable as a INNER JOIN $videotable as b ON (a.domain_id=b.domain_id AND a.dimensions_id=b.dimensions_id) where assessment_id=%d AND token=%s AND ((a.seek/a.end)*100) is null ORDER BY CAST(percent as DECIMAL(10,5)) DESC", $post->ID, $token);
+			$data_rslts = $wpdb->get_results($sql);
+			break;
+		default:
+			$sql = $wpdb->prepare("SELECT DISTINCT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
 				where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND b.domain_id=%d AND (<condition>) ORDER BY b.rating_scale ASC", $token, $post->ID, $_GET['sortby']);
-				$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b.rating_scale, '".'"'."%') OR
-				 a.`rating_scale` LIKE IF((b.rating_scale = NULL OR b.rating_scale = ''), '%1%', b.rating_scale)", $sql));
-				$data_rslts = $wpdb->get_results($sql);
-				break;
-		}
-	}
-	else
-	{
-		$sql = $wpdb->prepare("SELECT DISTINCT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
-		where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND (<condition>) ORDER BY b.rating_scale ASC", $token, $post->ID);
-		$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b.rating_scale, '".'"'."%') OR
-		 a.`rating_scale` LIKE IF((b.rating_scale = NULL OR b.rating_scale = ''), '%1%', b.rating_scale)", $sql));
-
-		$data_rslts = $wpdb->get_results($sql);
+			$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b.rating_scale, '".'"'."%') OR
+				a.`rating_scale` LIKE IF((b.rating_scale = NULL OR b.rating_scale = ''), '%1%', b.rating_scale)", $sql));
+			$data_rslts = $wpdb->get_results($sql);
+			break;
 	}
 
 	//Email Result POST
@@ -333,7 +321,7 @@ where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.doma
 									  </div>';
 								echo '<div class="gat_desccntnr">';
 									echo '<span class="video-title">'.ucwords(stripslashes($data_rslt->label)).'</span>';
-									echo '<span class="video-domain-title"> - '.ucwords(stripslashes(get_the_title($exists->domain_id))).' </span>';
+									echo '<span class="video-domain-title"> - '.ucwords(stripslashes(get_the_title($data_rslt->domain_id))).' </span>';
 								echo '</div>';
 							echo '</li>';
 						}

@@ -2,26 +2,26 @@
 if(isset($_POST["html-upload"]) AND isset($_FILES["organizations"]) AND $_FILES["organizations"]["size"])
 {
 	include_once(GAT_PATH . "/classes/organization.php");
-	 
+
 	ini_set("max_execution_time", 0);
 	ini_set("memory_limit", "1200M");
 	ini_set('post_max_size', "1200M");
 	set_time_limit(0);
-	
+
 	$file = fopen($_FILES["organizations"]["tmp_name"], "r") or die("Unable to read the file.");
 	$line = 0;
 	$organizations = $heading = array();
-	
+
 	while( ! feof($file))
 	{
 		$row = str_replace(array("\r", "\n"), NULL, fgets($file));
-		
+
 		if (strlen(trim($row))>0){
 			if($line){
 				$organizations[] = array_combine($heading, explode("\t", $row));
 			} else
 				$heading = explode("\t", $row);
-			
+
 			$line++;
 		}
 	}
@@ -29,7 +29,7 @@ if(isset($_POST["html-upload"]) AND isset($_FILES["organizations"]) AND $_FILES[
 	Organization::insert($organizations);
 	$success = TRUE;
 }
-	
+
 //Get max upload file size
 $max_upload = (int)(ini_get('upload_max_filesize'));
 ?>
@@ -49,4 +49,10 @@ $max_upload = (int)(ini_get('upload_max_filesize'));
         <div class="clear"></div>
         <p class="max-upload-size">Maximum upload file size: <?php echo $max_upload; ?> MB.</p>
     </form>
+</div>
+
+<div class="plugin-footer">
+    <div class="plugin-info"><?php echo GAT_PLUGIN_NAME . " " . GAT_PLUGIN_VERSION .""; ?></div>
+    <div class="plugin-link"><a href='<?php echo GAT_PLUGIN_INFO ?>' target='_blank'>More info</a></div>
+    <div class="clear"></div>
 </div>

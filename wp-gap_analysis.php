@@ -1,11 +1,11 @@
 <?php
 /*
- Plugin Name: Future-Ready Gap Analysis Tool
- Plugin URI: http://www.navigationnorth.com/wordpress/gap-analysis
- Description: This a future-ready Gap Analysis Tool plugin of Navigation North.
- Version: 0.2.4
+ Plugin Name: Gap Analysis Tool
+ Plugin URI: http://navigationnorth.com/wordpress/gap-analysis
+ Description: The Gap Analysis Tool provides users with custom content based on a self-assessment. Developed by Navigation North, in collaboration with AIR, for the Future Ready Leaders program.
+ Version: 0.2.5
  Author: Navigation North
- Author URI: http://www.navigationnorth.com
+ Author URI: http://navigationnorth.com
 
  Copyright (C) 2015 Navigation North
 
@@ -27,6 +27,11 @@ define( 'GAT_PATH' , plugin_dir_path(__FILE__) );
 define( 'GAT_URL' , plugin_dir_url(__FILE__) );
 define( 'PLUGIN_DOMAIN' , plugin_basename(__FILE__) );
 define( 'PLUGIN_PREFIX' , $wpdb->prefix.'gat_');
+
+// Plugin Name and Version
+define( 'GAT_PLUGIN_NAME', 'Gap Analysis Tool' );
+define( 'GAT_PLUGIN_VERSION', '0.2.5' );
+define( 'GAT_PLUGIN_INFO', 'http://navigationnorth.com/wordpress/gap-analysis' );
 
 /*Score Limit*/
 define( 'SCORE_HIGH_UPPER' , 4);

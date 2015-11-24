@@ -18,7 +18,7 @@
 
 	switch ($playlist_selection) {
 		case "priority":
-			$sql = $wpdb->prepare("SELECT DISTINCT a.id, a.youtubeid, a.label FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
+			$sql = $wpdb->prepare("SELECT DISTINCT a.id, a.youtubeid, a.label, b.domain_id FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
 				where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND (<condition>) ORDER BY b.rating_scale ASC", $token, $post->ID);
 			$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b.rating_scale, '".'"'."%') OR
 	 			a.`rating_scale` LIKE IF((b.rating_scale = NULL OR b.rating_scale = ''), '%1%', b.rating_scale)", $sql));
@@ -26,13 +26,13 @@
 			$data_rslts = $wpdb->get_results($sql);
 			break;
 		case "domains":
-			$sql = $wpdb->prepare("SELECT a.id, a.youtubeid, a.label FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
+			$sql = $wpdb->prepare("SELECT a.id, a.youtubeid, a.label, b.domain_id FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
 				where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND (<condition>) ORDER BY b.domain_id ASC", $token, $post->ID);
 			$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b. `rating_scale`, '".'"'."%')", $sql));
 			$data_rslts = $wpdb->get_results($sql);
 			break;
 		case "unwatched":
-			$sql = $wpdb->prepare("SELECT distinct V.label, V.youtubeid FROM $videotable as V inner join $results_table AS X ON X.domain_id = V.domain_id
+			$sql = $wpdb->prepare("SELECT distinct V.label, V.youtubeid, X.domain_id FROM $videotable as V inner join $results_table AS X ON X.domain_id = V.domain_id
 				INNER JOIN $watchtable AS R on R.assessment_id = X.assessment_id
 				WHERE X.assessment_id = %d AND R.token = %s
 					AND V.youtubeID NOT IN (SELECT youtubeID FROM $watchtable WHERE assessment_id=%d AND token=%s and seek > 1)
@@ -41,7 +41,7 @@
 			break;
 		// not sure when this gets used, if ever.
 		default:
-			$sql = $wpdb->prepare("SELECT DISTINCT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
+			$sql = $wpdb->prepare("SELECT DISTINCT a.*, b.domain_id FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
 				where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND b.domain_id=%d AND (<condition>) ORDER BY b.rating_scale ASC", $token, $post->ID, $_GET['sortby']);
 			$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b.rating_scale, '".'"'."%') OR
 				a.`rating_scale` LIKE IF((b.rating_scale = NULL OR b.rating_scale = ''), '%1%', b.rating_scale)", $sql));
@@ -246,7 +246,7 @@
 								echo '	  </div>';
 								echo '<div class="gat_desccntnr">';
 									echo '<span  tabindex="0" class="video-title cntrollorbtn" data-resultedid="'.$exists_id.'" data-youtubeid="'.$data_rslt->youtubeid.'"  data-label="'.ucwords($data_rslt->label).'">'.ucwords(stripslashes($data_rslt->label)).'</span>';
-									echo '<span class="video-domain-title"> - '.ucwords(stripslashes(get_the_title($data_rslts->domain_id))).' </span>';
+									echo '<span class="video-domain-title"> - '.ucwords(stripslashes(get_the_title($data_rslt->domain_id))).' </span>';
 								echo '</div>';
 								/*echo '<div class="gat_videodetails" style="display:none;>';
 									if($exists->seek == NULL || $exists->seek == '')

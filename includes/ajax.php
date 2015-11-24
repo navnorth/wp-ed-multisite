@@ -143,9 +143,10 @@ function gat_trackrecord_func()
 	global $wpdb;
 	$resulted_video = PLUGIN_PREFIX . "resulted_video";
 	extract($_POST);
-	if(isset($resultedid) && !empty($resultedid))
+	if ( (isset($assessid) && !empty($assessid)) && (isset($token) && !empty($token)) && (isset($youtubeid) && !empty($youtubeid)) && $videottltime>0 )
 	{
-		$sql = $wpdb->prepare("update $resulted_video set start='0', end=%s, seek=%s where id = %d", $videottltime, $videocrrnttime, $resultedid);
+		$sql = $wpdb->prepare("update $resulted_video set start='0', end=%s, seek=%s where assessment_id = %d and token = %s and youtubeid = %s",
+            $videottltime, $videocrrnttime, $assessid, $token, $youtubeid);
 		$wpdb->query($sql);
 		$seek = ceil($videocrrnttime);
 		$end = ceil($videottltime);

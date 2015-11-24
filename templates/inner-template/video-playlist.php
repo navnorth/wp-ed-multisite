@@ -18,7 +18,7 @@
 
 	switch ($playlist_selection) {
 		case "priority":
-			$sql = $wpdb->prepare("SELECT DISTINCT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
+			$sql = $wpdb->prepare("SELECT DISTINCT a.id, a.youtubeid, a.label FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
 				where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND (<condition>) ORDER BY b.rating_scale ASC", $token, $post->ID);
 			$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b.rating_scale, '".'"'."%') OR
 	 			a.`rating_scale` LIKE IF((b.rating_scale = NULL OR b.rating_scale = ''), '%1%', b.rating_scale)", $sql));
@@ -26,15 +26,20 @@
 			$data_rslts = $wpdb->get_results($sql);
 			break;
 		case "domains":
-			$sql = $wpdb->prepare("SELECT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
+			$sql = $wpdb->prepare("SELECT a.id, a.youtubeid, a.label FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
 				where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND (<condition>) ORDER BY b.domain_id ASC", $token, $post->ID);
 			$sql = stripslashes(str_replace("<condition>", "a.`rating_scale` LIKE CONCAT('%".'"'."', b. `rating_scale`, '".'"'."%')", $sql));
 			$data_rslts = $wpdb->get_results($sql);
 			break;
 		case "unwatched":
-			$sql = $wpdb->prepare("SELECT a.*, ((a.seek/a.end)*100) as percent, b.* FROM $watchtable as a INNER JOIN $videotable as b ON (a.domain_id=b.domain_id AND a.dimensions_id=b.dimensions_id) where assessment_id=%d AND token=%s AND ((a.seek/a.end)*100) is null ORDER BY CAST(percent as DECIMAL(10,5)) DESC", $post->ID, $token);
+			$sql = $wpdb->prepare("SELECT distinct V.label, V.youtubeid FROM $videotable as V inner join $results_table AS X ON X.domain_id = V.domain_id
+				INNER JOIN $watchtable AS R on R.assessment_id = X.assessment_id
+				WHERE X.assessment_id = %d AND R.token = %s
+					AND V.youtubeID NOT IN (SELECT youtubeID FROM $watchtable WHERE assessment_id=%d AND token=%s and seek > 1)
+				ORDER BY R.id DESC", $post->ID, $token, $post->ID, $token);
 			$data_rslts = $wpdb->get_results($sql);
 			break;
+		// not sure when this gets used, if ever.
 		default:
 			$sql = $wpdb->prepare("SELECT DISTINCT a.* FROM $videotable as a LEFT JOIN $results_table as b ON(a.dimensions_id = b.dimension_id)
 				where (b.rating_scale != NULL OR b.rating_scale != '') AND b.token=%s AND b.assessment_id=%d AND b.domain_id=%d AND (<condition>) ORDER BY b.rating_scale ASC", $token, $post->ID, $_GET['sortby']);
@@ -71,19 +76,6 @@
          </div>
 		 <ul class="gat_domainsbmt_btn">
 			<li><a href="<?php echo get_permalink($post->ID); ?>?action=resume-analysis" class="btn btn-default gat_button">Back to Home</a></li>
-			<!-- <li>
-            	<?php
-					$response = PLUGIN_PREFIX . "response";
-					$sql = $wpdb->prepare("select email from $response where assessment_id = %d AND token = %s", $post->ID, $token);
-					$result = $wpdb->get_row($sql);
-				?>
-            	<form method="post">
-                	<input type="hidden" name="email" value="<?php echo $result->email; ?>" />
-                	<input type="hidden" name="assessment_id" value="<?php echo $post->ID; ?>" />
-                	<input type="submit" class="btn btn-default gat_button" name="email_results" value="Email Results & Playlist" />
-                </form>
-            </li> -->
-			<!-- <li><a href="<?php echo get_permalink($post->ID); ?>?action=analysis-result" class="btn btn-default gat_button">Get Results</a></li> -->
 		  </ul>
 	</div>
         <div class="col-md-4 col-sm-12 col-xs-12 gat-video-list">
@@ -95,13 +87,10 @@
 					<select name="sortby" onchange="priority_submit(this);">
 						<option value="priority" <?php echo $a = ($_GET["sortby"] == 'priority') ? 'selected="selected"' : ''; ?>>Recommended For You</option>
 						<?php
-							$args = array(
-								      'post_type' => 'domain',
-								      'orderby' => 'id',
-								      'order' => 'ASC'
-								);
-							$domains = get_posts($args);
-							foreach($domains as $domain){
+							$domainids = get_domainid_by_assementid($post->ID);
+
+							foreach($domainids as $domainid) {
+								$domain = get_post($domainid);
 								?>
 									<option value="<?php echo $domain->ID ?>" <?php echo $a = ($_GET["sortby"] == $domain->ID) ? 'selected="selected"' : ''; ?> > - <?php echo $domain->post_title; ?></option>
 								<?php
@@ -177,26 +166,9 @@
 								}
 								videoId = String(videoId);
 								var videoLabel = '". $data_rslts[0]->label ."';
-								videoLabel = jQuery('.cntrollorbtn[data-youtubeid=' + videoId +'').attr('data-label');
+								videoLabel = jQuery('.cntrollorbtn[data-youtubeid=' + videoId +']').attr('data-label');
 								switch (event.data) {
 									case YT.PlayerState.PLAYING:
-										if(jQuery('.currentmeter').prev('span').children('i.fa').hasClass('fa-play'))
-										{
-											jQuery('.currentmeter').prev('span').children('i.fa').removeClass('fa-play')
-											jQuery('.currentmeter').prev('span').children('i.fa').addClass('fa-pause')
-										}
-										var id = jQuery('.currentmeter').prev('span').attr('data-resultedid');
-										jQuery('.gat_reslt_listvideos').children('li').each(function()
-										{
-											if( id == jQuery(this).children('.gat_videodetails').children('span.cntrollorbtn').attr('data-resultedid'))
-											{		}
-											else
-											{
-												jQuery(this).children('.unclickable').css('display', 'block');
-												jQuery(this).children('.unclickable').attr('title','Please pause/stop current video to play this video!');
-											}
-										});
-										
 										if (cleanTime() == 0) {
 											ga('send', 'event', 'GAT Playlist Video: ' + videoLabel, 'Play', videoId );
 										} else {
@@ -204,15 +176,7 @@
 										};
 									break;
 									case YT.PlayerState.PAUSED:
-										jQuery('.gat_reslt_listvideos').children('li').each( function(){
-											jQuery(this).children('.unclickable').css('display', 'none');
-											jQuery(this).children('.unclickable').attr('title','');
-										});
-										var resultedid = jQuery('#player').attr('data-resultedid');
-										if(typeof resultedid != 'undefined')
-										{
-											trackrecordbyid(resultedid);
-										}
+										trackrecordbyid(". $post->ID . ", '". $token . "', videoId);
 
 										if (player.getDuration() - player.getCurrentTime() != 0) {
 											ga('send', 'event', 'GAT Playlist Video: ' + videoLabel, 'Pause', 'v: ' + videoId + ' | t: ' + cleanTime());
@@ -221,15 +185,7 @@
 										};
 									break;
 									case YT.PlayerState.ENDED:
-									   jQuery('.gat_reslt_listvideos').children('li').each( function(){
-											jQuery(this).children('.unclickable').css('display', 'none');
-											jQuery(this).children('.unclickable').attr('title','');
-										});
-										var resultedid = jQuery('#player').attr('data-resultedid');
-										if(typeof resultedid != 'undefined')
-										{
-											trackrecordbyid(resultedid);
-										}
+										trackrecordbyid(". $post->ID . ", '". $token . "', videoId);
 
 										ga('send', 'event', 'GAT Playlist Video: ' + videoLabel, 'Finished', videoId );
 									break;
@@ -244,6 +200,7 @@
 							jQuery(document).ready(function(e) {
 								loadPlayer();
 								jQuery('.cntrollorbtn').click(function(){
+									player.pauseVideo();
 									var utubeid = jQuery(this).attr('data-youtubeid');
 									utubeid = String(utubeid);
 									var videoTitle = jQuery(this).attr('data-label');
@@ -263,22 +220,33 @@
 					foreach($data_rslts as $data_rslt)
 					{
 						$defaultvideo = ($i==0)?' defaultvideo':'';
-						$resulted_video = PLUGIN_PREFIX . "resulted_video";
-						$sql = $wpdb->prepare( "select * from $resulted_video where assessment_id = %d AND domain_id = %d AND dimensions_id = %d AND token= %s AND youtubeid= %s", $post->ID, $data_rslt->domain_id, $data_rslt->dimensions_id, $token, $data_rslt->youtubeid );
-						$exists = $wpdb->get_row($sql);
-						if(!empty($exists))
-						{
+
+						// don't display duplicates
+						if (!is_array($vid_list_distinct) || !in_array($data_rslt->youtubeid, $vid_list_distinct, true )) {
+							$vid_list_distinct[] = $data_rslt->youtubeid;
+
+							$sql = $wpdb->prepare( "select id,seek,youtubeid from $watchtable where assessment_id = %d AND token= %s AND youtubeid= %s limit 1", $post->ID, $token, $data_rslt->youtubeid );
+							$exists = $wpdb->get_row($sql);
+							$exists_id = $exists->id;;
+
+							if(empty($exists))
+							{
+								$sql = $wpdb->prepare("insert into $watchtable (assessment_id, domain_id, dimensions_id, token, youtubeid) values (%d, 0, 0, %s, %s)", $post->ID, $token, $data_rslt->youtubeid);
+								$wpdb->query($sql);
+								$exists_id = $wpdb->insert_id;
+							}
+
 							echo '<li>';
 								echo '<div class="gat_imgcntnr">
-										<span tabindex="0" class="cntrollorbtn'.$defaultvideo.'" data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'" data-label="'.ucwords(stripslashes($data_rslt->label)).'"><img src="//img.youtube.com/vi/'.$exists->youtubeid.'/mqdefault.jpg" class="gat_vid_thumbnail" alt="thumbnail: '.ucwords(stripslashes($data_rslt->label)).'" /></span>';
+										<span tabindex="0" class="cntrollorbtn'.$defaultvideo.'" data-resultedid="'.$exists->id.'" data-youtubeid="'.$data_rslt->youtubeid.'" data-label="'.ucwords($data_rslt->label).'"><img src="//img.youtube.com/vi/'.$data_rslt->youtubeid.'/mqdefault.jpg" class="gat_vid_thumbnail" alt="thumbnail: '.ucwords(stripslashes($data_rslt->label)).'" /></span>';
 
 								if (!($exists->seek == NULL || $exists->seek == '')){
 									echo '<span class="watched">Watched</span>';
 								}
 								echo '	  </div>';
 								echo '<div class="gat_desccntnr">';
-									echo '<span  tabindex="0" class="video-title cntrollorbtn" data-resultedid="'.$exists->id.'" data-youtubeid="'.$exists->youtubeid.'"  data-label="'.ucwords(stripslashes($data_rslt->label)).'">'.ucwords(stripslashes($data_rslt->label)).'</span>';
-									echo '<span class="video-domain-title"> - '.ucwords(stripslashes(get_the_title($exists->domain_id))).' </span>';
+									echo '<span  tabindex="0" class="video-title cntrollorbtn" data-resultedid="'.$exists_id.'" data-youtubeid="'.$data_rslt->youtubeid.'"  data-label="'.ucwords($data_rslt->label).'">'.ucwords(stripslashes($data_rslt->label)).'</span>';
+									echo '<span class="video-domain-title"> - '.ucwords(stripslashes(get_the_title($data_rslts->domain_id))).' </span>';
 								echo '</div>';
 								/*echo '<div class="gat_videodetails" style="display:none;>';
 									if($exists->seek == NULL || $exists->seek == '')
@@ -309,23 +277,9 @@
 								echo '</div>';
 								echo '<div class="unclickable" style="display:none"></div>';*/
 							echo '</li>';
+
+							$i++;
 						}
-						else
-						{
-							$sql = $wpdb->prepare("insert into $resulted_video (assessment_id, domain_id, dimensions_id, token, youtubeid) values (%d, %d, %d, %s, %s)", $post->ID, $data_rslt->domain_id, $data_rslt->dimensions_id, $token, $data_rslt->youtubeid);
-							$wpdb->query($sql);
-							$lastid = $wpdb->insert_id;
-							echo '<li>';
-								echo '<div class="gat_imgcntnr">
-										<img src="//img.youtube.com/vi/'.$data_rslt->youtubeid.'/mqdefault.jpg" class="gat_vid_thumbnail"/>
-									  </div>';
-								echo '<div class="gat_desccntnr">';
-									echo '<span class="video-title">'.ucwords(stripslashes($data_rslt->label)).'</span>';
-									echo '<span class="video-domain-title"> - '.ucwords(stripslashes(get_the_title($data_rslt->domain_id))).' </span>';
-								echo '</div>';
-							echo '</li>';
-						}
-						$i++;
 					}
 				} else {
 					echo '<li>No videos found!</li>';

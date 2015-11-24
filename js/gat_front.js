@@ -712,18 +712,18 @@ function gat_play_utubevdo(ref)
     });
 	jQuery(ref).next(".meter").addClass("currentmeter");
 }
-function trackrecordbyid(resultedid)
+function trackrecordbyid(assessid,token,youtubeid)
 {
 	var videocrrnttime = player.getCurrentTime();
 	var videottltime = player.getDuration();
 	jQuery.ajax({
 		url: ajaxurl,
 		type: "post",
-		data: "resultedid="+resultedid+"&videocrrnttime="+videocrrnttime+"&videottltime="+videottltime+"&action=gat_trackrecord",
+		data: "assessid="+assessid+"&token="+token+"&youtubeid="+youtubeid+"&videocrrnttime="+videocrrnttime+"&videottltime="+videottltime+"&action=gat_trackrecord",
 		dataType:"json",
 		success: function(msg)
 		{
-		jQuery(".gat_reslt_listvideos").children("li").children(".gat_videodetails").children(".currentmeter").children("span").css("width", msg.complete+"%").text(msg.complete+"%");
+		//jQuery(".gat_reslt_listvideos").children("li").children(".gat_videodetails").children(".currentmeter").children("span").css("width", msg.complete+"%").text(msg.complete+"%");
 		jQuery(".gat_reslt_listvideos").children("li").children(".gat_videodetails").children(".currentmeter").prev("span").attr("data-seekto",msg.seek);
 		jQuery(".gat_reslt_listvideos").children("li").children(".gat_videodetails").children(".currentmeter").prev("span").children("i.fa").removeClass("fa-pause").addClass("fa-play");
 		}

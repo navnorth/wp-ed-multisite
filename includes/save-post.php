@@ -95,6 +95,10 @@ function gat_assessment_save()
 		return;
 	}
 	extract($_POST);
+	foreach($domainid as $key=>$id)
+	{
+		$result = set_domain_order($id, $domainorder[$key]);
+	}
 	update_post_meta($post->ID, "assessment_featurevideo", $assessment_featurevideo);
 	update_post_meta($post->ID, "result_content", $result_content);
 	update_post_meta($post->ID, "playlist_content", $playlist_content);

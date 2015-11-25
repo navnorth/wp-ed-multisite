@@ -67,6 +67,7 @@ function domain_func()
 {
 	global $post;
 	$domainids = get_domainid_by_assementid($post->ID);
+	
 	$html = '';
 	$html .= '<div class="gat_wrpr">';
 	$html .= '<table class="wp-list-table widefat fixed">';
@@ -83,6 +84,8 @@ function domain_func()
 		$html .= '</thead>';
 		$html .= '<tbody>';
 			$i = 1;
+			$domains = array();
+			// Get Domain base on Domain ID
 			foreach($domainids as $domainid)
 			{
 				$domain = get_post($domainid);
@@ -105,11 +108,13 @@ function domain_func()
 					$html .= '<td>'.$domain->post_title.'</td>';
 					$html .= '<td>'.get_dimensioncount($domainid).'</td>';
 					$html .= '<td>'.get_videocount($domainid).'</td>';
-					$html .= '<td><a href="'.site_url().'/wp-admin/post.php?post='.$domainid.'&action=edit" class="button button-primary">Edit</a></td>';
+					$html .= '<td><input type="hidden" name="domainid[]" value="'.$domain->ID.'" /><input type="hidden" name="domainorder[]" class="domain-order" value="'.$i.'" /><a href="'.site_url().'/wp-admin/post.php?post='.$domainid.'&action=edit" class="button button-primary">Edit</a></td>';
 					$html .= '<td><a href="javascript:" class="button button-primary" onclick="delete_domain(this)" data-id="'.$domainid.'">Delete</a></td>';
 				$html .= '</tr>';
 				$i++;
 			}
+		
+			
 		$html .= '</tbody>';
 	$html .= '</table>';
 	

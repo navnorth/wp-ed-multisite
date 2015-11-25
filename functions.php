@@ -1,5 +1,8 @@
 <?php
 
+global $sort_order;
+
+
 if( ! defined('GAT_INQUIRE_USER_COOKIE'))
     define('GAT_INQUIRE_USER_COOKIE', 'GAT-inquire-user-information');
 
@@ -395,7 +398,7 @@ function get_domainid_by_assementid($postid)
 {
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
-	$sql = $wpdb->prepare("select domain_id from $dimensiontable where assessment_id=%d", $postid);
+	$sql = $wpdb->prepare("select domain_id from $dimensiontable ogd INNER JOIN ".$wpdb->prefix."posts op ON ogd.domain_id=op.ID where ogd.assessment_id=%d ORDER BY op.menu_order", $postid);
 	$data = $wpdb->get_results($sql, OBJECT_K);
 	if(isset($data) && !empty($data))
 	{
@@ -993,4 +996,26 @@ function email_results($_params, $data_results, $token){
 
 	return $alert_message;
 }
+
+//Sort Domains according to sortby parameter
+function sort_domains_by_order($domains) {
+	$order = array();
+	$id = array();
+	foreach ($domains as $key => $val) {
+		$id[$key] = $val->ID;
+		$order[$key] =  $val->menu_order;
+	}
+	
+	array_multisort($order, SORT_ASC, $id, SORT_ASC, $domains);
+	
+	return $domains;
+}
+
+//Update Domain with new order
+function set_domain_order($domainid, $order) {
+	global  $wpdb;
+	$result = $wpdb->query($wpdb->prepare('UPDATE '.$wpdb->prefix.'posts SET menu_order = %d WHERE ID = %d', $order, $domainid));
+	return $result;
+}
+
 ?>

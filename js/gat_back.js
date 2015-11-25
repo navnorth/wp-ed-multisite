@@ -152,10 +152,18 @@ function domain_order(ref)
 	var order = jQuery(ref).attr("data-order");
 	if(order == 'up')
 	{
+		$cur = jQuery(ref).parents('tr').find('.domain-order').val();
+		$prev = jQuery(ref).parents('tr').prev().find('.domain-order').val();
+		jQuery(ref).parents('tr').find('.domain-order').val($prev);
+		jQuery(ref).parents('tr').prev().find('.domain-order').val($cur);
 		jQuery(ref).parents('tr').insertBefore(jQuery(ref).parents('tr').prev());
 	}
 	if(order == 'down')
 	{
+		$cur = jQuery(ref).parents('tr').find('.domain-order').val();
+		$nxt = jQuery(ref).parents('tr').next().find('.domain-order').val();
+		jQuery(ref).parents('tr').find('.domain-order').val($nxt);
+		jQuery(ref).parents('tr').next().find('.domain-order').val($cur);
 		jQuery(ref).parents('tr').insertAfter(jQuery(ref).parents('tr').next());
 	}
 	

@@ -1,8 +1,5 @@
 <?php
 
-global $sort_order;
-
-
 if( ! defined('GAT_INQUIRE_USER_COOKIE'))
     define('GAT_INQUIRE_USER_COOKIE', 'GAT-inquire-user-information');
 

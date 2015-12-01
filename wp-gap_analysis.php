@@ -51,6 +51,7 @@ function gat_table_create_function()
 		domain_id int(11) NOT NULL,
 		title tinytext NOT NULL,
 		description longtext NOT NULL,
+                dimension_order tinyint(4) NOT NULL,
 		PRIMARY KEY (id)) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
 	dbDelta($sql);
 

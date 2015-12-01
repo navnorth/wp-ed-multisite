@@ -241,7 +241,7 @@ function get_dimensions_data($postid)
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
 	$videotable = PLUGIN_PREFIX . "videos";
-	$sql = $wpdb->prepare("select * from $dimensiontable where domain_id=%d", $postid);
+	$sql = $wpdb->prepare("select * from $dimensiontable where domain_id=%d order by dimension_order", $postid);
 	$datas = $wpdb->get_results($sql);
 	if(isset($datas) && !empty($datas))
 	{
@@ -279,6 +279,7 @@ function get_dimensions_data($postid)
             <div class="gat_inside_wrpr">
             	<div class="gat_fldwrpr">
                 	<input type="hidden" name="dimension_id[]" value="<?php echo $data->id; ?>" />
+			<input type="hidden" name="dimension_order[]" id="dimension_order" value="<?php echo $i; ?>" />
                 	<input type="text" name="dimension_title[]" autocomplete="off" spellcheck="true" value="<?php echo $title; ?>" class="wp_title" />
                 </div>
                 <div class="gat_fldwrpr">
@@ -442,7 +443,7 @@ function get_alldimension_domainid($domainid)
 {
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
-	$sql = $wpdb->prepare("SELECT * FROM $dimensiontable where domain_id=%d", $domainid);
+	$sql = $wpdb->prepare("SELECT * FROM $dimensiontable where domain_id=%d order by dimension_order", $domainid);
 	$data = $wpdb->get_results($sql);
 	if(isset($data) && !empty($data))
 	{

@@ -113,6 +113,7 @@ function update_count()
 	jQuery(".gat_dimention_wrpr").each(function()
 	{
 		jQuery(this).children(".gat_cntrlr_wrpr").children(".count").text(i);
+		jQuery(this).children(".gat_inside_wrpr").children(".gat_fldwrpr").children("#dimension_order").val(i);
 		i++;
 	});
 	jQuery(".gat_btnwrpr").children("a").attr("data-editorid", i-1)

@@ -48,6 +48,7 @@ $max_upload = (int)(ini_get('upload_max_filesize'));
         </p>
         <div class="clear"></div>
         <p class="max-upload-size">Maximum upload file size: <?php echo $max_upload; ?> MB.</p>
+	<p class="district-count">Number of districts: <?php echo gat_district_count(); ?></p>
     </form>
 </div>
 

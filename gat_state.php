@@ -35,4 +35,19 @@ function gat_districtcode_function()
 	echo $return;
 	die;
 }
+
+function gat_district_count($state = null){
+	global $wpdb;
+	$organization = PLUGIN_PREFIX . "organizations";
+	if ($state)
+		$sql = $wpdb->prepare("SELECT COUNT(distinct LEANM) FROM $organization WHERE LSTATE=%s ORDER BY LEANM ASC", $state);
+	else
+		$sql = "SELECT COUNT(distinct LEANM) FROM $organization";
+	$distict_count = $wpdb->get_results($sql);
+	return $district_count;
+}
+
+function gat_school_count() {
+	
+}
 ?>

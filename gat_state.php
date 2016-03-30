@@ -30,7 +30,7 @@ function gat_districtcode_function()
 					{
 						$return .= '<option value="'.$distict->LEAID.'">'.$distict->LEANM.'</option>';
 					}
-		$return .= '</select>'; 			
+		$return .= '</select>';
 	}
 	echo $return;
 	die;
@@ -42,12 +42,11 @@ function gat_district_count($state = null){
 	if ($state)
 		$sql = $wpdb->prepare("SELECT COUNT(distinct LEANM) FROM $organization WHERE LSTATE=%s ORDER BY LEANM ASC", $state);
 	else
-		$sql = "SELECT COUNT(distinct LEANM) FROM $organization";
-	$distict_count = $wpdb->get_results($sql);
-	return $district_count;
+		$sql = "SELECT COUNT(distinct LEANM) FROM " . $organization;
+	return $wpdb->get_var($sql);
 }
 
 function gat_school_count() {
-	
+
 }
 ?>

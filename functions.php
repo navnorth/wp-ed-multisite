@@ -28,73 +28,20 @@ function gat_front_enqueue_script()
 	wp_enqueue_script( 'jquery_jscrollpane_script', plugin_dir_url( __FILE__ ).'js/jquery.jscrollpane.min.js' );
 	wp_enqueue_script( 'gat_front_script', plugin_dir_url( __FILE__ ).'js/gat_front.js' );
 }
-/*Enqueue youtube script and ajax url on frontend*/
+/* workaround to only use SSL when on SSL (avoid self-signed cert issues) */
 add_action('wp_head','pluginname_ajaxurl');
 function pluginname_ajaxurl()
 {
-	$yoast = get_option("yst_ga");
-	if(!empty($yoast))
-	{
-		$yoastid = $yoast['ga_general']['manual_ua_code_field'];
-	}
-	else
-	{
-		$yoastid = '';
-	}
-	?>
-    <script type="text/javascript">
-    /* workaround to only use SSL when on SSL (avoid self-signed cert issues) */
-    <?php if (!strpos($_SERVER['REQUEST_URI'],"wp-admin")): ?>
-	var ajaxurl = '<?php echo GAT_URL ?>ajax.php';
-    <?php else: ?>
-	var ajaxurl = '<?php echo admin_url("admin-ajax.php", (is_ssl() ? "https": "http") ); ?>
-    <?php endif; ?>
-    </script>
-    <script>
-    /**
-	var tag = document.createElement('script');
-	tag.src = "//www.youtube.com/iframe_api";
-	var firstScriptTag = document.getElementsByTagName('script')[0];
-	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    */
-    </script>
-<?php
+    echo '<script type="text/javascript">';
+
+    if (!strpos($_SERVER['REQUEST_URI'],"wp-admin"))
+	   echo 'var ajaxurl = '. GAT_URL .'ajax.php';
+    else
+	   echo 'var ajaxurl = '. admin_url("admin-ajax.php", (is_ssl() ? "https": "http") );
+
+    echo '</script>';
 }
 
-/*Enqueue script in footer for domain posttype on backend*/
-add_action('admin_footer', 'gat_post_validation');
-function gat_post_validation()
-{
-	global $post;
-	if ($post->post_type != 'domain')
-	{
-		 return;
-	}
-	/*echo '<script>
-		 jQuery( "form#post #publish" ).hide();
- 		 jQuery( "form#post #publish" ).after("<input type=\'button\' value=\'Publish\' class=\'sb_publish button-primary\' /><span class=\'sb_js_errors\'></span>");
-		 jQuery( ".sb_publish" ).click(function()
-		 {
-			var error = true;
-			var i = 1;
-			var length = jQuery(".gat_editablediv").length;
-			jQuery(".gat_editablediv").each(function() {
-				var value = jQuery(this).html();
-				jQuery(this).prev("textarea.gat_editabletextarea").text(value);
-
-				if(i == length)
-				{
-					error = false;
-				}
-				i++
-			});
-			if (!error)
-			{
-			 	jQuery( "form#post #publish" ).click();
-			}
-		 });
-	</script>';*/
-}
 /*add action when assessments delete*/
 add_action('before_delete_post', 'delete_post_metadata_function');
 function delete_post_metadata_function($postid)
@@ -127,6 +74,64 @@ function wpse_60168_var_dump_and_die()
 		}
 	}
 }
+
+/* add action for exporting as CSV -- placed here to get around header issues */
+add_action("admin_init", "wpse_37841_export_csv");
+function wpse_37841_export_csv()
+{
+    global $wpdb;
+
+    if ( isset($_POST['exportcsv']) ) {
+
+        extract($_POST);
+        $responses = PLUGIN_PREFIX . "response";
+        $sql = $wpdb->prepare("select * from $responses where assessment_id=%d", $assessment);
+        $results = $wpdb->get_results($sql);
+
+        // No point in creating the export file on the file-system. We'll stream it straight to the browser. Much nicer.
+
+        // Open the output stream
+        $fh = fopen('php://output', 'w');
+
+        // Start output buffering (to capture stream contents)
+        ob_start();
+
+        // CSV Header
+        $header = array('Token','Email','State','Organization Id','Organization','Start Date','Last Saved','Progress','Overall Score');
+        fputcsv($fh, $header);
+
+        if(!empty($results))
+        {
+            foreach($results as $result)
+            {
+                $line = array($result->token, $result->email, $result->state, $result->district, $result->organization_id,
+                            $result->start_date, $result->last_saved, round($result->progress,2), round($result->overall_score,2)
+                            );
+
+                fputcsv($fh, $line);
+            }
+        }
+
+        // Get the contents of the output buffer
+        $string = ob_get_clean();
+
+        // Set the filename of the download
+        $filename = 'GAT_Report_'.date('Ymd').'.csv';
+
+        // Output CSV-specific headers
+        header('Pragma: public');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Cache-Control: private', false);
+        header('Content-Type: text/csv; charset=UTF-8');
+        header('Content-Disposition: attachment; filename="' . $filename . '.csv";');
+        header('Content-Transfer-Encoding: binary');
+
+        // Stream the CSV data
+        exit($string);
+    }
+}
+
 /*add action for set cookie of a token*/
 add_action('init', 'GAT_setcookie');
 function GAT_setcookie()
@@ -1003,9 +1008,9 @@ function sort_domains_by_order($domains) {
 		$id[$key] = $val->ID;
 		$order[$key] =  $val->menu_order;
 	}
-	
+
 	array_multisort($order, SORT_ASC, $id, SORT_ASC, $domains);
-	
+
 	return $domains;
 }
 

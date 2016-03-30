@@ -116,7 +116,7 @@ function wpse_37841_export_csv()
         $string = ob_get_clean();
 
         // Set the filename of the download
-        $filename = 'GAT_Report_'.date('Ymd').'.csv';
+        $filename = 'GAT_Report_'.date('Ymd');
 
         // Output CSV-specific headers
         header('Pragma: public');

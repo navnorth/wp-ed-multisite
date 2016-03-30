@@ -53,7 +53,7 @@ $max_upload = (int)(ini_get('upload_max_filesize'));
 </div>
 
 <div class="plugin-footer">
-    <div class="plugin-info"><?php echo GAT_PLUGIN_NAME . " " . GAT_PLUGIN_VERSION .""; ?></div>
+    <div class="plugin-info"><?php echo GAT_PLUGIN_NAME . " v" . GAT_PLUGIN_VERSION .""; ?></div>
     <div class="plugin-link"><a href='<?php echo GAT_PLUGIN_INFO ?>' target='_blank'>More info</a></div>
     <div class="clear"></div>
 </div>

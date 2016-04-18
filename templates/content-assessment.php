@@ -82,6 +82,8 @@
 	    if($result)
 	    {
 		$user_response = NULL;
+		
+		echo '<script type="text/javascript">ga("send", "event", "Submit Domain", "'.count($dimension_id).'", "'.$_POST['gat_results'].'" );</script>';
 
 		if($response_id)
 		{
@@ -193,8 +195,8 @@
 	    if($result)
 	    {
 		extract($_POST);
-
-		echo '<script type="text/javascript">ga("send", "event", "Submit Domain", "'.count($dimension_id).'");</script>';
+		
+		echo '<script type="text/javascript">ga("send", "event", "Submit Domain", "'.count($dimension_id).'", "'.$_POST['domain_submit'].'" );</script>';
 
 		$location = get_permalink($post->ID);
 

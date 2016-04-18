@@ -35,9 +35,9 @@ function pluginname_ajaxurl()
     echo '<script type="text/javascript">';
 
     if (!strpos($_SERVER['REQUEST_URI'],"wp-admin"))
-	   echo 'var ajaxurl = '. GAT_URL .'ajax.php';
+	   echo 'var ajaxurl = "'. GAT_URL .'ajax.php";';
     else
-	   echo 'var ajaxurl = '. admin_url("admin-ajax.php", (is_ssl() ? "https": "http") );
+	   echo 'var ajaxurl = "'. admin_url("admin-ajax.php", (is_ssl() ? "https": "http") ).'";';
 
     echo '</script>';
 }

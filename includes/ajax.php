@@ -31,7 +31,8 @@ function get_dimensions()
             </div>
             <div class="gat_inside_wrpr">
             	<div class="gat_fldwrpr">
-                	<input type="text" name="dimension_title[]" autocomplete="off" spellcheck="true" value="" class="wp_title" />
+                	<input type="hidden" name="dimension_order[]" id="dimension_order" value="<?php echo $count; ?>" />
+                    <input type="text" name="dimension_title[]" autocomplete="off" spellcheck="true" value="" class="wp_title" />
                 </div>
                 <div class="gat_fldwrpr">
                  	<textarea rows="5" name="dimension_content[]" class="gat_editabletextarea"></textarea>

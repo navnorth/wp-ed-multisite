@@ -112,7 +112,7 @@ function update_count()
 	var i = 1;
 	jQuery(".gat_dimention_wrpr").each(function()
 	{
-		jQuery(this).children(".gat_cntrlr_wrpr").children(".count").text(i);
+		jQuery(this).children(".gat_cntrlr_wrpr").children(".count").text(i + '.');
 		jQuery(this).children(".gat_inside_wrpr").children(".gat_fldwrpr").children("#dimension_order").val(i);
 		i++;
 	});
@@ -167,7 +167,7 @@ function domain_order(ref)
 		jQuery(ref).parents('tr').next().find('.domain-order').val($cur);
 		jQuery(ref).parents('tr').insertAfter(jQuery(ref).parents('tr').next());
 	}
-	
+
 	var i = 1;
 	var length = jQuery(ref).parents("table").children("tbody").children("tr").length;
 	jQuery(ref).parents("table").children("tbody").children("tr").each(function()

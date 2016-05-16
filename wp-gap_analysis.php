@@ -3,11 +3,11 @@
  Plugin Name: Gap Analysis Tool
  Plugin URI: http://navigationnorth.com/wordpress/gap-analysis
  Description: The Gap Analysis Tool provides users with custom content based on a self-assessment. Developed by Navigation North, in collaboration with AIR, for the Future Ready Leaders program.
- Version: 0.2.7
+ Version: 0.2.8
  Author: Navigation North
  Author URI: http://navigationnorth.com
 
- Copyright (C) 2015 Navigation North
+ Copyright (C) 2016 Navigation North
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ define( 'PLUGIN_PREFIX' , $wpdb->prefix.'gat_');
 
 // Plugin Name and Version
 define( 'GAT_PLUGIN_NAME', 'Gap Analysis Tool' );
-define( 'GAT_PLUGIN_VERSION', '0.2.7' );
+define( 'GAT_PLUGIN_VERSION', '0.2.8' );
 define( 'GAT_PLUGIN_INFO', 'http://navigationnorth.com/wordpress/gap-analysis' );
 
 /*Score Limit*/
@@ -51,7 +51,7 @@ function gat_table_create_function()
 		domain_id int(11) NOT NULL,
 		title tinytext NOT NULL,
 		description longtext NOT NULL,
-                dimension_order tinyint(4) NOT NULL,
+        dimension_order tinyint(4) NOT NULL,
 		PRIMARY KEY (id)) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
 	dbDelta($sql);
 

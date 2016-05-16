@@ -284,7 +284,7 @@ function get_dimensions_data($postid)
             <div class="gat_inside_wrpr">
             	<div class="gat_fldwrpr">
                 	<input type="hidden" name="dimension_id[]" value="<?php echo $data->id; ?>" />
-			<input type="hidden" name="dimension_order[]" id="dimension_order" value="<?php echo $i; ?>" />
+			        <input type="hidden" name="dimension_order[]" id="dimension_order" value="<?php echo $i; ?>" />
                 	<input type="text" name="dimension_title[]" autocomplete="off" spellcheck="true" value="<?php echo $title; ?>" class="wp_title" />
                 </div>
                 <div class="gat_fldwrpr">
@@ -448,9 +448,9 @@ function get_alldimension_domainid($domainid)
 {
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
-	$sql = $wpdb->prepare("SELECT * FROM $dimensiontable where domain_id=%d order by dimension_order", $domainid);
+	$sql = $wpdb->prepare("SELECT id,assessment_id,domain_id,title,description FROM $dimensiontable where domain_id=%d order by dimension_order", $domainid);
 	$data = $wpdb->get_results($sql);
-	if(isset($data) && !empty($data))
+    if(isset($data) && !empty($data))
 	{
 		return $data;
 	}
@@ -623,6 +623,7 @@ OR rating_scale != '' )", $domainid, $token);
 function progress_indicator_sidebar($assessment_id, $token)
 {
     $data = get_GAT_response($assessment_id, $token);
+    $progressPercent = isset($data->progress) ? $data->progress : 0;
 
     if( ! empty($data->email))
     {
@@ -643,7 +644,7 @@ function progress_indicator_sidebar($assessment_id, $token)
 
 	echo '<div class="gat_indicatorwidget">
 			<div class="meter">
-			  <span style="width: ' . ceil($data->progress) . '%">'.ceil($data->progress).'%</span>
+			  <span style="width: ' . ceil($progressPercent) . '%">'.ceil($progressPercent).'%</span>
 		  	</div>
 			<div>
 				<form id="clear-analysis" method="post" action="' . get_permalink() . '">
@@ -662,7 +663,7 @@ function progress_indicator_sidebar($assessment_id, $token)
 
 			<!--<div>
 				<span><b>Last Saved : </b></span>
-				'.$data->last_saved.'
+				data->last_saved.
 			</div>-->
 		  </div>';
 }

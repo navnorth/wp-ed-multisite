@@ -22,7 +22,7 @@ function gat_domain_save()
 			{
 				if(isset($dimension_id[$i]) && !empty($dimension_id[$i]))
 				{
-					$sql = $wpdb->prepare('update '.$dimensiontable.' SET assessment_id=%d, domain_id=%d, title=%s, description = %s, dimension_order = %d where id=%d', $assessmentid, $post->ID, $dimension_title[$i], $dimension_content[$i], $dimension_id[$i],  $dimension_order[$i]);
+					$sql = $wpdb->prepare('update '.$dimensiontable.' SET assessment_id=%d, domain_id=%d, title=%s, description = %s, dimension_order = %d where id=%d', $assessmentid, $post->ID, $dimension_title[$i], $dimension_content[$i], $dimension_order[$i], $dimension_id[$i]);
 					$wpdb->query($sql);
 					$lastid = $dimension_id[$i];
 				}

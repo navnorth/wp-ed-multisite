@@ -66,7 +66,7 @@ get_header(); ?>
 				</div>
 			    </form>
 			    <p class="text-right">
-				Read our <a href="http://www2.ed.gov/notices/privacy/index.html?src=future-ready-gap-analysis" target="_blank">privacy policy</a>.
+				Read our <a href="https://www2.ed.gov/notices/privacy/index.html?src=future-ready-gap-analysis" target="_blank">privacy policy</a>.
 			    </p>
 			</div>
 			<div class="modal-footer">

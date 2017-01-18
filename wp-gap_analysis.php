@@ -1,13 +1,16 @@
 <?php
 /*
- Plugin Name: Gap Analysis Tool
- Plugin URI: http://navigationnorth.com/wordpress/gap-analysis
- Description: The Gap Analysis Tool provides users with custom content based on a self-assessment. Developed by Navigation North, in collaboration with AIR, for the Future Ready Leaders program.
- Version: 0.2.8
- Author: Navigation North
- Author URI: http://navigationnorth.com
+ Plugin Name:  Gap Analysis Tool
+ Plugin URI:   https://www.navigationnorth.com/solutions/wordpress/gap-analysis-plugin
+ Description:  The Gap Analysis Tool provides users with custom content based on a self-assessment. Developed by Navigation North, in collaboration with AIR, for the Future Ready Leaders program.
+ Version:      0.2.9
+ Author:       Navigation North
+ Author URI:   https://www.navigationnorth.com
+ Text Domain:  wp-gap-analysis
+ License:      GPL3
+ License URI:  https://www.gnu.org/licenses/gpl-3.0.html
 
- Copyright (C) 2016 Navigation North
+ Copyright (C) 2017 Navigation North
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -22,6 +25,7 @@
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 global $wpdb;
 define( 'GAT_PATH' , plugin_dir_path(__FILE__) );
 define( 'GAT_URL' , plugin_dir_url(__FILE__) );
@@ -30,8 +34,8 @@ define( 'PLUGIN_PREFIX' , $wpdb->prefix.'gat_');
 
 // Plugin Name and Version
 define( 'GAT_PLUGIN_NAME', 'Gap Analysis Tool' );
-define( 'GAT_PLUGIN_VERSION', '0.2.8' );
-define( 'GAT_PLUGIN_INFO', 'http://navigationnorth.com/wordpress/gap-analysis' );
+define( 'GAT_PLUGIN_VERSION', '0.2.9' );
+define( 'GAT_PLUGIN_INFO', 'https://www.navigationnorth.com/solutions/wordpress/gap-analysis-plugin' );
 
 /*Score Limit*/
 define( 'SCORE_HIGH_UPPER' , 4);

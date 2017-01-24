@@ -339,7 +339,8 @@
     // Doesn't Have Token
     else
     {
-	echo '<script type="text/javascript">location.reload();</script>';
+	if ($_GET['action']=='token-saved')
+	    echo '<script type="text/javascript">location.reload();</script>';
     }
 
     // Performed GET action

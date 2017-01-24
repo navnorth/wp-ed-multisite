@@ -135,7 +135,7 @@ function wpse_37841_export_csv()
 /*add action for set cookie of a token*/
 add_action('init', 'GAT_setcookie');
 function GAT_setcookie()
-{
+{	
     $path = parse_url(get_option('siteurl'), PHP_URL_PATH);
     $host = parse_url(get_option('siteurl'), PHP_URL_HOST);
 
@@ -182,7 +182,7 @@ function GAT_setcookie()
 	    else
 	    {
 		$time = time() + 2678400;
-
+		
 		$token = htmlspecialchars($_REQUEST['token']);
 		setcookie("GAT_token", $token, $time, $path, $host);
 
@@ -230,12 +230,14 @@ function GAT_setcookie()
 	// Nothing, not even a token.
 	else
 	{
-	    $t = time();
-
-	    $token = generateRandomString(8);
-
-	    setcookie("GAT_token", $token, $t + 2678400, $path, $host);
-	    setcookie(GAT_INQUIRE_USER_COOKIE, '1', $t + 2678400, $path, $host);
+		$t = time();
+	    
+		$token = generateRandomString(8);
+			
+		if ($_REQUEST['action']=='token-saved') {
+			setcookie("GAT_token", $token, $t + 2678400, $path, $host);
+			setcookie(GAT_INQUIRE_USER_COOKIE, '1', $t + 2678400, $path, $host);
+		} 
 	}
     }
 }

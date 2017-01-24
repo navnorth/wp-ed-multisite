@@ -26,7 +26,7 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-global $wpdb;
+global $wpdb, $gat_session;
 define( 'GAT_PATH' , plugin_dir_path(__FILE__) );
 define( 'GAT_URL' , plugin_dir_url(__FILE__) );
 define( 'PLUGIN_DOMAIN' , plugin_basename(__FILE__) );

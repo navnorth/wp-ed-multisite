@@ -135,110 +135,110 @@ function wpse_37841_export_csv()
 /*add action for set cookie of a token*/
 add_action('init', 'GAT_setcookie');
 function GAT_setcookie()
-{	
+{
     $path = parse_url(get_option('siteurl'), PHP_URL_PATH);
     $host = parse_url(get_option('siteurl'), PHP_URL_HOST);
 
     if(isset($_POST['clear-analysis']))
     {
-	$name = 'gat-clear-analysis-nonce';
+    	$name = 'gat-clear-analysis-nonce';
 
-	$nonce = (isset($_POST[$name]) AND wp_verify_nonce($_POST[$name], '55d470caefa93'));
-	$token = (isset($_COOKIE['GAT_token']) AND isset($_POST['clear-analysis']) AND $_COOKIE['GAT_token'] == $_POST['clear-analysis']);
+    	$nonce = (isset($_POST[$name]) AND wp_verify_nonce($_POST[$name], '55d470caefa93'));
+    	$token = (isset($_COOKIE['GAT_token']) AND isset($_POST['clear-analysis']) AND $_COOKIE['GAT_token'] == $_POST['clear-analysis']);
 
-	if($nonce AND $token)
-	{
-	    unset($_COOKIE['GAT_token']);
-	    $t = time();
+    	if($nonce AND $token)
+    	{
+    	    unset($_COOKIE['GAT_token']);
+    	    $t = time();
 
-	    setcookie('GAT_token', '', $t + 2678400, $path, $host);
-	}
+    	    setcookie('GAT_token', '', $t + 2678400, $path, $host);
+    	}
     }
 
     // Has GAT Token
     if(isset($_COOKIE['GAT_token']) && ! empty($_COOKIE['GAT_token']))
     {
-	$action = array('resume-analysis', 'analysis-result', 'restart_token', 'video-playlist');
+    	$action = array('resume-analysis', 'analysis-result', 'restart_token', 'video-playlist');
 
-	if(isset($_REQUEST['token']) AND empty($_REQUEST['token']) == FALSE AND in_array($_REQUEST['action'], $action))
-	{
-	    if($_REQUEST['action'] == 'restart_token')
-	    {
-		global $wpdb;
-		extract($_POST);
-		$response_table = PLUGIN_PREFIX . "response";
-		$sql = $wpdb->prepare( "select * from $response_table where token = %s", $token );
-		$data = $wpdb->get_row($sql);
+    	if(isset($_REQUEST['token']) AND empty($_REQUEST['token']) == FALSE AND in_array($_REQUEST['action'], $action))
+    	{
+    	    if($_REQUEST['action'] == 'restart_token')
+    	    {
+    		global $wpdb;
+    		extract($_POST);
+    		$response_table = PLUGIN_PREFIX . "response";
+    		$sql = $wpdb->prepare( "select * from $response_table where token = %s", $token );
+    		$data = $wpdb->get_row($sql);
 
-		if(isset($data) && !empty($data))
-		{
-		    $token = htmlspecialchars($token);
-		    setcookie("GAT_token", $token, time() + 2678400, $path, $host);
+    		if(isset($data) && !empty($data))
+    		{
+    		    $token = htmlspecialchars($token);
+    		    setcookie("GAT_token", $token, time() + 2678400, $path, $host);
 
-		    if($data->email == NULL)
-			setcookie(GAT_INQUIRE_USER_COOKIE, '1', time() + 2678400, $path, $host);
-		}
-	    }
-	    else
-	    {
-		$time = time() + 2678400;
-		
-		$token = htmlspecialchars($_REQUEST['token']);
-		setcookie("GAT_token", $token, $time, $path, $host);
+    		    if($data->email == NULL)
+    			setcookie(GAT_INQUIRE_USER_COOKIE, '1', time() + 2678400, $path, $host);
+    		}
+    	    }
+    	    else
+    	    {
+    		$time = time() + 2678400;
 
-		if( ! isset($_COOKIE[GAT_INQUIRE_USER_COOKIE]))
-		    setcookie(GAT_INQUIRE_USER_COOKIE, '1', $time, $path, $host);
-		else
-		    //When GAT-inquire-user-information is set, change it to 0 as not trigger popup info form
-		    setcookie(GAT_INQUIRE_USER_COOKIE, '0', $time, $path, $host);
-	    }
-	}
+    		$token = htmlspecialchars($_REQUEST['token']);
+    		setcookie("GAT_token", $token, $time, $path, $host);
+
+    		if( ! isset($_COOKIE[GAT_INQUIRE_USER_COOKIE]))
+    		    setcookie(GAT_INQUIRE_USER_COOKIE, '1', $time, $path, $host);
+    		else
+    		    //When GAT-inquire-user-information is set, change it to 0 as not trigger popup info form
+    		    setcookie(GAT_INQUIRE_USER_COOKIE, '0', $time, $path, $host);
+    	    }
+    	}
     }
     // No GAT Token
     else
     {
-	$action = array('resume-analysis', 'analysis-result', 'restart_token', 'video-playlist');
+    	$action = array('resume-analysis', 'analysis-result', 'restart_token', 'video-playlist');
 
-	if(isset($_REQUEST['token']) AND empty($_REQUEST['token']) == FALSE AND in_array($_REQUEST['action'], $action))
-	{
-	    if($_REQUEST['action'] == 'restart_token')
-	    {
-		global $wpdb;
-		extract($_POST);
-		$response_table = PLUGIN_PREFIX . "response";
-		$sql = $wpdb->prepare( "select * from $response_table where token= %s", $token );
-		$data = $wpdb->get_row($sql);
+    	if(isset($_REQUEST['token']) AND empty($_REQUEST['token']) == FALSE AND in_array($_REQUEST['action'], $action))
+    	{
+    	    if($_REQUEST['action'] == 'restart_token')
+    	    {
+        		global $wpdb;
+        		extract($_POST);
+        		$response_table = PLUGIN_PREFIX . "response";
+        		$sql = $wpdb->prepare( "select * from $response_table where token= %s", $token );
+        		$data = $wpdb->get_row($sql);
 
-		if(isset($data) && !empty($data))
-		{
-		    $token = htmlspecialchars($token);
-		    setcookie("GAT_token", $token, time() + 2678400, $path, $host);
+        		if(isset($data) && !empty($data))
+        		{
+        		    $token = htmlspecialchars($token);
+        		    setcookie("GAT_token", $token, time() + 2678400, $path, $host);
 
-		    if($data->email == NULL)
-			setcookie(GAT_INQUIRE_USER_COOKIE, '1', time() + 2678400, $path, $host);
-		}
-	    }
-	    else
-	    {
-		$token = htmlspecialchars($_REQUEST['token']);
-		setcookie("GAT_token", $token, time() + 2678400, $path, $host);
+        		    if($data->email == NULL)
+        		        setcookie(GAT_INQUIRE_USER_COOKIE, '1', time() + 2678400, $path, $host);
+        		}
+    	    }
+    	    else
+    	    {
+    		    $token = htmlspecialchars($_REQUEST['token']);
+    		    setcookie("GAT_token", $token, time() + 2678400, $path, $host);
 
-		if( ! isset($_COOKIE[GAT_INQUIRE_USER_COOKIE]))
-		    setcookie(GAT_INQUIRE_USER_COOKIE, '0', $time, $path, $host);
-	    }
-	}
-	// Nothing, not even a token.
-	else
-	{
-		$t = time();
-	    
-		$token = generateRandomString(8);
-			
-		if ($_REQUEST['action']=='token-saved') {
-			setcookie("GAT_token", $token, $t + 2678400, $path, $host);
-			setcookie(GAT_INQUIRE_USER_COOKIE, '1', $t + 2678400, $path, $host);
-		} 
-	}
+    		    if( ! isset($_COOKIE[GAT_INQUIRE_USER_COOKIE]) )
+    		        setcookie(GAT_INQUIRE_USER_COOKIE, '0', $time, $path, $host);
+    	    }
+    	}
+    	// Nothing, not even a token.
+    	else
+    	{
+    		$t = time();
+
+    		$token = generateRandomString(8);
+
+    		if ($_REQUEST['action']=='token-saved') {
+    			setcookie("GAT_token", $token, $t + 2678400, $path, $host);
+    			setcookie(GAT_INQUIRE_USER_COOKIE, '1', $t + 2678400, $path, $host);
+    		}
+    	}
     }
 }
 //Fatch data functions

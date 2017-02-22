@@ -10,8 +10,11 @@ if( ! defined('GAT_TOKEN_COOKIE'))
 add_action( 'admin_enqueue_scripts', 'gat_back_enqueue_script' );
 function gat_back_enqueue_script()
 {
+	global $post;
+	
 	wp_enqueue_style( 'gat_back_style', plugin_dir_url( __FILE__ ).'css/gat_back.css' );
-	wp_enqueue_script( 'gat_editor-js', plugin_dir_url( __FILE__ ).'js/tinymce.min.js' );
+	if ($post->post_type=="assessment")
+		wp_enqueue_script( 'gat_editor-js', plugin_dir_url( __FILE__ ).'js/tinymce.min.js' );
 	wp_enqueue_script( 'gat_back_script', plugin_dir_url( __FILE__ ).'js/gat_back.js' );
 }
 /*Enqueue script and style on frontend*/

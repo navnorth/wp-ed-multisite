@@ -143,7 +143,7 @@
     margin-bottom:25px;
 }
 .selectedli {
-    background-color: #00529f;
+    background-color: #294179;
     color: #fff;
 }
 .rating_scaleli label {
@@ -199,7 +199,7 @@ label.meter
 	width: 67px !important;
 }
 .meter > span {
-    background-color: #00529f;
+    background-color: #294179;
     color: #fff;
     display: block;
     height: 100%;
@@ -396,7 +396,7 @@ ul.gat_indicatorlights {
 
 /* video playlist selector */
 .gat_priority_form {
-    background: #00529f !important;
+    background: #294179 !important;
     color: #fff;
     font-size: 16px;
 }
@@ -422,7 +422,7 @@ ul.gat_indicatorlights {
    background: transparent;
    width: 268px;
    padding: 5px 10px;
-   color: #00529f;
+   color: #294179;
    font-size: 16px;
    font-weight: 700;
    line-height: 1.5;
@@ -487,7 +487,7 @@ ul.gat_indicatorlights {
 }
 .gat_vid_thumbnail {
   width:120px;
-  border: 1px solid #00529f;
+  border: 1px solid #294179;
 }
 .loadvideo
 {
@@ -505,7 +505,7 @@ ul.gat_indicatorlights {
 	top: 0;
 }
 .gat_error {
-    border-left: 3px solid #00529f;
+    border-left: 3px solid #294179;
     box-shadow: 0 0px 2px;
     float: left;
     margin-bottom: 10px;
@@ -533,14 +533,14 @@ ul.gat_indicatorlights {
 .clear { clear:both; }
 /*my*/
 .gat_button, .gat_button_start, .gat_button_continue, .gat_button_saveinfo, .gat_button_return  {
-background: #00529f !important;
-background: -moz-linear-gradient(top, #00529f, #0062b2) !important;
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00529f), color-stop(100%,#7db9e8)) !important; /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top, #00529f, #0062b2) !important; /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top, #00529f, #0062b2) !important; /* Opera 11.10+ */
-background: -ms-linear-gradient(top, #00529f, #0062b2) !important; /* IE10+ */
-background: linear-gradient(to bottom, #00529f, #0062b2) !important; /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00529f', endColorstr='#0062b2',GradientType=0 ) !important; /* IE6-9 */
+background: #294179 !important;
+background: -moz-linear-gradient(top, #294179, #0062b2) !important;
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#294179), color-stop(100%,#7db9e8)) !important; /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #294179, #0062b2) !important; /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #294179, #0062b2) !important; /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #294179, #0062b2) !important; /* IE10+ */
+background: linear-gradient(to bottom, #294179, #0062b2) !important; /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#294179', endColorstr='#0062b2',GradientType=0 ) !important; /* IE6-9 */
 border:none !important;
 color:#fff !important;
 font-family: "Raleway-Regular";
@@ -554,13 +554,13 @@ float: right;
 .gat_button:hover, .gat_button_start:hover, .gat_button_continue:hover, .gat_button_saveinfo:hover, .gat_button_return:hover,
 .gat_button:focus, .gat_button_start:focus, .gat_button_continue:focus, .gat_button_saveinfo:focus, .gat_button_return:focus {
 background: #7db9e8 !important; /* Old browsers */
-background: -moz-linear-gradient(top, #0062b2, #00529f) !important; /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0062b2), color-stop(100%,#00529f)) !important; /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top, #0062b2, #00529f) !important; /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top, #0062b2, #00529f) !important; /* Opera 11.10+ */
-background: -ms-linear-gradient(top, #0062b2, #00529f) !important; /* IE10+ */
-background: linear-gradient(to bottom, #0062b2 0%,#00529f 100%) !important; /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0062b2', endColorstr='#00529f',GradientType=0 ) !important;
+background: -moz-linear-gradient(top, #0062b2, #294179) !important; /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0062b2), color-stop(100%,#294179)) !important; /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #0062b2, #294179) !important; /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #0062b2, #294179) !important; /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #0062b2, #294179) !important; /* IE10+ */
+background: linear-gradient(to bottom, #0062b2 0%,#294179 100%) !important; /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0062b2', endColorstr='#294179',GradientType=0 ) !important;
 }
 .gat_button:focus, .gat_button_start:focus, .gat_button_continue:focus, .gat_button_return:focus {
     border-color:#7692F8;
@@ -631,7 +631,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0062b2', end
     width: 95%;
     margin:0 auto;
 }
-.gat-library-videos:focus { border-color:#00529f; }
+.gat-library-videos:focus { border-color:#294179; }
 .gat-library-videos ul { list-style:none; padding:0; margin:0; }
 .gat-library-videos ul li { display:inline-block;margin:0 10px; white-space: normal; vertical-align: top; }
 .gat-library-videos p { margin:auto 10px; }
@@ -644,7 +644,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0062b2', end
     height: 0;
     border-top: 55px solid transparent;
     border-bottom: 55px solid transparent;
-    border-right: 20px solid #00529f;
+    border-right: 20px solid #294179;
     position:absolute;
     top:25%;
     left:0;
@@ -655,7 +655,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0062b2', end
     height: 0;
     border-top: 55px solid transparent;
     border-bottom: 55px solid transparent;
-    border-left: 20px solid #00529f;
+    border-left: 20px solid #294179;
     position:absolute;
     top:25%;
     right:0;
@@ -724,15 +724,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0062b2', end
 } /* background color of scroll bar */
 
 .video-list ::-webkit-scrollbar-thumb {
-	background-color: #00529f;
+	background-color: #294179;
 } /* setting the scroll bar color */
 
 .video-list ::-webkit-scrollbar-button {
       background-color: #0C4284;
 } /* color of left and right scroll buttons */
 .video-list {
-     scrollbar-face-color: #00529f;
-     scrollbar-arrow-color: #00529f;
+     scrollbar-face-color: #294179;
+     scrollbar-arrow-color: #294179;
 }
 /**
  * ------------------------------------------------------------------
@@ -798,10 +798,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0062b2', end
    background-image:url(images/down-arrow-sel.png);
 }*/
 .fa.fa-play {
-    color: #00529f !important;
+    color: #294179 !important;
 }
 .watched {
-    background-color: #00529f;
+    background-color: #294179;
     color: #fff;
     display: block;
     right: 0;
@@ -876,7 +876,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0062b2', end
 	width: auto;
 	cursor: pointer;
 	margin-left: 8px;
-	color: #00529f;
+	color: #294179;
 }
 .analysis_result .gat_player_videos {
     margin-bottom: 19px;

@@ -561,7 +561,7 @@ function add_focus(ref)
 	if(area == true)
 	{
 		var desc = jQuery(ref).children(".rating_scale_description").text();
-		jQuery(ref).css("background-color", "#00529f");
+		jQuery(ref).css("background-color", "#294179");
 		jQuery(ref).css("color", "#fff");
 		jQuery(ref).parents("ul").next("div.gat_scaledescription_cntnr").css("display", "block").text(desc);
 	}

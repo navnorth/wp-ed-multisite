@@ -13,7 +13,7 @@ function gat_back_enqueue_script()
 	global $post;
 	
 	wp_enqueue_style( 'gat_back_style', plugin_dir_url( __FILE__ ).'css/gat_back.css' );
-	if ($post->post_type=="assessment")
+	if (is_object($post) && $post->post_type=="assessment")
 		wp_enqueue_script( 'gat_editor-js', plugin_dir_url( __FILE__ ).'js/tinymce.min.js' );
 	wp_enqueue_script( 'gat_back_script', plugin_dir_url( __FILE__ ).'js/gat_back.js' );
 }

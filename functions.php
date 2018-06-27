@@ -237,7 +237,7 @@ function GAT_setcookie()
 
     		$token = generateRandomString(8);
 
-    		if ($_REQUEST['action']=='token-saved') {
+    		if (isset($_REQUEST['action']) && $_REQUEST['action']=='token-saved') {
     			setcookie("GAT_token", $token, $t + 2678400, $path, $host);
     			setcookie(GAT_INQUIRE_USER_COOKIE, '1', $t + 2678400, $path, $host);
     		}

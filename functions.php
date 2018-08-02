@@ -406,7 +406,7 @@ function get_domainid_by_assementid($postid)
 {
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
-	$sql = $wpdb->prepare("select domain_id from $dimensiontable ogd INNER JOIN ".$wpdb->prefix."posts op ON ogd.domain_id=op.ID where ogd.assessment_id=%d ORDER BY op.menu_order", $postid);
+	$sql = $wpdb->prepare("select distinct domain_id from $dimensiontable ogd INNER JOIN ".$wpdb->prefix."posts op ON ogd.domain_id=op.ID where ogd.assessment_id=%d ORDER BY op.menu_order, op.ID", $postid);
 	$data = $wpdb->get_results($sql, OBJECT_K);
 	if(isset($data) && !empty($data))
 	{

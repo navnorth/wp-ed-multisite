@@ -16,7 +16,9 @@ get_header(); ?>
     <?php endwhile; // end of the loop. ?>
 	<div class="modal-container">
 	<?php
-	    $token = htmlspecialchars($_COOKIE['GAT_token']);
+	    $token = "";
+	    if (isset($_COOKIE['GAT_token']))
+		$token = htmlspecialchars($_COOKIE['GAT_token']);
 	    $response_table = PLUGIN_PREFIX . "response";
 	    $sql = $wpdb->prepare( "SELECT * FROM `$response_table` WHERE `token` = %s", $token );
 	    $data = $wpdb->get_row($sql);

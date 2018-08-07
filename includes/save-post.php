@@ -4,11 +4,14 @@ add_action( 'save_post', 'gat_domain_save' );
 function gat_domain_save()
 {
 	global $post, $wpdb;
+	$assessmentid = 0;
 	$slug = 'domain';
-	if($post->post_type != $slug)
+
+	if(!isset($post) || $post->post_type != $slug)
 	{
 		return;
 	}
+	
 	extract($_POST);
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
 	$videotable = PLUGIN_PREFIX . "videos";
@@ -89,21 +92,29 @@ add_action( 'save_post', 'gat_assessment_save' );
 function gat_assessment_save()
 {
 	global $post;
+	$domainid = null;
 	$slug = 'assessment';
-	if($post->post_type != $slug)
+	if(!isset($post) || $post->post_type != $slug)
 	{
 		return;
 	}
 	extract($_POST);
-	foreach($domainid as $key=>$id)
-	{
-		$result = set_domain_order($id, $domainorder[$key]);
+	if (is_array($domainid)) {
+		foreach($domainid as $key=>$id)
+		{
+			$result = set_domain_order($id, $domainorder[$key]);
+		}
 	}
-	update_post_meta($post->ID, "assessment_featurevideo", $assessment_featurevideo);
-	update_post_meta($post->ID, "result_content", $result_content);
-	update_post_meta($post->ID, "playlist_content", $playlist_content);
-	update_post_meta($post->ID, "full_library_content", $full_library_content);
-	update_post_meta($post->ID, "rating_scale", $rating_scale);
+	if (isset($assessment_featurevideo))
+		update_post_meta($post->ID, "assessment_featurevideo", $assessment_featurevideo);
+	if (isset($result_content))
+		update_post_meta($post->ID, "result_content", $result_content);
+	if (isset($playlist_content))
+		update_post_meta($post->ID, "playlist_content", $playlist_content);
+	if (isset($full_library_content))
+		update_post_meta($post->ID, "full_library_content", $full_library_content);
+	if (isset($rating_scale))
+		update_post_meta($post->ID, "rating_scale", $rating_scale);
 }
 //save metabox for rating
 add_action( 'save_post', 'gat_rating_save' );
@@ -111,7 +122,7 @@ function gat_rating_save()
 {
 	global $post;
 	$slug = 'rating';
-		if($post->post_type != $slug)
+	if(!isset($post) || $post->post_type != $slug)
 	{
 		return;
 	}

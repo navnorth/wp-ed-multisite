@@ -7,7 +7,9 @@
  * @since Twenty Twelve 1.0
  */
     global $post, $wpdb;
-
+    
+    $status = null;
+    
     if( ! empty($_POST))
     {
 	/**
@@ -83,7 +85,10 @@
 	    {
 		$user_response = NULL;
 		
-		echo '<script type="text/javascript">ga("send", "event", "Submit Domain", "'.count($dimension_id).'", "'.$_POST['gat_results'].'" );</script>';
+		if (isset($dimension_id))
+		    echo '<script type="text/javascript">ga("send", "event", "Submit Domain", "'.count($dimension_id).'", "'.$_POST['gat_results'].'" );</script>';
+		else
+		    echo '<script type="text/javascript">ga("send", "event", "Submit Domain", "0", "'.$_POST['gat_results'].'" );</script>';
 
 		if($response_id)
 		{
@@ -197,7 +202,7 @@
 		extract($_POST);
 		
 		echo '<script type="text/javascript">ga("send", "event", "Submit Domain", "'.count($dimension_id).'", "'.$_POST['domain_submit'].'" );</script>';
-
+		
 		$location = get_permalink($post->ID);
 
 		if($next_domain == 'resume')
@@ -339,7 +344,7 @@
     // Doesn't Have Token
     else
     {
-	if ($_GET['action']=='token-saved')
+	if (isset($_GET['action']) && $_GET['action']=='token-saved')
 	    echo '<script type="text/javascript">location.reload();</script>';
     }
 

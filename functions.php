@@ -951,6 +951,7 @@ function email_results($_params, $data_results, $token){
 	global $wpdb;
 	extract($_params);
 	$assign = "";
+	$alert_message = "";
 	if(!empty($data_results))
 	{
 		$i = 1;

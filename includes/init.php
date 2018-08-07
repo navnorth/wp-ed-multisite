@@ -117,8 +117,8 @@ function register_my_custom_menu_page()
 	add_menu_page( 'Gap Assessment', 'Gap Assessment', 'edit_private_pages', 'edit.php?post_type=assessment', '', 'dashicons-editor-help', 4 );
 	add_submenu_page( 'edit.php?post_type=assessment' , 'Assessment', 'Assessment', 'edit_private_pages', 'edit.php?post_type=assessment' );
 	add_submenu_page( 'edit.php?post_type=assessment' , 'Rating Systems' , 'Rating Systems' , 'edit_private_pages' , 'edit.php?post_type=rating' , '' );
-    add_submenu_page( 'edit.php?post_type=assessment' , 'Reporting' , 'Reporting' , 'edit_private_pages' , 'reporting' , 'show_reports' );
-    add_submenu_page( 'edit.php?post_type=assessment' , 'Settings' , 'Settings' , 'edit_private_pages' , 'settings' , 'import_organizations' );
+	add_submenu_page( 'edit.php?post_type=assessment' , 'Reporting' , 'Reporting' , 'edit_private_pages' , 'reporting' , 'show_reports' );
+	add_submenu_page( 'edit.php?post_type=assessment' , 'Settings' , 'Settings' , 'edit_private_pages' , 'settings' , 'import_organizations' );
 	add_submenu_page( 'edit.php?post_type=assessment' , 'Scale', 'Scale', 'edit_private_pages', 'edit-tags.php?taxonomy=scale&post_type=rating' );
 	
 	add_submenu_page( 'edit.php?post_type=assessment' , 'add assessment', 'add assessment', 'edit_private_pages', 'post-new.php?post_type=assessment' );

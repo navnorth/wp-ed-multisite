@@ -85,18 +85,18 @@
 				<div class="gat_priority_form_label"><label>Videos:</label></div>
 				<div class="gat_priority_form_selector">
 					<select name="sortby" onchange="priority_submit(this);">
-						<option value="priority" <?php echo $a = ($_GET["sortby"] == 'priority') ? 'selected="selected"' : ''; ?>>Recommended For You</option>
+						<option value="priority" <?php echo $a = (isset($_GET["sortby"]) && $_GET["sortby"] == 'priority') ? 'selected="selected"' : ''; ?>>Recommended For You</option>
 						<?php
 							$domainids = get_domainid_by_assementid($post->ID);
 
 							foreach($domainids as $domainid) {
 								$domain = get_post($domainid);
 								?>
-									<option value="<?php echo $domain->ID ?>" <?php echo $a = ($_GET["sortby"] == $domain->ID) ? 'selected="selected"' : ''; ?> > - <?php echo $domain->post_title; ?></option>
+									<option value="<?php echo $domain->ID ?>" <?php echo $a = (isset($_GET["sortby"]) && $_GET["sortby"] == $domain->ID) ? 'selected="selected"' : ''; ?> > - <?php echo $domain->post_title; ?></option>
 								<?php
 							}
 						?>
-						<option value="unwatched" <?php echo $a= ($_GET["sortby"] == 'unwatched') ? 'selected="selected"' : ''; ?> >Unwatched</option>
+						<option value="unwatched" <?php echo $a= (isset($_GET["sortby"]) && $_GET["sortby"] == 'unwatched') ? 'selected="selected"' : ''; ?> >Unwatched</option>
 					</select>
 				</div>
 

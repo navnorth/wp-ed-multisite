@@ -1,5 +1,5 @@
 <?php
-    global $wpdb;
+    global $wpdb, $post;
     $table = PLUGIN_PREFIX . "results";
     $domainids = get_domainid_by_assementid($post->ID);
     $list = $_GET['list'];
@@ -42,7 +42,7 @@
     {
 	$n_domain = get_post($domainids[$list]);
     }
-
+    
     $dimensions = get_alldimension_domainid($domain->ID);
     $rating_scale = get_post_meta($post->ID, "rating_scale", TRUE); ?>
 <a id="content" tabindex="0"></a>

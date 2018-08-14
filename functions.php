@@ -453,7 +453,7 @@ function get_alldimension_domainid($domainid)
 {
 	global $wpdb;
 	$dimensiontable = PLUGIN_PREFIX . "dimensions";
-	$sql = $wpdb->prepare("SELECT id,assessment_id,domain_id,title,description FROM $dimensiontable where domain_id=%d order by dimension_order", $domainid);
+	$sql = $wpdb->prepare("SELECT id,assessment_id,domain_id,title,description,dimension_order FROM $dimensiontable where domain_id=%d order by dimension_order", $domainid);
 	$data = $wpdb->get_results($sql);
     if(isset($data) && !empty($data))
 	{
@@ -1026,6 +1026,20 @@ function set_domain_order($domainid, $order) {
 	global  $wpdb;
 	$result = $wpdb->query($wpdb->prepare('UPDATE '.$wpdb->prefix.'posts SET menu_order = %d WHERE ID = %d', $order, $domainid));
 	return $result;
+}
+
+function get_domains($assessmentId){
+	$args = array('post_type' => 'domain', 'posts_per_page' => -1, 'post_status' => 'publish');
+	$domains = new WP_Query($args);
+	return $domains;
+}
+
+function get_domain_order($domainId){
+	global $wpdb;
+	
+	$menu_index = $wpdb->get_var( "SELECT menu_order FROM $wpdb->posts WHERE ID=" . $domainId  );
+	
+	return  $menu_index;
 }
 
 ?>

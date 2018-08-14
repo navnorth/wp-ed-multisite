@@ -120,6 +120,7 @@ function register_my_custom_menu_page()
 	add_submenu_page( 'edit.php?post_type=assessment' , 'Reporting' , 'Reporting' , 'edit_private_pages' , 'reporting' , 'show_reports' );
 	add_submenu_page( 'edit.php?post_type=assessment' , 'Settings' , 'Settings' , 'edit_private_pages' , 'settings' , 'import_organizations' );
 	add_submenu_page( 'edit.php?post_type=assessment' , 'Scale', 'Scale', 'edit_private_pages', 'edit-tags.php?taxonomy=scale&post_type=rating' );
+	add_submenu_page( 'edit.php?post_type=assessment' , 'GAT Admin Debug Screen', 'Debug', 'edit_private_pages', 'ordering', 'show_debug_screen' );
 	
 	add_submenu_page( 'edit.php?post_type=assessment' , 'add assessment', 'add assessment', 'edit_private_pages', 'post-new.php?post_type=assessment' );
 	add_submenu_page( 'edit.php?post_type=assessment' , 'add domain', 'add domain', 'edit_private_pages', 'post-new.php?post_type=domain' );
@@ -135,6 +136,12 @@ function import_organizations()
 {
   include_once( GAT_PATH ."/metabox/import-organization.php" );  
 }
+
+//Show Debug Screen Function
+function show_debug_screen(){
+  include_once( GAT_PATH ."/metabox/debug-screen.php" );  	
+}
+
 include_once( GAT_PATH ."/metabox/assessment-metabox.php" );
 include_once( GAT_PATH ."/metabox/domain-metabox.php" );
 include_once( GAT_PATH ."/metabox/rating-metabox.php" );

@@ -1029,7 +1029,7 @@ function set_domain_order($domainid, $order) {
 }
 
 function get_domains($assessmentId){
-	$args = array('post_type' => 'domain', 'posts_per_page' => -1, 'post_status' => 'publish');
+	$args = array('post_type' => 'domain', 'posts_per_page' => -1, 'post_status' => 'publish', 'orderby' => 'menu_order', 'order' => 'ASC');
 	$domains = new WP_Query($args);
 	return $domains;
 }

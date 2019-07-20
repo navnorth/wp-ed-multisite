@@ -606,6 +606,7 @@ function select_rating(ref)
 	    jQuery(ref).parents("ul").next("div.gat_scaledescription_cntnr").removeClass("selectedarea");
 	    jQuery(ref).parents("ul").next("div.gat_scaledescription_cntnr").text('');
 	    jQuery(ref).children("input").val('');
+	    jQuery(ref).children("input").prop("checked", false);
 	}
 	else
 	{

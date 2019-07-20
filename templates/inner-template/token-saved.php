@@ -101,13 +101,12 @@
 	    $j = 1;
 	    foreach($scales as $scale)
 	    {
+		$licls = '';
 		if(!empty($scale_slctd))
 		{
 		    if($j == $scale_slctd):
 			$selected_content =  $scale->post_content;
 			$licls = 'selectedli';
-		    else:
-			$licls = '';
 		    endif;
 		} ?>
 	    <li tabindex="0" onclick="select_rating(this)" class="rating_scaleli <?php echo $licls;?>" data-rating="<?php echo $j;?>">

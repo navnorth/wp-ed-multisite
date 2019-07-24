@@ -498,9 +498,12 @@ jQuery(document).ready(function(e) {
 		    break;
 		case 'ssba_twitter_share':
 		    index = shareUrl.indexOf('url=');
-		    var index2 = shareUrl.indexOf('&text');
+		    var index2 = shareUrl.indexOf('text');
 		    newShareUrl = shareUrl.substring(index+4,index2);
 		    sUrl = shareUrl.replace(newShareUrl,newURL);
+		    break;
+		case 'ssba_email_share':
+		    sUrl = shareUrl;
 		    break;
 		default:
 		    index = shareUrl.indexOf('url=');

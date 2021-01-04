@@ -158,7 +158,8 @@
 
         foreach($domainids as $domainid) {
             $domain = get_post($domainid);
-            unset($vid_list_distinct);
+            $vid_list_distinct = [];
+            //unset($vid_list_distinct);
 
 			//Get Videos per domain
 			$sql = $wpdb->prepare("SELECT a.* FROM $videotable as a

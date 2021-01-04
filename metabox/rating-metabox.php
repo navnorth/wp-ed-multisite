@@ -21,7 +21,7 @@ function rating_scale_orderfunctions()
 		$oredercount = 0;
 	}
 	$rating_order = get_post_meta($post->ID, "rating_order", true);
-	$return .= '<select name="rating_order">';
+	$return = '<select name="rating_order">';
 		$return .= '<option value="">--Select order--</option>';
 		for($i = 1; $i <= $oredercount; $i++)
 		{

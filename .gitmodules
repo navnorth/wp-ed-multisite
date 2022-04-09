@@ -1,0 +1,3 @@
+[submodule "wp-content/plugins/wdt-compare-details"]
+	path = wp-content/plugins/wdt-compare-details
+	url = https://github.com/navnorth/wdt-compare-details.git

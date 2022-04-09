@@ -7,3 +7,6 @@
 [submodule "wp-content/plugins/wp-gap-analysis"]
 	path = wp-content/plugins/wp-gap-analysis
 	url = https://github.com/navnorth/wp-gap-analysis.git
+[submodule "wp-content/plugins/wp-stories-posts"]
+	path = wp-content/plugins/wp-stories-posts
+	url = https://github.com/navnorth/wp-stories-posts.git

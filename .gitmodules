@@ -4,3 +4,6 @@
 [submodule "wp-content/plugins/wp-content-mirror"]
 	path = wp-content/plugins/wp-content-mirror
 	url = https://github.com/navnorth/wp-content-mirror.git
+[submodule "wp-content/plugins/wp-gap-analysis"]
+	path = wp-content/plugins/wp-gap-analysis
+	url = https://github.com/navnorth/wp-gap-analysis.git

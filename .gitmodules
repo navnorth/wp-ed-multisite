@@ -13,3 +13,6 @@
 [submodule "wp-content/themes/wp-oese-theme"]
 	path = wp-content/themes/wp-oese-theme
 	url = https://github.com/navnorth/wp-oese-theme.git
+[submodule "wp-content/themes/wp-oet-theme"]
+	path = wp-content/themes/wp-oet-theme
+	url = https://github.com/navnorth/wp-oet-theme.git

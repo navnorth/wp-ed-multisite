@@ -10,3 +10,6 @@
 [submodule "wp-content/plugins/wp-stories-posts"]
 	path = wp-content/plugins/wp-stories-posts
 	url = https://github.com/navnorth/wp-stories-posts.git
+[submodule "wp-content/themes/wp-oese-theme"]
+	path = wp-content/themes/wp-oese-theme
+	url = https://github.com/navnorth/wp-oese-theme.git

@@ -1,0 +1,57 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "oet-block/oet-story-embed-block",
+	"version": "0.1.0",
+	"title": "Story Embed",
+	"category": "oet-block-category",
+	"icon": "feedback",
+	"description": "Embed story on a page",
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+        "storyId": {
+            "type": "string",
+            "default": 0
+        },
+        "title": {
+            "type": "string"
+        },
+        "content": {
+            "type": "string"
+        },
+        "width": {
+            "type": "number",
+            "default": 6
+        },
+        "alignment": {
+            "type": "string"
+        },
+        "calloutColor": {
+            "type": "string"
+        },
+        "calloutType": {
+            "type": "string",
+            "default": "checkmark"
+        },
+        "stories": {
+            "type": "array"
+        },
+        "isChanged": {
+            "type": "boolean",
+            "default": false
+        },
+        "blockId": {
+            "type": "string"
+        },
+        "firstLoad": {
+            "type": "boolean",
+            "default": true
+        }
+    },
+	"textdomain": "oet-callout-box-block",
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css"
+}

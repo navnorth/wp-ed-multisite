@@ -1,0 +1,55 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "oet-block/oet-button-block",
+	"version": "0.1.0",
+	"title": "Button",
+	"category": "oet-block-category",
+	"icon": "button",
+	"description": "Displays button on a page",
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+        "buttonColor": {
+            "type": "string",
+            "default": "#e57200"
+        },
+        "text": {
+            "type": "string"
+        },
+        "textColor": {
+            "type": "string",
+            "default": "#ffffff"
+        },
+        "fontFace": {
+            "type": "string"
+        },
+        "fontSize": {
+            "type": "number",
+            "default": 19
+        },
+        "fontWeight": {
+            "type": "string",
+            "default": "normal"
+        },
+        "url": {
+            "type": "string"
+        },
+        "newWindow": {
+            "type": "string",
+            "default": false
+        },
+        "isChanged": {
+            "type": "boolean",
+            "default": false
+        },
+        "blockId": {
+            "type": "string"
+        }
+    },
+	"textdomain": "oet-button-block",
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css"
+}

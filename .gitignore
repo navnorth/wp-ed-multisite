@@ -2,5 +2,5 @@
 wp-config.php
 .htaccess
 
-# Ignore the wp-content directory
+# Ignore the wp-content/uploads directory
 /wp-content/uploads

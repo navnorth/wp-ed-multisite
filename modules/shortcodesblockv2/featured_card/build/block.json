@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "oese-block/oese-featured-card-block",
+	"version": "0.1.0",
+	"title": "Featured Card",
+	"category": "oese-block-category",
+	"icon": "awards",
+	"description": "Add Featured Card Block",
+	"supports": {
+		"html": false
+	},
+	"attributes":{
+		"blockid": {"type": "string"},
+		"title":{"type": "string"},
+		"content":{"type": "string"},
+		"titleRows":{"type":"integer","default": 1},
+		"contentRows":{"type":"integer","default": 1},
+		"buttonText":{"type": "string","default":"Read More"},
+		"url":{"type": "string"},
+		"background": {"type":"string"}
+	},
+	"textdomain": "oese-featured-card-block",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

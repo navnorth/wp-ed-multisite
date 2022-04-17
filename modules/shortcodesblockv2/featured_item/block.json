@@ -1,0 +1,33 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "oese-block/oese-featured-item-block",
+	"version": "0.1.0",
+	"title": "Featured Item",
+	"category": "oese-block-category",
+	"icon": "pressthis",
+	"description": "Add featured item block",
+	"supports": {
+		"html": false
+	},
+	"attributes":{
+    "blockid": {"type":"string"},
+    "oeseblkFeaturedItemHeading": {"type":"string"},
+    "oeseblkFeaturedItemTitle": {"type":"string"},
+		"oeseblkDeaturedItemTitleRows":{"type":"integer","default": 1},
+    "oeseblkFeaturedItemDate": {"type":"string"},
+    "oeseblkFeaturedItemButtonDisplay": {"type": "boolean","default": true},
+		"oeseblkFeaturedItemButtonText": {"type": "string","default": "Button Text"},
+		"oeseblkFeaturedItemURL": {"type": "string","source": "attribute", "selector": "a", "attribute": "href"},
+		"mediaID": {"type":"number","source":"attribute","attribute":"data-id","selector":"img"},
+		"mediaURL": {"type": "string","source": "attribute","attribute":"src","selector":"img"},
+		"thumbnail": {"type":"string","source":"attribute","attribute":"data-thumb","selector":"img"},
+		"thumbnailsize": {"type":"integer"},
+		"titlesize": {"type":"integer"},
+		"oeseblkFeaturedItemOpeninnewtab": {"type": "boolean","default": false}
+  },
+	"textdomain": "oese-featured-item-block",
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css"
+}

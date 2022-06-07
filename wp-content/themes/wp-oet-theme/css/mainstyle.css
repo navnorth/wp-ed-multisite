@@ -352,7 +352,13 @@ button:hover {
 /** end of dynamic sidebar styles **/
 
 .pblctn_right_sid_mtr .oet-sidebar-section-html ul { list-style:disc; padding-left:25px; }
-
+#searchform input.form-control::placeholder {
+	color:#6E6E6E;
+}
+#searchform input.form-control::selection {
+	background-color:#bedfff;
+	color:#444444;
+}
 @media (min-width: 1200px){
 	.container { width: 1140px !important;}
 	.mobile-search-btn {display:none;}

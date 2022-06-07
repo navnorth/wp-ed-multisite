@@ -101,6 +101,7 @@ registerBlockType("cgb/oet-accordion-block", {
   edit: (props) => {
     const attributes = props.attributes;
     const setAttributes = props.setAttributes; //Set block instance ID
+    const clientId = props.clientId;
 
     let oetblk_accordion_list = [];
     const blocks = wp.data.select("core/block-editor").getBlocks();
@@ -170,6 +171,12 @@ registerBlockType("cgb/oet-accordion-block", {
     let arr = Array.apply(null, {
       length: 10
     }).map(Number.call, Number); // Creates a <p class='wp-block-cgb-block-oet-accordion-block'></p>.
+
+    const setBlockId = (blockid) =>  { setAttributes( { blockid } ); }
+
+    if( clientId !== attributes.blockid ){
+      setBlockId(clientId);
+    }
 
     return React.createElement(
       "div",

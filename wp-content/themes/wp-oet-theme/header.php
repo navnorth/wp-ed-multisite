@@ -56,7 +56,7 @@
 
                         <form id="searchform" class="searchform" action="<?php echo site_url();?>" method="get" role="search">
                         	<input type="text" class="form-control" id="inputSuccess2" placeholder="Search" name="s" aria-label="search" />
-                      		<a href="javascript:" onClick="jQuery(this).closest('form').submit()">
+                      		<a href="javascript:" onClick="jQuery(this).closest('form').submit()" tabindex="-1">
                                 <span class="form-control-feedback ">
                               		<img src="<?php echo get_stylesheet_directory_uri();?>/images/search_icn.png" alt="Search"/>
                                 </span>
@@ -112,7 +112,7 @@
 			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>
             </div>
 
-            <span class="navi_icn fa-stack"><i class="fa fa-bars fa-stack-2x"></i></span>
+            <span class="navi_icn fa-stack" aria-label="menu"><i class="fa fa-bars fa-stack-2x"></i></span>
             <div class="responsiv-menu">
             	<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'responsiv-menu_ul' ) ); ?>
             </div>

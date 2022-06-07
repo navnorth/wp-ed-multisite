@@ -58,13 +58,13 @@
 
         function show_first_slide() {
             jQuery('.oet_acf_slide').hide();
-            jQuery('.oet_acf_slide:first').show();
+            jQuery('.oet_acf_slide:first').show().removeAttr('aria-hidden');
             jQuery('.bullet:first').addClass('active');
             jQuery('.oet-acf-slider-wrapper ul.slider-list li[data-index="'+indice+'"]').addClass('active');
             jQuery('.bullet:first').attr('aria-label','Slide 1 current slide');
-            var oese_acf_slider_image_alt_text = jQuery('.oet-acf-slider-wrapper ul.slider-list li[data-index="'+indice+'"]').find('.oet_acf_slide_content a img').attr('alt');
+            var oet_slide_title = jQuery('.oet-acf-slider-wrapper ul.slider-list li[data-index="'+indice+'"]').find('.oet_acf_slide_content h2.oet_acf_slide_title').text();
             //var oese_acf_slider_liveregion_title = jQuery('.oet-acf-slider-wrapper ul.slider-list li[data-index="'+indice+'"]').find('h3.oet_acf_slide_title').text();
-            jQuery('.oet-acf-slider-wrapper').attr('aria-label','current slide: ' +oese_acf_slider_image_alt_text+ ' link');
+            jQuery('.oet-acf-slider-wrapper').attr('aria-label','current slide: ' +oet_slide_title+ ' link');
         }
 
         function next_slide(idx) {
@@ -76,10 +76,11 @@
             }
             left_animate(indice);
             show_slide(indice,'nxt');
-            var oese_acf_slider_image_alt_text = jQuery('.oet-acf-slider-wrapper ul.slider-list li[data-index="'+indice+'"]').find('.oet_acf_slide_content a img').attr('alt');
+            //var oese_acf_slider_image_alt_text = jQuery('.oet-acf-slider-wrapper ul.slider-list li[data-index="'+indice+'"]').find('.oet_acf_slide_content a img').attr('alt');
+            var oet_slide_title = jQuery('.oet-acf-slider-wrapper ul.slider-list li[data-index="'+indice+'"]').find('.oet_acf_slide_content h2.oet_acf_slide_title').text();
             //var oese_acf_slider_liveregion_title = jQuery('.oet-acf-slider-wrapper ul.slider-list li[data-index="'+indice+'"]').find('h3.oet_acf_slide_title').text();
             //jQuery('.oet-acf-slider-accessibility-liveregion').html('next slide button: ' +oese_acf_slider_liveregion_title);
-            jQuery('.oet-acf-slider-wrapper').attr('aria-label','current slide: ' +oese_acf_slider_image_alt_text+ ' link');
+            jQuery('.oet-acf-slider-wrapper').attr('aria-label','current slide: ' +oet_slide_title+ ' link');
             progress = 0;
         }
         
@@ -92,9 +93,10 @@
             }
             left_animate(indice);
             show_slide(indice,'nxt');
-            var oese_acf_slider_image_alt_text = jQuery('.oet-acf-slider-wrapper ul.slider-list li[data-index="'+indice+'"]').find('.oet_acf_slide_content a img').attr('alt');
+            var oet_slide_title = jQuery('.oet-acf-slider-wrapper ul.slider-list li[data-index="'+indice+'"]').find('.oet_acf_slide_content h2.oet_acf_slide_title').text();
+            //var oese_acf_slider_image_alt_text = jQuery('.oet-acf-slider-wrapper ul.slider-list li[data-index="'+indice+'"]').find('.oet_acf_slide_content a img').attr('alt');
             //var oese_acf_slider_liveregion_title = jQuery('.oet-acf-slider-wrapper ul.slider-list li[data-index="'+indice+'"]').find('h3.oet_acf_slide_title').text();
-            jQuery('.oet-acf-slider-wrapper').attr('aria-label','current slide: ' +oese_acf_slider_image_alt_text+ ' link');
+            jQuery('.oet-acf-slider-wrapper').attr('aria-label','current slide: ' +oet_slide_title+ ' link');
             progress = 0;
         }
 
@@ -107,10 +109,11 @@
             }
             right_animate(indice);
             show_slide(indice,'prv');
-            var oese_acf_slider_image_alt_text = jQuery('.oet-acf-slider-wrapper ul.slider-list li[data-index="'+indice+'"]').find('.oet_acf_slide_content a img').attr('alt');
+            //var oese_acf_slider_image_alt_text = jQuery('.oet-acf-slider-wrapper ul.slider-list li[data-index="'+indice+'"]').find('.oet_acf_slide_content a img').attr('alt');
+            var oet_slide_title = jQuery('.oet-acf-slider-wrapper ul.slider-list li[data-index="'+indice+'"]').find('.oet_acf_slide_content h2.oet_acf_slide_title').text();
             //var oese_acf_slider_liveregion_title = jQuery('.oet-acf-slider-wrapper ul.slider-list li[data-index="'+indice+'"]').find('h3.oet_acf_slide_title').text();
             //jQuery('.oet-acf-slider-accessibility-liveregion').html('previous slide button: '+oese_acf_slider_liveregion_title);
-            jQuery('.oet-acf-slider-wrapper').attr('aria-label','current slide: ' +oese_acf_slider_image_alt_text+ ' link');
+            jQuery('.oet-acf-slider-wrapper').attr('aria-label','current slide: ' +oet_slide_title+ ' link');
             progress = 0;
         }
 
@@ -118,7 +121,9 @@
             remove_activeClass( $('.bullet') );    
             jQuery('.oet_acf_slide').each(function(i, obj) {
                 let $this = jQuery(this);
+                $this.attr('aria-hidden','true');
                 if ( $this.data('index') == indice ) {
+                    $this.removeAttr('aria-hidden');
                     $('.bullet[data-index="'+indice+'"').addClass('active');
                     jQuery('.oet-acf-slider-wrapper ul.slider-list li').removeClass('active');
                     jQuery('.oet-acf-slider-wrapper ul.slider-list li[data-index="'+indice+'"]').addClass('active');
@@ -301,5 +306,7 @@
       jQuery('.oet-acf-slider-accessibility-liveregion').html('slide '+(parseInt(oese_acf_slider_liveregion_idx) + 1) +' button: '+oese_acf_slider_image_alt_text);
     });
     */
-    
+    jQuery('#content.row').removeAttr('tabindex');
+    jQuery('#oet-acf-slider .oet-acf-slider-accessibility-liveregion').removeAttr('aria-live');
+    jQuery('#oet-acf-slider .oet-acf-slider-accessibility-liveregion').removeAttr('aria-atomic');
 })(jQuery);

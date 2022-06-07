@@ -1,8 +1,17 @@
+var OETtemplateswitched = false;
 function showPublicationMetabox(){
   var select = jQuery('#page_template,.edit-post-sidebar .components-panel__body.is-opened [data-wp-component="Flex"].components-select-control .components-select-control__input, .edit-post-sidebar .components-panel__body.is-opened .editor-page-attributes__template.components-select-control .components-select-control__input');
   if (select.length){
     jQuery('#story_metabox').toggle(select.val()=='page-templates/story-template.php');
     jQuery('#publication_metabox').toggle(select.val()=='page-templates/publication-template.php');
+  }
+  window.OETtemplateswitched = true;
+}
+
+function showSortIcons(){
+  if (jQuery('.postbox').length>1){
+      jQuery('.postbox .postbox-header button.handle-order-higher').removeClass('hidden');
+      jQuery('.postbox .postbox-header button.handle-order-lower').removeClass('hidden');
   }
 }
 
@@ -75,6 +84,7 @@ jQuery( document ).ready(function() {
   });
   
   setTimeout(function(){ showPublicationMetabox(); },500);
+  setTimeout(showSortIcons,1000);
 });
 
 
@@ -349,22 +359,65 @@ jQuery( document ).ready(function() {
       jQuery('.oese-prohibitedpermalinktext.notice').remove();
     });    
   })
-  
+})
+
+//Bind load event
+jQuery(window).load(function(){
+  oet_template_metaboxes_event_unbind_func();
+
+  jQuery('.edit-post-layout__metaboxes').show();
   //Override fix for metabox expand/collapse
-  jQuery(document).on('click','button.handlediv',function(e){
-    e.preventDefault ? e.preventDefault() : e.returnValue = false;
+  jQuery(document).on('mouseup','button.handlediv',function(e){
     var expand = jQuery(this).attr('aria-expanded');
     var postbox = jQuery(this).closest('.postbox');
     var closed = postbox.hasClass('closed');
-    
-    // manual condition instead of toggle as the latter doesn't work on test server
-    if (expand===true)
+
+    if (expand=='true'){
       postbox.find('.inside').hide();
-    else if (expand===false)
+      jQuery(this).attr('aria-expanded','false');
+      jQuery(this).closest('.postbox').addClass('closed');
+    } else {
       postbox.find('.inside').show();
-    jQuery(this).attr('aria-expanded',(expand===true)?'false':'true');
-    jQuery(this).closest('.postbox').toggleClass('closed');
+      jQuery(this).attr('aria-expanded','true');
+      jQuery(this).closest('.postbox').removeClass('closed');
+    }
   })
+
+  function oet_template_metaboxes_event_unbind_func(){
+    jQuery('button.handlediv').off('click');
+    jQuery('.toggle-indicator').off('click');
+    jQuery('h2.hndle.ui-sortable-handle').off('click');
+  }
+
+  //Reinstantiate unbind on template change
+  function oet_initiate_template_switch_observer(){
+    setTimeout(function(){
+      oet_create_template_switch_observer(document.querySelector(".edit-post-layout__metaboxes"));
+    }, 500);
+  }
+
+  var oet_template_change_observer_func = new MutationObserver(function(mutations) {
+    oet_template_metaboxes_event_unbind_func();
+  });
+
+  function oet_create_template_switch_observer(elementToObserve){
+    oet_template_change_observer_func.observe(elementToObserve, {childList: true, subtree: true });
+  }
+
+  let templateSwitchCounter = 0;
+  let templateSwitchInterval = setInterval(function(){
+    templateSwitchCounter++;
+    if(jQuery('.edit-post-layout__metaboxes').length){
+      clearInterval(templateSwitchInterval);
+      oet_initiate_template_switch_observer();
+      jQuery('.handle-order-lower').removeClass('hidden');
+      jQuery('.handle-order-higher').removeClass('hidden');
+    }else{
+      if(templateSwitchCounter > 1800){
+        clearInterval(templateSwitchInterval);
+      }
+    }
+  }, 100);
 })
 
 var itvl;

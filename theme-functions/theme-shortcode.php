@@ -1178,7 +1178,8 @@ function oet_medium_func($attribute, $content = null){
 			$return = oet_medium_display_invalid_text($background);
 		}
 
-		$footer = '<a href="%authorurl%" title="Go to the Office of Ed Tech Medium Blog" target="_blank" class="imglink" onclick="ga(\'send\', \'event\', \'Medium Blog Click\', \'%authorurl%\');"><img src="%authorlogo%" alt="%authorname%" width="30" height="30" /></a> <a href="%authorurl%" title="Go to the Office of Ed Tech Medium Blog" target="_blank" onclick="ga(\'send\', \'event\', \'Medium Blog Click\', \'%authorurl%\');">@%authorname%</a> ';
+		/**--$footer = '<a href="%authorurl%" title="Go to the Office of Ed Tech Medium Blog" target="_blank" class="imglink" onclick="ga(\'send\', \'event\', \'Medium Blog Click\', \'%authorurl%\');"><img src="%authorlogo%" alt="%authorname%" width="30" height="30" /></a> <a href="%authorurl%" title="Go to the Office of Ed Tech Medium Blog" target="_blank" onclick="ga(\'send\', \'event\', \'Medium Blog Click\', \'%authorurl%\');">@%authorname%</a> '; --**/
+		$footer = '<a href="%authorurl%" title="Go to the Office of Ed Tech Medium Blog" target="_blank" class="imglink" onclick="ga(\'send\', \'event\', \'Medium Blog Click\', \'%authorurl%\');"><img src="%authorlogo%" alt="" width="30" height="30" />@%authorname%</a> ';
 
 		$default_author_url = "https://medium.com/@OfficeofEdTech";
 		$default_author_name = "OfficeofEdTech";

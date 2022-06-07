@@ -30,6 +30,10 @@ function socialmedia_settings()
 			update_option("linktonwltr", $linktonwltr);
 		if (isset($enablecontactslider))
 			update_option("enablecontactslider", $enablecontactslider);
+		else {
+			if (get_option('enablecontactslider'))
+				delete_option('enablecontactslider');
+		}
 		if (isset($contactsliderpage))
 			update_option("contactsliderpage", $contactsliderpage);
 		if (isset($enablecrazyegg))
@@ -115,7 +119,7 @@ function socialmedia_settings()
 					</div>
 					<div class="oer_sclmda_sub_wrapper">
 						      <div class="oer_sclmda_txt"><strong>Enable Contact Slider?</strong></div>
-						      <div class="oer_sclmda_fld"><input type="checkbox" id="enablecontactslider" name="enablecontactslider" value="'.(($enablecontactslider)?$enablecontactslider:true).'" '.(($enablecontactslider==1)?"checked='checked'":"").' /><select name="contactsliderpage" id="contactsliderpage" disabled="disabled">'.$options.'</select></div>
+						      <div class="oer_sclmda_fld"><input type="checkbox" id="enablecontactslider" name="enablecontactslider" value="1" '.checked("1", $enablecontactslider, false).' /><select name="contactsliderpage" id="contactsliderpage" disabled="disabled">'.$options.'</select></div>
 					</div>
 					<div class="oer_sclmda_sub_wrapper">
 						      <div class="oer_sclmda_txt"><strong>Enable Crazy Egg tracking script</strong></div>

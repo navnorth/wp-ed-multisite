@@ -96,7 +96,27 @@ jQuery( document ).ready(function() {
 		//jQuery('*[class=".slideshow_container_style-light .slideshow_pagination ul li"]').css('background', 'url(../images/slider_pager.png) 0 0 no-repeat !important;');
 		console.log('Replaced SVG images with PNG');
 	}
-  
+
+	/** enable keyboard navigation on mobile menu **/
+  if (jQuery(window).width() < 769) {
+		jQuery('.navi_bg .navi_icn').attr('tabindex','0');
+		jQuery('.navi_bg .navi_icn').attr('aria-label','menu');
+		jQuery('.navi_bg .navi_icn').on("keypress", function(e) {
+			var code = e.keyCode || e.which;
+			if(code == 13 || code == 32) { 
+   				jQuery('.navi_bg .navi_icn .fa-bars').trigger('click');
+ 			}
+		});
+	}
+
+	/** hide recaptcha logo when contact form slider is disabled **/
+	setTimeout(function(){
+		if (jQuery('#contact-slider').length || jQuery('.wpcf7').length){
+			jQuery('.grecaptcha-badge').css({'visibilty':'visible','opacity':'1'})
+		} else {
+			jQuery('.grecaptcha-badge').css({'visibilty':'hidden','opacity':'0'})
+		}
+	},500);
 });
 
 /*

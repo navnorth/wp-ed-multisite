@@ -8,7 +8,7 @@
  */
 
 define( 'OET_THEME_SLUG' , 'wp_oet_theme' );
-define( "OET_THEME_VERSION", "2.0.1" );
+define( "OET_THEME_VERSION", "2.1.0" );
 define( 'OET_THEME_PATH' ,  get_stylesheet_directory() );
 
 /**
@@ -150,10 +150,16 @@ if ( function_exists( 'add_image_size' ) ) {
 
 function theme_back_enqueue_script()
 {
+	$version58 = false;
+	if ( version_compare( $GLOBALS['wp_version'], '5.8-alpha-1', '>=' ) ) {
+        $version58 = true;
+    } 
+
     wp_enqueue_script( 'theme-back-script', get_stylesheet_directory_uri() . '/js/back-script.js' );
 	wp_enqueue_style( 'theme-back-style',get_stylesheet_directory_uri() . '/css/back-style.css' );
 	wp_enqueue_style( 'tinymce_button_backend',get_stylesheet_directory_uri() . '/tinymce_button/shortcode_button.css' );
-  wp_localize_script( 'theme-back-script', 'oet_ajax_object', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+  	wp_localize_script( 'theme-back-script', 'oet_ajax_object', array( 
+  		'ajaxurl' => admin_url( 'admin-ajax.php'), 'version_58' =>  $version58 ) );
 
   if(get_admin_page_title() == 'Edit Page'){
     wp_enqueue_style( 'theme-bootstrap-style',get_stylesheet_directory_uri() . '/css/bootstrap.min.css' );
@@ -740,8 +746,6 @@ function oet_display_slides($page_id){
 			    <?php if (!empty($buttonUrl)) { ?>
 			    <p class="oet-slide-button-row"><a href="<?php echo $buttonUrl; ?>" class="oet-slide-button"><?php echo $buttonText; ?>&nbsp;&nbsp;→</a></p>
 			    <?php } ?>
-			    <!--<div class="slideshow_title"><a href="<?php echo $buttonUrl; ?>" target="_self" ><?php echo $headerText; ?></a></div>
-			    <div class="slideshow_description"><a href="<?php echo $buttonUrl; ?>" target="_self" ><?php echo $description; ?></a></div>-->
 			</div>
 		    </div><div style="clear: both;"></div>
 		</div>
@@ -914,29 +918,21 @@ function oet_display_acf_home_content(){
                         $_url = $subfieldlayout['oet_acf_homepage_trendingnow_link'];
                         $_target = ($subfieldlayout['oet_acf_trendingnow_link_target'])?'_blank':'_self';
                         ?>
+                        <?php $oetacf_TrendingnowLink = trim($subfieldlayout['oet_acf_homepage_trendingnow_link']);?>
+                      
                           <div class="oet-trending-image pad">
-                            <?php $oetacf_TrendingnowLink = trim($subfieldlayout['oet_acf_homepage_trendingnow_link']);?>
                             <?php if(empty($oetacf_TrendingnowLink)){ ?>
                               <img src="<?php echo $_img; ?>" alt="<?php echo $_img_alt ?>" />
                               <h3 class="oet-trending-title pad"><?php echo $_title_icon.$_title; ?></h3>
                             <?php }else{ ?>
                               <a href="<?php echo $oetacf_TrendingnowLink; ?>" target="<?php echo $_target ?>">
-                                <img src="<?php echo $_img; ?>" alt="<?php echo $_img_alt ?>" />
-                              </a>
-                              <a href="<?php echo $oetacf_TrendingnowLink; ?>" target="<?php echo $_target ?>">
+                                <img src="<?php echo $_img; ?>" alt="" />
                                 <h3 class="oet-trending-title pad"><?php echo $_title_icon.$_title; ?></h3>
                               </a>
                             <?php } ?>
                           </div>
                           
-                          
                           <div class="oet-trending-description pad"><?php echo $_desc; ?></div>
-                          <div class="oet-trending-button pad">
-                          <?php $subButtonLinkText = trim($subfieldlayout['oet_acf_homepage_trendingnow_bottom_link_text']);?>
-                          <?php if(!empty($subButtonLinkText) && !empty($oetacf_TrendingnowLink)){ ?>
-                            <a href="<?php echo $_url; ?>" target="<?php echo $_target ?>"><?php echo $subButtonLinkText; ?>&nbsp;<i class="fa fa-chevron-right"></i></a>
-                          <?php } ?>
-                          </div>
                         <?php
                       endif;
                     }
@@ -1155,3 +1151,30 @@ function oet_fix_post_id_on_preview($null, $post_id) {
     }
 }
 add_filter( 'acf/pre_load_post_id', 'oet_fix_post_id_on_preview', 10, 2 );
+
+// Disable access to wp-json from the outside and allow it only for logged in users(WP Admin dashboard)
+function oet_disable_rest_api_from_public($result){
+	// If a previous authentication check was applied, pass that result along without modification.
+    if ( true === $result || is_wp_error( $result ) ) {
+        return $result;
+    }
+
+    if (false !== strpos( esc_url_raw($_SERVER['REQUEST_URI']), '/wp-json/contact-form-7' )) {
+    	return $result;
+    } 
+
+    // Return an error if user is not logged in.
+    if ( ! is_user_logged_in() ) {
+        return new WP_Error(
+            'rest_not_logged_in',
+            __( 'You are not currently logged in.' ),
+            array( 'status' => 401 )
+        );
+    }
+
+
+    // no effect on logged-in requests
+    return $result;
+}
+add_filter( 'rest_authentication_errors' , 'oet_disable_rest_api_from_public' );
+

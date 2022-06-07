@@ -860,6 +860,21 @@ body.home .lft_sid_mtr h4 { height: auto !important; display: block; width: auto
 body.home .stry-video-avatar-table{ top: 40% !important; }
 .stry-video-avatar-table { top: 25% !important; }
 
+/** OET Embed styles **/
+.medium-wrapper p.mfooter { overflow:visible; }
+.medium-wrapper p.mfooter a.imglink {
+	border: none;
+    border-radius: 0;
+}
+.medium-wrapper p.mfooter a.imglink img {
+	border-radius: 100%;
+    margin-right: 5px;
+}
+.medium-wrapper p.mfooter a.imglink:hover,
+.medium-wrapper p.mfooter a.imglink:focus{
+    outline: 1px solid #fff;
+}
+.grecaptcha-badge { opacity:0 }
 @media screen and (max-width: 1200px) {
 	.stry-video-avatar-table { top: 20% !important; } 
 }

@@ -63,7 +63,7 @@
 		line-height:40px;
 		text-align:center;
     color: white;
-    opacity: 0.5;
+    opacity: 0.6;
     display: block;
     background: transparent;
     cursor: pointer;
@@ -186,7 +186,13 @@
 #oet-acf-slider .oet-slide-button:focus {
 		color:#ffffff;
 }
-
+#oet-acf-slider .slider-button:focus,
+#oet-acf-slider .slider-button:hover{ 
+  background: #ffffff;
+  border: 1px solid #2a4378;
+  opacity: 1;
+  outline: 2px solid #ffffff;
+}
 /*
 #oet-acf-slider .oet_acf_slide_title {
 	color: white;

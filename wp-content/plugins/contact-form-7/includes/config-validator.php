@@ -2,6 +2,8 @@
 
 class WPCF7_ConfigValidator {
 
+	const last_important_update = '5.5';
+
 	const error = 100;
 	const error_maybe_empty = 101;
 	const error_invalid_mailbox_syntax = 102;
@@ -13,10 +15,14 @@ class WPCF7_ConfigValidator {
 	const error_invalid_mail_header = 108;
 	const error_deprecated_settings = 109;
 	const error_file_not_in_content_dir = 110;
+	const error_unavailable_html_elements = 111;
+	const error_attachments_overweight = 112;
+	const error_dots_in_names = 113;
 
 	public static function get_doc_link( $error_code = '' ) {
 		$url = __( 'https://contactform7.com/configuration-errors/',
-			'contact-form-7' );
+			'contact-form-7'
+		);
 
 		if ( '' !== $error_code ) {
 			$error_code = strtr( $error_code, '_', '-' );
@@ -175,6 +181,10 @@ class WPCF7_ConfigValidator {
 				unset( $this->errors[$section][$key] );
 			}
 		}
+
+		if ( empty( $this->errors[$section] ) ) {
+			unset( $this->errors[$section] );
+		}
 	}
 
 	public function validate() {
@@ -319,6 +329,8 @@ class WPCF7_ConfigValidator {
 		$form = $this->contact_form->prop( 'form' );
 		$this->detect_multiple_controls_in_label( $section, $form );
 		$this->detect_unavailable_names( $section, $form );
+		$this->detect_unavailable_html_elements( $section, $form );
+		$this->detect_dots_in_names( $section, $form );
 	}
 
 	public function detect_multiple_controls_in_label( $section, $content ) {
@@ -371,11 +383,14 @@ class WPCF7_ConfigValidator {
 			'name', 'category_name', 'tag', 'feed', 'author_name', 'static',
 			'pagename', 'page_id', 'error', 'attachment', 'attachment_id',
 			'subpost', 'subpost_id', 'preview', 'robots', 'taxonomy', 'term',
-			'cpage', 'post_type', 'embed' );
+			'cpage', 'post_type', 'embed',
+		);
 
 		$form_tags_manager = WPCF7_FormTagsManager::get_instance();
-		$ng_named_tags = $form_tags_manager->filter( $content,
-			array( 'name' => $public_query_vars ) );
+
+		$ng_named_tags = $form_tags_manager->filter( $content, array(
+			'name' => $public_query_vars,
+		) );
 
 		$ng_names = array();
 
@@ -396,6 +411,44 @@ class WPCF7_ConfigValidator {
 					'link' => self::get_doc_link( 'unavailable_names' ),
 				)
 			);
+		}
+
+		return false;
+	}
+
+	public function detect_unavailable_html_elements( $section, $content ) {
+		$pattern = '%(?:<form[\s\t>]|</form>)%i';
+
+		if ( preg_match( $pattern, $content ) ) {
+			return $this->add_error( $section,
+				self::error_unavailable_html_elements,
+				array(
+					'message' => __( "Unavailable HTML elements are used in the form template.", 'contact-form-7' ),
+					'link' => self::get_doc_link( 'unavailable_html_elements' ),
+				)
+			);
+		}
+
+		return false;
+	}
+
+	public function detect_dots_in_names( $section, $content ) {
+		$form_tags_manager = WPCF7_FormTagsManager::get_instance();
+
+		$tags = $form_tags_manager->filter( $content, array(
+			'feature' => 'name-attr',
+		) );
+
+		foreach ( $tags as $tag ) {
+			if ( false !== strpos( $tag->raw_name, '.' ) ) {
+				return $this->add_error( $section,
+					self::error_dots_in_names,
+					array(
+						'message' => __( "Dots are used in form-tag names.", 'contact-form-7' ),
+						'link' => self::get_doc_link( 'dots_in_names' ),
+					)
+				);
+			}
 		}
 
 		return false;
@@ -504,6 +557,29 @@ class WPCF7_ConfigValidator {
 		$this->detect_maybe_empty( sprintf( '%s.body', $template ), $body );
 
 		if ( '' !== $components['attachments'] ) {
+			$attachables = array();
+
+			$tags = $this->contact_form->scan_form_tags(
+				array( 'type' => array( 'file', 'file*' ) )
+			);
+
+			foreach ( $tags as $tag ) {
+				$name = $tag->name;
+
+				if ( false === strpos( $components['attachments'], "[{$name}]" ) ) {
+					continue;
+				}
+
+				$limit = (int) $tag->get_limit_option();
+
+				if ( empty( $attachables[$name] )
+				or $attachables[$name] < $limit ) {
+					$attachables[$name] = $limit;
+				}
+			}
+
+			$total_size = array_sum( $attachables );
+
 			$has_file_not_found = false;
 			$has_file_not_in_content_dir = false;
 
@@ -525,6 +601,23 @@ class WPCF7_ConfigValidator {
 						sprintf( '%s.attachments', $template ), $line
 					);
 				}
+
+				if ( ! $has_file_not_found ) {
+					$path = path_join( WP_CONTENT_DIR, $line );
+					$total_size += (int) @filesize( $path );
+				}
+			}
+
+			$max = 25 * MB_IN_BYTES; // 25 MB
+
+			if ( $max < $total_size ) {
+				$this->add_error( sprintf( '%s.attachments', $template ),
+					self::error_attachments_overweight,
+					array(
+						'message' => __( "The total size of attachment files is too large.", 'contact-form-7' ),
+						'link' => self::get_doc_link( 'attachments_overweight' ),
+					)
+				);
 			}
 		}
 	}

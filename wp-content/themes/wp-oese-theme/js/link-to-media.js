@@ -8,7 +8,7 @@
     /** Create Link To Media Button **/
     var OESE_LinkToMedia = function( props ) {
        return wp.element.createElement(
-            wp.editor.RichTextToolbarButton, {
+            wp.blockEditor.RichTextToolbarButton, {
                 icon: 'admin-media', 
                 title: 'Link to Media', 
                 onClick: function() {

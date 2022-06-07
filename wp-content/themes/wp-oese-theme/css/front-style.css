@@ -255,3 +255,4 @@ ul.program_toc, .cntnbx_cntnr ul {
 .wp-block-oese-block-oese-featured-video-block,
 .wp-block-oese-block-oese-recommended-resources-block,
 .wp-block-oese-block-oese-subpages-block {clear:both;}
+.wp-block-oese-block-oese-disruptive-content-block .oese_disruptive_content_right_column table tr { background: none !important; }

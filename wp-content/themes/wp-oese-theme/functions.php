@@ -7,7 +7,7 @@
  * filter hooks in WordPress to change core functionality.
  */
 define( "WP_OESE_THEME_NAME", "WP OESE Theme" );
-define( "WP_OESE_THEME_VERSION", "2.0.1" );
+define( "WP_OESE_THEME_VERSION", "2.1.0" );
 define( "WP_OESE_THEME_SLUG", "wp_oese_theme" );
 
 // Set up the content width value based on the theme's design and stylesheet.
@@ -3226,3 +3226,30 @@ function oese_tile_link_block_render_callback( $block ){
     include( get_theme_file_path("/template-parts/block/content-{$slug}.php") );
   }
 }
+
+
+// Disable access to wp-json from the outside and allow it only for logged in users(WP Admin dashboard)
+function oese_disable_rest_api_from_public($result){
+  // If a previous authentication check was applied, pass that result along without modification.
+  if ( true === $result || is_wp_error( $result ) ) {
+      return $result;
+  }
+
+  if (false !== strpos( esc_url_raw($_SERVER['REQUEST_URI']), '/wp-json/contact-form-7' )) {
+      return $result;
+  } 
+
+  // Return an error if user is not logged in or if not Contact Form 7 Rest API endpoint.
+  if ( ! is_user_logged_in() ) {
+      return new WP_Error(
+          'rest_not_logged_in',
+          __( 'You are not currently logged in.' ),
+          array( 'status' => 401 )
+      );
+  }
+
+
+  // no effect on logged-in requests
+  return $result;
+}
+add_filter( 'rest_authentication_errors' , 'oese_disable_rest_api_from_public' );

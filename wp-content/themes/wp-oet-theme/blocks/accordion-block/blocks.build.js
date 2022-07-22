@@ -96,12 +96,25 @@ registerBlockType("cgb/oet-accordion-block", {
     },
     accordiontitle: {
       type: "string"
+    },
+    accordionheading: {
+      type: "string",
+      default: "h2"
     }
   },
   edit: (props) => {
     const attributes = props.attributes;
     const setAttributes = props.setAttributes; //Set block instance ID
     const clientId = props.clientId;
+
+    const headingLevels = [
+                            { value: "h1", label: "H1"},
+                            { value: "h2", label: "H2"},
+                            { value: "h3", label: "H3"},
+                            { value: "h4", label: "H4"},
+                            { value: "h5", label: "H5"},
+                            { value: "h6", label: "H6"}
+                          ];
 
     let oetblk_accordion_list = [];
     const blocks = wp.data.select("core/block-editor").getBlocks();
@@ -168,6 +181,10 @@ registerBlockType("cgb/oet-accordion-block", {
       });
     };
 
+    const accordionheadingchange = (e) => {
+      setAttributes({ accordionheading: e });
+    }
+
     let arr = Array.apply(null, {
       length: 10
     }).map(Number.call, Number); // Creates a <p class='wp-block-cgb-block-oet-accordion-block'></p>.
@@ -177,7 +194,6 @@ registerBlockType("cgb/oet-accordion-block", {
     if( clientId !== attributes.blockid ){
       setBlockId(clientId);
     }
-
     return React.createElement(
       "div",
       {
@@ -208,8 +224,22 @@ registerBlockType("cgb/oet-accordion-block", {
                 accordioncollapsetoggle(
                   attributes.accordionexpanded ? false : true
                 )
-            })
-          )
+            }),
+          ),
+          React.createElement(
+            "div",
+            {
+              class:
+                "oer_curriculum_inspector_wrapper oer_curriculum_inspector_Postperpage"
+            },
+            React.createElement(SelectControl, {
+              label: __("Heading Tag"),
+              value: attributes.accordionheading,
+              options: headingLevels,
+              onChange: (value) =>
+                accordionheadingchange(value)
+            }),
+          ),
         )
       ),
       React.createElement(
@@ -235,7 +265,7 @@ registerBlockType("cgb/oet-accordion-block", {
                 id: "headingOne"
               },
               React.createElement(
-                "h5",
+                attributes.accordionheading,
                 {
                   class: "mb-0 oet-blk-accordion-title"
                 },
@@ -318,7 +348,7 @@ registerBlockType("cgb/oet-accordion-block", {
                 id: "headingOne"
               },
               React.createElement(
-                "h5",
+                attributes.accordionheading,
                 {
                   class: "mb-0 oet-blk-accordion-title"
                 },

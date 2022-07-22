@@ -95,6 +95,7 @@ if ( class_exists( 'WP_Block_Editor_Context' ) ) {
 function oet_display_medium_embed($attributes, $ajax = false){
     $html = "";
     $shortcodeText = "";
+    
     if (!empty($attributes)) {
         extract($attributes);
 
@@ -119,6 +120,10 @@ function oet_display_medium_embed($attributes, $ajax = false){
             $shortcodeText .= sprintf(" authorname='%s'",$attributes['authorname']);
         if (isset($attributes['authorlogo']) && $attributes['authorlogo']!=="")
             $shortcodeText .= sprintf(" authorlogo='%s'",$attributes['authorlogo']);
+        if (isset($attributes['heading']) && $attributes['heading']!=="")
+            $shortcodeText .= sprintf(" heading='%s'",$attributes['heading']);
+        else
+            $shortcodeText .= sprintf(" heading='%s'","h2");
         $shortcodeText .= "]";
 
         if (isset($shortcodeText)){

@@ -47,20 +47,22 @@ body { padding-top: 15px; color: #000000 !important; font-family: 'Open Sans', s
 .hdng_mtr, .hdng_mtr a { font-size: 19px; color: #E57200; font-family: 'Work Sans', sans-serif !important; font-weight: bold; line-height:26px;}
 .hdng_mtr a:hover { cursor: pointer; }
 /*.rght_sid_mtr>.hdng_mtr, .hdng_mtr a { font-size: 13px; margin-bottom: 0; margin-top: 40px}*/
-.rght_sid_mtr>.hdng_mtr, .hdng_mtr a { margin-bottom: 0; }
+.rght_sid_mtr>.hdng_mtr, .hdng_mtr a { margin-bottom: 0; padding-bottom:5px; }
 .pblctn_right_sid_mtr .hdng_mtr { font-size: 13px; margin-bottom: 0; border-top: 1px solid #ccc; padding-top: 10px; width: 100%; margin-top: 5px}
 .pblctn_right_sid_mtr .hdng_mtr:first-child { border-top: none; margin-top: 0}
+.oet-recommended-resources-block h3.pblctn_scl_icn_hedng { font-size:20px; }
 /*
 .rght_mtr { font-size: 12px}
 .rght_mtr a, .rght_mtr a:hover { color: #4b4e53 }
 */
 .oet_2column_layout .rght_sid_mtr>.hdng_mtr { margin-bottom:10px; }
+.oet_2column_layout .rght_sid_mtr>h4.hdng_mtr { border-bottom: none; padding-bottom: 0; }
 
 .lft_sid_mtr { padding-left: 0 !important; margin-bottom: 30px; position: relative}
 .lft_sid_mtr img, .rght_sid_mtr img { float: left; margin: 0 25px 25px 0}
-.lft_sid_mtr h3:first-child, .rght_sid_mtr h3:first-child, .oet_2column_layout h3:first-child { margin-bottom: 0; padding-bottom: 5px; font-size: 20px; font-weight: bold; color: #294179; font-family: 'Work Sans', sans-serif !important; font-weight: bold; line-height: 23px; }
+.lft_sid_mtr h3:first-child, .rght_sid_mtr h3:first-child, .oet_2column_layout h3:first-child { margin-bottom: 15px; padding-bottom: 5px; font-size: 20px; font-weight: bold; color: #294179; font-family: 'Work Sans', sans-serif !important; font-weight: bold; line-height: 23px; }
 .oet_2column_layout .rght_sid_mtr { padding-left:0; }
-.lft_sid_mtr h4, .rght_sid_mtr h4,.oet_2column_layout h4 { border-bottom: 1px solid #ccc; margin-bottom: 15px; padding-bottom: 5px; font-size: 19px; color: #294179; font-family: 'Work Sans', sans-serif !important; font-weight: 400 !important; line-height: 23px; }
+.lft_sid_mtr h3, .rght_sid_mtr h3,.oet_2column_layout h3 { border-bottom: 1px solid #ccc; margin-bottom: 15px; padding-bottom: 5px; font-size: 19px; color: #294179; font-family: 'Work Sans', sans-serif !important; font-weight: 400 !important; line-height: 23px; }
 .lft_sid_mtr p, .rght_sid_mtr p {  margin: 0 0 10px}
 .date { font-family: 'Work Sans', sans-serif !important; font-weight: bold; font-size: 13px}
 .sprtn_brdr { position: absolute; top: 80px; bottom: 35px; width: 1px; background: #ddd; right: 0}

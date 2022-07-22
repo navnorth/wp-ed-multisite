@@ -66,7 +66,7 @@ function oet_acf_slider_enqueue() {
                          <img src="<?php echo $_image_url ?>" alt="" style="display:none;">
                          <div class="oet_acf_slide_caption_wrapper">
                            <div class="oet_acf_slide_caption_block"> <?php
-                               echo ($_image_header != '')?'<h2 class="oet_acf_slide_title">'.$_image_header.'</h2>': ''; ?>
+                               echo ($_image_header != '')?'<h1 class="oet_acf_slide_title">'.$_image_header.'</h1>': ''; ?>
                                <p class="oet_acf_slide_desc"><?php echo $_image_description ?></p>
                                <p class="oet-slide-button-row"> <?php
                                    if(!empty($_slide['oet_acf_slide_button_url'])): ?>

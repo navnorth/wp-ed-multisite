@@ -751,9 +751,9 @@ form#searchform.focused {border: 2px solid #333333 !important;}
 #oet-acf-slider .oet_acf_slide_title {
     font-family: 'Work Sans', sans-serif;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 24px !important;
     line-height: 28px;
-    color: #FFFFFF;
+    color: #FFFFFF !important;
     margin-top: 0;
     text-align: left;
     padding: 0 0 10px;

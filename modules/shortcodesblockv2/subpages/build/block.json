@@ -13,6 +13,7 @@
 	"attributes":{
 		"blockid": {"type": "string"},
 		"id":{"type": "string"},
+		"heading":{"type": "string"},
 		"title":{"type": "string","default":"Subpages"},
 		"data":{"type": "array","default":[]},
 		"proc": {"type": "boolean", "default":false}

@@ -13,6 +13,7 @@
 	"attributes":{
 		"blockid": {"type":"string"},
 		"accordionexpanded": {"type":"boolean","default": true},
+		"heading": {"type":"string","default":"h2"},
 		"accordiontitle": {"type":"string"}
 	},
 	"textdomain": "oese-accordion-block",

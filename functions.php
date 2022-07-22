@@ -8,7 +8,7 @@
  */
 
 define( 'OET_THEME_SLUG' , 'wp_oet_theme' );
-define( "OET_THEME_VERSION", "2.1.0" );
+define( "OET_THEME_VERSION", "2.1.1" );
 define( 'OET_THEME_PATH' ,  get_stylesheet_directory() );
 
 /**
@@ -694,7 +694,7 @@ function oet_display_static_header($page_id){
     <div class="oet-acf-page-header"<?php echo $bgStyle; ?>>
 	<div class="oet-slide-wrapper">
 	    <div class="oet-acf-slide-box oet-acf-slide-1">
-		<h2 class="oet-acf-header-text"><?php echo $headerText; ?></h2>
+		<h1 class="oet-acf-header-text"><?php echo $headerText; ?></h1>
 		<?php if (!empty($description)){ ?>
 		<p><?php echo $description; ?></p>
 		<?php  } ?>

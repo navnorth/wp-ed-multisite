@@ -11,15 +11,19 @@
 		"html": false
 	},
 	"attributes":{
-    "blockid": {"type":"string"},
-    "oetblkFeaturedItemHeading": {"type":"string"},
-    "oetblkFeaturedItemTitle": {"type":"string"},
-    "oetblkFeaturedItemDate": {"type":"string"},
-    "oetblkFeaturedItemButtonDisplay": {"type": "boolean","default": true},
+	    "blockid": {"type":"string"},
+	    "oetblkFeaturedItemHeading": {"type":"string"},
+	    "oetblkHeadingTag": { "type": "string", "default": "h2" },
+	    "oetblkFeaturedItemTitle": {"type":"string"},
+	    "oetblkTitleTag": { "type": "string", "default": "h3" },
+	    "oetblkFeaturedItemDate": {"type":"string"},
+	    "oetblkDateTag": { "type": "string", "default": "h4" },
+	    "oetblkFeaturedItemButtonDisplay": {"type": "boolean","default": true},
 		"mediaID": {"type":"number","source":"attribute","attribute":"data-id","selector":"img"},
 		"mediaURL": {"type": "string","source": "attribute","attribute":"src","selector":"img"},
 		"thumbnail": {"type":"string","source":"attribute","attribute":"data-thumb","selector":"img"},
-		"thumbnailsize": {"type":"integer"}
+		"thumbnailsize": {"type":"integer"},
+		"titlesize": {"type":"integer", "default": 47}
   },
 	"textdomain": "oet-featured-item-block",
 	"editorScript": "file:./build/index.js",

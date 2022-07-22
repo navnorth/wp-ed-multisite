@@ -1,3 +1,20 @@
+/** Detect zoom using resize event **/
+window.addEventListener('resize', () => {
+  const browserZoomLevel = Math.round(window.devicePixelRatio * 100);
+  if (browserZoomLevel>100){
+  	if (jQuery(window).width() < 769) {
+			jQuery('.navi_bg .navi_icn').attr('tabindex','0');
+			jQuery('.navi_bg .navi_icn').attr('aria-label','menu');
+			jQuery('.navi_bg .navi_icn').on("keypress", function(e) {
+				var code = e.keyCode || e.which;
+				if(code == 13 || code == 32) { 
+	   				jQuery('.navi_bg .navi_icn .fa-bars').trigger('click');
+	 			}
+			});
+		}
+  }
+})
+
 jQuery( document ).ready(function() {
     jQuery('#page_template').on('change', function() {
 	  //alert(this.value);

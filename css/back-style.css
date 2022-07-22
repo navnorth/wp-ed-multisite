@@ -716,3 +716,32 @@ input#secondary-save-post {float: left;}
     border-radius: 100%;
     margin-right: 5px;
 }
+.block-editor-writing-flow .oet_featured_item_block_wrapper .oet-shortcode .lft_sid_mtr h4.oet-featured-item-title {
+    font-size: 19px!important;
+    font-weight: 700!important;
+    margin-bottom: 2px!important;
+    margin-top: 0!important;
+    padding: 0!important;
+    color: #e57200!important;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+}
+.block-editor-writing-flow h2 {
+    color: #294179 !important;
+    font-size: 28px !important;
+}
+.oet-shortcode .single-medium .medium p {
+    text-shadow: 1px 4px 10px #000;
+    font-size: 14px !important;
+    line-height: 1.35em;
+    color: #fff !important;
+}
+.oet-shortcode .single-medium .medium .medium-wrapper p.mfooter{
+    position: absolute;
+    bottom: -30px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    height: 32px;
+}

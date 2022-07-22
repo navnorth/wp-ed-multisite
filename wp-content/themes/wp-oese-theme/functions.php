@@ -7,7 +7,7 @@
  * filter hooks in WordPress to change core functionality.
  */
 define( "WP_OESE_THEME_NAME", "WP OESE Theme" );
-define( "WP_OESE_THEME_VERSION", "2.1.0" );
+define( "WP_OESE_THEME_VERSION", "2.1.1" );
 define( "WP_OESE_THEME_SLUG", "wp_oese_theme" );
 
 // Set up the content width value based on the theme's design and stylesheet.
@@ -3042,7 +3042,7 @@ function oet_display_acf_home_content(){
             <div class="col-sm-12 custom-common-padding">
               <div class="full-search-section m-auto text-center">
                    <div class="full-search-heading">
-                       <h1><?php echo $_searchtitle ?></h1>
+                       <h2><?php echo $_searchtitle ?></h2>
                    </div>
 
                    <div class="full-search-field">
@@ -3237,7 +3237,7 @@ function oese_disable_rest_api_from_public($result){
 
   if (false !== strpos( esc_url_raw($_SERVER['REQUEST_URI']), '/wp-json/contact-form-7' )) {
       return $result;
-  } 
+  }
 
   // Return an error if user is not logged in or if not Contact Form 7 Rest API endpoint.
   if ( ! is_user_logged_in() ) {

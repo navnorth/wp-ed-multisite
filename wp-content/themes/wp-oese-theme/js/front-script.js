@@ -1,5 +1,25 @@
 let touchEvent = 'ontouchstart' in window ? 'touchstart': 'click';
 
+/** Detect zoom using resize event **/
+window.addEventListener('resize', () => {
+  const browserZoomLevel = Math.round(window.devicePixelRatio * 100);
+  if (browserZoomLevel>100){
+    if (jQuery(window).width() < 800) {
+      jQuery('.mobile-nav-bar .navi_icn').attr('tabindex','0');
+      jQuery('.mobile-nav-bar .navi_icn').attr('aria-label','menu');
+      jQuery('.mobile-nav-bar .navi_icn').on("keypress", function(e) {
+        var code = e.keyCode || e.which;
+        if(code == 13 || code == 32) { 
+          if (jQuery('.mobile-nav-bar .navi_icn .fa-bars').length>0)
+            jQuery('.mobile-nav-bar .navi_icn .fa-bars').trigger('click');
+          else
+            jQuery('.mobile-nav-bar .navi_icn .fa-times').trigger('click');
+        }
+      });
+    }
+  }
+})
+
 jQuery( document ).ready(function() {
     jQuery('#page_template').on('change', function() {
 	  //alert(this.value);
@@ -149,6 +169,19 @@ jQuery( document ).ready(function() {
     }
     
     if(jQuery(window).width()<800){
+      // Add Keyboard navigation on hamburger menu on mobile
+      jQuery('.mobile-nav-bar .navi_icn').attr('tabindex','0');
+      jQuery('.mobile-nav-bar .navi_icn').attr('aria-label','menu');
+      jQuery('.mobile-nav-bar .navi_icn').on("keypress", function(e) {
+        var code = e.keyCode || e.which;
+        if(code == 13 || code == 32) { 
+          if (jQuery('.mobile-nav-bar .navi_icn .fa-bars').length>0)
+            jQuery('.mobile-nav-bar .navi_icn .fa-bars').trigger('click');
+          else
+            jQuery('.mobile-nav-bar .navi_icn .fa-times').trigger('click');
+        }
+      });
+
         var temp = jQuery('.wdm_results .res_info');
         jQuery('.cls_results').before(temp);
         jQuery('.wdm_results .res_info').remove();

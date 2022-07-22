@@ -30,7 +30,7 @@
          <div class="row custom-common-padding">
              <div class="full-search-section m-auto text-center">
                  <div class="full-search-heading">
-                     <h1>What can we help you find?</h1>
+                     <h2>What can we help you find?</h2>
                  </div>
 
                  <div class="full-search-field">

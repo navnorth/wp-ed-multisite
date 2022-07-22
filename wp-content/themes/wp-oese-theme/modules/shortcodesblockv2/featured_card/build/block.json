@@ -18,7 +18,8 @@
 		"contentRows":{"type":"integer","default": 1},
 		"buttonText":{"type": "string","default":"Read More"},
 		"url":{"type": "string"},
-		"background": {"type":"string"}
+		"background": {"type":"string"},
+		"altText": {"type":"string"}
 	},
 	"textdomain": "oese-featured-card-block",
 	"editorScript": "file:./index.js",

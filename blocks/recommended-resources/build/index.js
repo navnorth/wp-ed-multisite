@@ -153,15 +153,15 @@
                                             })
                                         ),
                                         (0, l.createElement)(c.PanelRow, null, (0, l.createElement)(c.SelectControl, { label: (0, r.__)("Media Type 1", "oet-recommended-resources-block"), options: s, value: o.mediaType1, onChange: u(1) })),
-                                        (0, l.createElement)(c.PanelRow, null, (0, l.createElement)(c.TextControl, { label: (0, r.__)("Media Source/Image 1", "oet-recommended-resources-block"), value: o.mediaSource1, onChange: g(1) })),
+                                        (0, l.createElement)(c.PanelRow, null, (0, l.createElement)(c.TextControl, { label: (0, r.__)("Media/Image Source 1", "oet-recommended-resources-block"), value: o.mediaSource1, onChange: g(1) })),
                                         (0, l.createElement)(c.PanelRow, null, (0, l.createElement)(c.TextControl, { label: (0, r.__)("Media Text 1", "oet-recommended-resources-block"), value: o.mediaText1, onChange: h(1) })),
                                         (0, l.createElement)(c.PanelRow, null, (0, l.createElement)(c.TextControl, { label: (0, r.__)("Media Link 1", "oet-recommended-resources-block"), value: o.mediaLink1, onChange: _(1) })),
                                         (0, l.createElement)(c.PanelRow, null, (0, l.createElement)(c.SelectControl, { label: (0, r.__)("Media Type 2", "oet-recommended-resources-block"), options: s, value: o.mediaType2, onChange: u(2) })),
-                                        (0, l.createElement)(c.PanelRow, null, (0, l.createElement)(c.TextControl, { label: (0, r.__)("Media Source/Image 2", "oet-recommended-resources-block"), value: o.mediaSource2, onChange: g(2) })),
+                                        (0, l.createElement)(c.PanelRow, null, (0, l.createElement)(c.TextControl, { label: (0, r.__)("Media/Image Source 2", "oet-recommended-resources-block"), value: o.mediaSource2, onChange: g(2) })),
                                         (0, l.createElement)(c.PanelRow, null, (0, l.createElement)(c.TextControl, { label: (0, r.__)("Media Text 2", "oet-recommended-resources-block"), value: o.mediaText2, onChange: h(2) })),
                                         (0, l.createElement)(c.PanelRow, null, (0, l.createElement)(c.TextControl, { label: (0, r.__)("Media Link 2", "oet-recommended-resources-block"), value: o.mediaLink2, onChange: _(2) })),
                                         (0, l.createElement)(c.PanelRow, null, (0, l.createElement)(c.SelectControl, { label: (0, r.__)("Media Type 3", "oet-recommended-resources-block"), options: s, value: o.mediaType3, onChange: u(3) })),
-                                        (0, l.createElement)(c.PanelRow, null, (0, l.createElement)(c.TextControl, { label: (0, r.__)("Media Source/Image 3", "oet-recommended-resources-block"), value: o.mediaSource3, onChange: g(3) })),
+                                        (0, l.createElement)(c.PanelRow, null, (0, l.createElement)(c.TextControl, { label: (0, r.__)("Media/Image Source 3", "oet-recommended-resources-block"), value: o.mediaSource3, onChange: g(3) })),
                                         (0, l.createElement)(c.PanelRow, null, (0, l.createElement)(c.TextControl, { label: (0, r.__)("Media Text 3", "oet-recommended-resources-block"), value: o.mediaText3, onChange: h(3) })),
                                         (0, l.createElement)(c.PanelRow, null, (0, l.createElement)(c.TextControl, { label: (0, r.__)("Media Link 3", "oet-recommended-resources-block"), value: o.mediaLink3, onChange: _(3) }))
                                     )

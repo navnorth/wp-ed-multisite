@@ -260,4 +260,4 @@ ul.program_toc, .cntnbx_cntnr ul {
 .responsiv-menu_ul li.current-menu-item a{
     text-decoration: underline;
 }
-.oese-recommended-resources-block-description-wrapper .oese-recommended-resources-block-description { line-height:1.1em; }
+.oese-recommended-resources-block-description-wrapper .oese-recommended-resources-block-description { line-height:1.1em !important; }

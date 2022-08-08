@@ -61,6 +61,44 @@ jQuery( document ).ready(function() {
 		jQuery('.sub-menu').removeAttr('style');
 	     }
 	});
+
+	/** Add role to menu items on mobile **/
+  jQuery('.mobile-nav-bar .responsiv-menu .responsiv-menu_ul').attr({
+    'id' : 'responsiv_menu_ul',
+    'role' : 'menu',
+    'aria-labelledby' : 'mobile_nav_icons'
+  });
+  jQuery('.responsiv-menu .responsiv-menu_ul li').each(function(){
+    jQuery(this).attr('role','none');
+    jQuery(this).find('a').attr('role','menuitem');
+    if (jQuery(this).hasClass('current_page_item'))
+      jQuery(this).find('a').attr('tabindex','0');
+    else
+      jQuery(this).find('a').attr('tabindex','-1');
+  });
+  /** Keyboard navigation on mobile menu **/
+  jQuery('.responsiv-menu_ul .menu-item > a').on('keydown',function(e){
+      jQuery('.responsiv-menu_ul .menu-item a').attr('tabindex','-1');
+      if (e.which==40) { /* Down Arrow Key */
+      	if (jQuery(this).parent().find('.sub-menu').length)
+      		jQuery(this).parent().find('.sub-menu > li:first-child > a').attr('tabindex','0').focus();
+      	else{
+      		if (jQuery(this).parent().is(":last-child"))
+      			jQuery(this).closest('.menu-item-has-children').next().find('> a').attr('tabindex','0').focus();
+      		else
+        		jQuery(this).parent().next().find('> a').attr('tabindex','0').focus();
+      	}
+      } else if (e.which==38) { /* Up Arrow Key */
+      	if (jQuery(this).parent().is(":first-child"))
+      		jQuery(this).closest('.menu-item-has-children').find('> a').attr('tabindex','0').focus();
+      	else{
+      		if (jQuery(this).parent().prev().find('.sub-menu').length)
+      			jQuery(this).parent().prev().find('.sub-menu > li:last-child > a').attr('tabindex','0').focus();
+      		else
+        		jQuery(this).parent().prev().find('> a').attr('tabindex','0').focus();
+      	}
+      }
+  });
 	
 	/* Nav menu focus handler */
 	jQuery('.main-menu ul li a').on('focus', function(){
@@ -123,6 +161,8 @@ jQuery( document ).ready(function() {
 			if(code == 13 || code == 32) { 
    				jQuery('.navi_bg .navi_icn .fa-bars').trigger('click');
  			}
+ 			jQuery(this).closest('.navi_bg').find('.responsiv-menu_ul > li:first-child a').attr('tabindex','0');
+      jQuery(this).closest('.navi_bg').find('.responsiv-menu_ul > li:first-child a').focus();
 		});
 	}
 

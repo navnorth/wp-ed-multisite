@@ -108,13 +108,11 @@
         </div>
 
         <div class="row navi_bg">
-        	<div class="main-menu">
-			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>
-            </div>
-
-            <span class="navi_icn fa-stack" aria-label="menu"><i class="fa fa-bars fa-stack-2x"></i></span>
-            <div class="responsiv-menu">
-            	<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'responsiv-menu_ul' ) ); ?>
-            </div>
-
+                <div class="main-menu">
+		      <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>
+                </div>
+                <span class="navi_icn fa-stack" aria-label="menu" role="button" id="mobile_nav_icns" aria-haspopup="true" aria-controls="responsiv_menu_ul" ><i class="fa fa-bars fa-stack-2x"></i></span>
+                <div class="responsiv-menu">
+            	   <?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'responsiv-menu_ul', 'menu_id' => 'responsiv_menu_ul' ) ); ?>
+                </div>
         </div>

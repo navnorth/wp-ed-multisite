@@ -86,9 +86,14 @@
                 </div>
             </div>
             <div class="col-md-12 col-sm-12 responsive-menu-section">
-                <span class="navi_icn fa-stack mobile-nav-icons"><i class="fas fa-bars fa-stack-2x"></i></span>
+                <span class="navi_icn fa-stack mobile-nav-icons" id="mobile_nav_icons" role="button" aria-haspopup="true" aria-controls="responsiv_menu_ul" aria-label="menu" tabindex="0"><i class="fas fa-bars fa-stack-2x"></i></span>
                 <div class="responsiv-menu">
-                    <?php wp_nav_menu(array('theme_location' => 'primary', 'menu_class' => 'responsiv-menu_ul')); ?>
+                    <?php wp_nav_menu(
+                        array(
+                            'theme_location' => 'primary', 
+                            'menu_class' => 'responsiv-menu_ul'
+                        )
+                    ); ?>
                 </div>
             </div>
         </div>

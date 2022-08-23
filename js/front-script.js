@@ -102,12 +102,28 @@ jQuery( document ).ready(function() {
   jQuery('.responsiv-menu_ul > .menu-item > a').on('keydown',function(e){
       jQuery('.responsiv-menu_ul .menu-item a').attr('tabindex','-1');
       if (e.which==40) { /* Down Arrow Key */
-        jQuery(this).parent().next().find('a').attr('tabindex','0').focus();
+        if (jQuery(this).parent().is(":last-child")){
+          jQuery(this).closest('ul.responsiv-menu_ul').find('> li:first-child > a').attr('tabindex','0').focus();
+        } else {
+          jQuery(this).parent().next().find('a').attr('tabindex','0').focus();
+        }
       } else if (e.which==38) { /* Up Arrow Key */
-        if (jQuery(this).parent().prev().length>0)
-          jQuery(this).parent().prev().find('a').attr('tabindex','0').focus();
-        else
-          jQuery(this).closest('.responsive-menu-section').find('.mobile-nav-icons').focus();
+        if (jQuery(this).parent().is(":first-child")){
+          jQuery(this).closest('ul.responsiv-menu_ul').find('> li:last-child > a').attr('tabindex','0').focus(); 
+        } else {
+          if (jQuery(this).parent().prev().length>0)
+            jQuery(this).parent().prev().find('a').attr('tabindex','0').focus();
+          else
+            jQuery(this).closest('.responsive-menu-section').find('.mobile-nav-icons').focus();
+        }
+      } else if (e.which==27){
+        jQuery(this).closest('.mobile-nav-bar').find('.responsiv-menu').css("display","none");
+        jQuery(this).closest('.mobile-nav-bar').find('.responsiv-menu .responsiv-menu_ul').css("display","none")
+        jQuery(this).closest('.mobile-nav-bar').find('.navi_icn').removeAttr('aria-expanded');
+        if (jQuery(this).closest('.mobile-nav-bar').find('.navi_icn i').hasClass('fa-times'))
+            jQuery(this).closest('.mobile-nav-bar').find('.navi_icn i').removeClass('fa-times').addClass("fa-bars");
+        jQuery(this).closest('.mobile-nav-bar').find('.navi_icn').attr('aria-label','open menu');
+        jQuery(this).closest('.mobile-nav-bar').find('.navi_icn').focus();
       }
   });
 
@@ -137,14 +153,40 @@ jQuery( document ).ready(function() {
     jQuery('.mobile-nav-bar .navi_icn').attr('aria-label','menu');
     jQuery('.mobile-nav-bar .navi_icn').on("keydown", function(e) {
       var code = e.which;
-      if(code == 13 || code == 32) { 
+      /**--if(code == 13 || code == 32) { 
         if (jQuery('.mobile-nav-bar .navi_icn .fa-bars').length>0)
           jQuery('.mobile-nav-bar .navi_icn .fa-bars').trigger('click');
         else
           jQuery('.mobile-nav-bar .navi_icn .fa-times').trigger('click');
       }
       jQuery(this).closest('.responsive-menu-section').find('.responsiv-menu_ul li:first-child a').attr('tabindex','0');
-      jQuery(this).closest('.responsive-menu-section').find('.responsiv-menu_ul li:first-child a').focus();
+      jQuery(this).closest('.responsive-menu-section').find('.responsiv-menu_ul li:first-child a').focus();--**/
+      var key = e.key;
+      console.log(key);
+      if(key == "Enter" || key == " " || key == "ArrowDown" || key == "ArrowUp") { 
+          //jQuery('.navi_bg .navi_icn .fa-bars').trigger('click');
+          jQuery(this).closest('.mobile-nav-bar').find('.responsiv-menu').css("display","block")
+          jQuery(this).closest('.mobile-nav-bar').find('.responsiv-menu .responsiv-menu_ul').css("display","block")
+          jQuery(this).attr('aria-expanded','true');
+          if (key == "ArrowUp"){
+            jQuery(this).closest('.mobile-nav-bar').find('.responsiv-menu_ul > li:last-child a').attr('tabindex','0');
+            jQuery(this).closest('.mobile-nav-bar').find('.responsiv-menu_ul > li:last-child a').focus();
+          } else {
+            jQuery(this).closest('.mobile-nav-bar').find('.responsiv-menu_ul > li:first-child a').attr('tabindex','0');
+            jQuery(this).closest('.mobile-nav-bar').find('.responsiv-menu_ul > li:first-child a').focus();
+          }
+          if (jQuery('.mobile-nav-icons i').hasClass('fa-bars'))
+            jQuery('.mobile-nav-icons i').addClass("fa-times").removeClass('fa-bars');
+          jQuery(this).attr('aria-label','close menu');
+      } else if (key == "Esc" || key == "Escape"){
+        jQuery(this).closest('.mobile-nav-bar').find('.responsiv-menu').css("display","none");
+        jQuery(this).closest('.mobile-nav-bar').find('.responsiv-menu .responsiv-menu_ul').css("display","none")
+        jQuery(this).removeAttr('aria-expanded');
+        if (jQuery('.mobile-nav-icons i').hasClass('fa-times'))
+            jQuery('.mobile-nav-icons i').addClass("fa-bars").removeClass('fa-times');
+        jQuery(this).focus();
+        jQuery(this).attr('aria-label','open menu');
+      }
     });
 
     var temp = jQuery('.wdm_results .res_info');

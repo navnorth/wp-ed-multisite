@@ -78,6 +78,7 @@ body { padding-top: 15px; color: #000000 !important; font-family: 'Open Sans', s
 iframe { border: 0;  max-width:100%; }
 .pblctn_vdo_bg_fr_two { background: #f2f2f2; border: 1px solid #ccc; padding: 0 !important; border-radius: 5px; width: 49% !important; margin-left: 2%;}
 .pblctn_vdo_bg_fr_two img, .pblctn_vdo_bg_fr_two iframe { width: 100%}
+.pblctn_vdo_bg_fr_two img { height:auto; }
 .pblctn_vdo_bg_fr_two:first-child { margin-left: 0}
 .pblctn_vdo_bg_fr_two p { margin: 14px; font-size: 15px;}
 

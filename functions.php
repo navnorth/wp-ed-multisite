@@ -114,6 +114,11 @@ require_once( OET_THEME_PATH . '/blocks/callout-box/init.php' );
 require_once( OET_THEME_PATH . '/blocks/disruptive-content/init.php' );
 
 /**
+* OET Recommended Resources Block
+**/
+require_once( OET_THEME_PATH . '/blocks/recommended-resources/init.php' );
+
+/**
 * OET Button Block
 **/
 require_once( OET_THEME_PATH . '/blocks/button/init.php' );
@@ -122,11 +127,6 @@ require_once( OET_THEME_PATH . '/blocks/button/init.php' );
 * OET Story Embed Block
 **/
 require_once( OET_THEME_PATH . '/blocks/story-embed/init.php' );
-
-/**
-* OET Recommended Resources Block
-**/
-require_once( OET_THEME_PATH . '/blocks/recommended-resources/init.php' );
 
 include_once wp_normalize_path( get_stylesheet_directory() . '/vendor/autoload.php' );
 

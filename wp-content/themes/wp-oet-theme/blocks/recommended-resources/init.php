@@ -23,6 +23,7 @@
 function oet_recommended_resources_block_init(){
     $dir = dirname(__FILE__);
     $dir_url = get_stylesheet_directory_uri().'/blocks/recommended-resources/';
+    var_dump($dir_url);
     $version_58 = is_version_58();
 
     $script_asset_path = "$dir/build/index.asset.php";

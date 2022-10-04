@@ -1,0 +1,117 @@
+/* CSS for 5-Minute Evaluation Resource Series; Updated: 08/06/2018 */
+.evalseries {
+    width:100%;
+    margin:0 auto;
+    font-family:Helvetica, Arial, Verdana, sans-serif;
+    color: #000000;
+}
+.evalseries .es-banner {
+    width:80%;
+    min-height: 175px;
+    margin: 0 auto;
+    background: #194a7e url("images/arch.png") no-repeat;
+    background-position: right -85px  bottom -20px;
+    background-size: auto 100px;
+}
+.evalseries .es-banner img.logo-in-banner {
+    float:left;
+    margin: 1.5em 0 0 1em;
+    width:450px;
+    height:auto;
+}
+.evalseries .es-banner img.wp-image-110 {
+    margin: 0 1.5em 0 1em;
+    float:right;
+    width: 275px;
+    height: 275px;
+}
+.evalseries .share_links_header {display:none;}
+.evalseries p {width:95%; margin: 0 auto 10px;}
+.evalseries p.introtext {font-size:1.2em; margin-top: -2em;margin-bottom: 30px;width: 66%;}
+.evalseries a {font-family:Helvetica, Arial, Verdana, sans-serif;font-size: 1.1em; text-decoration-line:underline;}
+.evalseries p a {text-decoration-line:underline;}
+.evalseries .accord { width:70%; margin: 0 auto;}
+.evalseries .accord .panel-group {margin-top:15px;}
+.evalseries .accord .panel-body {padding:0;}
+.evalseries .accord .panel-default {border-color:#ffffff;}
+.evalseries .accord ul.gotomenu {list-style:none; margin: 2em 0 1em;padding-left:0;}
+.evalseries .accord .gotomenu li {display:inline-block; width:45%;}
+.evalseries .accord .gotomenu li span {font-weight:bold;}
+.evalseries h2 {
+    font-family:Helvetica, Arial, Verdana, sans-serif;
+    font-size:2em !important;
+    text-align:center;
+    color:#ffffff;
+    background-color:#294179;
+    padding: .25em .5em;
+}
+.evalseries h2 a {color:#ffffff;font-family:Helvetica,Arial,sans-serif;}
+.evalseries h2 a span {font-size:.75em;}
+.evalseries h2 a:visited {color:#ffffff;}
+.evalseries ul#suite1,
+.evalseries ul#suite2,
+.evalseries ul#suite3 {width:100%; margin: 0 0 2.25em; padding:0; list-style-type: none;}
+.evalseries ul#suite1 li,
+.evalseries ul#suite2 li,
+.evalseries ul#suite3 li {display:block; clear:both; padding:.2em 2em 1.3em 3em; border-top:1px dotted #294179; background-color:#ffffff;}
+.evalseries ul#suite1 li:nth-child(even),
+.evalseries ul#suite2 li:nth-child(even),
+.evalseries ul#suite3 li:nth-child(even) {background-color:#e3f1d3;background-color:#f1fadd;}
+.evalseries ul#suite1 li:first-child,
+.evalseries ul#suite2 li:first-child,
+.evalseries ul#suite3 li:first-child {border-top: 0;}
+.evalseries ul#suite1 li:last-child,
+.evalseries ul#suite2 li:last-child,
+.evalseries ul#suite3 li:last-child {border-bottom: 1px solid #294179;}
+
+.evalseries ul li ul#video {background-color:yellow;min-height:1em;padding:0;clear:both;}
+.evalseries ul li ul#video li {background-color:blueviolet;padding:0;text-align:center; }
+.evalseries ul#suite1 li div.video-container,
+.evalseries ul#suite2 li div.video-container,
+.evalseries ul#suite3 li div.video-container {
+    display: inline-block;
+    float:left; /*IMPORTANT need float so items line up in order. Do not remove.*/
+    width:200px;
+    height:120px;
+    margin:0;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    padding:0;
+    border:1px solid #000; /* KEEP added to align with other inline elements*/
+    background-color: #000;
+}
+.evalseries .panel-default>.panel-heading {
+    color: #ffffff;
+    background-color: #294179 !important;
+    background-image: linear-gradient(#294179, #6fa2d5);
+    border-color: #ddd;
+}
+.evalseries .panel-default>.panel-heading:hover,
+.evalseries .panel-default>.panel-heading:focus-within { background-color: #6fa2d5 !important; background-image: linear-gradient(#6fa2d5, #294179);}
+.evalseries .panel-title>a {
+    color: #ffffff !important;
+    font-size:1.74em;
+    text-decoration-line:none;
+}
+.evalseries .panel-title>a, .panel-title>a.collapsed {background-image:none;}
+.evalseries .panel-title>a:hover,
+.evalseries .panel-title>a:focus { color: #000000 !important; }
+.evalseries ul#suite1 li div,
+.evalseries ul#suite2 li div,
+.evalseries ul#suite3 li div {
+    margin-left: 3em;
+    margin-bottom: .75em;
+    padding-right: 3em;
+    line-height: 1.25em;
+}
+.evalseries ul#suite1 li div .pdfsize,
+.evalseries ul#suite2 li div .pdfsize,
+.evalseries ul#suite3 li div .pdfsize { font-size:.7em;}
+.evalseries span.boldblue {color: #115ca7; font-weight: bold;}
+.gradient {
+  background-image:
+    linear-gradient(
+      to top right,
+      red, #f06d06
+    );
+}

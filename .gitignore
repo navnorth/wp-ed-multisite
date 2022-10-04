@@ -1,3 +1,8 @@
-*.sublime-*
-*.DS_Store
-*.komodoproject
+# Ignore wp-config.php and .htaccess
+wp-config.php
+.htaccess
+.DS_Store
+/wp-content/themes/.DS_Store
+
+# Ignore the wp-content/uploads directory
+/wp-content/uploads

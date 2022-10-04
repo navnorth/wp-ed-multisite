@@ -23,7 +23,7 @@
 function oet_recommended_resources_block_init(){
     $dir = dirname(__FILE__);
     $dir_url = get_stylesheet_directory_uri().'/blocks/recommended-resources/';
-    var_dump($dir_url);
+    
     $version_58 = is_version_58();
 
     $script_asset_path = "$dir/build/index.asset.php";
@@ -71,7 +71,7 @@ function oet_recommended_resources_block_init(){
 function oet_recommended_resources_block_json_init() {
     $dir = dirname(__FILE__);
     $dir_url = get_stylesheet_directory_uri().'/blocks/recommended-resources/';
-    var_dump($dir_url);
+    
     $version_58 = is_version_58();
 
     $script_asset_path = "$dir/build/index.asset.php";
@@ -129,13 +129,13 @@ if (!function_exists('is_version_58')) {
 }
 
 // Checks WP version to register block via block json if version is 5.8 or later
-if ( is_version_58() ) {
+//if ( is_version_58() ) {
     add_action( 'init', 'oet_recommended_resources_block_init' );
     //add_action( 'init', 'oet_recommended_resources_block_json_init' );
-} else {
+//} else {
     //add_action( 'init', 'oet_recommended_resources_block_init' );
-    add_action( 'init', 'oet_recommended_resources_block_json_init' );
-}
+//    add_action( 'init', 'oet_recommended_resources_block_json_init' );
+//}
 
 // Display Recommended Resources Block
 /**

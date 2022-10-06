@@ -3046,7 +3046,7 @@ function oet_display_acf_home_content(){
                    </div>
 
                    <div class="full-search-field">
-                      <form id="searchformContent" class="searchform" action="https://oese-test.navigationnorth.com" method="get" role="search">
+                      <form id="searchformContent" class="searchform" action="<?php echo home_url(); ?>" method="get" role="search">
                           <div class="input-group to-focus">
                               <label class="search-label" for="inputSuccess2Content">Search:</label>
                               <input type="text" class="form-control full-search-input" id="inputSuccess2Content" placeholder="Search" name="s">

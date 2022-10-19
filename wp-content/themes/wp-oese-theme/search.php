@@ -82,7 +82,7 @@ $results = array();
 ?>
 
 	<div id="content" class="site-content oese-search-content-wrapper">
-		<div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12 lft_sid_cntnr">
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 lft_sid_cntnr">
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
@@ -215,9 +215,6 @@ $results = array();
 				'total' => $wp_query->max_num_pages
 			) );
 			?>
-		</div>
-		<div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-		   <?php get_sidebar(); ?>
 		</div>
 	</div><!-- .row -->
 

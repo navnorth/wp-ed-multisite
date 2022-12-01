@@ -19,6 +19,11 @@ function oese_acf_slider_enqueue() {
  **/
 add_shortcode("oese_acf_slider", "oese_acf_slider_func" );
 function oese_acf_slider_func($attr, $content = null){
+    $nalrc_template = false;
+    // Check if the template used is the NALRC template
+    if (is_page_template('page-templates/nalrc-template.php'))
+      $nalrc_template = true;
+
 		$_id = get_the_ID();
 		if(get_field('oese_acf_slider', $_id)):
   			$_slides  = get_field('oese_acf_slider', $_id);
@@ -72,9 +77,13 @@ function oese_acf_slider_func($attr, $content = null){
             $_ret .= '</div>';
             
             if($_slide_count > 1){
-              $_ret .= '<button class="oese-slider-sidenavs left slider-button arrow previous" role = "button" aria-label="previous slide" data-index="0">&#10094;</button>';
-              $_ret .= '<button class="oese-slider-sidenavs right slider-button arrow next" role = "button" aria-label="next slide" data-index="0">&#10095;</button>';      
-              $_ret .= '<ul class="bullet-list"></ul>';
+              if ($nalrc_template){
+                $_ret .= '<ul class="bullet-list nalrc-list"></ul>';
+              } else {
+                $_ret .= '<button class="oese-slider-sidenavs left slider-button arrow previous" role = "button" aria-label="previous slide" data-index="0">&#10094;</button>';
+                $_ret .= '<button class="oese-slider-sidenavs right slider-button arrow next" role = "button" aria-label="next slide" data-index="0">&#10095;</button>';      
+                $_ret .= '<ul class="bullet-list"></ul>';
+              }
             }else{
               $_slider_autoplay = 0;
             }

@@ -302,3 +302,16 @@ button.wdt-clear-filters-button:before, button.wdt-clear-filters-widget-button:b
 .edit-post-meta-boxes-area .postbox.acf-postbox.closed { border-bottom: 1px solid #c3c4c7; }
 .meta-box-sortables .postbox button.handlediv { float:right; }
 .oese-recommended-resources-block-description-wrapper .block-editor-inner-blocks .block-editor-block-list__layout p { line-height:1.1em; }
+.oese-tabs .nav-tab-wrapper {
+    background:transparent;
+}
+.oese-tabs .nav-tab-wrapper li {
+    display: inline-block;
+    background: #f6f7f7;
+    padding: 5px 10px;
+    margin-bottom: 0;
+    border: 1px solid #dcdcde;
+    border-bottom: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}

@@ -775,6 +775,11 @@ function theme_front_enqueue_script()
   wp_enqueue_script('bootstrap-script', get_stylesheet_directory_uri() . '/js/bootstrap.js' );
   wp_enqueue_script('theme-front-script', get_stylesheet_directory_uri() . '/js/front-script.js' );
   wp_enqueue_script('theme-back-script', get_stylesheet_directory_uri() . '/js/modernizr-custom.js' );
+
+  // Load NALRC styles
+  if (is_page_template('page-templates/nalrc-template.php')){
+    wp_enqueue_style( 'theme-nalrc-style',get_stylesheet_directory_uri() . '/css/nalrc.css' );
+  }
 }
 add_action( 'wp_enqueue_scripts', 'theme_front_enqueue_script');
 
@@ -1598,6 +1603,99 @@ function wp_oese_theme_settings_page() {
     )
   );
 
+  // Create NALRC Settings Section
+  add_settings_section(
+    'wp_oese_nalrc_settings',
+    __('NALRC Settings', WP_OESE_THEME_SLUG),
+    'wp_oese_theme_settings_callback',
+    $page
+  );
+
+  // Add Header Menu Settings
+  add_settings_field(
+    'wp_oese_theme_nalrc_header',
+    '',
+    'wp_oese_theme_nalrc_menu_selectbox',
+    $page,
+    'wp_oese_nalrc_settings',
+    array(
+      'uid' => 'wp_oese_theme_nalrc_header',
+      'type' => 'selectbox',
+      'name' =>  __('NALRC Header Menu: ', WP_OESE_THEME_SLUG)
+    )
+  );
+
+  // Add Header Menu Settings
+  add_settings_field(
+    'wp_oese_theme_nalrc_footer',
+    '',
+    'wp_oese_theme_nalrc_menu_selectbox',
+    $page,
+    'wp_oese_nalrc_settings',
+    array(
+      'uid' => 'wp_oese_theme_nalrc_footer',
+      'type' => 'selectbox',
+      'name' =>  __('NALRC Footer Menu: ', WP_OESE_THEME_SLUG)
+    )
+  );
+
+  // Add Facebook URL Settings
+  add_settings_field(
+    'wp_oese_theme_nalrc_facebook',
+    '',
+    'wp_oese_theme_settings_field',
+    $page,
+    'wp_oese_nalrc_settings',
+    array(
+      'uid' => 'wp_oese_theme_nalrc_facebook',
+      'type' => 'textbox',
+      'name' =>  __('Facebook Url: ', WP_OESE_THEME_SLUG)
+    )
+  );
+
+  // Add Twitter URL Settings
+  add_settings_field(
+    'wp_oese_theme_nalrc_twitter',
+    '',
+    'wp_oese_theme_settings_field',
+    $page,
+    'wp_oese_nalrc_settings',
+    array(
+      'uid' => 'wp_oese_theme_nalrc_twitter',
+      'type' => 'textbox',
+      'name' =>  __('Twitter Url: ', WP_OESE_THEME_SLUG)
+    )
+  );
+
+
+  // Add Youtube URL Settings
+  add_settings_field(
+    'wp_oese_theme_nalrc_youtube',
+    '',
+    'wp_oese_theme_settings_field',
+    $page,
+    'wp_oese_nalrc_settings',
+    array(
+      'uid' => 'wp_oese_theme_nalrc_youtube',
+      'type' => 'textbox',
+      'name' =>  __('YouTube Url: ', WP_OESE_THEME_SLUG)
+    )
+  );
+
+  // Add Instagram URL Settings
+  add_settings_field(
+    'wp_oese_theme_nalrc_instagram',
+    '',
+    'wp_oese_theme_settings_field',
+    $page,
+    'wp_oese_nalrc_settings',
+    array(
+      'uid' => 'wp_oese_theme_nalrc_instagram',
+      'type' => 'textbox',
+      'name' =>  __('Instagram Url: ', WP_OESE_THEME_SLUG)
+    )
+  );
+
   register_setting( 'theme_settings_page' , 'wp_oese_theme_modal_heading' );
   register_setting( 'theme_settings_page' , 'wp_oese_theme_modal_content' );
   register_setting( 'theme_settings_page' , 'wp_oese_theme_modal_enable_redirect' );
@@ -1607,6 +1705,12 @@ function wp_oese_theme_settings_page() {
   register_setting( 'theme_settings_page' , 'wp_oese_theme_crazy_egg_script_address' );
   register_setting( 'theme_settings_page' , 'wp_oese_theme_pdf_viewer' );
   register_setting( 'theme_settings_page' , 'wp_oese_theme_display_footer_address' );
+  register_setting( 'theme_settings_page' , 'wp_oese_theme_nalrc_header' );
+  register_setting( 'theme_settings_page' , 'wp_oese_theme_nalrc_footer' );
+  register_setting( 'theme_settings_page' , 'wp_oese_theme_nalrc_facebook' );
+  register_setting( 'theme_settings_page' , 'wp_oese_theme_nalrc_twitter' );
+  register_setting( 'theme_settings_page' , 'wp_oese_theme_nalrc_youtube' );
+  register_setting( 'theme_settings_page' , 'wp_oese_theme_nalrc_instagram' );
 }
 add_action( 'admin_init' , 'wp_oese_theme_settings_page' );
 
@@ -1692,6 +1796,27 @@ function wp_oese_theme_select_contact_field($arguments){
         }
     echo '</select>
     </div></div>';
+}
+
+// Select Menu for NALRC Header
+function wp_oese_theme_nalrc_menu_selectbox($arguments){
+  $value = get_option($arguments['uid']);
+  $menus = wp_get_nav_menus();
+  
+  echo '<div class="form-row"><div class="form-group">';
+
+  if (isset($arguments['name']))
+      $title = $arguments['name'];
+      
+    echo '<label for="'.$arguments['uid'].'"><strong>'.$title.'</strong></label>';
+    echo '<select name="'.$arguments['uid'].'" id="'.$arguments['uid'].'">';
+
+    foreach($menus as $menu){
+       echo '<option value="' . $menu->slug . '" '.selected($menu->slug,$value,true).'>'.$menu->name.'</option>';
+    }
+
+    echo '<select>';
+  echo '</div></div>';
 }
 
 function wp_oese_theme_add_modal(){

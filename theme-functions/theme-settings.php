@@ -66,6 +66,10 @@ if (isset($_GET['oii_update']) && $_GET['oii_update']=="true"){
                         <legend><h3><?php _e('Footer', WP_OESE_THEME_SLUG); ?></h3></legend>
                 <?php do_settings_fields("theme_settings_page", "wp_oese_footer_settings"); ?>
                     </fieldset>
+                <fieldset id="nalrc-settings">
+                    <legend><h3><?php _e('NALRC', WP_OESE_THEME_SLUG); ?></h3></legend>
+                    <?php do_settings_fields("theme_settings_page", "wp_oese_nalrc_settings"); ?>
+                </fieldset>
                 <?php submit_button(); ?>
                 </div>
             </form>

@@ -69,18 +69,26 @@
 					<li class="col-md-6 nav-item">
 						<a>Social</a>
 						<ul class="row nalrc-submenu">
+							<?php if (get_option('wp_oese_theme_nalrc_facebook')): ?>
 							<li class="col-md-12 nav-item">
 								<a href="<?php echo esc_url(get_option('wp_oese_theme_nalrc_facebook')); ?>" target="_blank">Facebook</a>
 							</li>
+							<?php endif; 
+							if (get_option('wp_oese_theme_nalrc_twitter')): ?>
 							<li class="col-md-12 nav-item">
 								<a href="<?php echo esc_url(get_option('wp_oese_theme_nalrc_twitter')); ?>" target="_blank">Twitter</a>
 							</li>
+							<?php endif; 
+							if (get_option('wp_oese_theme_nalrc_youtube')): ?>
 							<li class="col-md-12 nav-item">
 								<a href="<?php echo esc_url(get_option('wp_oese_theme_nalrc_youtube')); ?>" target="_blank">YouTube</a>
 							</li>
+							<?php endif; 
+							if (get_option('wp_oese_theme_nalrc_instagram')): ?>
 							<li class="col-md-12 nav-item">
 								<a href="<?php echo esc_url(get_option('wp_oese_theme_nalrc_instagram')); ?>" target="_blank">Instagram</a>
 							</li>
+							<?php endif; ?>
 						</ul>
 					</li>
 					<li>

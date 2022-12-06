@@ -777,7 +777,7 @@ function theme_front_enqueue_script()
   wp_enqueue_script('theme-back-script', get_stylesheet_directory_uri() . '/js/modernizr-custom.js' );
 
   // Load NALRC styles
-  if (is_page_template('page-templates/nalrc-template.php')){
+  if (is_page_template('page-templates/nalrc-template.php') || 'resource'==get_post_type()){
     wp_enqueue_style( 'theme-nalrc-style',get_stylesheet_directory_uri() . '/css/nalrc.css' );
   }
 }

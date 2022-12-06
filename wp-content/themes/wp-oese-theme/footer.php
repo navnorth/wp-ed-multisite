@@ -8,6 +8,12 @@
  * @since 1.5.0
  */
 ?>
+<?php if ('resource'==get_post_type()): ?>
+    <?php
+        get_template_part('template-parts/nalrc/footer');
+    ?>
+    </div>
+<?php endif; ?>
 <?php
 $menuLocations = get_nav_menu_locations();
 $menuID = $menuLocations['footer'];

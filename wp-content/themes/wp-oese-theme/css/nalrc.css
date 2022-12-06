@@ -61,4 +61,8 @@
 }
 .nalrc-slider #oese-acf-slider .slide-content { border-radius:4px; }
 .nalrc-slider  #oese-acf-slider .oese-acf-slider-wrapper { margin-bottom:0; }
-.nalrc-slider #oese-acf-slider .oese-acf-slider-wrapper { top:0; }
+.nalrc-slider #oese-acf-slider .oese-acf-slider-wrapper { top:0;right:0;bottom:0;left:0; }
+.nalrc-banner .nalrc-slider { flex-basis: 80%; max-width: 80%; padding-right: 0; }
+/** NALRC Resource Styles **/
+.nalrc-main { margin:30px 0; }
+/** End of NALRC Resource Styles **/

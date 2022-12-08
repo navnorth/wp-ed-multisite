@@ -78,7 +78,7 @@
 .nalrc-main #sngl-resource .nalrc-view-source { text-align:center; }
 .nalrc-view-button { 
 	font-size: 13px;
-    padding: 7px 20px;
+    padding: 7px 35px;
     background-color: #1F5C99;
     color: #FFFFFF;
     border-radius: 5px;
@@ -92,5 +92,5 @@
 }
 .nalrc-main #sngl-resource .nalrc-resource-row:last-child { margin-bottom:0; }
 .nalrc-main #sngl-resource .nalrc-resource-thumbnail { text-align:center; margin-bottom:10px; }
-.nalrc-main #sngl-resource .nalrc-resource-thumbnail .oer-featureimg img { width:150px; }
+.nalrc-main #sngl-resource .nalrc-resource-thumbnail .oer-featureimg img { width:175px; }
 /** End of NALRC Resource Styles **/

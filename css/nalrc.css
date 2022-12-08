@@ -64,5 +64,31 @@
 .nalrc-slider #oese-acf-slider .oese-acf-slider-wrapper { top:0;right:0;bottom:0;left:0; }
 .nalrc-banner .nalrc-slider { flex-basis: 80%; max-width: 80%; padding-right: 0; }
 /** NALRC Resource Styles **/
-.nalrc-main { margin:30px 0; }
+.nalrc-main { margin:30px 0; padding:0 15px; }
+.nalrc-main #sngl-resource { flex-direction:column; display:flex; }
+.nalrc-main #sngl-resource h1{ padding: 0; max-width: 100%; color: #981F33 !important; margin-bottom:0; }
+.nalrc-main #sngl-resource .nalrc-resource-row { margin-bottom:25px; }
+.nalrc-main #sngl-resource .nalrc-resource-row label { color: #981F33; font-size: 16px; font-weight: 600; margin-bottom: 0; }
+.nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value { font-size: 13px; }
+.nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value a { color:#1F5C99; text-decoration:underline; font-size:13px; }
+.nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value a:hover,
+.nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value a:focus { color:#000000; }
+.nalrc-main #sngl-resource .nalrc-resource-thumbnail a { text-decoration:none; }
+.nalrc-main #sngl-resource a.oer-featureimg .dashicons { height:auto; line-height:1em; }
+.nalrc-main #sngl-resource .nalrc-view-source { text-align:center; }
+.nalrc-view-button { 
+	font-size: 13px;
+    padding: 7px 20px;
+    background-color: #1F5C99;
+    color: #FFFFFF;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.nalrc-view-button:hover,
+.nalrc-view-button:focus {
+	background-color:#002649;
+	color:#FFFFFF;
+	text-decoration: none;
+}
+.nalrc-main #sngl-resource .nalrc-resource-row:last-child { margin-bottom:0; }
 /** End of NALRC Resource Styles **/

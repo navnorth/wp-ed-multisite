@@ -6,7 +6,13 @@ add_action( 'wp_enqueue_scripts', 'oese_acf_slider_enqueue',2 );
 function oese_acf_slider_enqueue() {
   global $post;
   if(!is_404()):
-    if(get_field('oese_acf_slider', $post->ID)):
+    $post_id = $post->ID;
+
+    // if NALRC Page template or resource, load NALRC ACF Slider from settings
+    if (is_page_template('page-templates/nalrc-template.php') || 'resource'==get_post_type())
+      $post_id = "options";
+
+    if(get_field('oese_acf_slider', $post_id)):
       wp_enqueue_style( 'oese-acf-slider-style', get_template_directory_uri() . '/modules/oese-acf-slider/css/style.css', array(), null );
       wp_enqueue_script( 'oese-acf-slider-script', get_template_directory_uri() . '/modules/oese-acf-slider/js/script.js' , array('jquery') , null, true);
   	endif;
@@ -20,11 +26,14 @@ function oese_acf_slider_enqueue() {
 add_shortcode("oese_acf_slider", "oese_acf_slider_func" );
 function oese_acf_slider_func($attr, $content = null){
     $nalrc_template = false;
-    // Check if the template used is the NALRC template
-    if (is_page_template('page-templates/nalrc-template.php'))
-      $nalrc_template = true;
-
 		$_id = get_the_ID();
+
+    // if NALRC Page template or resource, load NALRC ACF Slider from settings
+    if (is_page_template('page-templates/nalrc-template.php') || 'resource'==get_post_type()){
+      $_id = "options";
+      $nalrc_template = true;
+    }
+
 		if(get_field('oese_acf_slider', $_id)):
   			$_slides  = get_field('oese_acf_slider', $_id);
         $_slide_count = count($_slides);

@@ -107,4 +107,6 @@
 .nalrc-blogpost .rght-sd-cntnr-blg h4 a:hover,
 .nalrc-blogpost .rght-sd-cntnr-blg h4 a:focus { color:#5D111E;  }
 .nalrc-blogpost .rght-sd-cntnr-blg .small { font-weight:bold; }
+.nalrc-blogpost .rght-sd-cntnr-blg .oer-post-content p { white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+.nalrc-blogpost:last-child { border-bottom:none; }
 /** End of NALRC Resources Styles **/

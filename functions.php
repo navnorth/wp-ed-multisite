@@ -1621,7 +1621,7 @@ function wp_oese_theme_settings_page() {
     array(
       'uid' => 'wp_oese_theme_nalrc_header',
       'type' => 'selectbox',
-      'name' =>  __('NALRC Header Menu: ', WP_OESE_THEME_SLUG)
+      'name' =>  __('Header Menu: ', WP_OESE_THEME_SLUG)
     )
   );
 
@@ -1635,7 +1635,7 @@ function wp_oese_theme_settings_page() {
     array(
       'uid' => 'wp_oese_theme_nalrc_footer',
       'type' => 'selectbox',
-      'name' =>  __('NALRC Footer Menu: ', WP_OESE_THEME_SLUG)
+      'name' =>  __('Footer Menu: ', WP_OESE_THEME_SLUG)
     )
   );
 
@@ -3378,3 +3378,16 @@ function oese_disable_rest_api_from_public($result){
   return $result;
 }
 add_filter( 'rest_authentication_errors' , 'oese_disable_rest_api_from_public' );
+
+
+/** Add NALRC ACF Slider Options Page **/
+function oese_add_nalrc_slider_settings(){
+  if (function_exists('acf_add_options_sub_page')){
+    acf_add_options_sub_page(array(
+      'page_title' => 'NALRC Slider Settings',
+      'menu_title' => 'NALRC Slider',
+      'parent_slug' => 'themes.php',
+    ));
+  }
+}
+add_action('acf/init', 'oese_add_nalrc_slider_settings');

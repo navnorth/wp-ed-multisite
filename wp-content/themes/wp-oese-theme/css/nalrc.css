@@ -98,4 +98,13 @@
 /** NALRC Resources Styles **/
 .site-content.nalrc-resources-content { margin-top:30px; }
 .nalrc-resources-header h1 { color: #981F33 !important; margin-bottom:0; }
+.nalrc-blogpost { padding:25px 0; max-width:97%; margin:auto; border-bottom: 1px solid #d1d1d1; }
+.nalrc-blogpost .oer-feature-image { width:100%; padding-left:0; }
+.nalrc-blogpost .oer-feature-image img{ width:100%; height:auto; }
+.nalrc-blogpost .rght-sd-cntnr-blg { width:100%; padding-right:0; }
+.nalrc-blogpost .rght-sd-cntnr-blg h4 { margin-top: 0 !important; color: #981F33 !important; margin-bottom:5px; font-size:16px !important; font-weight:bold; }
+.nalrc-blogpost .rght-sd-cntnr-blg h4 a { text-decoration: none; }
+.nalrc-blogpost .rght-sd-cntnr-blg h4 a:hover,
+.nalrc-blogpost .rght-sd-cntnr-blg h4 a:focus { color:#5D111E;  }
+.nalrc-blogpost .rght-sd-cntnr-blg .small { font-weight:bold; }
 /** End of NALRC Resources Styles **/

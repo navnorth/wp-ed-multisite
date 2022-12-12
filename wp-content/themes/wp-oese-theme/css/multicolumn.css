@@ -1,0 +1,8 @@
+.no-csscolumns .menu-left {
+    float:left;
+    clear:left;
+}
+.no-csscolumns .menu-right {
+    float:right;
+    clear:right;
+}

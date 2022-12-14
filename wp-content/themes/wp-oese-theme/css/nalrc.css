@@ -109,4 +109,9 @@
 .nalrc-blogpost .rght-sd-cntnr-blg .small { font-weight:bold; }
 .nalrc-blogpost .rght-sd-cntnr-blg .oer-post-content p { white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
 .nalrc-blogpost:last-child { border-bottom:none; }
+.nalrc-search-filters { background-color: #1F5C99; padding: 30px; border-radius:5px; }
+.nalrc-search-filters .filter-title h4 { margin-top: 0 !important; color: #ffffff; margin-bottom: 20px; }
+.nalrc-search-filters input, 
+.nalrc-search-filters select { width:100%; }
+.nalrc-search-filters select { padding:6px 3px; }
 /** End of NALRC Resources Styles **/

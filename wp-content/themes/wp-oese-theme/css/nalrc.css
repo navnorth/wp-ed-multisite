@@ -114,4 +114,7 @@
 .nalrc-search-filters input, 
 .nalrc-search-filters select { width:100%; height:34px; }
 .nalrc-search-filters select { padding:6px 3px; }
+.nalrc-search-filters .nalrc-search-keyword  { position:relative; }
+.nalrc-search-filters .nalrc-search-keyword i { position: absolute; top: 9px; left: 20px; }
+.nalrc-search-filters .nalrc-search-keyword input { padding-left:25px; }
 /** End of NALRC Resources Styles **/

@@ -117,4 +117,15 @@
 .nalrc-search-filters .nalrc-search-keyword  { position:relative; }
 .nalrc-search-filters .nalrc-search-keyword i { position: absolute; top: 9px; left: 20px; }
 .nalrc-search-filters .nalrc-search-keyword input { padding-left:25px; }
+.oer_resource_posts { position: relative; }
+.oer_resource_posts .resource-loader { 
+	width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10%;
+}
+.oer_resource_posts .resource-loader img { width:5em; }
 /** End of NALRC Resources Styles **/

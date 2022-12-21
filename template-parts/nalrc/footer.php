@@ -3,7 +3,7 @@
 ?>
 <div class="nalrc-footer">
 	<div class="nalrc-wrapper">
-		<div class="col-md-9 nalrc-nav">
+		<div class="col-md-9 col-sm-12 nalrc-nav">
 			<?php
 				$nalrc_footer_menu = get_option('wp_oese_theme_nalrc_footer');
 				if ($nalrc_footer_menu){
@@ -63,10 +63,10 @@
 				}
 			?>
 		</div>
-		<div class="col-md-3 nalrc-social">
+		<div class="col-md-3 col-sm-12 nalrc-social">
 			<nav>
 				<ul class="row nalrc-menu">
-					<li class="col-md-6 nav-item">
+					<li class="col-md-6 col-sm-12 nav-item">
 						<a>Social</a>
 						<ul class="row nalrc-submenu">
 							<?php if (get_option('wp_oese_theme_nalrc_facebook')): ?>
@@ -91,7 +91,7 @@
 							<?php endif; ?>
 						</ul>
 					</li>
-					<li>
+					<li class="col-md-6 col-sm-12 nav-item">
 						<a>Newsletter</a>
 						<ul class="row nalrc-submenu">
 							<li class="col-md-12 nav-item">

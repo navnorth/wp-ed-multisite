@@ -1,5 +1,6 @@
 <?php 
 /** NALRC Header **/
+global $post;
 ?>
 <div class="nalrc-header">
 	<div class="nalrc-wrapper">
@@ -19,8 +20,12 @@
 							<ul class="nalrc-menu">
 								<?php
 								foreach($nav_items as $nav_item){
+									$class = "";
+									if ($nav_item->object_id==(string)$post->ID){
+										$class = " current-menu-item";
+									}
 									?>
-									<li class="nav-item">
+									<li class="nav-item<?php echo $class; ?>">
 										<a href="<?php echo esc_url($nav_item->url); ?>"><?php echo esc_html($nav_item->title); ?></a>
 									</li>
 									<?php

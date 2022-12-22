@@ -779,6 +779,7 @@ function theme_front_enqueue_script()
   // Load NALRC styles
   if (is_page_template('page-templates/nalrc-template.php') || 'resource'==get_post_type()){
     wp_enqueue_style( 'theme-nalrc-style',get_stylesheet_directory_uri() . '/css/nalrc.css' );
+    wp_enqueue_style('dashicons');
   }
 }
 add_action( 'wp_enqueue_scripts', 'theme_front_enqueue_script');
@@ -3391,3 +3392,18 @@ function oese_add_nalrc_slider_settings(){
   }
 }
 add_action('acf/init', 'oese_add_nalrc_slider_settings');
+
+if ($_nalrc){
+  add_filter( 'get_user_option_meta-box-order_resource', 'oese_reorder_metaboxes' );
+  function oese_reorder_metaboxes( $order ) {
+      return array(
+          'normal' => join( 
+              ",", 
+              array(       
+                  'oer_metaboxid',
+                  'SnS_meta_box',
+              )
+          ),
+      );
+  }
+}

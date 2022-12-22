@@ -71,9 +71,9 @@
 .nalrc-main #sngl-resource { flex-direction:column; display:flex; }
 .nalrc-main #sngl-resource h1{ padding: 0; max-width: 100%; color: #981F33 !important; margin-bottom:0; }
 .nalrc-main #sngl-resource .nalrc-resource-row { margin-bottom:25px; }
-.nalrc-main #sngl-resource .nalrc-resource-row label { color: #981F33; font-size: 16px; font-weight: 600; margin-bottom: 0; }
-.nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value { font-size: 13px; }
-.nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value a { color:#1F5C99; text-decoration:underline; font-size:13px; }
+.nalrc-main #sngl-resource .nalrc-resource-row label { color: #981F33; font-size: 18px; font-weight: 600; margin-bottom: 0; }
+.nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value { font-size: 16px; color:#4b4e53; }
+.nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value a { color:#3692BB; text-decoration:underline; font-size:16px; }
 .nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value a:hover,
 .nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value a:focus { color:#000000; }
 .nalrc-main #sngl-resource .nalrc-resource-thumbnail a { text-decoration:none; }
@@ -82,7 +82,7 @@
 .nalrc-view-button { 
 	font-size: 13px;
     padding: 7px 35px;
-    background-color: #1F5C99;
+    background-color: #3692BB;
     color: #FFFFFF;
     border-radius: 5px;
     text-decoration: none;
@@ -93,7 +93,7 @@
 	color:#FFFFFF;
 	text-decoration: none;
 }
-.nalrc-main #sngl-resource .nalrc-resource-row:last-child { margin-bottom:0; }
+.nalrc-main #sngl-resource .nalrc-resource-row:last-child { margin-bottom:25px; }
 .nalrc-main #sngl-resource .nalrc-resource-thumbnail { text-align:center; margin-bottom:10px; }
 .nalrc-main #sngl-resource .nalrc-resource-thumbnail .oer-featureimg img { width:175px; }
 /** End of NALRC Resource Styles **/

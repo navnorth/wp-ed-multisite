@@ -137,6 +137,19 @@
 @media only screen and (max-width:1050px){
 	.nalrc-header .nalrc-wrapper img { max-width:100%; width:100%; }
 }
+@media only screen and (max-width:960px){
+	.nalrc-banner .nalrc-nav { 
+		max-width:25%;
+		flex-basis:25%;
+		height:auto;
+	}
+	.nalrc-banner nav li a { font-size:14px; }
+	.nalrc-banner .nalrc-slider {
+		max-width:75%;
+		flex-basis: 75%;
+	}
+	.nalrc-slider #oese-acf-slider { height:100%; }
+}
 @media only screen and (max-width:800px){
 	.nalrc-wrapper { flex-direction:column; }
 	.nalrc-banner .nalrc-nav { 

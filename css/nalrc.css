@@ -172,6 +172,13 @@
 	    padding-left:0;
 	}
 	.nalrc-header .nalrc-wrapper img { max-width:100%; width:100%; }
+	.nalrc-footer .nalrc-social { max-width:32%; flex-basis:32%; padding-left:0;padding-top:3%; }
+	.nalrc-footer .nalrc-nav {
+		max-width: 100%;
+	    border-right: none;
+	    border-bottom: 1px solid #d1d1d1;
+	    flex-basis: 100%;
+	}
 }
 @media only screen and (max-width:768px){
 	.nalrc-wrapper { padding:15px; }

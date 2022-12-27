@@ -41,6 +41,7 @@ function oese_acf_slider_func($attr, $content = null){
         $_slider_autoplay_interval = (get_field('oese_slider_autoplay_interval', $_id) * 1000);
         $_slider_animation = get_field('oese_slider_animation', $_id);
   			$_cnt = 0; $_html = '';
+        $addtl_class = "";
   			foreach ($_slides as $key => $_slide):
           if(!empty($_slide['oese_acf_slider_image'])):
   					$_image_url = $_slide['oese_acf_slider_image']['url'];
@@ -56,18 +57,20 @@ function oese_acf_slider_func($attr, $content = null){
   					$_image_caption = trim($_slide['oese_acf_slider_caption']," ");
   					$_image_link = trim($_slide['oese_acf_slider_url']," ");
             $_image_link_target = $_slide['oese_acf_slider_url_target'];
+            if (!empty($_image_caption))
+              $addtl_class = " wCaption";
 
   					$_vis = ($_cnt > 0)? 'style="visibility:hidden;"': '';
                 $_html .= '<li class="slide" data-index="'.$_cnt.'">';
                     $_html .= '<div class="slide-content" '.$_image_link_target.'>';   
                         $_caption_html = ($_image_caption != '')?'<h3 class="slide-title">'.$_image_caption.'</h3>': '';  
                         if($_image_link != ''){                        
-                          $_html .= '<a href="'.$_image_link.'" target="'.$_image_link_target.'" class="no_target_change external_link" tabindex="-1">';					                    
+                          $_html .= '<a href="'.$_image_link.'" target="'.$_image_link_target.'" class="no_target_change external_link" tabindex="-1">';					  
                               $_html .= '<img src="'.$_image_url.'" style="width:100%" alt="'.$_image_alt.'">';   
                               $_html .= $_caption_html;             
                           $_html .= '</a>';                                         
                         }else{
-                          $_html .= '<img src="'.$_image_url.'" style="width:100%" alt="">';
+                          $_html .= '<img src="'.$_image_url.'" style="width:100%" alt="'.$_image_alt.'">';
                           $_html .= $_caption_html;
                         }      
                     $_html .= '</div>';
@@ -82,12 +85,12 @@ function oese_acf_slider_func($attr, $content = null){
           $_ret .= '<div class="oese-acf-slider-content-wrapper" style="display:none;">';
             $_ret .= '<div class="oese-acf-slider-wrapper" tabindex="0">';
               $_ret .= '<div aria-live="polite" aria-atomic="true" class="oese-acf-slider-accessibility-liveregion visuallyhidden"></div>';
-      				$_ret .= '<ul class="slider-list">'.$_html.'</ul>';
+      				$_ret .= '<ul class="slider-list'.$addtl_class.'">'.$_html.'</ul>';
             $_ret .= '</div>';
             
             if($_slide_count > 1){
               if ($nalrc_template){
-                $_ret .= '<ul class="bullet-list nalrc-list"></ul>';
+                $_ret .= '<ul class="bullet-list nalrc-list'.$addtl_class.'"></ul>';
               } else {
                 $_ret .= '<button class="oese-slider-sidenavs left slider-button arrow previous" role = "button" aria-label="previous slide" data-index="0">&#10094;</button>';
                 $_ret .= '<button class="oese-slider-sidenavs right slider-button arrow next" role = "button" aria-label="next slide" data-index="0">&#10095;</button>';      

@@ -156,6 +156,18 @@
     padding: 10%;
 }
 .oer_resource_posts .resource-loader img { width:5em; }
+.nalrc-pagination-nav { margin:25px 15px; }
+.nalrc-pagination-nav a {
+	background-color: #3692BB;
+    padding: 8px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #ffffff;
+}
+.nalrc-pagination-nav a:hover {
+	color:#002649;
+	background-color:#F2CA03;
+}
 /** End of NALRC Resources Styles **/
 /** Responsive Styles **/
 @media only screen and (max-width:1050px){

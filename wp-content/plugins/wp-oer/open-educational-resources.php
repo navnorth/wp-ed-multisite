@@ -55,14 +55,14 @@ global $_debug, $_bootstrap, $_fontawesome, $_css, $_css_oer, $_subjectarea, $_s
 
 // NALRC Product Types
 $_nalrc_products = [
-	[ "value" => "curriculum", "label" => "Curriculum" ],
-	[ "value" => "instructions", "label" => "Instructional Materials" ],
-	[ "value" => "research", "label" => "Research Article" ],
-	[ "value" => "facts", "label" => "Fact Sheet" ],
-	[ "value" => "policy", "label" => "Policy or Regulations" ],
-	[ "value" => "video", "label" => "Video" ],
-	[ "value" => "blog", "label" => "Blog" ],
-	[ "value" => "podcast", "label" => "Podcast" ]
+	[ "value" => "Curriculum", "label" => "Curriculum" ],
+	[ "value" => "Instructional Materials", "label" => "Instructional Materials" ],
+	[ "value" => "Research Article", "label" => "Research Article" ],
+	[ "value" => "Fact Sheet", "label" => "Fact Sheet" ],
+	[ "value" => "Policy or Regulations", "label" => "Policy or Regulations" ],
+	[ "value" => "Video", "label" => "Video" ],
+	[ "value" => "Blog", "label" => "Blog" ],
+	[ "value" => "Podcast", "label" => "Podcast" ]
 ];
 
 if( ! defined( 'WP_SESSION_COOKIE' ) )
@@ -2573,7 +2573,7 @@ function oer_change_tags_labels( $args, $taxonomy ) {
 add_filter( 'register_taxonomy_args', 'oer_change_tags_labels', 10, 2 );
 
 function oer_search_resources(){
-	global $wpdb, $oer_session;
+	global $wpdb, $oer_session, $_nalrc;
 	$resources = array();
 	$args = array(
 		'post_type' => 'resource',
@@ -2586,6 +2586,7 @@ function oer_search_resources(){
 	if (!isset($oer_session))
 		$oer_session = OER_WP_Session::get_instance();
 
+	// Search by Topic area
 	if (isset($_POST['topic'])){
 		$args['tax_query'] = array(
 			array(
@@ -2596,6 +2597,7 @@ function oer_search_resources(){
 		);
 	}
 
+	// Search by Product Type
 	if (isset($_POST['product']) && isset($_POST['year'])){
 		$args['meta_query'] = array(
 			array(
@@ -2638,6 +2640,7 @@ function oer_search_resources(){
 	}
 	
 	foreach($resources as $resource){
+		$resource_atts = "";
 		?>
 		<div class="oer_blgpst nalrc-blogpost">
 			<?php if ( has_post_thumbnail($resource->ID) ) {?>
@@ -2655,15 +2658,39 @@ function oer_search_resources(){
 			<div class="rght-sd-cntnr-blg col-md-10">
 			    <h4><a href="<?php the_permalink($resource->ID); ?>" rel="bookmark" title="<?php the_title_attribute(array('post'=>$resource->ID)); ?>"><?php echo esc_html(get_the_title($resource->ID)); ?></a></h4>
 			    <div class="small">
-			    	<span><?php echo get_the_time('F jS, Y', $resource->ID); ?> </span>
-			    	<?php if ($_nalrc && !empty(get_post_meta($resource->ID,'oer_lrtype')[0])): ?>
-			    	| <span><?php echo ucfirst(get_post_meta($resource->ID, 'oer_lrtype')[0]); ?></span>
-			    	<?php endif; ?>
+			    	<?php if ($_nalrc && !empty(get_post_meta($resource->ID, 'oer_datecreated')[0])): 
+			    		$resource_atts .= '<span>'.esc_html(get_post_meta($resource->ID, 'oer_datecreated')[0]).'</span>';
+			    	endif; ?>
+			    	<?php if ($_nalrc && !empty(get_post_meta($resource->ID,'oer_lrtype')[0])): 
+			    		if (!empty($resource_atts))
+			    			$resource_atts .= ' | <span>'.ucfirst(get_post_meta($resource->ID, 'oer_lrtype')[0]).'</span>';
+			    		else
+			    			$resource_atts .= '<span>'.ucfirst(get_post_meta($resource->ID, 'oer_lrtype')[0]).'</span>';
+			    	endif; 
+			    	echo $resource_atts;
+			    	?>
 			    </div>
 					    
 			    <div class="oer-post-content">
 				<?php echo esc_html(ucfirst(get_the_excerpt($resource->ID))); ?>
 			    </div>
+			    <?php
+			    if ($_nalrc):
+				    $grades = array();
+				    $grade_terms = get_the_terms( $resource->ID, 'resource-grade-level' );
+			    
+				    if (is_array($grade_terms)){
+				        foreach($grade_terms as $grade){
+				            $grades[] = $grade->slug;
+				        }
+				    }
+				    if (!empty($grades)):
+				    ?>
+				    <div class="oer-intended-audience">
+				    	<span class="label"><?php _e("For: ", OER_SLUG); ?></span><span class="value"><?php echo oer_grade_levels($grades); ?></span>
+				    </div>
+				<?php endif; 
+				endif; ?>
 			</div>
 	    </div>
 		<?php

@@ -1,0 +1,73 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "oet-block/oet-recommended-resources-block",
+	"version": "0.1.0",
+	"title": "Recommended Resources",
+	"category": "oet-block-category",
+	"icon": "list-view",
+	"description": "Displays recommended resources section on a page.",
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+        "heading": {
+            "type": "string"
+        },
+        "mediaType1": {
+            "type": "string",
+            "default": "video"
+        },
+        "mediaSource1": {
+            "type": "string"
+        },
+        "mediaText1": {
+            "type": "string"
+        },
+        "mediaLink1": {
+            "type": "string",
+            "default": ""
+        },
+        "mediaType2": {
+            "type": "string",
+            "default": "video"
+        },
+        "mediaSource2": {
+            "type": "string"
+        },
+        "mediaText2": {
+            "type": "string"
+        },
+        "mediaLink2": {
+            "type": "string"
+        },
+        "mediaType3": {
+            "type": "string",
+            "default": "video"
+        },
+        "mediaSource3": {
+            "type": "string"
+        },
+        "mediaText3": {
+            "type": "string"
+        },
+        "mediaLink3": {
+            "type": "string"
+        },
+        "isChanged": {
+            "type": "boolean",
+            "default": false
+        },
+        "blockId": {
+            "type": "string"
+        },
+        "firstLoad": {
+            "type": "boolean",
+            "default": true
+        }
+    },
+	"textdomain": "oet-recommended-resources-block",
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css"
+}

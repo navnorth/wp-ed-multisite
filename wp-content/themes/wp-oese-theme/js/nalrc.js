@@ -5,6 +5,5 @@ jQuery(function($){
 		let tabLabel = $('.page-template-nalrc-template #table_1_wrapper #table_1_filter').closest('.tab-pane').attr('id');
 		let tabLabelText = tabLabel.text();
 		$('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox').prepend(filter);
-		label.text('Search ' + tabLabelText);
 	},1000);
 });

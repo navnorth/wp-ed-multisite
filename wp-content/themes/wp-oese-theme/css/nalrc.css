@@ -41,7 +41,7 @@
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-category { background: #FFF; border-radius: 4px; border: 1px solid #CDCDCD; padding-left: 3px; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter { float:left; min-height: 50px !important; padding: 15px; font-size: 16px; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter label { font-size:16px; }
-.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input { height:32px !important; border-radius: 4px; border: 1px solid #414141; }
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input { height:32px !important; border-radius: 4px; border: 1px solid #414141; width:275px; }
 /** NALRC Footer Styles **/
 .nalrc-footer { border-top:1px solid #d1d1d1; }
 .nalrc-footer .nalrc-wrapper { padding:25px 0; display:flex; }

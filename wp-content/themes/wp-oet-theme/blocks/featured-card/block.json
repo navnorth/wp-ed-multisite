@@ -1,0 +1,58 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "oet-block/oet-featured-card-block",
+	"version": "0.1.0",
+	"title": "Featured Card",
+	"category": "oet-block-category",
+	"icon": "id",
+	"description": "This block displays featured card section on the page.",
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+        "title": {
+            "type": "string"
+        },
+        "buttonText": {
+            "type": "string"
+        },
+        "backgroundImageId": {
+            "type": "number",
+            "default": 0
+        },
+        "backgroundImage": {
+            "type": "string",
+            "default": ""
+        },
+        "bgImageWidth": {
+            "type": "number",
+            "default": 0
+        },
+        "bgImageHeight": {
+            "type": "number",
+            "default": 0
+        },
+        "url": {
+            "type": "string"
+        },
+        "content": {
+            "type": "string"
+        },
+        "isChanged": {
+            "type": "boolean",
+            "default": false
+        },
+        "blockId": {
+            "type": "string"
+        },
+        "firstLoad": {
+            "type": "boolean",
+            "default": true
+        }
+    },
+	"textdomain": "oet-featured-card-block",
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css"
+}

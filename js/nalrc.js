@@ -20,7 +20,7 @@ jQuery(function($){
 				if (e.keyCode==13){
 					let value = $(this).val();
 					parent.find('.wpDataTables .wpnn_wpdt_action_wrapper .dataTables_filter input').val(value);
-					parent.find('.wpDataTables .wpnn_wpdt_action_wrapper .dataTables_filter input').trigger("change");
+					parent.find('.wpDataTables .wpnn_wpdt_action_wrapper .dataTables_filter input').trigger("input");
 				}
 			});
 		});

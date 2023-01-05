@@ -38,11 +38,14 @@
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection { min-height:45px !important; padding:5px 0 5px 15px; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .wdt-select-filter .dropdown-toggle.bs-placeholder span.filter-option { display:inline-block !important; color:#414141; margin-left:5px; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-degree-type,
-.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-category { background: #FFF; border-radius: 4px; border: 1px solid #CDCDCD; padding-left: 3px; }
-.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter { float:left; min-height: 45px !important; padding: 15px; font-size: 16px;  padding:5px 0 5px 15px; margin-bottom:0 !important; }
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-category { background: #FFF; border-radius: 4px; border: 1px solid #414141; padding-left: 3px; }
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-degree-type .wdt-select-filter .dropdown-toggle, 
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-category .wdt-select-filter .dropdown-toggle { background-color:#FFFFFF !important; }
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter { float:left; min-height: 45px !important; padding: 15px; font-size: 16px;  padding:5px 0 5px 5px; margin-bottom:0 !important; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter label { font-size:16px; }
-.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input { height:32px !important; border-radius: 4px; border: 1px solid #414141; width:290px; background-color:#FFFFFF; color:#414141; }
-.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input::placeholder { color:#121212 }
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input { height:32px !important; border-radius: 4px; border: 1px solid #414141; width:290px; background-color:#FFFFFF !important; color:#414141; }
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input:placeholder { color:#414141; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSectionLabel {
 	float: left;
   min-height: 45px;
@@ -52,6 +55,10 @@
 	line-height: 40px;
   margin-bottom: 0;
 }
+.wpdt-c .wpDataTableFilterBox .bootstrap-select > .btn-default:before { right:5px !important; }
+.wpdt-c .wpDataTableFilterBox .bootstrap-select .bs-searchbox:before { top:unset !important; }
+.bootstrap-select.btn-group .dropdown-menu li a { font-size:14px; }
+.wpDataTableFilterBox .wpDataTableFilterSection .wdt-filter-control .dropdown-menu { height: auto !important; }
 /** NALRC Footer Styles **/
 .nalrc-footer { border-top:1px solid #d1d1d1; }
 .nalrc-footer .nalrc-wrapper { padding:25px 0; display:flex; }
@@ -63,6 +70,21 @@
 .nalrc-footer .nalrc-social { padding-left:3%; }
 .button-subscribe { background-color:#fff; color:#000; padding:3px 10px; border:1px solid #a09fa0; border-radius:8px; }
 .nalrc-footer .nalrc-menu { padding-left:0; }
+.wpdt-c.wdt-skin-light .wpDataTablesWrapper table.wpDataTable thead th.sort:after {
+	border: 5px solid transparent;
+  display: inline-block;
+  font-size: 0;
+  line-height: 0;
+  content: "";
+  height: 0;
+  width: 0;
+  vertical-align: 3px;
+  margin: 0 0 0 10px;
+  opacity: .6;
+  border-bottom-color: #ffffff !important;
+}
+.wpdt-c.wdt-skin-light .wpDataTablesWrapper table.wpDataTable tr td { padding: 5px 8px; }
+.wp-block-oese-block-oese-tabs #oeseTabs li i.fas { margin-right:5px; }
 /** NALRC Carousel Styles **/
 #oese-acf-slider ul.bullet-list.nalrc-list {
 	bottom: 1.2em;

@@ -44,8 +44,7 @@
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter { float:left; min-height: 45px !important; padding: 15px; font-size: 16px;  padding:5px 0 5px 5px; margin-bottom:0 !important; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter label { font-size:16px; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input { height:32px !important; border-radius: 4px; border: 1px solid #414141; width:290px; background-color:#FFFFFF !important; color:#414141; }
-.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input
-.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input::placeholder { color:#414141; opacity:1; }
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input::placeholder { color:#414141 !important; opacity:1; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSectionLabel {
 	float: left;
   min-height: 45px;
@@ -58,6 +57,19 @@
 .wpdt-c .wpDataTableFilterBox .bootstrap-select > .btn-default:before { right:5px !important; }
 .wpdt-c .wpDataTableFilterBox .bootstrap-select .bs-searchbox:before { top:unset !important; }
 .bootstrap-select.btn-group .dropdown-menu li a { font-size:14px; }
+.wpdt-c.wdt-skin-light .wpDataTablesWrapper table.wpDataTable thead th.sort.column-title:after {
+	border: 5px solid transparent;
+  display: inline-block;
+  font-size: 0;
+  line-height: 0;
+  content: "";
+  height: 0;
+  width: 0;
+  vertical-align: 3px;
+  margin: 0 0 0 10px;
+  opacity: .6;
+  border-bottom-color: #ffffff !important;
+}
 /** NALRC Footer Styles **/
 .nalrc-footer { border-top:1px solid #d1d1d1; }
 .nalrc-footer .nalrc-wrapper { padding:25px 0; display:flex; }

@@ -1,7 +1,7 @@
 jQuery(function($){
 	setTimeout(function(){
 		$('.page-template-nalrc-template .oese-tabs-block .tab-content .tab-pane').each(function(){
-			let filter = $(this).find('.wpnn_wpdt_action_wrapper .dataTables_filter');
+			let filter = $(this).find('.wpnn_wpdt_action_wrapper .dataTables_filter').clone();
 			let label = filter.find('label').text();
 			let input = filter.find('input');
 			let tabLabel = $(this).attr('aria-labelledby');

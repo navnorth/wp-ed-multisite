@@ -10,7 +10,7 @@ jQuery(function($){
 			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox').prepend(filter);
 			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter').html("");
 			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter').append(input);
-			$(this).find('.wpnn_wpdt_action_wrapper .dataTables_filter').css('margin-right','-9999px');
+			$(this).find('.wpnn_wpdt_action_wrapper .dataTables_filter').hide();
 			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input').attr('placeholder', 'Search by keywords or phrase');
 			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox').prepend('<div class="wpDataTableFilterSectionLabel" id="table_search_filter_label"><label>' + tabLabelText + '</label></div>');
 
@@ -19,7 +19,8 @@ jQuery(function($){
 			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input').on("keypress", function(e){
 				if (e.keyCode==13){
 					let value = $(this).val();
-					parent.find('.wpDataTables .wpnn_wpdt_action_wrapper .dataTables_filter input').val(value).trigger('change');
+					parent.find('.wpDataTables .wpnn_wpdt_action_wrapper .dataTables_filter input').val(value);
+					parent.find('.wpDataTables .wpnn_wpdt_action_wrapper .dataTables_filter input').trigger("change");
 				}
 			});
 		});

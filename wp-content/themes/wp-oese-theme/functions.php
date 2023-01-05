@@ -3407,6 +3407,7 @@ if ($_nalrc){
               array(       
                   'oer_metaboxid',
                   'SnS_meta_box',
+                  'wpseo_meta'
               )
           ),
       );

@@ -1,0 +1,35 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "oet-block/oet-pull-quotes-block",
+	"version": "0.1.0",
+	"title": "Pull Quotes",
+	"category": "oet-block-category",
+	"icon": "format-quote",
+	"description": "This block displays pull quotes box on a page.",
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+        "speaker": {
+            "type": "string"
+        },
+        "additionalInfo": {
+            "type": "string"
+        },
+        "content": {
+            "type": "string"
+        },
+        "isChanged": {
+            "type": "boolean",
+            "default": false
+        },
+        "blockId": {
+            "type": "string"
+        }
+    },
+	"textdomain": "oet-pull-quotes-block",
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css"
+}

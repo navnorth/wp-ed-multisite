@@ -38,7 +38,7 @@
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection { min-height:45px !important; padding:5px 0 5px 15px; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .wdt-select-filter .dropdown-toggle.bs-placeholder span.filter-option { display:inline-block !important; color:#414141; margin-left:5px; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-degree-type,
-.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-category { background: #FFF; border-radius: 4px; border: 1px solid #414141; padding-left: 3px; overflow:hidden; }
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-category { background: #FFF; border-radius: 4px; border: 1px solid #414141; padding-left: 3px; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-degree-type .wdt-select-filter .dropdown-toggle, 
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-category .wdt-select-filter .dropdown-toggle { background-color:#FFFFFF !important; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter { float:left; min-height: 45px !important; padding: 15px; font-size: 16px;  padding:5px 0 5px 5px; margin-bottom:0 !important; }

@@ -16,7 +16,11 @@ jQuery(function($){
 
 			// Trigger search on pressing Enter key
 			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input').on("keypress", function(e){
-				console.log($(this));
+				if (e.keyCode==13){
+					let value = $(this).val();
+					console.log(value);
+					$(this).find('.wpDataTables .wpnn_wpdt_action_wrapper .dataTables_filter input').val(value);
+				}
 			});
 		});
 	},1000);

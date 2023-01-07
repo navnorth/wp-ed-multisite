@@ -22,7 +22,7 @@ jQuery(function($){
 				parent.find('.wpDataTables .wpnn_wpdt_action_wrapper .dataTables_filter input').trigger("input");
 			});
 
-			let title = $(this).find('.wpDataTablesWrapper table.wpDataTable thead th.column-title').val();
+			let title = $(this).find('.wpDataTablesWrapper table.wpDataTable thead th.column-title').text();
 			$(this).find('.wpDataTablesWrapper table.wpDataTable thead th.column-title').html('');
 			$(this).find('.wpDataTablesWrapper table.wpDataTable thead th.column-title').html('<span>' + title + '</span>');
 		});

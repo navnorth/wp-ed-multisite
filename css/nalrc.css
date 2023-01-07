@@ -131,6 +131,28 @@
 .nalrc-main #sngl-resource .oer-subject-resources-list .post.oer-snglrsrc .tagcloud span a:hover { color:#414141; }
 .nalrc-content-row { flex-wrap:nowrap; }
 .wpDataTableFilterBox .wpDataTableFilterSection .wdt-filter-control .dropdown-menu { height:auto !important }
+.wpDataTable thead th.column-title span::after {
+    border: 5px solid transparent;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0;
+    content: "";
+    height: 0;
+    width: 0;
+    vertical-align: 3px;
+    margin: 0 0 0 10px;
+    opacity: .6;
+}
+.wpDataTable thead th.column-title.sorting_asc span::after {
+    border-top-width: 0;
+    border-bottom-color: #ffffff !important;
+    opacity:1;
+}
+.wpDataTable thead th.column-title.sorting_desc span::after {
+    border-bottom-width: 0;
+    border-top-color: #ffffff !important;
+    opacity:1;
+}
 /** End of NALRC Resource Styles **/
 /** NALRC Resources Styles **/
 .site-content.nalrc-resources-content { margin-top:30px; }

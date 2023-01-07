@@ -16,12 +16,10 @@ jQuery(function($){
 
 			// Trigger search on pressing Enter key
 			let parent = $(this);
-			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input').on("keypress", function(e){
-				if (e.keyCode==13){
-					let value = $(this).val();
-					parent.find('.wpDataTables .wpnn_wpdt_action_wrapper .dataTables_filter input').val(value);
-					parent.find('.wpDataTables .wpnn_wpdt_action_wrapper .dataTables_filter input').trigger("input");
-				}
+			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input').on("change", function(e){
+				let value = $(this).val();
+				parent.find('.wpDataTables .wpnn_wpdt_action_wrapper .dataTables_filter input').val(value);
+				parent.find('.wpDataTables .wpnn_wpdt_action_wrapper .dataTables_filter input').trigger("input");
 			});
 		});
 	},1000);

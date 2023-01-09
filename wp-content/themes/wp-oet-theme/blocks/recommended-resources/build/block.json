@@ -1,0 +1,69 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "oet-block/oet-recommended-resources-block",
+  "version": "0.1.0",
+  "title": "Recommended Resources",
+  "category": "oet-block-category",
+  "icon": "list-view",
+  "description": "Displays the recommended resources section on a page.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "mediaType1": {
+      "type": "string"
+    },
+    "mediaSource1": {
+      "type": "string"
+    },
+    "mediaText1": {
+      "type": "string"
+    },
+    "mediaLink1": {
+      "type": "string"
+    },
+    "mediaType2": {
+      "type": "string"
+    },
+    "mediaSource2": {
+      "type": "string"
+    },
+    "mediaText2": {
+      "type": "string"
+    },
+    "mediaLink2": {
+      "type": "string"
+    },
+    "mediaType3": {
+      "type": "string"
+    },
+    "mediaSource3": {
+      "type": "string"
+    },
+    "mediaText3": {
+      "type": "string"
+    },
+    "mediaLink3": {
+      "type": "string"
+    },
+    "isChanged": {
+      "type": "boolean",
+      "default": false
+    },
+    "blockId": {
+      "type": "string"
+    },
+    "firstLoad": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "textdomain": "oet-recommended-resources-block",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

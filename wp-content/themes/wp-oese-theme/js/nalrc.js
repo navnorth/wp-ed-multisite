@@ -28,8 +28,10 @@ jQuery(function($){
 
 			$(this).find('.column-degree-type .filter_select .wdt-select-filter').on('changed.bs.select', function(e) { 
 				let defaultText = 'Please select';
-				if ($(this).find('.dropdown-menu.inner .divider').next().find('a span.text')=="")
-					$(this).find('.dropdown-menu.inner .divider').next().find('a span.text').text(defaultText).addClass('emptyValue');
+				console.log($(this).find('.dropdown-menu.inner .divider').next().find('a span.text').length);
+				if ($(this).find('.dropdown-menu.inner .divider').next().find('a span.text').length==0)
+					$(this).find('.dropdown-menu.inner .divider').next().find('a span.text').text(defaultText);
+					$(this).find('.dropdown-menu.inner .divider').next().find('a span.text').addClass('emptyValue');
 			} );
 		});
 	},1000);

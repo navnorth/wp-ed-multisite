@@ -26,9 +26,20 @@ jQuery(function($){
 			$(this).find('.wpDataTablesWrapper table.wpDataTable thead th.column-title').html('');
 			$(this).find('.wpDataTablesWrapper table.wpDataTable thead th.column-title').html('<span>' + title + '</span>');
 
-			let defaultText = 'Please select';
-			$(this).find('.column-degree-type .filter_select .wdt-select-filter .dropdown-menu.show .dropdown-menu.inner .divider').next().find('a span.text').text(defaultText);
-			$(this).find('.column-category .filter_select .wdt-select-filter .dropdown-menu.show .dropdown-menu.inner .divider').next().find('a span.text').text(defaultText);
+			$(this).find('.column-degree-type .filter_select .wdt-select-filter').on('show.bs.select', function(e) {
+				console.log('show');
+				console.log(e); 
+				setTimeout(function(){
+					let defaultText = 'Please select';
+				},500);
+			} );
+			$(this).find('.column-degree-type .filter_select .wdt-select-filter').on('changed.bs.select', function(e) { 
+				console.log('changed');
+				console.log(e);
+				setTimeout(function(){
+					let defaultText = 'Please select';
+				},500);
+			} );
 		});
 	},1000);
 });

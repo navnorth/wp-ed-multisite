@@ -27,10 +27,9 @@ jQuery(function($){
 			$(this).find('.wpDataTablesWrapper table.wpDataTable thead th.column-title').html('<span>' + title + '</span>');
 
 			$(this).find('.column-degree-type .filter_select .wdt-select-filter').on('changed.bs.select', function(e) { 
-				setTimeout(function(){
-					let defaultText = 'Please select';
-					$(this).find('.dropdown-menu.inner .divider').next('a span.text').text(defaultText);
-				},500);
+				let defaultText = 'Please select';
+				console.log($(this).find('.dropdown-menu.inner .divider'));
+				$(this).find('.dropdown-menu.inner .divider').next('a span.text').text(defaultText);
 			} );
 		});
 	},1000);

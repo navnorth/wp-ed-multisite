@@ -28,7 +28,7 @@ jQuery(function($){
 
 			$(this).find('.column-degree-type .filter_select .wdt-select-filter').on('changed.bs.select', function(e) { 
 				let defaultText = 'Please select';
-				console.log($(this).find('.dropdown-menu.inner .divider'));
+				console.log($(this).find('.dropdown-menu.inner .divider').next('a span.text'));
 				$(this).find('.dropdown-menu.inner .divider').next('a span.text').text(defaultText);
 			} );
 		});

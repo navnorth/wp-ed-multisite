@@ -25,6 +25,10 @@ jQuery(function($){
 			let title = $(this).find('.wpDataTablesWrapper table.wpDataTable thead th.column-title').text();
 			$(this).find('.wpDataTablesWrapper table.wpDataTable thead th.column-title').html('');
 			$(this).find('.wpDataTablesWrapper table.wpDataTable thead th.column-title').html('<span>' + title + '</span>');
+
+			let defaultText = 'Please select';
+			$(this).find('.column-degree-type .filter_select .wdt-select-filter .dropdown-menu.show .dropdown-menu.inner .divider').next().find('a span.text').text(defaultText);
+			$(this).find('.column-category .filter_select .wdt-select-filter .dropdown-menu.show .dropdown-menu.inner .divider').next().find('a span.text').text(defaultText);
 		});
 	},1000);
 });

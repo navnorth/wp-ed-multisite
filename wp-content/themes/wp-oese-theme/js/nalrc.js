@@ -28,14 +28,25 @@ jQuery(function($){
 
 			$(this).find('.column-degree-type .filter_select .wdt-select-filter').on('changed.bs.select', function(e) { 
 				let defaultText = 'Please select';
-				console.log($(this).find('.dropdown-menu.inner .dropdown-header').next('.selected').find('a span.text').text().length);
 				if ($(this).find('.dropdown-menu.inner .dropdown-header').next('.selected').find('a span.text').text().length==0){
 					$(this).find('.dropdown-menu.inner .dropdown-header').next('.selected').find('a span.text').text(defaultText);
-					$(this).find('.dropdown-menu.inner .dropdown-header').next('.selected').find('a span.text').addClass('emptyValue');
+					$(this).find('.dropdown-menu.inner .dropdown-header').next('.selected').find('a span.text').addClass('emptyValue').css('opacity','0.75');
 				}
 				if ($(this).find('.dropdown-menu.inner .divider').next().find('a span.text').text().length==0){
 					$(this).find('.dropdown-menu.inner .divider').next().find('a span.text').text(defaultText);
-					$(this).find('.dropdown-menu.inner .divider').next().find('a span.text').addClass('emptyValue');
+					$(this).find('.dropdown-menu.inner .divider').next().find('a span.text').addClass('emptyValue').css('opacity','0.75');
+				}
+			} );
+
+			$(this).find('.column-category .filter_select .wdt-select-filter').on('changed.bs.select', function(e) { 
+				let defaultText = 'Please select';
+				if ($(this).find('.dropdown-menu.inner .dropdown-header').next('.selected').find('a span.text').text().length==0){
+					$(this).find('.dropdown-menu.inner .dropdown-header').next('.selected').find('a span.text').text(defaultText);
+					$(this).find('.dropdown-menu.inner .dropdown-header').next('.selected').find('a span.text').addClass('emptyValue').css('opacity','0.75');
+				}
+				if ($(this).find('.dropdown-menu.inner .divider').next().find('a span.text').text().length==0){
+					$(this).find('.dropdown-menu.inner .divider').next().find('a span.text').text(defaultText);
+					$(this).find('.dropdown-menu.inner .divider').next().find('a span.text').addClass('emptyValue').css('opacity','0.75');
 				}
 			} );
 		});

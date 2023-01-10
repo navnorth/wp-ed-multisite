@@ -36,7 +36,7 @@
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter { background-color: #3693BB; color: #FFF; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection label { display:none; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection { min-height:45px !important; padding:5px 0 5px 15px; }
-.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .wdt-select-filter .dropdown-toggle.bs-placeholder span.filter-option { display:inline-block !important; color:#414141; margin-left:5px; }
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .wdt-select-filter .dropdown-toggle span.filter-option { display:inline-block !important; color:#414141; margin-left:5px; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-degree-type,
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-category { background: #FFF; border-radius: 4px; border: 1px solid #414141; padding-left: 3px; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-degree-type .wdt-select-filter .dropdown-toggle, 

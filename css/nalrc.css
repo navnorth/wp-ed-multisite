@@ -224,25 +224,31 @@
 /** End of NALRC Resources Styles **/
 /** NALRC Certifications Page Styles **/
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content {
-	border: 2px solid #92404d;
-    border-radius: 8px;
+	border: 2px solid #981F33;
+    border-radius: 4px;
 }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-header {
 	padding-top:0;
 	padding-bottom:0;
-	background-color: #92404d;
+	background-color: #981F33;
 }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-header .modal-title {
 	margin-top:15px !important;
 	margin-bottom:15px !important;
 	color: #FFFFFF;
     font-weight: bold;
+    font-size:14px;
+}
+.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-header button {
+	background: #FFFFFF;
+    padding: 0px 3px 3px 3px;
+    margin: 15px 0 15px;
 }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-header > p {
 	margin-top:15px !important;
 }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup { display:flex !important; }
-.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-popup { margin:auto; }
+.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-dialog { margin:auto; }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-body { 
 font-size:12px; }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-body .map-popup-detail {
@@ -255,7 +261,7 @@ font-size:12px; }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-body .map-detail-source {
 	word-break: break-all;
 }
-.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-body p:empty { display:none; }
+.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content p:empty { display:none; }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-body .map-popup-detail .map-detail-value ul { padding-left:20px; }
 /** End of NALRC Certifications Page Styles **/
 /** Responsive Styles **/

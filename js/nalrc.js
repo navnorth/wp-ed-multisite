@@ -53,12 +53,15 @@ jQuery(function($){
 		});
 	},1000);
 
+	setTimeout(function(){
+		$('ul.certification-map-legend').appendTo('.fm-map-container');
+	},1000);
+
 	// Certifications Map
 	$('.usacustomHtml5MapContainer').on('click','svg path',function(e){
 		console.log(e);
 		setTimeout(function(){
 			$('.usacustomHtml5MapStateInfo').find('.modal-map-details-popup').modal('show');
-		},1500);
-		console.log($('.usacustomHtml5MapStateInfo').find('.modal-map-details-popup'));
+		},1000);
 	});
 });

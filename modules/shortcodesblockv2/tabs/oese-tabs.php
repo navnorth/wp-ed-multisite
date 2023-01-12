@@ -20,6 +20,11 @@
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
+function oese_tabs_load_auto_tabs_script() {
+    $dir_url = get_stylesheet_directory_uri().'/modules/shortcodesblockv2/tabs/';
+    wp_enqueue_script( 'theme-nalrc-script',$dir_url.'build/auto-tab.js');
+}
+add_action( 'wp_enqueue_scripts', 'oese_tabs_load_auto_tabs_script');
 function oese_tabs_block_init(){
     $dir = dirname(__FILE__);
     $dir_url = get_stylesheet_directory_uri().'/modules/shortcodesblockv2/tabs/';

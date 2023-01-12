@@ -387,8 +387,10 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link active",
       id: 'Tab' + attributes.blockId + '_1',
+      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_1',
+      "data-id": "1",
       role: "tab",
       "aria-controls": 'TabContent' + attributes.blockId + '_1',
       "aria-selected": "true"
@@ -399,11 +401,14 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link",
       id: 'Tab' + attributes.blockId + '_2',
+      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_2',
+      "data-id": "2",
       role: "tab",
       "aria-controls": 'TabContent' + attributes.blockId + '_2',
-      "aria-selected": "false"
+      "aria-selected": "false",
+      tabindex: "-1"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
       className: 'fas ' + attributes.tab2Icon
     }), " ", attributes.tab2Label)), attributes.tab3Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("li", {
@@ -411,11 +416,14 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link",
       id: 'Tab' + attributes.blockId + '_3',
+      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_3',
+      "data-id": "3",
       role: "tab",
       "aria-controls": 'TabContent' + attributes.blockId + '_3',
-      "aria-selected": "false"
+      "aria-selected": "false",
+      tabindex: "-1"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
       className: 'fas ' + attributes.tab3Icon
     }), " ", attributes.tab3Label)), attributes.tab4Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("li", {
@@ -423,11 +431,14 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link",
       id: 'Tab' + attributes.blockId + '_4',
+      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_4',
+      "data-id": "4",
       role: "tab",
       "aria-controls": 'TabContent' + attributes.blockId + '_4',
-      "aria-selected": "false"
+      "aria-selected": "false",
+      tabindex: "-1"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
       className: 'fas ' + attributes.tab4Icon
     }), " ", attributes.tab4Label)), attributes.tab5Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("li", {
@@ -435,11 +446,14 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link",
       id: 'Tab' + attributes.blockId + '_5',
+      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_5',
+      "data-id": "5",
       role: "tab",
       "aria-controls": 'TabContent' + attributes.blockId + '_5',
-      "aria-selected": "false"
+      "aria-selected": "false",
+      tabindex: "-1"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
       className: 'fas ' + attributes.tab5Icon
     }), " ", attributes.tab5Label)), attributes.tab6Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("li", {
@@ -447,11 +461,14 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link",
       id: 'Tab' + attributes.blockId + '_6',
+      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_6',
+      "data-id": "6",
       role: "tab",
       "aria-controls": 'TabContent' + attributes.blockId + '_6',
-      "aria-selected": "false"
+      "aria-selected": "false",
+      tabindex: "-1"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
       className: 'fas ' + attributes.tab6Icon
     }), " ", attributes.tab6Label)), attributes.tab7Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("li", {
@@ -459,11 +476,14 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link",
       id: 'Tab' + attributes.blockId + '_7',
+      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_7',
+      "data-id": "7",
       role: "tab",
       "aria-controls": 'TabContent' + attributes.blockId + '_7',
-      "aria-selected": "false"
+      "aria-selected": "false",
+      tabindex: "-1"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
       className: 'fas ' + attributes.tab7Icon
     }), " ", attributes.tab7Label)), attributes.tab8Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("li", {
@@ -471,8 +491,10 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link",
       id: 'Tab' + attributes.blockId + '_8',
+      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_8',
+      "data-id": "8",
       role: "tab",
       "aria-controls": 'TabContent' + attributes.blockId + '_8',
       "aria-selected": "false"
@@ -483,8 +505,10 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link",
       id: 'Tab' + attributes.blockId + '_9',
+      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_9',
+      "data-id": "9",
       role: "tab",
       "aria-controls": 'TabContent' + attributes.blockId + '_9',
       "aria-selected": "false"
@@ -495,8 +519,10 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link",
       id: 'Tab' + attributes.blockId + '_10',
+      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_10',
+      "data-id": "10",
       role: "tab",
       "aria-controls": 'TabContent' + attributes.blockId + '_10',
       "aria-selected": "false"
@@ -509,52 +535,62 @@ function Edit(props) {
       className: "tab-pane fade show active",
       id: 'TabContent' + attributes.blockId + '_1',
       role: "tabpanel",
-      "aria-labelledby": 'Tab' + attributes.blockId + '_1'
+      "aria-labelledby": 'Tab' + attributes.blockId + '_1',
+      tabindex: "0"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab1Content)), attributes.tab2Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       className: "tab-pane fade",
       id: 'TabContent' + attributes.blockId + '_2',
       role: "tabpanel",
-      "aria-labelledby": 'Tab' + attributes.blockId + '_2'
+      "aria-labelledby": 'Tab' + attributes.blockId + '_2',
+      tabindex: "0"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab2Content)), attributes.tab3Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       className: "tab-pane fade",
       id: 'TabContent' + attributes.blockId + '_3',
       role: "tabpanel",
-      "aria-labelledby": 'Tab' + attributes.blockId + '_3'
+      "aria-labelledby": 'Tab' + attributes.blockId + '_3',
+      tabindex: "0"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab3Content)), attributes.tab4Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       className: "tab-pane fade",
       id: 'TabContent' + attributes.blockId + '_4',
       role: "tabpanel",
-      "aria-labelledby": 'Tab' + attributes.blockId + '_4'
+      "aria-labelledby": 'Tab' + attributes.blockId + '_4',
+      tabindex: "0"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab4Content)), attributes.tab5Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       className: "tab-pane fade",
       id: 'TabContent' + attributes.blockId + '_5',
       role: "tabpanel",
-      "aria-labelledby": 'Tab' + attributes.blockId + '_5'
+      "aria-labelledby": 'Tab' + attributes.blockId + '_5',
+      tabindex: "0"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab5Content)), attributes.tab6Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       className: "tab-pane fade",
       id: 'TabContent' + attributes.blockId + '_6',
       role: "tabpanel",
-      "aria-labelledby": 'Tab' + attributes.blockId + '_6'
+      "aria-labelledby": 'Tab' + attributes.blockId + '_6',
+      tabindex: "0"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab6Content)), attributes.tab7Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       className: "tab-pane fade",
       id: 'TabContent' + attributes.blockId + '_7',
       role: "tabpanel",
-      "aria-labelledby": 'Tab' + attributes.blockId + '_7'
+      "aria-labelledby": 'Tab' + attributes.blockId + '_7',
+      tabindex: "0"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab7Content)), attributes.tab8Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       className: "tab-pane fade",
       id: 'TabContent' + attributes.blockId + '_8',
       role: "tabpanel",
-      "aria-labelledby": 'Tab' + attributes.blockId + '_8'
+      "aria-labelledby": 'Tab' + attributes.blockId + '_8',
+      tabindex: "0"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab8Content)), attributes.tab9Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       className: "tab-pane fade",
       id: 'TabContent' + attributes.blockId + '_9',
       role: "tabpanel",
-      "aria-labelledby": 'Tab' + attributes.blockId + '_9'
+      "aria-labelledby": 'Tab' + attributes.blockId + '_9',
+      tabindex: "0"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab9Content)), attributes.tab10Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
       className: "tab-pane fade",
       id: 'TabContent' + attributes.blockId + '_10',
       role: "tabpanel",
-      "aria-labelledby": 'Tab' + attributes.blockId + '_10'
+      "aria-labelledby": 'Tab' + attributes.blockId + '_10',
+      tabindex: "0"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab10Content))));
   }
   let inspector = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
@@ -1055,8 +1091,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
 
 
 /**
@@ -1064,6 +1102,7 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
  */
+
 
 
 
@@ -1090,7 +1129,7 @@ function save(props) {
   } = props;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
     className: "oese-tabs-block"
-  }, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+  }, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps.save()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: 'oese-tabs-block'
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("ul", {
     className: "nav nav-tabs",
@@ -1101,6 +1140,8 @@ function save(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
     className: "nav-link active",
     id: 'Tab' + attributes.blockId + '_1',
+    "data-id": "1",
+    type: "button",
     "data-toggle": "tab",
     href: '#TabContent' + attributes.blockId + '_1',
     role: "tab",
@@ -1113,11 +1154,14 @@ function save(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
     className: "nav-link",
     id: 'Tab' + attributes.blockId + '_2',
+    "data-id": "2",
+    type: "button",
     "data-toggle": "tab",
     href: '#TabContent' + attributes.blockId + '_2',
     role: "tab",
     "aria-controls": 'TabContent' + attributes.blockId + '_2',
-    "aria-selected": "false"
+    "aria-selected": "false",
+    tabindex: "-1"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
     className: 'fas ' + attributes.tab2Icon
   }), " ", attributes.tab2Label)), attributes.tab3Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("li", {
@@ -1125,11 +1169,14 @@ function save(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
     className: "nav-link",
     id: 'Tab' + attributes.blockId + '_3',
+    "data-id": "3",
+    type: "button",
     "data-toggle": "tab",
     href: '#TabContent' + attributes.blockId + '_3',
     role: "tab",
     "aria-controls": 'TabContent' + attributes.blockId + '_3',
-    "aria-selected": "false"
+    "aria-selected": "false",
+    tabindex: "-1"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
     className: 'fas ' + attributes.tab3Icon
   }), " ", attributes.tab3Label)), attributes.tab4Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("li", {
@@ -1137,11 +1184,14 @@ function save(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
     className: "nav-link",
     id: 'Tab' + attributes.blockId + '_4',
+    "data-id": "4",
+    type: "button",
     "data-toggle": "tab",
     href: '#TabContent' + attributes.blockId + '_4',
     role: "tab",
     "aria-controls": 'TabContent' + attributes.blockId + '_4',
-    "aria-selected": "false"
+    "aria-selected": "false",
+    tabindex: "-1"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
     className: 'fas ' + attributes.tab4Icon
   }), " ", attributes.tab4Label)), attributes.tab5Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("li", {
@@ -1149,11 +1199,14 @@ function save(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
     className: "nav-link",
     id: 'Tab' + attributes.blockId + '_5',
+    "data-id": "5",
+    type: "button",
     "data-toggle": "tab",
     href: '#TabContent' + attributes.blockId + '_5',
     role: "tab",
     "aria-controls": 'TabContent' + attributes.blockId + '_5',
-    "aria-selected": "false"
+    "aria-selected": "false",
+    tabindex: "-1"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
     className: 'fas ' + attributes.tab5Icon
   }), " ", attributes.tab5Label)), attributes.tab6Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("li", {
@@ -1161,11 +1214,14 @@ function save(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
     className: "nav-link",
     id: 'Tab' + attributes.blockId + '_6',
+    "data-id": "6",
+    type: "button",
     "data-toggle": "tab",
     href: '#TabContent' + attributes.blockId + '_6',
     role: "tab",
     "aria-controls": 'TabContent' + attributes.blockId + '_6',
-    "aria-selected": "false"
+    "aria-selected": "false",
+    tabindex: "-1"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
     className: 'fas ' + attributes.tab6Icon
   }), " ", attributes.tab6Label)), attributes.tab7Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("li", {
@@ -1173,11 +1229,14 @@ function save(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
     className: "nav-link",
     id: 'Tab' + attributes.blockId + '_7',
+    "data-id": "7",
+    type: "button",
     "data-toggle": "tab",
     href: '#TabContent' + attributes.blockId + '_7',
     role: "tab",
     "aria-controls": 'TabContent' + attributes.blockId + '_7',
-    "aria-selected": "false"
+    "aria-selected": "false",
+    tabindex: "-1"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
     className: 'fas ' + attributes.tab7Icon
   }), " ", attributes.tab7Label)), attributes.tab8Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("li", {
@@ -1185,11 +1244,14 @@ function save(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
     className: "nav-link",
     id: 'Tab' + attributes.blockId + '_8',
+    "data-id": "8",
+    type: "button",
     "data-toggle": "tab",
     href: '#TabContent' + attributes.blockId + '_8',
     role: "tab",
     "aria-controls": 'TabContent' + attributes.blockId + '_8',
-    "aria-selected": "false"
+    "aria-selected": "false",
+    tabindex: "-1"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
     className: 'fas ' + attributes.tab8Icon
   }), " ", attributes.tab8Label)), attributes.tab9Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("li", {
@@ -1197,11 +1259,14 @@ function save(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
     className: "nav-link",
     id: 'Tab' + attributes.blockId + '_9',
+    "data-id": "9",
+    type: "button",
     "data-toggle": "tab",
     href: '#TabContent' + attributes.blockId + '_9',
     role: "tab",
     "aria-controls": 'TabContent' + attributes.blockId + '_9',
-    "aria-selected": "false"
+    "aria-selected": "false",
+    tabindex: "-1"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
     className: 'fas ' + attributes.tab9Icon
   }), " ", attributes.tab9Label)), attributes.tab10Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("li", {
@@ -1209,11 +1274,14 @@ function save(props) {
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
     className: "nav-link",
     id: 'Tab' + attributes.blockId + '_10',
+    "data-id": "10",
+    type: "button",
     "data-toggle": "tab",
     href: '#TabContent' + attributes.blockId + '_10',
     role: "tab",
     "aria-controls": 'TabContent' + attributes.blockId + '_10',
-    "aria-selected": "false"
+    "aria-selected": "false",
+    tabindex: "-1"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("i", {
     className: 'fas ' + attributes.tab10Icon
   }), " ", attributes.tab10Label))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
@@ -1223,52 +1291,62 @@ function save(props) {
     className: "tab-pane fade show active",
     id: 'TabContent' + attributes.blockId + '_1',
     role: "tabpanel",
-    "aria-labelledby": 'Tab' + attributes.blockId + '_1'
+    "aria-labelledby": 'Tab' + attributes.blockId + '_1',
+    tabindex: "0"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab1Content)), attributes.tab2Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "tab-pane fade",
     id: 'TabContent' + attributes.blockId + '_2',
     role: "tabpanel",
-    "aria-labelledby": 'Tab' + attributes.blockId + '_2'
+    "aria-labelledby": 'Tab' + attributes.blockId + '_2',
+    tabindex: "0"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab2Content)), attributes.tab3Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "tab-pane fade",
     id: 'TabContent' + attributes.blockId + '_3',
     role: "tabpanel",
-    "aria-labelledby": 'Tab' + attributes.blockId + '_3'
+    "aria-labelledby": 'Tab' + attributes.blockId + '_3',
+    tabindex: "0"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab3Content)), attributes.tab4Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "tab-pane fade",
     id: 'TabContent' + attributes.blockId + '_4',
     role: "tabpanel",
-    "aria-labelledby": 'Tab' + attributes.blockId + '_4'
+    "aria-labelledby": 'Tab' + attributes.blockId + '_4',
+    tabindex: "0"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab4Content)), attributes.tab5Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "tab-pane fade",
     id: 'TabContent' + attributes.blockId + '_5',
     role: "tabpanel",
-    "aria-labelledby": 'Tab' + attributes.blockId + '_5'
+    "aria-labelledby": 'Tab' + attributes.blockId + '_5',
+    tabindex: "0"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab5Content)), attributes.tab6Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "tab-pane fade",
     id: 'TabContent' + attributes.blockId + '_6',
     role: "tabpanel",
-    "aria-labelledby": 'Tab' + attributes.blockId + '_6'
+    "aria-labelledby": 'Tab' + attributes.blockId + '_6',
+    tabindex: "0"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab6Content)), attributes.tab7Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "tab-pane fade",
     id: 'TabContent' + attributes.blockId + '_7',
     role: "tabpanel",
-    "aria-labelledby": 'Tab' + attributes.blockId + '_7'
+    "aria-labelledby": 'Tab' + attributes.blockId + '_7',
+    tabindex: "0"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab7Content)), attributes.tab8Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "tab-pane fade",
     id: 'TabContent' + attributes.blockId + '_8',
     role: "tabpanel",
-    "aria-labelledby": 'Tab' + attributes.blockId + '_8'
+    "aria-labelledby": 'Tab' + attributes.blockId + '_8',
+    tabindex: "0"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab8Content)), attributes.tab9Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "tab-pane fade",
     id: 'TabContent' + attributes.blockId + '_9',
     role: "tabpanel",
-    "aria-labelledby": 'Tab' + attributes.blockId + '_9'
+    "aria-labelledby": 'Tab' + attributes.blockId + '_9',
+    tabindex: "0"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab9Content)), attributes.tab10Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
     className: "tab-pane fade",
     id: 'TabContent' + attributes.blockId + '_10',
     role: "tabpanel",
-    "aria-labelledby": 'Tab' + attributes.blockId + '_10'
+    "aria-labelledby": 'Tab' + attributes.blockId + '_10',
+    tabindex: "0"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.RawHTML, null, attributes.tab10Content)))));
 }
 

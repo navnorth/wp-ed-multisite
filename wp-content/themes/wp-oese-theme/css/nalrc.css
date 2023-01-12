@@ -269,6 +269,11 @@ font-size:12px; }
 .certification-map-legend li { list-style:none; }
 .fa-blue { color:#3693bb; }
 .fa-black { color:#414141; }
+.usacustomHtml5MapContainer svg path[tabindex='0']:focus { 
+	outline: none; 
+	stroke:#ffffff;
+	fill:#8fc3d9;
+}
 /** End of NALRC Certifications Page Styles **/
 /** Responsive Styles **/
 @media only screen and (max-width:1050px){

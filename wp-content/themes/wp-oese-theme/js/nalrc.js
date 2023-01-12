@@ -55,13 +55,38 @@ jQuery(function($){
 
 	setTimeout(function(){
 		$('ul.certification-map-legend').appendTo('.fm-map-container');
+		$('.usacustomHtml5MapContainer svg').attr('tabindex','-1');
+		$('.usacustomHtml5MapContainer svg').attr('focusable','true');
+		$('.usacustomHtml5MapContainer svg path').each(function(){
+			if ($(this).attr('fill')=='#3693bb')
+				$(this).attr('tabindex','0');
+		});
 	},1000);
 
-	// Certifications Map
+	// Certifications Map Click
 	$('.usacustomHtml5MapContainer').on('click','svg path',function(e){
 		console.log(e);
 		setTimeout(function(){
 			$('.usacustomHtml5MapStateInfo').find('.modal-map-details-popup').modal('show');
 		},1000);
+	});
+
+	// Certifications Map Enter/Space bar key press
+	$('.usacustomHtml5MapContainer').on('keydown','svg path',function(e){
+		var code = e.keyCode || e.which;
+		if (code==13 || code==32){
+			$(this).trigger('click');
+			setTimeout(function(){
+				$('.usacustomHtml5MapStateInfo').find('.modal-map-details-popup').modal('show');
+			},1000);
+		}
+	});
+
+	$(document).on('keydown',function(e){
+		var code = e.keyCode || e.which;
+		if (code==27){
+			if ($('.modal-map-details-popup').is(':visible'))
+				$('.modal-map-details-popup').modal('hide');
+		}
 	});
 });

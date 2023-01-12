@@ -26,7 +26,7 @@
 								foreach($fnav_items as $fnav_item){
 									?>
 									<li class="col-md-2 nav-item">
-										<a href="<?php echo esc_url($fnav_item->url); ?>"><?php echo esc_html($fnav_item->title); ?></a>
+										<a href="<?php echo esc_url($fnav_item->url); ?>" aria-label="<?php echo esc_html($fnav_item->title); ?>"><?php echo esc_html($fnav_item->title); ?></a>
 										<?php 
 										foreach($fnav_children as $fnav_child){
 											if ($fnav_child->menu_item_parent==$fnav_item->ID){

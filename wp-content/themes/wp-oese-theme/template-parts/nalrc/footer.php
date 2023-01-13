@@ -95,7 +95,7 @@
 						<a>Newsletter</a>
 						<ul class="row nalrc-submenu">
 							<li class="col-md-12 nav-item">
-								<a href="javascript:void(0)" role="button" class="button-subscribe">Subscribe</a>
+								<a href="<?php echo get_option('wp_oese_theme_nalrc_newsletter'); ?>" target="_blank" role="button" class="button-subscribe">Subscribe</a>
 							</li>
 						</ul>
 					</li>

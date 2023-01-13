@@ -27,10 +27,8 @@ class TabsAutomatic {
       tab.addEventListener('click', this.onClick.bind(this));
 
       if(hash){
-        console.log(hash);
-        console.log(tab.getAttribute('href'));
         if (tab.getAttribute('href')==hash)
-          this.firstTab = tab;
+          this.curTab = tab;
       } else {
         if (!this.firstTab) {
           this.firstTab = tab;
@@ -39,7 +37,10 @@ class TabsAutomatic {
       }
     }
 
-    this.setSelectedTab(this.firstTab, false);
+    if(this.curTab)
+      this.setSelectedTab(this.curTab);
+    else
+      this.setSelectedTab(this.firstTab, false);
   }
 
   setSelectedTab(currentTab, setFocus) {

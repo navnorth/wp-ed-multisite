@@ -89,4 +89,18 @@ jQuery(function($){
 				$('.modal-map-details-popup').modal('hide');
 		}
 	});
+
+	$('.oese-tabs-block #oeseTabs').on('keydown','.nav-link', function(e){
+        console.log(e);
+        $(this).trigger('click');
+     });
+
+	// Direct to Tab Link
+	var hash = window.location.href.toString();
+    if( hash.lastIndexOf('#') != -1 ) {
+        hash = hash.substr(hash.lastIndexOf('#'));
+        if( $('a[href="'+ hash +'"]').length > 0 ) {
+            $('a[href="'+ hash +'"]').trigger('click');
+        }
+    }
 });

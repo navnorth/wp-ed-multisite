@@ -28,6 +28,7 @@ class TabsAutomatic {
 
       if(hash){
         console.log(hash);
+        console.log(tab.href);
         if (tab.href==hash)
           this.firstTab = tab;
       } else {

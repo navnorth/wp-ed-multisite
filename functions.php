@@ -1702,6 +1702,20 @@ function wp_oese_theme_settings_page() {
     )
   );
 
+  // Add Newsletter URL Settings
+  add_settings_field(
+    'wp_oese_theme_nalrc_newsletter',
+    '',
+    'wp_oese_theme_settings_field',
+    $page,
+    'wp_oese_nalrc_settings',
+    array(
+      'uid' => 'wp_oese_theme_nalrc_newsletter',
+      'type' => 'textbox',
+      'name' =>  __('Newsletter Url: ', WP_OESE_THEME_SLUG)
+    )
+  );
+
   register_setting( 'theme_settings_page' , 'wp_oese_theme_modal_heading' );
   register_setting( 'theme_settings_page' , 'wp_oese_theme_modal_content' );
   register_setting( 'theme_settings_page' , 'wp_oese_theme_modal_enable_redirect' );
@@ -1717,6 +1731,7 @@ function wp_oese_theme_settings_page() {
   register_setting( 'theme_settings_page' , 'wp_oese_theme_nalrc_twitter' );
   register_setting( 'theme_settings_page' , 'wp_oese_theme_nalrc_youtube' );
   register_setting( 'theme_settings_page' , 'wp_oese_theme_nalrc_instagram' );
+  register_setting( 'theme_settings_page' , 'wp_oese_theme_nalrc_newsletter' );
 }
 add_action( 'admin_init' , 'wp_oese_theme_settings_page' );
 

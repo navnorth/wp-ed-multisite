@@ -31,7 +31,7 @@
 .nalrc-banner nav li a:active {
 	color:#000000;
 }
-.nalrc-banner nav li.nav-item.current-menu-item a { color:#F2CA03; }
+.nalrc-banner nav li.nav-item.current-menu-item a { color:#000000; }
 .nalrc-header .nalrc-wrapper img { width:918px; height:auto; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter { background-color: #3693BB; color: #FFF; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection label { display:none; }

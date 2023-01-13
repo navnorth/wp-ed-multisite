@@ -6,6 +6,7 @@ class TabsAutomatic {
 
     this.firstTab = null;
     this.lastTab = null;
+    this.curTab = null;
 
     this.tabs = Array.from(this.tablistNode.querySelectorAll('[role=tab]'));
     this.tabpanels = [];
@@ -13,6 +14,10 @@ class TabsAutomatic {
     for (var i = 0; i < this.tabs.length; i += 1) {
       var tab = this.tabs[i];
       var tabpanel = document.getElementById(tab.getAttribute('aria-controls'));
+      var hash = window.location.href.toString();
+      if( hash.lastIndexOf('#') != -1 ) {
+        hash = hash.substr(hash.lastIndexOf('#'));
+      }
 
       tab.tabIndex = -1;
       tab.setAttribute('aria-selected', 'false');
@@ -21,10 +26,16 @@ class TabsAutomatic {
       tab.addEventListener('keydown', this.onKeydown.bind(this));
       tab.addEventListener('click', this.onClick.bind(this));
 
-      if (!this.firstTab) {
-        this.firstTab = tab;
+      if(hash){
+        console.log(hash);
+        if (tab.href==hash)
+          this.firstTab = tab;
+      } else {
+        if (!this.firstTab) {
+          this.firstTab = tab;
+        }
+        this.lastTab = tab;
       }
-      this.lastTab = tab;
     }
 
     this.setSelectedTab(this.firstTab, false);

@@ -7,7 +7,8 @@
 .nalrc-details.row { width:100%; display:block; }
 .nalrc-details h1, .nalrc-details h2, .nalrc-details h3, .nalrc-details h4 { color: #981F33 !important; }
 .nalrc-wrapper { padding:30px; text-align:center; }
-.nalrc-details a { color:#3693bb !important; }
+.nalrc-details a { color:#3693bb !important; text-decoration:none; }
+.nalrc-details a:hover, .nalrc-details a:focus { text-decoration:underline; }
 /** NALRC Header Styles **/
 .nalrc-banner nav {
 	background-color:#3693bb;

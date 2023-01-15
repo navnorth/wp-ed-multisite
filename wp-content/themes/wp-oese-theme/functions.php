@@ -3439,3 +3439,13 @@ if (!function_exists('is_version58')) {
         }
     }
 }
+
+function oese_admin_body_template_class( $str_classes ) {
+    global $post;
+    $template_slug = get_page_template_slug( $post );
+    $classes   = explode(' ', $str_classes);
+    $classes[] = str_replace(".php","",str_replace("/","_",$template_slug));
+    $new_str_classes = join(' ', $classes);
+    return $new_str_classes;
+}
+add_filter( 'admin_body_class', 'oese_admin_body_template_class' );

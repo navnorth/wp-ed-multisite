@@ -315,3 +315,10 @@ button.wdt-clear-filters-button:before, button.wdt-clear-filters-widget-button:b
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+.page-templates_nalrc-template .block-editor-block-list__layout a,
+.page-template-nalrc-template .block-editor-block-list__layout a{
+    color: #3693bb !important;
+    text-decoration: none;
+}
+.page-templates_nalrc-template .block-editor-block-list__layout a:hover,
+.page-template-nalrc-template .block-editor-block-list__layout a:hover { text-decoration:underline; }

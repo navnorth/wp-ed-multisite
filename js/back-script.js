@@ -182,6 +182,19 @@ jQuery( document ).ready(function() {
   jQuery(document).on('change','.components-select-control__input', function() {
       oese_template_changed = true;
       console.log(oese_template_changed);
+      var editorContainer     = jQuery( 'body' ),
+      templateSelectClass = '.editor-page-attributes__template select';
+      let template = jQuery(this).val();
+      let pageTemplate = template
+              .substr( template.lastIndexOf( '/' ) + 1, template.length )
+              .replace( /\.php$/, '' )
+              .replace( /\./g, '-' );
+      editorContainer
+        .removeClass( function( index, className ) {
+          return ( className.match( /\bpage-template-|page-templates_[^ ]+/ ) || [] ).join( ' ' );
+        } )
+        .addClass( 'page-template-' + pageTemplate );
+
   });
   
   

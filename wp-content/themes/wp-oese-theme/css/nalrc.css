@@ -13,7 +13,7 @@
 .nalrc-banner nav {
 	background-color:#3693bb;
 	border-radius: 6px;
-	padding:30px;
+	padding:25px 10px 25px 25px;
 }
 .nalrc-banner .nalrc-wrapper { padding:0; display:flex; }
 .nalrc-banner nav .nalrc-menu { margin-bottom:0; padding-left:0; }
@@ -286,6 +286,11 @@ font-size:12px; }
 }
 /** End of NALRC Certifications Page Styles **/
 /** Responsive Styles **/
+@media only screen and (max-width:1200px){
+	.nalrc-banner .nalrc-nav { max-width:25%;flex-basis:25% }
+	.nalrc-banner .nalrc-slider { max-width:76%; flex-basis:76%; }
+	.nalrc-banner nav li a { font-size:15px; }
+}
 @media only screen and (max-width:1050px){
 	.nalrc-banner .nalrc-nav { 
 		max-width:25%;
@@ -299,13 +304,13 @@ font-size:12px; }
 		flex-basis: 75%;
 	}
 }
-@media only screen and (max-width:960px){
+@media only screen and (max-width:990px){
 	.nalrc-banner .nalrc-nav { 
 		max-width:25%;
 		flex-basis:25%;
 		height:auto;
 	}
-	.nalrc-banner nav li a { font-size:14px; }
+	.nalrc-banner nav li a { font-size:13px; }
 	.nalrc-banner .nalrc-slider {
 		max-width:75%;
 		flex-basis: 75%;

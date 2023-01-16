@@ -1,5 +1,6 @@
+var map_cfg = 'usacustomhtml5map_map_cfg_5';
+var map_id = 5;
 jQuery(function($){
-	console.log(nalrc);
 	// Learn Languages Filter Section
 	setTimeout(function(){
 		$('.page-template-nalrc-template .oese-tabs-block .tab-content .tab-pane').each(function(){
@@ -65,9 +66,8 @@ jQuery(function($){
 	},1000);
 
 	// Override Certifications Map Click
-	this['cert_map_id'] = 5;
 	var nalrc_html5map_onclick = function(ev, sid, map) { 
-		var cfg = this['usacustomhtml5map_map_cfg_' + this['cert_map_id']]; 
+		var cfg = this[window.map_cfg]; 
 		var link = map.fetchStateAttr(sid, 'link'); 
 		var is_group = map.fetchStateAttr(sid, 'group'); 
 		var popup_id = map.fetchStateAttr(sid, 'popup-id'); 
@@ -92,7 +92,7 @@ jQuery(function($){
 					} else { 
 						jQuery.ajax({ 
 							type: 'POST', 
-							url: nalrc.home_url + 'index.php' + '?map_id=' + this['cert_map_id'] + '&usacustomhtml5map_get_popup', 
+							url: nalrc.home_url + '/index.php' + '?map_id=' + window.map_id + '&usacustomhtml5map_get_popup', 
 							data: {popup_id:popup_id}, 
 						}).done(function(data) { 
 							$('body').append(data); 
@@ -111,7 +111,7 @@ jQuery(function($){
 				$('#usacustom-html5-map-state-info_0').html('Loading...'); 
 				$.ajax({ 
 					type: 'POST', 
-					url: (is_group_info ? nalrc.home_url + 'index.php' + '?map_id=' + this['cert_map_id'] + '&usacustomhtml5map_get_group_info=' : 'https://oese.wp.nnth.dev/' + 'index.php' + '?map_id=5' + '&usacustomhtml5map_get_state_info=') + id, 
+					url: (is_group_info ? nalrc.home_url + '/index.php' + '?map_id=' + window.map_id + '&usacustomhtml5map_get_group_info=' : 'https://oese.wp.nnth.dev/' + 'index.php' + '?map_id=5' + '&usacustomhtml5map_get_state_info=') + id, 
 					success: function(data, textStatus, jqXHR){ 
 						$('#usacustom-html5-map-state-info_0').html(data); 
 						$('#usacustom-html5-map-state-info_0').find('.modal-map-details-popup').modal('show');

@@ -5,7 +5,7 @@
 	flex-direction: column;
 }
 .nalrc-details.row { width:100%; display:block; }
-.nalrc-details h1, .nalrc-details h2, .nalrc-details h3, .nalrc-details h4 { color: #981F33 !important; }
+.nalrc-details h1, .nalrc-details h2, .nalrc-details h3, .nalrc-details h4 { color: #981F33; }
 .nalrc-wrapper { padding:30px; text-align:center; }
 .nalrc-details a { color:#3693bb; text-decoration:none; }
 .nalrc-details a:hover, .nalrc-details a:focus { text-decoration:underline; }
@@ -246,7 +246,7 @@
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-header .modal-title {
 	margin-top:15px !important;
 	margin-bottom:15px !important;
-	color: #FFFFFF;
+	color: #FFFFFF !important;
     font-weight: bold;
     font-size:14px;
 }

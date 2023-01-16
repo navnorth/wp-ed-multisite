@@ -14,9 +14,10 @@ class TabsAutomatic {
     for (var i = 0; i < this.tabs.length; i += 1) {
       var tab = this.tabs[i];
       var tabpanel = document.getElementById(tab.getAttribute('aria-controls'));
-      var hash = window.location.href.toString();
-      if( hash.lastIndexOf('#') != -1 ) {
-        hash = hash.substr(hash.lastIndexOf('#'));
+      var hash;
+      var uhash = window.location.href.toString();
+      if( uhash.lastIndexOf('#') != -1 ) {
+        hash = uhash.substr(uhash.lastIndexOf('#'));
       }
 
       tab.tabIndex = -1;
@@ -36,7 +37,6 @@ class TabsAutomatic {
         this.lastTab = tab;
       }
     }
-
     if(this.curTab)
       this.setSelectedTab(this.curTab);
     else

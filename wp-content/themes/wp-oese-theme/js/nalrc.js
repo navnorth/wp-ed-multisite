@@ -108,7 +108,6 @@ jQuery(function($){
 			} 
 			if (link == '#info') { 
 				var id = is_group_info ? is_group : (sid.substr(0,1)=='p' ? sid : map.fetchStateAttr(sid, 'id')); 
-				$('#usacustom-html5-map-state-info_0').html('Loading...'); 
 				$.ajax({ 
 					type: 'POST', 
 					url: (is_group_info ? nalrc.home_url + '/index.php' + '?map_id=' + window.map_id + '&usacustomhtml5map_get_group_info=' : 'https://oese.wp.nnth.dev/' + 'index.php' + '?map_id=5' + '&usacustomhtml5map_get_state_info=') + id, 
@@ -127,8 +126,10 @@ jQuery(function($){
 			} 
 		}; 
 	setTimeout(function(){
-		var mapVar = $('.usacustomHtml5MapContainer').attr('data-map-variable');
-		this[mapVar].on('click', nalrc_html5map_onclick);
+		if ($('.usacustomHtml5MapContainer').length){
+			var mapVar = $('.usacustomHtml5MapContainer').attr('data-map-variable');
+			this[mapVar].on('click', nalrc_html5map_onclick);
+		}
 	},1000);
 
 	// Certifications Map Enter/Space bar key press

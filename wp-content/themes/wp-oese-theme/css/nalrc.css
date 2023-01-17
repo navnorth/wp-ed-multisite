@@ -324,6 +324,25 @@
 }
 /** End of NALRC Resources Styles **/
 /** NALRC Certifications Page Styles **/
+.page-template-nalrc-template .usacustomHtml5MapStateInfo { 
+	position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+    background: #000;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    opacity:0.5;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.page-template-nalrc-template .usacustomHtml5MapStateInfo .nalrc-loader {
+	background:#FFF;
+	padding:30px;
+	border:3px solid #414141;
+}
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content {
 	border: 2px solid #981F33;
     border-radius: 8px;

@@ -333,7 +333,7 @@
     width: 100%;
     height: 100%;
     z-index: 9;
-    opacity:0.5;
+    opacity:0.8;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -342,6 +342,8 @@
 	background:#FFF;
 	padding:30px;
 	border:3px solid #414141;
+	display:inline-block;
+	border-radius:8px;
 }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content {
 	border: 2px solid #981F33;

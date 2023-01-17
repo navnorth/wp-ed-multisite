@@ -67,7 +67,6 @@ jQuery(function($){
 
 	// Override Certifications Map Click
 	var nalrc_html5map_onclick = function(ev, sid, map) { 
-		console.log(ev);
 		var cfg = this[window.map_cfg]; 
 		var link = map.fetchStateAttr(sid, 'link'); 
 		var is_group = map.fetchStateAttr(sid, 'group'); 
@@ -129,7 +128,7 @@ jQuery(function($){
 	setTimeout(function(){
 		if ($('.usacustomHtml5MapContainer').length){
 			var mapVar = $('.usacustomHtml5MapContainer').attr('data-map-variable');
-			this[mapVar].on('click', nalrc_html5map_onclick);
+			this[mapVar].off('click').on('click', nalrc_html5map_onclick);
 		}
 	},1000);
 

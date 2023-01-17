@@ -108,7 +108,7 @@ jQuery(function($){
 			} 
 			if (link == '#info') { 
 				var id = is_group_info ? is_group : (sid.substr(0,1)=='p' ? sid : map.fetchStateAttr(sid, 'id')); 
-				$('#usacustom-html5-map-state-info_0').html('<div class="nalrc-loader">'. __('Loading...', 'usacustom-html5-map') .'</div>');
+				$('#usacustom-html5-map-state-info_0').html('<div class="nalrc-loader">Loading...</div>');
 				$('#usacustom-html5-map-state-info_0').show();
 				$.ajax({ 
 					type: 'POST', 

@@ -157,6 +157,10 @@ jQuery(function($){
 		}
 	});
 
+	$('#usacustom-html5-map-state-info_0').find('.modal-map-details-popup').on('hidden.bs.modal', function (e) {
+	  $('.usacustomHtml5MapStateInfo').hide();
+	})
+
 	$('.oese-tabs-block #oeseTabs').on('keydown','.nav-link', function(e){
         $(this).trigger('click');
      });

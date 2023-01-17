@@ -152,13 +152,13 @@ jQuery(function($){
 		if (code==27){
 			if ($('.modal-map-details-popup').is(':visible')){
 				$('.modal-map-details-popup').modal('hide');
-				$('.usacustomHtml5MapStateInfo').hide();
+				$('.usacustomHtml5MapStateInfo').hide().css('opacity','0.8');
 			}
 		}
 	});
 
 	$(document).on('click','.usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-header button', function(){
-		$('.usacustomHtml5MapStateInfo').css('display','none');
+		$('.usacustomHtml5MapStateInfo').css({'display':'none','opacity':'0.8'});
 	});
 
 	$('.usacustomHtml5MapStateInfo').find('.modal-map-details-popup').on('hidden.bs.modal', function (e) {

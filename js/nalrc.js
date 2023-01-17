@@ -67,6 +67,7 @@ jQuery(function($){
 
 	// Override Certifications Map Click
 	var nalrc_html5map_onclick = function(ev, sid, map) { 
+		console.log(ev);
 		var cfg = this[window.map_cfg]; 
 		var link = map.fetchStateAttr(sid, 'link'); 
 		var is_group = map.fetchStateAttr(sid, 'group'); 

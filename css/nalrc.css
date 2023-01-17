@@ -326,13 +326,16 @@
 /** NALRC Certifications Page Styles **/
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content {
 	border: 2px solid #981F33;
-    border-radius: 4px;
+    border-radius: 8px;
     background:transparent;
 }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-header {
 	padding-top:0;
 	padding-bottom:0;
 	background-color: #981F33;
+	border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border: 1px solid #981F33
 }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-header .modal-title {
 	margin-top:15px !important;
@@ -353,7 +356,7 @@
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup.show { display:flex !important; }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-dialog { margin:auto; }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-body { 
-font-size:12px; background:#ffffff; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; }
+font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-body .map-popup-detail {
 	margin-bottom:15px;
 }
@@ -376,6 +379,8 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 4px; border-botto
 	stroke:#ffffff;
 	fill:#8fc3d9;
 }
+.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .map-popup-detail p { margin-bottom:0; }
+.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .map-popup-detail a { font-size:12px; }
 /** End of NALRC Certifications Page Styles **/
 /** Responsive Styles **/
 @media only screen and (max-width:1200px){

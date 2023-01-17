@@ -157,7 +157,11 @@ jQuery(function($){
 		}
 	});
 
-	$('#usacustom-html5-map-state-info_0').find('.modal-map-details-popup').on('hidden.bs.modal', function (e) {
+	$(document).on('click','.usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-header button', function(){
+		$('.usacustomHtml5MapStateInfo').css('display','none');
+	});
+
+	$('.usacustomHtml5MapStateInfo').find('.modal-map-details-popup').on('hidden.bs.modal', function (e) {
 	  $('.usacustomHtml5MapStateInfo').hide();
 	})
 

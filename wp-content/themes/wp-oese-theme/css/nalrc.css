@@ -165,7 +165,7 @@
 }
 /** End of NALRC Resource Styles **/
 /** NALRC Resources Styles **/
-.site-content.nalrc-resources-content { margin-top:30px; }
+.site-content.nalrc-resources-content { padding-top:5%; }
 .nalrc-resources-header h1 { color: #981F33 !important; margin-bottom:0; }
 .nalrc-blogpost { padding:25px 0; max-width:97%; margin:auto; border-bottom: 1px solid #d1d1d1; }
 .nalrc-blogpost .oer-feature-image { width:100%; padding-left:0; }

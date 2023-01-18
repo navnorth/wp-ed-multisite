@@ -35,14 +35,14 @@
 
 .wp-block-oese-block-oese-tabs #oeseTabs li a.active {
   border-color: #dee2e6 #dee2e6 #fff;
-  background-color: #414141;
+  background-color: #3693bb;
   color: #ffffff;
   text-decoration: none;
 }
 
 .wp-block-oese-block-oese-tabs #oeseTabs li a {
   border-color: #dee2e6 #dee2e6 #fff;
-  background-color: #3693bb;
+  background-color: #414141;
   color: #ffffff;
   text-decoration: none;
   font-size: 18px;

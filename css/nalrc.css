@@ -73,7 +73,8 @@
 }
 .wpdt-c .wpDataTableFilterBox .bootstrap-select > .btn-default:before { right:3px !important; }
 .wpdt-c .wpDataTableFilterBox .bootstrap-select .bs-searchbox:before { top:unset !important; }
-.wpdt-c .wpDataTablesWrapper table.wpDataTable thead th { background-color:#414141 !important; font-weight:bold; font-size:16px; padding:0 10px; text-align:center; }
+.wpdt-c .wpDataTablesWrapper { padding:0; }
+.page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable thead th.wdtheader { background-color:#414141 !important; font-weight:bold; font-size:16px; padding:0 10px; text-align:center; }
 .bootstrap-select.btn-group .dropdown-menu li a { font-size:14px; }
 .wpdt-c .wpDataTablesWrapper table.wpDataTable thead th.sort.column-title::after { border: 5px solid transparent; display: inline-block; font-size: 0; line-height: 0; content: ""; height: 0; width: 0; vertical-align: 3px; margin: 0 0 0 10px; opacity: .6; border-bottom-color: #ffffff !important; }
 /** NALRC Footer Styles **/

@@ -44,13 +44,21 @@
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-category,
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-educator-certification,
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-location,
-.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection #table_1_7_filter { background: #FFF; border-radius: 4px; border: 1px solid #414141; padding-left: 5px; height:38px; }
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection #table_1_7_filter,
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-instructional-approach,
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-program-type,
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-grade-levels-served,
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-language { background: #FFF; border-radius: 4px; border: 1px solid #414141; padding-left: 5px; height:38px; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-degree-type .wdt-select-filter .dropdown-toggle, 
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-category .wdt-select-filter .dropdown-toggle { background-color:#FFFFFF !important; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-degree-type .bootstrap-select.btn-group .dropdown-toggle .filter-option,
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-educator-certification .bootstrap-select.btn-group .dropdown-toggle .filter-option,
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-location .bootstrap-select.btn-group .dropdown-toggle .filter-option,
-.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection #table_1_7_filter .bootstrap-select.btn-group .dropdown-toggle .filter-option {
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection #table_1_7_filter .bootstrap-select.btn-group .dropdown-toggle .filter-option,
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-instructional-approach .bootstrap-select.btn-group .dropdown-toggle .filter-option,
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-program-type .bootstrap-select.btn-group .dropdown-toggle .filter-option,
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-grade-levels-served .bootstrap-select.btn-group .dropdown-toggle .filter-option,
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-language .bootstrap-select.btn-group .dropdown-toggle .filter-option {
     display: block !important;
     color: #000;
     font-size: 0.97rem;
@@ -85,7 +93,8 @@
     border-style: solid !important;
 }
 .bootstrap-select.btn-group .dropdown-menu li a { font-size:14px; }
-.wpdt-c .wpDataTablesWrapper table.wpDataTable thead th.sort.column-title::after { border: 5px solid transparent; display: inline-block; font-size: 0; line-height: 0; content: ""; height: 0; width: 0; vertical-align: 3px; margin: 0 0 0 10px; opacity: .6; border-bottom-color: #ffffff !important; }
+.wpdt-c .wpDataTablesWrapper table.wpDataTable thead th.sort.column-degree::after,
+.wpdt-c .wpDataTablesWrapper table.wpDataTable thead th.sort.column-instructional-approach::after { border: 5px solid transparent; display: inline-block; font-size: 0; line-height: 0; content: ""; height: 0; width: 0; vertical-align: 3px; margin: 0 0 0 10px; opacity: .6; border-bottom-color: #ffffff !important; }
 .page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr td {
 	border-color: #d0d0d0 !important;
     border-width: 1px !important;
@@ -94,18 +103,21 @@
     padding:10px !important;
 }
 .page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr td a { font-size:14px; }
-.page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr td.column-link {
+.page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr td.column-link,
+.page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr td.column-website,
+.page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr td.column-email {
 	text-overflow: initial;
     word-break: break-all;
 }
 .page-template-nalrc-template .wpdt-c .wpDataTablesWrapper div.dt-buttons { display:none; }
 .page-template-nalrc-template .wpdt-c.wdt-skin-light .wpDataTablesWrapper table.wpDataTable thead th.sorting:after, 
 .page-template-nalrc-template .wpdt-c.wdt-skin-light .wpDataTablesWrapper table.wpDataTable thead th.sorting_asc:after, 
-.page-template-nalrc-template .wpdt-c.wdt-skin-light .wpDataTablesWrapper table.wpDataTable thead th.sorting_desc:after { display:inline; position:absolute;right:2px; }
+.page-template-nalrc-template .wpdt-c.wdt-skin-light .wpDataTablesWrapper table.wpDataTable thead th.sorting_desc:after { display:inline; position:absolute;right:2px; top:calc(100%/2.2); }
 .page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr.even td { background-color:#f5f5f5 !important; }
 .page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr:nth-child(even) {
 	background-color:#f5f5f5 !important;
 }
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection#table_1_1_filter_sections { padding-left:0; }
 /** NALRC Footer Styles **/
 .nalrc-footer { border-top:1px solid #d1d1d1; }
 .nalrc-footer .nalrc-wrapper { padding:25px 0; display:flex; }

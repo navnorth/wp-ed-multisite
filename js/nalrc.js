@@ -153,7 +153,6 @@ jQuery(function($){
 		var code = e.keyCode || e.which;
 		if (code==13 || code==32){
 			$(this).trigger('click');
-			nalrc_html5map_onclick();
 			setTimeout(function(){
 				$('.usacustomHtml5MapStateInfo').find('.modal-map-details-popup').modal('show');
 			},1000);

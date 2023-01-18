@@ -64,7 +64,7 @@
     font-size: 0.97rem;
 }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .filter-column { padding-left:5px; }
-.page-template-nalrc-template .wpDataTablesFilter .wpDataTableFilterSection:not(#wdt-clear-filters-button-block):not(#wdt-pf-search-filters-button-block) { width:20% !important; }
+.page-template-nalrc-template .wpDataTablesFilter .wpDataTableFilterSection:not(#wdt-clear-filters-button-block):not(#wdt-pf-search-filters-button-block) { width:22% !important; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter { float:left; min-height: 45px !important; padding: 15px; font-size: 16px;  padding:5px 0; margin-bottom:0 !important; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter label { font-size:16px; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input { height:38px !important; border-radius: 4px; border: 1px solid #767676; width:290px; background-color:#FFFFFF !important; color:#414141; font-size:1rem; }
@@ -72,12 +72,22 @@
 .page-template-nalrc-template .wpdt-c .wpDataTablesWrapper .filter_column button { height:34px !important;border-bottom:none !important; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSectionLabel {
 	float: none;
-  min-height: 45px;
+  min-height: 20px;
   padding-left: 0;
 }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSectionLabel {
-	line-height: 40px;
+	line-height: 1em;
   margin-bottom: 0;
+}
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSectionButton {
+	min-height: 45px !important;
+    padding: 5px 0 5px;
+    text-align: right;
+}
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSectionButton .nalrc-search-button {
+	height: 38px;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 .wpdt-c .wpDataTableFilterBox .bootstrap-select > .btn-default:before { right:3px !important; }
 .wpdt-c .wpDataTableFilterBox .bootstrap-select .bs-searchbox:before { top:unset !important; }

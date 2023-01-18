@@ -20,10 +20,12 @@ jQuery(function($){
 			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox').append('<div class="wpDataTableFilterSectionButton" id="table_search_filter_button"><button class="nalrc-search-button">Go &gt;</button>');
 
 			// Move Languages Taught as filter option
-			var filterBox = $(this).find('#filterBox_table_1');
+			var filterBox = $('.page-template-nalrc-template .oese-tabs-block .tab-content .tab-pane .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox');
+			var languagestaught = filterBox.find('#table_1_7_filter_sections');
+			
 			if (filterBox.length){
-				let languagestaught = filterBox.find('#table_1_7_filter_sections');
-				filterBox.find('#table_search_filter_label').next(languagestaught);
+				filterBox.find('#table_search_filter_label').after(languagestaught);
+				languagestaught.css({'padding-left':'0','padding-right':'5px'});
 			}
 
 			// Trigger search on pressing Enter key
@@ -142,6 +144,11 @@ jQuery(function($){
 		if ($('.usacustomHtml5MapContainer').length){
 			var mapVar = $('.usacustomHtml5MapContainer').attr('data-map-variable');
 			this[mapVar].on('click', nalrc_html5map_onclick);
+			this[mapVar].on('keydown', function(e){
+				var code = e.keyCode || e.which;
+				if (code==13 || code==32)
+					nalrc_html5map_onclick();
+			});
 		}
 	},1000);
 

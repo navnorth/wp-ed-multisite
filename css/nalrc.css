@@ -53,7 +53,7 @@
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection #table_1_7_filter .bootstrap-select.btn-group .dropdown-toggle .filter-option {
     display: block !important;
     color: #000;
-    font-size: 1rem;
+    font-size: 0.97rem;
 }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .filter-column { padding-left:5px; }
 .page-template-nalrc-template .wpDataTablesFilter .wpDataTableFilterSection:not(#wdt-clear-filters-button-block):not(#wdt-pf-search-filters-button-block) { width:18.1% !important; }
@@ -71,8 +71,9 @@
 	line-height: 40px;
   margin-bottom: 0;
 }
-.wpdt-c .wpDataTableFilterBox .bootstrap-select > .btn-default:before { right:10px !important; }
+.wpdt-c .wpDataTableFilterBox .bootstrap-select > .btn-default:before { right:3px !important; }
 .wpdt-c .wpDataTableFilterBox .bootstrap-select .bs-searchbox:before { top:unset !important; }
+.wpdt-c .wpDataTablesWrapper table.wpDataTable thead th { background-color:#414141 !important; font-weight:bold; font-size:16px; padding:0 10px; text-align:center; }
 .bootstrap-select.btn-group .dropdown-menu li a { font-size:14px; }
 .wpdt-c .wpDataTablesWrapper table.wpDataTable thead th.sort.column-title::after { border: 5px solid transparent; display: inline-block; font-size: 0; line-height: 0; content: ""; height: 0; width: 0; vertical-align: 3px; margin: 0 0 0 10px; opacity: .6; border-bottom-color: #ffffff !important; }
 /** NALRC Footer Styles **/

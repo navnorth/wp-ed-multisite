@@ -36,20 +36,33 @@
 }
 .nalrc-banner nav li.nav-item.current-menu-item a { color:#000000; }
 .nalrc-header .nalrc-wrapper img { width:918px; height:auto; }
-.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter { background-color: #3693BB; color: #FFF; border-radius:5px; box-shadow:none; }
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter { background-color: #3693BB; color: #FFF; border-radius:5px; box-shadow:none; padding:30px; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection label { display:none; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection { min-height:45px !important; padding:5px 0 5px 15px; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .wdt-select-filter .dropdown-toggle span.filter-option { display:inline-block !important; color:#414141; margin-left:5px; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-degree-type,
-.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-category { background: #FFF; border-radius: 4px; border: 1px solid #414141; padding-left: 3px; }
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-category,
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-educator-certification,
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-location,
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection #table_1_7_filter { background: #FFF; border-radius: 4px; border: 1px solid #414141; padding-left: 5px; height:38px; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-degree-type .wdt-select-filter .dropdown-toggle, 
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-category .wdt-select-filter .dropdown-toggle { background-color:#FFFFFF !important; }
-.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter { float:left; min-height: 45px !important; padding: 15px; font-size: 16px;  padding:5px 0 5px 5px; margin-bottom:0 !important; }
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-degree-type .bootstrap-select.btn-group .dropdown-toggle .filter-option,
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-educator-certification .bootstrap-select.btn-group .dropdown-toggle .filter-option,
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-location .bootstrap-select.btn-group .dropdown-toggle .filter-option,
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection #table_1_7_filter .bootstrap-select.btn-group .dropdown-toggle .filter-option {
+    display: block !important;
+    color: #000;
+    font-size: 1rem;
+}
+.page-template-nalrc-template .wpDataTablesFilter .wpDataTableFilterSection:not(#wdt-clear-filters-button-block):not(#wdt-pf-search-filters-button-block) { width:18.2% !important; }
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter { float:left; min-height: 45px !important; padding: 15px; font-size: 16px;  padding:5px 0; margin-bottom:0 !important; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter label { font-size:16px; }
-.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input { height:32px !important; border-radius: 4px; border: 1px solid #414141; width:290px; background-color:#FFFFFF !important; color:#414141; }
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input { height:38px !important; border-radius: 4px; border: 1px solid #767676; width:290px; background-color:#FFFFFF !important; color:#414141; font-size:1rem; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input::placeholder { color:#414141 !important; opacity:1; }
+.page-template-nalrc-template .wpdt-c .wpDataTablesWrapper .filter_column button { height:34px !important;border-bottom:none !important; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSectionLabel {
-	float: left;
+	float: none;
   min-height: 45px;
   padding-left: 0;
 }

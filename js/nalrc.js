@@ -144,12 +144,6 @@ jQuery(function($){
 		if ($('.usacustomHtml5MapContainer').length){
 			var mapVar = $('.usacustomHtml5MapContainer').attr('data-map-variable');
 			this[mapVar].on('click', nalrc_html5map_onclick);
-			this[mapVar].on('keydown', function(e){
-				console.log(e);
-				var code = e.keyCode || e.which;
-				if (code==13 || code==32)
-					nalrc_html5map_onclick();
-			});
 		}
 	},1000);
 
@@ -159,6 +153,7 @@ jQuery(function($){
 		var code = e.keyCode || e.which;
 		if (code==13 || code==32){
 			$(this).trigger('click');
+			nalrc_html5map_onclick();
 			setTimeout(function(){
 				$('.usacustomHtml5MapStateInfo').find('.modal-map-details-popup').modal('show');
 			},1000);

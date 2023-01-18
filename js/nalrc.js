@@ -20,12 +20,12 @@ jQuery(function($){
 			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox').append('<div class="wpDataTableFilterSectionButton" id="table_search_filter_button"><button class="nalrc-search-button">Go &gt;</button>');
 
 			// Move Languages Taught as filter option
-			var filterBox = $('.page-template-nalrc-template .oese-tabs-block .tab-content .tab-pane .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox');
+			var filterBox = $(this).find('.wpdt_main_wrapper .wpDataTablesFilter #filterBox_table_1');
 			var languagestaught = filterBox.find('#table_1_7_filter_sections');
 			
 			if (filterBox.length){
 				filterBox.find('#table_search_filter_label').after(languagestaught);
-				languagestaught.css({'padding-left':'0','padding-right':'5px'});
+				languagestaught.css({'padding-left':'0'});
 			}
 
 			// Trigger search on pressing Enter key
@@ -145,6 +145,7 @@ jQuery(function($){
 			var mapVar = $('.usacustomHtml5MapContainer').attr('data-map-variable');
 			this[mapVar].on('click', nalrc_html5map_onclick);
 			this[mapVar].on('keydown', function(e){
+				console.log(e);
 				var code = e.keyCode || e.which;
 				if (code==13 || code==32)
 					nalrc_html5map_onclick();
@@ -154,6 +155,7 @@ jQuery(function($){
 
 	// Certifications Map Enter/Space bar key press
 	$('.usacustomHtml5MapContainer').on('keydown','svg path',function(e){
+		console.log(e);
 		var code = e.keyCode || e.which;
 		if (code==13 || code==32){
 			$(this).trigger('click');

@@ -117,7 +117,8 @@
 .page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr:nth-child(even) {
 	background-color:#f5f5f5 !important;
 }
-.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection#table_1_1_filter_sections { padding-left:0; }
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection#table_1_1_filter_sections,
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection#table_2_1_filter_sections { padding-left:0; }
 /** NALRC Footer Styles **/
 .nalrc-footer { border-top:1px solid #d1d1d1; }
 .nalrc-footer .nalrc-wrapper { padding:25px 0; display:flex; }

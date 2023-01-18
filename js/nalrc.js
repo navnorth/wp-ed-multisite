@@ -9,13 +9,22 @@ jQuery(function($){
 			let input = filter.find('input');
 			let tabLabel = $(this).attr('aria-labelledby');
 			let tabLabelText = $('#' + tabLabel).text();
-			tabLabelText = 'Search' + tabLabelText;
+			//tabLabelText = 'Search' + tabLabelText;
+			tabLabelText = 'Filter By:';
 			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox').prepend(filter);
 			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter').html("");
 			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter').append(input);
 			$(this).find('.wpnn_wpdt_action_wrapper .dataTables_filter').hide();
 			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input').attr('placeholder', 'Search by keywords or phrase');
 			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox').prepend('<div class="wpDataTableFilterSectionLabel" id="table_search_filter_label"><label>' + tabLabelText + '</label></div>');
+			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox').append('<div class="wpDataTableFilterSectionButton" id="table_search_filter_button"><button class="nalrc-search-button">Go &gt;</button>');
+
+			// Move Languages Taught as filter option
+			var filterBox = $(this).find('#filterBox_table_1');
+			if (filterBox.length){
+				let languagestaught = filterBox.find('#table_1_7_filter_sections');
+				filterBox.find('#table_search_filter_label').next(languagestaught);
+			}
 
 			// Trigger search on pressing Enter key
 			let parent = $(this);

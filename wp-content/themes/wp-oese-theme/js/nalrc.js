@@ -28,6 +28,39 @@ jQuery(function($){
 				languagestaught.css({'padding-left':'0'});
 			}
 
+			// Start - Move Show Info above the table
+			if ($(this).find('.wpdt-c .wpDataTables#table_1_wrapper').length)
+				$(this).find('.wpdt-c .wpDataTables#table_1_wrapper').prepend('<div class="wpdt_info"><h2><span class="program-name">IHEs </span> Showing: <span class="cur-count"></span> of <span class="total-count"></span></h2></div>');
+			if ($(this).find('.wpdt-c .wpDataTables#table_2_wrapper').length)
+				$(this).find('.wpdt-c .wpDataTables#table_2_wrapper').prepend('<div class="wpdt_info"><h2><span class="program-name">Early Childhood – Grade 12 </span> Showing: <span class="cur-count"></span> of <span class="total-count"></span></h2></div>');
+			
+			function showInfo(show, show_info){
+				var info = show_info.split(" ");
+				if (Array.isArray(info)){
+					info.forEach((str, index) => {
+						if (index==3) {
+							if (show.find('.wpdt-c .wpDataTables#table_1_wrapper').length)
+								show.find('.wpdt-c .wpDataTables#table_1_wrapper .cur-count').text(str);
+							if (show.find('.wpdt-c .wpDataTables#table_2_wrapper').length)
+								show.find('.wpdt-c .wpDataTables#table_2_wrapper .cur-count').text(str);
+						} else if (index==5) {
+							if (show.find('.wpdt-c .wpDataTables#table_1_wrapper').length)
+								show.find('.wpdt-c .wpDataTables#table_1_wrapper .total-count').text(str);
+							if (show.find('.wpdt-c .wpDataTables#table_2_wrapper').length)
+								show.find('.wpdt-c .wpDataTables#table_2_wrapper .total-count').text(str);
+						}
+					});
+				}
+			}
+																						
+			$(this).find('.dataTables_info').on("DOMSubtreeModified", function(){
+				showInfo($(this).closest('.tab-pane'),$(this).text());
+			});																			
+		
+			var showText = $(this).find('.dataTables_info').text();
+			showInfo($(this),showText);
+			// End - Move Show Info above the table
+
 			// Trigger search on pressing Enter key
 			let parent = $(this);
 			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input').on("input", function(e){

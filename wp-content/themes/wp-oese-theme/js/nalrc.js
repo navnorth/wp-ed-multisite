@@ -188,12 +188,8 @@ jQuery(function($){
 		console.log(e);
 		var code = e.keyCode || e.which;
 		if (code==13 || code==32){
-			$(this).focus();
-			$(this).trigger('mousein');
-			$(this).trigger('click');
-			setTimeout(function(){
-				$('.usacustomHtml5MapStateInfo').find('.modal-map-details-popup').modal('show');
-			},1000);
+			var mapVar = $('.usacustomHtml5MapContainer').attr('data-map-variable');
+			this[mapVar].on('click', nalrc_html5map_onclick);
 		}
 	});
 

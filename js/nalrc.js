@@ -189,7 +189,7 @@ jQuery(function($){
 		var code = e.keyCode || e.which;
 		if (code==13 || code==32){
 			var mapVar = $('.usacustomHtml5MapContainer').attr('data-map-variable');
-			this[mapVar].on('click', nalrc_html5map_onclick);
+			usacustomhtml5map_map_0.on('click', nalrc_html5map_onclick);
 		}
 	});
 

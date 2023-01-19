@@ -111,6 +111,9 @@ jQuery(function($){
 
 	// Override Certifications Map Click
 	var nalrc_html5map_onclick = function(ev, sid, map) { 
+		console.log(ev);
+		console.log(sid);
+		console.log(map);
 		var cfg = this[window.map_cfg]; 
 		var link = map.fetchStateAttr(sid, 'link'); 
 		var is_group = map.fetchStateAttr(sid, 'group'); 
@@ -185,6 +188,8 @@ jQuery(function($){
 		console.log(e);
 		var code = e.keyCode || e.which;
 		if (code==13 || code==32){
+			$(this).focus();
+			$(this).trigger('mousein');
 			$(this).trigger('click');
 			setTimeout(function(){
 				$('.usacustomHtml5MapStateInfo').find('.modal-map-details-popup').modal('show');

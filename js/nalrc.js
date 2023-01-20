@@ -189,8 +189,7 @@ jQuery(function($){
 		var code = e.keyCode || e.which;
 		if (code==13 || code==32){
 			var mapVar = $('.usacustomHtml5MapContainer').attr('data-map-variable');
-			var sid_str = $(this).attr('class');
-			var sid = window[sid_str];
+			var sid = $(this).attr('class');
 			var link = usacustomhtml5map_map_0.fetchStateAttr(sid, 'link'); 
 			var is_group = usacustomhtml5map_map_0.fetchStateAttr(sid, 'group'); 
 			var popup_id = usacustomhtml5map_map_0.fetchStateAttr(sid, 'popup-id'); 

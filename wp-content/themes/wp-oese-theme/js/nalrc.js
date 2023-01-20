@@ -196,9 +196,11 @@ jQuery(function($){
 			var popup_id = map.fetchStateAttr(sid, 'popup-id'); 
 			var is_group_info = false; 
 
-			if (sid.substr(0,1)=='p') { 
-				popup_id = map.fetchPointAttr(sid, 'popup_id'); 
-				link = map.fetchPointAttr(sid, 'link'); } 
+			if (is_group==undefined) { 
+				if (sid.substr(0,1)=='p') { 
+					popup_id = map.fetchPointAttr(sid, 'popup_id'); 
+					link = map.fetchPointAttr(sid, 'link'); 
+				} 
 			} else if (typeof cfg.groups[is_group]['ignore_link'] == 'undefined' || ! cfg.groups[is_group].ignore_link) { 
 				link = cfg.groups[is_group].link; 
 				popup_id = cfg.groups[is_group]['popup_id']; 

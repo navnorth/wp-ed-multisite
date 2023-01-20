@@ -191,15 +191,15 @@ jQuery(function($){
 			var mapVar = $('.usacustomHtml5MapContainer').attr('data-map-variable');
 			var sid_str = $(this).attr('class');
 			var sid = window[sid_str];
-			var link = map.fetchStateAttr(sid, 'link'); 
-			var is_group = map.fetchStateAttr(sid, 'group'); 
-			var popup_id = map.fetchStateAttr(sid, 'popup-id'); 
+			var link = usacustomhtml5map_map_0.fetchStateAttr(sid, 'link'); 
+			var is_group = usacustomhtml5map_map_0.fetchStateAttr(sid, 'group'); 
+			var popup_id = usacustomhtml5map_map_0.fetchStateAttr(sid, 'popup-id'); 
 			var is_group_info = false; 
 
 			if (is_group==undefined) { 
 				if (sid.substr(0,1)=='p') { 
-					popup_id = map.fetchPointAttr(sid, 'popup_id'); 
-					link = map.fetchPointAttr(sid, 'link'); 
+					popup_id = usacustomhtml5map_map_0.fetchPointAttr(sid, 'popup_id'); 
+					link = usacustomhtml5map_map_0.fetchPointAttr(sid, 'link'); 
 				} 
 			} else if (typeof cfg.groups[is_group]['ignore_link'] == 'undefined' || ! cfg.groups[is_group].ignore_link) { 
 				link = cfg.groups[is_group].link; 

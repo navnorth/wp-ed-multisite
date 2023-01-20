@@ -205,12 +205,13 @@
 	float: right;
     display: inline;
     margin-left: 1%;
+    z-index:2;
 }
 .nalrc-main #sngl-resource .nalrc-resource-details { display:inline; }
 .nalrc-main #sngl-resource .nalrc-resource-details .nalrc-resource-desc { margin-top:-25px; }
 .nalrc-main #sngl-resource .oer-subject-resources-list .post.oer-snglrsrc .tagcloud span a { color: #FFFFFF !important; text-decoration: none; }
 .nalrc-main #sngl-resource .oer-subject-resources-list .post.oer-snglrsrc .tagcloud span a:hover { color:#414141; }
-.nalrc-content-row, .nalrc-resource-notice { flex-wrap:nowrap; display:block; margin-left:0; margin-right:0; }
+.nalrc-content-row, .nalrc-resource-notice { flex-wrap:nowrap; display:block; margin-left:0; margin-right:0;white-space:nowrap; }
 .wpDataTableFilterBox .wpDataTableFilterSection .wdt-filter-control .dropdown-menu { height:auto !important }
 .wpDataTable thead th.column-title span::after {
     border: 5px solid transparent;

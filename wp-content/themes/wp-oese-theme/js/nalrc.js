@@ -195,7 +195,8 @@ jQuery(function($){
 			var is_group = usacustomhtml5map_map_0.fetchStateAttr(sid, 'group'); 
 			var popup_id = usacustomhtml5map_map_0.fetchStateAttr(sid, 'popup-id'); 
 			var is_group_info = false; 
-
+			console.log(is_group);
+			console.log(sid);
 			if (is_group==undefined) { 
 				if (sid.substr(0,1)=='p') { 
 					popup_id = usacustomhtml5map_map_0.fetchPointAttr(sid, 'popup_id'); 

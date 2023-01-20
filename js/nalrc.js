@@ -189,7 +189,37 @@ jQuery(function($){
 		var code = e.keyCode || e.which;
 		if (code==13 || code==32){
 			var mapVar = $('.usacustomHtml5MapContainer').attr('data-map-variable');
-			usacustomhtml5map_map_0.on('click', nalrc_html5map_onclick);
+			var sid_str = $(this).attr('class');
+			var sid = window[sid_str];
+			var link = map.fetchStateAttr(sid, 'link'); 
+			var is_group = map.fetchStateAttr(sid, 'group'); 
+			var popup_id = map.fetchStateAttr(sid, 'popup-id'); 
+			var is_group_info = false; 
+
+			if (sid.substr(0,1)=='p') { 
+				popup_id = map.fetchPointAttr(sid, 'popup_id'); 
+				link = map.fetchPointAttr(sid, 'link'); } 
+			} else if (typeof cfg.groups[is_group]['ignore_link'] == 'undefined' || ! cfg.groups[is_group].ignore_link) { 
+				link = cfg.groups[is_group].link; 
+				popup_id = cfg.groups[is_group]['popup_id']; 
+				is_group_info = true; 
+			} 
+
+			var id = is_group_info ? is_group : (sid.substr(0,1)=='p' ? sid : usacustomhtml5map_map_0.fetchStateAttr(sid, 'id')); 
+			$('#usacustom-html5-map-state-info_0').html('<div class="nalrc-loader">Loading...</div>');
+			$('#usacustom-html5-map-state-info_0').css('display','flex');
+			$.ajax({ 
+				type: 'POST', 
+				url: (is_group_info ? nalrc.home_url + '/index.php' + '?map_id=' + window.map_id + '&usacustomhtml5map_get_group_info=' : 'https://oese.wp.nnth.dev/' + 'index.php' + '?map_id=5' + '&usacustomhtml5map_get_state_info=') + id, 
+				success: function(data, textStatus, jqXHR){ 
+					$('#usacustom-html5-map-state-info_0').html(data).css('opacity','1'); 
+					$('#usacustom-html5-map-state-info_0').find('.modal-map-details-popup').modal('show');
+					if ($('.modal-backdrop').is(":visible"))
+						$('.modal-backdrop').hide();
+				}, 
+				dataType: 'text' 
+			}); 
+			return false; 
 		}
 	});
 

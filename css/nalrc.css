@@ -453,6 +453,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-body .map-popup-detail .map-detail-label {
 	font-weight:bold;
+	color:#333333;
 }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-body .map-popup-detail:last-child .map-detail-value,
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-body .map-detail-source {

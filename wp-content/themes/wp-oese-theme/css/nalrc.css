@@ -475,6 +475,21 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .map-popup-detail p { margin-bottom:0; }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .map-popup-detail a { font-size:12px; }
+.nalrc-paginated-content .pagination-content {
+	display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.nalrc-paginated-content .pagination-content .pagination-item {
+	display: flex;
+    width: 100%;
+    flex-basis: 100%;
+    flex-direction: column;
+    position: absolute;
+	padding:20px 0;
+}
 /** End of NALRC Certifications Page Styles **/
 /** Responsive Styles **/
 @media only screen and (max-width:1200px){

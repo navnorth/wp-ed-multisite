@@ -1,0 +1,61 @@
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/style.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-create-block-oese-tabs {
+  background-color: #21759b;
+  color: #fff;
+  padding: 2px;
+}
+
+.wp-block-oese-block-oese-tabs #oeseTabs {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 0;
+  list-style-type: none;
+  margin-bottom: 0;
+  border-bottom: 1px solid #a0a0a0;
+}
+
+.wp-block-oese-block-oese-tabs #oeseTabs li i.fas {
+  font-family: "Font Awesome 5 Free" !important;
+}
+
+.wp-block-oese-block-oese-tabs #oeseTabs li {
+  list-style: none;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+.wp-block-oese-block-oese-tabs #oeseTabs li a.active {
+  border-color: #dee2e6 #dee2e6 #fff;
+  background-color: #3693bb;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.wp-block-oese-block-oese-tabs #oeseTabs li a {
+  border-color: #dee2e6 #dee2e6 #fff;
+  background-color: #414141;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.wp-block-oese-block-oese-tabs .oese-tabs-block div.tab-content .tab-pane {
+  padding: 10px 0;
+}
+
+.oese-tabs-block .tab-content .tab-pane:focus {
+  border: 1px solid hsl(219deg, 1%, 72%);
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+}
+
+/*# sourceMappingURL=style-index.css.map*/

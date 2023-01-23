@@ -153,6 +153,11 @@
 	background-color:#ffffff;
 	border: 1px solid #d1d1d1;
 }
+#oese-acf-slider .nalrc-list .bullet:hover,
+#oese-acf-slider .nalrc-list .bullet:focus {
+	background-color:#3693bb;
+	border: 1px solid #ffffff;
+}
 #oese-acf-slider .nalrc-list .bullet.active {
 	background-color:#f2ca03;
 }

@@ -354,6 +354,11 @@
     justify-content: space-between;
     padding-left:5px;
 }
+.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-toggle .filter-option { overflow:hidden; }
+.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-toggle .filter-option .filter-option-inner-inner {
+	text-overflow: ellipsis;
+    overflow: hidden;
+}
 .nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu { width:100%; }
 .nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu.inner{
 	position: static;
@@ -565,6 +570,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.nalrc-featured-thumbnail { margin-top:10px; margin-bottom:35px; }
 	.nalrc-main #sngl-resource .nalrc-resource-details { display:block; padding-left:0; padding-right:0; }
 	.nalrc-main #sngl-resource .nalrc-resource-details .nalrc-resource-desc { margin-top:0; }
+	.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content { width:95%; }
 }
 @media only screen and (max-width:600px){
 	.nalrc-details.row { padding-left:30px; padding-right:30px; }

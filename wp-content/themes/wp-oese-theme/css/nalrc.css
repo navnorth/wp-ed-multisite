@@ -339,6 +339,7 @@
     border: none;
     z-index: 0!important;
 }
+.nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-toggle,
 .nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-toggle{
 	position: relative;
     width: 100%;
@@ -363,6 +364,9 @@
 	text-overflow: ellipsis;
     overflow: hidden;
     color:#333333;
+}
+.nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-toggle .filter-option .filter-option-inner-inner {
+	color:#333333;
 }
 .nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu { width:100%; }
 .nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu.inner{

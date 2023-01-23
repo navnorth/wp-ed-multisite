@@ -1,0 +1,931 @@
+.col-md-12.pblctn_paramtr.padding_left .gat_feature_image {
+    float: left;
+    margin-right: 10px;
+    width: 103px;
+}
+.col-md-12.pblctn_paramtr.padding_left .gat_feature_image .featured_image {
+    float: left;
+    width: 100%;
+}
+.leftpad
+{
+	padding-left: 0px !important;
+}
+.assmnt-left div
+{
+	float: none;
+	margin: 14px 0;
+	text-align: center;
+}
+.col-md-7 .get_domainlist, .col-md-9 .get_domainlist
+{
+	border: 1px solid #ccc;
+	width: 100%;
+	float: left;
+	padding: 10px 0 10px 35px;
+}
+.get_domainlist > li
+{
+  font-weight: bold;
+  list-style: none;
+  padding: 10px 0 0 0;
+  height: 45px;
+}
+.get_domainlist > li > h4 {
+  margin: 3px 0 2px -10px;
+}
+.col-md-7 .get_domainlist_button
+{
+	width:100%;
+	float:left;
+}
+.get_domainlist_button > a
+{
+	float:right;
+}
+.gat_genratedtoken
+{
+	font-size:20px;
+	font-weight:bold;
+	margin-bottom:10px;
+}
+.form-group
+{
+	width:100%;
+	float:left;
+}
+.form-group .gatfields
+{
+	width: 25% !important;
+}
+.form-group label
+{
+	width: 130px;
+	float: left;
+	text-align: right;
+	margin-right:20px;
+	margin-top: 10px;
+}
+.form-group .gatfields
+{
+	float:left;
+	margin-right:10px;
+}
+.form-group span{
+	float:left;
+	margin-top: 10px;
+
+}
+.form-group.gatprivacylink
+{
+	width:auto;
+	float: right;
+}
+.gat_tokenfrm_brd
+{
+	border: 1px solid #ccc;
+	display: inline-block;
+	padding: 20px 10px;
+	width: 100%;
+	border-radius:3px;
+}
+.gat_tokenfrm_btn
+{
+	float: right;
+	margin-top: 22px;
+}
+.gat_alreadytoken
+{
+	float:right;
+	padding-bottom:5px;
+}
+.gat_domain_rating_scale
+{
+	width: 95%;
+	float: left;
+	margin: 5px 15px 25px 15px;
+	padding: 0;
+	border: 1px solid #ccc;
+  clear:both;
+}
+.gat_domain_rating_scale li
+{
+	width: 25%;
+	float: left;
+	display:inline;
+	border-left: 1px solid #ccc;
+	font-size: 14px;
+	padding: 3px 20px 6px 20px;
+	overflow: hidden;
+	text-align:center;
+}
+.gat_domain_rating_scale li input[type=radio] { display:block; margin:5px auto; }
+.question-error, .red-text { color:#ff0000; margin:5px 0 0; }
+.gat_dimension_header {
+  margin-bottom: 5px;
+  font-family: "Raleway-Bold" !important;
+  color: #e57200;
+}
+.gat_dimension_desc {
+  margin:10px 15px 0 15px;
+}
+.rating_scale_description {	display: none; }
+.dimension_question fieldset legend { display: none; }
+.gat_scaledescription_cntnr {
+    border: 1px solid #ccc;
+    float: left;
+    margin: -15px 0 10px;
+    padding: 10px;
+    text-align: justify;
+    width: 100%;
+    display: block !important;
+    min-height:65px;
+    margin-bottom:25px;
+}
+.selectedli {
+    background-color: #294179;
+    color: #fff;
+}
+.rating_scaleli label {
+  font-weight: normal;
+  margin-bottom: inherit;
+  display: inherit;
+}
+.selectedarea
+{
+	display: block !important;
+}
+.get_domainlist label {
+    border: 1px solid #ccc;
+    float: right;
+    margin-right: 20px;
+    padding: 2px 25px;
+	cursor: pointer;
+	height: 27px;
+}
+.gat_indicatorwidget {
+    border: 1px solid #ccc;
+    padding: 10px;
+	float: left;
+	width: 100%;
+}
+.gat_indicatorwidget > div {
+    line-height: 25px;
+}
+.gat_indicatorwidget div:nth-child(4) {
+    margin-top: 10px;
+}
+.gat_indicatorwidget #do-clear-analysis {
+    color: inherit;
+    text-decoration: none;
+}
+.gat_indicatorwidget .access-code .fa {
+    margin-left: 5px;
+    display: none;
+}
+.gat_indicatorwidget .access-code:hover .fa {
+    display: inline-block;
+}
+.meter {
+	height: 30px;
+	position: relative;
+	padding: 10px;
+	box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+	border:1px solid #ccc;
+}
+label.meter
+{
+	height: 25px !important;
+	width: 67px !important;
+}
+.meter > span {
+    background-color: #294179;
+    color: #fff;
+    display: block;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    top: 0;
+}
+/*.meter > span {
+  display: block;
+  height: 100%;
+  background-color: #ccc;
+  background-image: linear-gradient(
+    center bottom,
+    rgb(43,194,83) 37%,
+    rgb(84,240,84) 69%
+  );
+  box-shadow:
+    inset 0 2px 9px  rgba(255,255,255,0.3),
+    inset 0 -2px 6px rgba(0,0,0,0.4);
+  position: absolute;
+  overflow: hidden;
+  top: 0px;
+  left: 0px;
+  text-align: center;
+}*/
+.gat_domainsbmt_btn {
+    float: left;
+    list-style: outside none none;
+    margin: 25px 0;
+    padding: 0;
+    width: 100%;
+}
+.gat_domainsbmt_btn li {
+    display: inline-block;
+}
+.gat_domainsbmt_btn > li {
+    width: 33%;
+}
+.gat_token_saved > li {
+    width:21%;
+}
+.video-playlist-result .gat_domainsbmt_btn > li {
+    width:32%;
+}
+.gat_twobuttons > li {
+    width: 49.7% !important;
+}
+.gat_twobuttons li:nth-child(2) {
+    text-align:right !important;
+}
+.gat_thirddomain li:nth-child(2),
+.gat_thirddomain li:nth-child(3){
+    width:33%;
+}
+.gat_domainsbmt_btn li .gat_button {
+    float: none !important;
+}
+.gat_domainsbmt_btn  li:nth-child(1)
+{
+	text-align: left;
+}
+.gat_domainsbmt_btn  li:nth-child(2)
+{
+	text-align: center;
+}
+.gat_domainsbmt_btn  li:nth-child(3)
+{
+	text-align: right;
+}
+.gat_token_saved > li:nth-child(3) {
+    text-align:center;
+}
+.gat_token_saved > li:nth-child(4) {
+    width:35%;
+    text-align:right;
+}
+.gat_thirddomain li:nth-child(1),
+.gat_thirddomain li:nth-child(2){
+    width:24.5%;
+}
+.gat_thirddomain li:nth-child(3) {
+    width:50%;
+}
+.gat_thirddomain li:nth-child(4) {
+    width:42.5%;
+}
+.gat_sharing_widget {
+    margin-bottom: 10px;
+    padding-top: 20px;
+}
+.gat_sharing_widget .pblctn_scl_icn_hedng {
+  text-align: left;
+}
+ul.gat_indicatorlights {
+    background: rgba(51,51,51, .8);
+    border: 1px solid #000;
+    border-radius: 28px;
+    float: right;
+    padding: 0 5px;
+    width: auto;
+	height: 30px;
+	margin-right: 20px;
+}
+
+.gat_indicatorlights li
+{
+    float: left;
+    list-style: outside none none;
+    width: auto;
+	margin: 5px 2px;
+}
+.gat_indicatorlights a {
+    display: block;
+    height: 16px;
+}
+.get_indicator_btn
+{
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  width: 15px;
+  height: 15px;
+  display:inline-block;
+  border: 2px solid #000;
+}
+.red
+{
+  background: #eb2a2a;
+  background-image: -webkit-linear-gradient(top, #eb2a2a, #bf0a13);
+  background-image: -moz-linear-gradient(top, #eb2a2a, #bf0a13);
+  background-image: -ms-linear-gradient(top, #eb2a2a, #bf0a13);
+  background-image: -o-linear-gradient(top, #eb2a2a, #bf0a13);
+  background-image: linear-gradient(to bottom, #eb2a2a, #bf0a13);
+}
+.yellow {
+  background: #FF0;
+  background-image: -webkit-linear-gradient(top, #FF0, #fad725);
+  background-image: -moz-linear-gradient(top, #FF0, #fad725);
+  background-image: -ms-linear-gradient(top, #FF0, #fad725);
+  background-image: -o-linear-gradient(top, #FF0, #fad725);
+  background-image: linear-gradient(to bottom, #FF0, #fad725);
+}
+.green {
+  background: #4f9e05;
+  background-image: -webkit-linear-gradient(top, #4f9e05, #6cb814);
+  background-image: -moz-linear-gradient(top, #4f9e05, #6cb814);
+  background-image: -ms-linear-gradient(top, #4f9e05, #6cb814);
+  background-image: -o-linear-gradient(top, #4f9e05, #6cb814);
+  background-image: linear-gradient(to bottom, #4f9e05, #6cb814);
+}
+.red, .yellow, .green
+{
+	opacity: .5;
+}
+.selected_indicatorlght
+{
+	opacity: 1.0 !important;
+}
+.analysis_result .gat_player_videos
+{
+	float: left;
+    margin-right: 15px;
+    width: 51%;
+}
+.analysis_result .gat_reslt_listvideos
+{
+    border-top: 1px solid #ccc;
+    float: left;
+    height: 260px;
+    list-style: outside none none;
+    overflow-y: scroll;
+    padding: 10px 0;
+    width: 47%;
+}
+.gat_reslt_listvideos li {
+    width: 100%;
+    float: left;
+    margin: 5px 0;
+    position: relative;
+    border-bottom: 1px solid #CDCDCD;
+    padding: 5px 0 15px;
+}
+.gat_reslt_listvideos li:last-child {
+    border-bottom:none;
+}
+.analysis_result .gat_priority_form
+{
+	width: 100%;
+	float: left;
+	margin: 5px 0 10px;
+}
+
+/* video playlist selector */
+.gat_priority_form {
+    background: #294179 !important;
+    color: #fff;
+    font-size: 16px;
+}
+.gat_priority_form form {
+    padding: 10px 15px;
+    border-bottom: 1px solid #CDCDCD;}
+.gat_priority_form_label {
+    text-align: right;
+    padding-right:8px;
+    width:70px;
+    display:inline-block;
+    font-size: 16px;
+}
+.gat_priority_form_selector {
+   display:inline-block;
+   width: 255px;
+   height: 34px;
+   background: url(../images/down_arrow_select.jpg) no-repeat right #ccc;
+   border: 1px solid #4b4e53;
+}
+.gat_priority_form_selector select {
+   display:inline-block;
+   background: transparent;
+   width: 268px;
+   padding: 5px 10px;
+   color: #294179;
+   font-size: 16px;
+   font-weight: 700;
+   line-height: 1.5;
+   border: 0;
+   border-radius: 0;
+   height: 34px;
+   -webkit-appearance: none;
+}
+
+
+.gat_prioritydomaind_list {
+    border:1px solid #ccc;
+    float: left;
+    list-style: outside none none;
+    margin: 0 0 32px;
+    padding: 10px 0 10px 20px;
+    width: 100%;
+}
+.gat_prioritydomaind_list > li {
+    float: left;
+    padding: 6px 0;
+    width: 100%;
+}
+.gat_prioritydomaind_list .gat_indicatorlights
+{
+	margin-right: 5px !important;
+}
+.gat_reslt_listvideos .gat_imgcntnr {
+    float: left;
+    width: auto;
+    position:relative;
+}
+.gat_reslt_listvideos .gat_desccntnr {
+    width: 60%;
+    float: left;
+    margin-left: 10px;
+    margin-top: -4px;
+    /*height: 40px;*/
+    /*overflow: hidden;*/
+}
+.gat_reslt_listvideos .video-title {
+    display: block;
+    font-weight: bold;
+}
+.gat_reslt_listvideos .video-domain-title {
+    font-size: 14px;
+    font-style:italic;
+}
+.gat_reslt_listvideos .gat_videodetails {
+    float: left;
+    width: 75%;
+}
+.gat_videodetails .meter {
+    float: right;
+    width: 100px !important;
+}
+.gat_videodetails > span {
+    float: right;
+    font-size: 20px;
+    margin: 0 15px;
+	cursor: pointer;
+}
+.gat_vid_thumbnail {
+  width:120px;
+  border: 1px solid #294179;
+}
+.loadvideo
+{
+	position: relative;
+}
+.unclickable,.unclickablevideo {
+	display: none;
+	cursor: pointer;
+	/*background: #000 none repeat scroll 0 0;*/
+	opacity: 0.6;
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.gat_error {
+    border-left: 3px solid #294179;
+    box-shadow: 0 0px 2px;
+    float: left;
+    margin-bottom: 10px;
+    padding: 10px 25px;
+    width: 100%;
+}
+.get_domainlist a:first-child {
+    color: #4b4e53;
+    text-decoration: none;
+}
+.gat-video-sidebar {
+    margin:25px 0 30px;
+    border: 1px solid #CDCDCD;
+    padding:0 !important;
+}
+.gat-video-sidebar .gat_reslt_listvideos {
+    max-height: 405px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-bottom:0;
+    padding:10px 15px;
+    list-style:none;
+}
+
+.clear { clear:both; }
+/*my*/
+.gat_button, .gat_button_start, .gat_button_continue, .gat_button_saveinfo, .gat_button_return  {
+background: #294179 !important;
+background: -moz-linear-gradient(top, #294179, #0062b2) !important;
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#294179), color-stop(100%,#7db9e8)) !important; /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #294179, #0062b2) !important; /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #294179, #0062b2) !important; /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #294179, #0062b2) !important; /* IE10+ */
+background: linear-gradient(to bottom, #294179, #0062b2) !important; /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#294179', endColorstr='#0062b2',GradientType=0 ) !important; /* IE6-9 */
+border:none !important;
+color:#fff !important;
+font-family: "Raleway-Regular";
+float: right;
+}
+.gat_button_start, .gat_button_continue, .gat_button_saveinfo, .gat_button_return {
+    width: 165px;
+}
+.gat_button_saveinfo { float:none; width: 165px; }
+.gat_saveinfo { text-align: center; margin: 10px 0px;}
+.gat_button:hover, .gat_button_start:hover, .gat_button_continue:hover, .gat_button_saveinfo:hover, .gat_button_return:hover,
+.gat_button:focus, .gat_button_start:focus, .gat_button_continue:focus, .gat_button_saveinfo:focus, .gat_button_return:focus {
+background: #7db9e8 !important; /* Old browsers */
+background: -moz-linear-gradient(top, #0062b2, #294179) !important; /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0062b2), color-stop(100%,#294179)) !important; /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #0062b2, #294179) !important; /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #0062b2, #294179) !important; /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #0062b2, #294179) !important; /* IE10+ */
+background: linear-gradient(to bottom, #0062b2 0%,#294179 100%) !important; /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0062b2', endColorstr='#294179',GradientType=0 ) !important;
+}
+.gat_button:focus, .gat_button_start:focus, .gat_button_continue:focus, .gat_button_return:focus {
+    border-color:#7692F8;
+}
+#gat_email_results_playlist_link {
+    width: 100%;
+    border-radius: 0 !important;
+}
+
+.gat-video-list { padding:0 !important; }
+.browse-library { text-align:center; }
+.gat_button_browse_library { float:none; }
+#gat_return_label { color: #4b4e53; font-family: 'Raleway-Light'; margin-bottom:6px; padding-top:18px; }
+
+
+/** Tooltip styles **/
+.tooltip > .tooltip-inner {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #cccccc;
+    padding: 15px;
+    font-family: 'CharisSILR' !important;
+    max-width:350px;
+    text-align:left;
+    opacity:1;
+}
+.tooltip > .tooltip-inner h4 { font-size:20px;font-weight:bold; }
+.tooltip > .tooltip-inner p { font-size:13px; }
+/* Tooltip on bottom */
+.tooltip.bottom > .tooltip-arrow {
+    border-bottom: 5px solid #cccccc;
+}
+.tooltip.in {
+    opacity: 1 !important;
+    filter: alpha(opacity=100);
+}
+/**
+ * ------------------------------------------------------------------
+ * GAT User Information Modal
+ */
+.modal-container .modal .modal-content {
+    border-radius: 0;
+}
+#gat-user-info-form .form-group label {
+    text-align: left;
+}
+.gat-user-email a {
+    cursor: pointer;
+}
+/**
+ * ------------------------------------------------------------------
+ * GAT User Information Modal
+ */
+/**
+ * ------------------------------------------------------------------
+ * GAT Full Video Library - Begin
+ */
+.full-video-library { padding:0 !important; }
+.gat-library-videos {
+    white-space: nowrap;
+    border: 1px solid #cccccc;
+    overflow: auto;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    padding:10px 0;
+    height:210px;
+    max-height:230px;
+    width: 95%;
+    margin:0 auto;
+}
+.gat-library-videos:focus { border-color:#294179; }
+.gat-library-videos ul { list-style:none; padding:0; margin:0; }
+.gat-library-videos ul li { display:inline-block;margin:0 10px; white-space: normal; vertical-align: top; }
+.gat-library-videos p { margin:auto 10px; }
+.vlist { position:relative; }
+.vlist h4 { margin:20px 0 5px; }
+.gat-library-videos .video-link { display:block;position:relative; }
+.gat-library-videos .gat-video-title { max-width:240px; }
+.scroll-left {
+    width: 0;
+    height: 0;
+    border-top: 55px solid transparent;
+    border-bottom: 55px solid transparent;
+    border-right: 20px solid #294179;
+    position:absolute;
+    top:25%;
+    left:0;
+    cursor:pointer;
+}
+.scroll-right {
+    width: 0;
+    height: 0;
+    border-top: 55px solid transparent;
+    border-bottom: 55px solid transparent;
+    border-left: 20px solid #294179;
+    position:absolute;
+    top:25%;
+    right:0;
+    cursor:pointer;
+}
+.scroll-left.scroll-disabled {
+    border-right-color:#cccccc;
+    cursor:auto;
+}
+.scroll-right.scroll-disabled{
+    border-left-color:#cccccc;
+    cursor:auto;
+}
+/**
+ * ------------------------------------------------------------------
+ * GAT Full Video Library - End
+ */
+/**
+ * ------------------------------------------------------------------
+ * GAT Analysis Result - Begin
+ */
+.gat-top-x-line {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+.gat-result-label {
+    padding: 0 22px 0 25px;
+    clear:both;
+    margin-bottom:15px;
+}
+.gat-top-x-vline {
+    width:25%;
+    float:left;
+    position: relative;
+    margin-top: -32px;
+}
+.gat-top-x-vline span {
+    color: #000000;
+    display: block;
+}
+.vline1,.vline4{
+    width:10%;
+    text-align:center;
+}
+.vline2,.vline3 {
+    width:40%;
+    text-align:center;
+}
+.vline2 { padding-left:10%; }
+.vline3 { padding-right:10%; }
+/**
+ * ------------------------------------------------------------------
+ * GAT Analysis Result - End
+ */
+/**
+ * ------------------------------------------------------------------
+ * Scrollbar Styling
+ **/
+.video-list ::-webkit-scrollbar {
+      height: 15px;
+}
+.video-list ::-webkit-scrollbar-track {
+      background-color:#cccccc;
+} /* background color of scroll bar */
+
+.video-list ::-webkit-scrollbar-thumb {
+	background-color: #294179;
+} /* setting the scroll bar color */
+
+.video-list ::-webkit-scrollbar-button {
+      background-color: #0C4284;
+} /* color of left and right scroll buttons */
+.video-list {
+     scrollbar-face-color: #294179;
+     scrollbar-arrow-color: #294179;
+}
+/**
+ * ------------------------------------------------------------------
+ * End of Scrollbar Styling
+ **/
+@media screen and (max-width: 724px) {
+.form-group label {
+    text-align: left;
+}
+.form-group .gatfields {
+    width: 100% !important;
+}
+.scroll-left { left:-2.5%; }
+.scroll-right { right:-2.5%; }
+}
+@media screen and (max-width: 767px){
+.gat_domain_rating_scale li {
+    font-size: 14px;
+    height: 75px;
+}
+}
+@media screen and (max-width: 554px) {
+.gat_domain_rating_scale li {
+	width: 100%;
+  height:32px;
+  border-bottom: 1px solid #ccc;
+  text-align:left;
+}
+.gat_domain_rating_scale li input[type=radio] { display:inline; }
+}
+@media screen and (max-width: 991px) {
+  .analysis_result .gat_player_videos {
+      width: 100%;
+  }
+  .gat_player_videos.loadvideo iframe {
+      width: 100%;
+  }
+  .analysis_result .gat_reslt_listvideos {
+      height: auto;
+      width: 100%;
+  }
+  .gat_reslt_listvideos .video-title {
+    font-size: 16px !important;
+  }
+  .gat_reslt_listvideos .video-domain-title {
+    font-size: 14px !important;
+  }
+}
+
+.form-control {
+    background-color: #fff !important;
+}
+.col-md-3.col-sm-12.col-xs-12.assmnt-left a {
+    float: none;
+}
+.form-control-feedback {
+    margin: 0 !important;
+}
+/*select{
+   -webkit-appearance: none;
+   -moz-appearance:none;
+   appearance:none;
+   background-image:url(images/down-arrow-sel.png);
+}*/
+.fa.fa-play {
+    color: #294179 !important;
+}
+.watched {
+    background-color: #294179;
+    color: #fff;
+    display: block;
+    right: 0;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    padding:1px 2px;
+}
+.cntrollorbtn { display:block; cursor:pointer; }
+.right { float:right; }
+.gat_domainsbmt_btn li .gat_button.btn-right { float:right !important; }
+.key-options { padding:0 15px; }
+.key-options li {
+    list-style: none;
+    padding: 0 5px 5px;
+}
+@media screen and (max-width: 1199px) {
+  .gat_domainsbmt_btn > li {
+    width: 32%;
+  }
+  .analysis_result .gat_reslt_listvideos {
+    height: auto;
+    width: 100%;
+  }
+  .gat_player_videos iframe#player {
+    width:100%;
+  }
+  .gat_priority_form_label {
+    width:60px;
+  }
+  .gat_priority_form_selector {
+    width: 225px;
+  }
+  .gat_vid_thumbnail {
+    width:100px;
+  }
+  .gat_reslt_listvideos .video-title {
+    font-size: 13px;
+  }
+  .gat_reslt_listvideos .video-domain-title {
+    font-size: 12px;
+  }
+  .gat_indicatorwidget span {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+    .gat_domainsbmt_btn > li {
+	text-align: center !important;
+	width: 100%;
+    }
+    .gat_domainsbmt_btn li {
+	display: block;
+	margin-top: 5px;
+    }
+    .gat_scaledescription_cntnr {
+	min-height:90px;
+    }
+    .video-playlist-result .gat_domainsbmt_btn > li {
+	width:100%;
+    }
+}
+.morecontent{
+	display: none;
+}
+.morecontent span {
+    display: none;
+}
+.morelink {
+	width: auto;
+	cursor: pointer;
+	margin-left: 8px;
+	color: #294179;
+}
+.analysis_result .gat_player_videos {
+    margin-bottom: 19px;
+}
+.gat_bargraph {
+    list-style:none;
+    margin:0;
+    padding:0;
+    border:2px solid #343434;
+}
+.gat_bargraph li {
+    display:inline-block;
+}
+.gat_bargraph li a {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.bar, .bar-last  { border-right: 2px solid #cccccc; background-color:transparent;}
+.bar-last { border-right:none; }
+.bar-end-spacer { background-color:#fff; float:right; border-left: 2px solid #cccccc; }
+.bar-result { margin-left:-10px; padding-right:20px; clear:both; font-weight:normal; }
+.analysis-result-list > li { margin-bottom:10px; }
+.analysis-result-list > li:last-child { margin-bottom:30px; }
+.domain-link { color: #0164C0 !important; text-decoration: underline !important; }
+
+.bar-result-gradient {
+  background:#E75204;
+}
+
+@media screen and (max-width:540px) {
+    .get_domainlist li h4 {
+	//float: none !important;
+    }
+    .gat_scaledescription_cntnr {
+	min-height:90px;
+    }
+}
+@media screen and (max-width: 430px) {
+    .gat_reslt_listvideos .gat_imgcntnr {
+	width: 30%;
+    }
+    .gat_reslt_listvideos .gat_desccntnr {
+	width: 60%;
+    }
+    .gat_reslt_listvideos .gat_videodetails {
+	width: 60%;
+    }
+    .gat_scaledescription_cntnr {
+	min-height:125px;
+    }
+}

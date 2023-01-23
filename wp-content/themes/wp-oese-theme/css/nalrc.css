@@ -303,9 +303,10 @@
     text-decoration: none;
     color: #ffffff;
 }
-.nalrc-pagination-nav a:hover {
+.nalrc-pagination-nav a:hover,
+.nalrc-pagination-nav a:focus {
 	color:#002649;
-	background-color:#F2CA03;
+	background-color:#981F33;
 }
 .nalrc-search-button {
 	display: inline-block;

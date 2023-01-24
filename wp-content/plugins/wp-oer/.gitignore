@@ -1,14 +1,7 @@
-*.sublime-*
-*.DS_Store
+upload/*
 *.komodoproject
-
-# Windows thumbnail cache files
+*.sublime-project
+*.sublime-workspace
+.DS_Store
 Thumbs.db
-ehthumbs.db
-ehthumbs_vista.db
-
-# Folder config file
-[Dd]esktop.ini
-
-# Windows shortcuts
-*.lnk
+.idea/*

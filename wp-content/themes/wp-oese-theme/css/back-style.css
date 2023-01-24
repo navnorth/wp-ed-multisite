@@ -322,3 +322,13 @@ button.wdt-clear-filters-button:before, button.wdt-clear-filters-widget-button:b
 }
 .page-templates_nalrc-template .block-editor-block-list__layout a:hover,
 .page-template-nalrc-template .block-editor-block-list__layout a:hover { text-decoration:underline; }
+.page-templates_nalrc-template .editor-post-title__block textarea.editor-post-title__input,
+.page-template-nalrc-template .editor-post-title__block textarea.editor-post-title__input { color:#981F33 !important }
+.page-templates_nalrc-template .block-editor-block-list__layout h1,
+.page-template-nalrc-template .block-editor-block-list__layout h1,
+.page-templates_nalrc-template .block-editor-block-list__layout h2,
+.page-template-nalrc-template .block-editor-block-list__layout h2,
+.page-templates_nalrc-template .block-editor-block-list__layout h3,
+.page-template-nalrc-template .block-editor-block-list__layout h3,
+.page-templates_nalrc-template .block-editor-block-list__layout h4,
+.page-template-nalrc-template .block-editor-block-list__layout h4 { color:#981F33 !important }

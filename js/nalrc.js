@@ -1,5 +1,6 @@
 var map_cfg = 'usacustomhtml5map_map_cfg_5';
 var map_id = 5;
+var selectedState;
 jQuery(function($){
 	// Learn Languages Filter Section
 	setTimeout(function(){
@@ -393,6 +394,7 @@ jQuery(function($){
 		if (code==13 || code==32){
 			var mapVar = $('.usacustomHtml5MapContainer').attr('data-map-variable');
 			var sid = $(this).attr('class');
+			selectedState = sid;
 			var link = usacustomhtml5map_map_0.fetchStateAttr(sid, 'link'); 
 			var is_group = usacustomhtml5map_map_0.fetchStateAttr(sid, 'group'); 
 			var popup_id = usacustomhtml5map_map_0.fetchStateAttr(sid, 'popup-id'); 
@@ -433,7 +435,7 @@ jQuery(function($){
 		var code = e.keyCode || e.which;
 		if (code==27){
 			if ($('.modal-map-details-popup').is(':visible')){
-				$('.usacustomHtml5MapStateInfo').find('.modal-map-details-popup .modal-content').removeAttr('tabindex');
+				$('.usacustomHtml5MapStateInfo').find('svg path.'+ selectedState).focus();
 				$('.modal-map-details-popup').modal('hide');
 				$('.usacustomHtml5MapStateInfo').hide().css('opacity','0.8');
 			}

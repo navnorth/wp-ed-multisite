@@ -106,7 +106,8 @@ jQuery(function($){
 		$('.usacustomHtml5MapContainer svg path').each(function(){
 			if ($(this).attr('fill')=='#3693bb')
 				$(this).attr('tabindex','0');
-			let st = $(this).parent().find('text tspan').text();
+			let stClass = $(this).attr('class');
+			let st = $(this).parent().find('text.' + stClass + ' tspan').text();
 			$(this).attr('aria-label',st);
 		});
 	},1000);

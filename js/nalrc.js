@@ -106,6 +106,8 @@ jQuery(function($){
 		$('.usacustomHtml5MapContainer svg path').each(function(){
 			if ($(this).attr('fill')=='#3693bb')
 				$(this).attr('tabindex','0');
+			let st = $(this).parent().find('text tspan').text();
+			$(this).attr('aria-label',st);
 		});
 	},1000);
 
@@ -244,6 +246,7 @@ jQuery(function($){
 				success: function(data, textStatus, jqXHR){ 
 					$('#usacustom-html5-map-state-info_0').html(data).css('opacity','1'); 
 					$('#usacustom-html5-map-state-info_0').find('.modal-map-details-popup').modal('show');
+					$('#usacustom-html5-map-state-info_0').find('.modal-map-details-popup .modal-content').attr('tabindex','0').focus();
 					if ($('.modal-backdrop').is(":visible"))
 						$('.modal-backdrop').hide();
 					popup_pagination();

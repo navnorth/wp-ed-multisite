@@ -107,8 +107,179 @@ jQuery(function($){
 			if ($(this).attr('fill')=='#3693bb')
 				$(this).attr('tabindex','0');
 			let stClass = $(this).attr('class');
-			let st = $(this).parent().find('text.' + stClass + ' tspan').text();
-			$(this).attr('aria-label',st);
+			let st = $(this).parent().find('text.' + stClass + '').text();
+			var state;
+			switch(st){
+				case "ARAR":
+					state = 'Arkansas';
+					break;
+				case "ALAL":
+					state = 'Alabama';
+					break;
+				case "AKAK":
+					state = 'Alaska';
+					break;
+				case "AZAZ":
+					state = 'Arizona';
+					break;
+				case "BIEBIE":
+					state = 'Bureau of Indian Education';
+					break;
+				case "CACA":
+					state = 'California';
+					break;
+				case "COCO":
+					state = 'Colorado';
+					break;
+				case "CTCT":
+					state = 'Connecticut';
+					break;
+				case "DEDE":
+					state = 'Delaware';
+					break;
+				case "DCDC":
+					state = 'District of Columbia';
+					break;
+				case "FLFL":
+					state = 'Florida';
+					break;
+				case "GAGA":
+					state = 'Georgia';
+					break;
+				case "HIHI":
+					state = 'Hawaii';
+					break;
+				case "IDID":
+					state = 'Idaho';
+					break;
+				case "ILIL":
+					state = 'Illinois';
+					break;
+				case "ININ":
+					state = 'Indiana';
+					break;
+				case "IAIA":
+					state = 'Iowa';
+					break;
+				case "KSKS":
+					state = 'Kansas';
+					break;
+				case "KYKY":
+					state = 'Kentucky';
+					break;
+				case "LALA":
+					state = 'Louisiana';
+					break;
+				case "MEME":
+					state = 'Maine';
+					break;
+				case "MDMD":
+					state = 'Maryland';
+					break;
+				case "MAMA":
+					state = 'Massachusetts';
+					break;
+				case "MIMI":
+					state = 'Michigan';
+					break;
+				case "MNMN":
+					state = 'Minnesota';
+					break;
+				case "MSMS":
+					state = 'Mississippi';
+					break;
+				case "MOMO":
+					state = 'Missouri';
+					break;
+				case "MTMT":
+					state = 'Montana';
+					break;
+				case "NENE":
+					state = 'Nebraska';
+					break;
+				case "NVNV":
+					state = 'Nevada';
+					break;
+				case "NHNH":
+					state = 'New Hampshire';
+					break;
+				case "NJNJ":
+					state = 'New Jersey';
+					break;
+				case "NMNM":
+					state = 'New Mexico';
+					break;
+				case "NYNY":
+					state = 'New York';
+					break;
+				case "NCNC":
+					state = 'North Carolina';
+					break;
+				case "NDND":
+					state = 'North Dakota';
+					break;
+				case "OHOH":
+					state = 'Ohio';
+					break;
+				case "OKOK":
+					state = 'Oklahoma';
+					break;
+				case "OROR":
+					state = 'Oregon';
+					break;
+				case "PAPA":
+					state = 'Pennsylvania';
+					break;
+				case "PRPR":
+					state = 'Puerto Rico';
+					break;
+				case "SCSC":
+					state = 'South Carolina';
+					break;
+				case "SDSD":
+					state = 'South Dakota';
+					break;
+				case "TNTN":
+					state = 'Tennessee';
+					break;
+				case "TXTX":
+					state = 'Texas';
+					break;
+				case "VTVT":
+					state = 'Vermont';
+					break;
+				case "VAVA":
+					state = 'Virginia';
+					break;
+				case "WAWA":
+					state = 'Washington';
+					break;
+				case "WVWV":
+					state = 'West Virginia';
+					break;
+				case "WIWI":
+					state = 'Wisconsin';
+					break;
+				case "WYWY":
+					state = 'Wyoming';
+					break;
+				case "ASAS":
+					state = 'American Samoa';
+					break;
+				case "GUGU":
+					state = 'Guam';
+					break;
+				case "MPMP":
+					state = 'Northern Mariana Islands';
+					break;
+				case "PWPW":
+					state = 'Palau';
+					break;
+				case "VIVI":
+					state = 'Virgin Islands';
+					break;
+			}
+			$(this).attr('aria-label',state);
 		});
 	},1000);
 

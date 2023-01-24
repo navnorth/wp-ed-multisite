@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "oese-block/oese-publication-download-block",
+	"version": "0.1.0",
+	"title": "Publication Download",
+	"category": "oese-block-category",
+	"icon": "archive",
+	"description": "Add Publication Download Block",
+	"supports": {
+		"html": false
+	},
+	"attributes":{
+		"blockid": {"type": "string"},
+		"url":{"type": "string"},
+		"title":{"type": "string"},
+		"filesize":{"type": "string"},
+		"filetype":{"type": "string"},
+		"icon":{"type": "string"},
+		"proc": {"type": "boolean", "default":false}
+	},
+	"textdomain": "oese-publication-download-block",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

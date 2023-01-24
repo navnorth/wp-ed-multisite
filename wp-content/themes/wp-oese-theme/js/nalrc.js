@@ -433,6 +433,7 @@ jQuery(function($){
 		var code = e.keyCode || e.which;
 		if (code==27){
 			if ($('.modal-map-details-popup').is(':visible')){
+				$('.usacustomHtml5MapStateInfo').find('.modal-map-details-popup .modal-content').removeAttr('tabindex');
 				$('.modal-map-details-popup').modal('hide');
 				$('.usacustomHtml5MapStateInfo').hide().css('opacity','0.8');
 			}

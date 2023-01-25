@@ -447,7 +447,8 @@ jQuery(function($){
 	});
 
 	$(document).on('click','.usacustomHtml5MapStateInfo .modal-map-details-popup', function(){
-		$('.usacustomHtml5MapStateInfo').css({'display':'none','opacity':'0.8'});
+		if ($(this).is(":hidden"))
+			$('.usacustomHtml5MapStateInfo').css({'display':'none','opacity':'0.8'});
 	});
 
 	$('.usacustomHtml5MapStateInfo').find('.modal-map-details-popup').on('hidden.bs.modal', function (e) {

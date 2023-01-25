@@ -437,12 +437,16 @@ jQuery(function($){
 			if ($('.modal-map-details-popup').is(':visible')){
 				$('.usacustomHtml5MapStateInfo').find('svg path.'+ selectedState).focus();
 				$('.modal-map-details-popup').modal('hide');
-				$('.usacustomHtml5MapStateInfo').hide().css('opacity','0.8');
 			}
+			$('.usacustomHtml5MapStateInfo').hide().css('opacity','0.8');
 		}
 	});
 
 	$(document).on('click','.usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-header button', function(){
+		$('.usacustomHtml5MapStateInfo').css({'display':'none','opacity':'0.8'});
+	});
+
+	$(document).on('click','.usacustomHtml5MapStateInfo .modal-map-details-popup', function(){
 		$('.usacustomHtml5MapStateInfo').css({'display':'none','opacity':'0.8'});
 	});
 

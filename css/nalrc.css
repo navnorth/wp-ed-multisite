@@ -392,6 +392,7 @@
 .nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu li { position:relative; }
 .nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a.dropdown-item,
 .nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a.dropdown-item { color:#212529; padding-left:15px; }
+.nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a.dropdown-item span.text { padding-right:5px; }
 .nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a,
 .nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a  {
 	cursor: pointer;

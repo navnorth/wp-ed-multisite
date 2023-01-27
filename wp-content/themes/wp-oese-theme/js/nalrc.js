@@ -18,7 +18,7 @@ jQuery(function($){
 			$(this).find('.wpnn_wpdt_action_wrapper .dataTables_filter').hide();
 			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input').attr('placeholder', 'Search by keywords or phrase');
 			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox').prepend('<div class="wpDataTableFilterSectionLabel" id="table_search_filter_label"><label>' + tabLabelText + '</label></div>');
-			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox').append('<div class="wpDataTableFilterSectionButton" id="table_search_filter_button"><button class="nalrc-search-button">Go &gt;</button>');
+			//$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox').append('<div class="wpDataTableFilterSectionButton" id="table_search_filter_button"><button class="nalrc-search-button">Go &gt;</button>');
 
 			// Move Languages Taught as filter option
 			var filterBox = $(this).find('.wpdt_main_wrapper .wpDataTablesFilter #filterBox_table_1');

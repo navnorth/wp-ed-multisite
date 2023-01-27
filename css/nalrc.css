@@ -333,7 +333,8 @@
 	border-color:#000;
 	color:#000;
 }
-.nalrc-search-grade-level .nalrc-select-wrapper select.selectpicker {
+.nalrc-search-grade-level .nalrc-select-wrapper select.selectpicker,
+.nalrc-search-product .nalrc-select-wrapper select.selectpicker{
 	position: absolute!important;
     bottom: 0;
     left: 50%;
@@ -374,8 +375,10 @@
 .nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-toggle .filter-option .filter-option-inner-inner {
 	color:#333333;
 }
-.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu { width:100%; }
-.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu.inner{
+.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu,
+.nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu { width:100%; }
+.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu.inner,
+.nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu.inner {
 	position: static;
     float: none;
     border: 0;
@@ -385,9 +388,12 @@
     -webkit-box-shadow: none;
     box-shadow: none;
 }
-.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu li { position:relative; }
-.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a.dropdown-item { color:#212529; padding-left:15px; }
-.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a {
+.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu li,
+.nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu li { position:relative; }
+.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a.dropdown-item,
+.nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a.dropdown-item { color:#212529; padding-left:15px; }
+.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a,
+.nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a  {
 	cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -395,14 +401,18 @@
     user-select: none;
 }
 .nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a:hover,
-.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a:focus { text-decoration:none; }
-.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select.show-tick .dropdown-menu .selected span.check-mark {
+.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a:focus,
+.nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a:hover,
+.nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a:focus { text-decoration:none; }
+.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select.show-tick .dropdown-menu .selected span.check-mark,
+.nalrc-search-product .nalrc-select-wrapper .bootstrap-select.show-tick .dropdown-menu .selected span.check-mark {
 	position: absolute;
     display: inline-block;
     right: 15px;
     top: 5px;
 }
-.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select.show-tick .dropdown-menu .selected .bs-ok-default:after {
+.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select.show-tick .dropdown-menu .selected .bs-ok-default:after,
+.nalrc-search-product .nalrc-select-wrapper .bootstrap-select.show-tick .dropdown-menu .selected .bs-ok-default:after {
     content: '';
     display: block;
     width: 0.5em;

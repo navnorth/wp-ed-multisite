@@ -48,7 +48,7 @@
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-instructional-approach,
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-program-type,
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-grade-levels-served,
-.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-language { background: #FFF; border-radius: 4px; border: 1px solid #414141; padding-left: 5px; height:38px; }
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-language { background: #FFF; border-radius: 4px; border: 1px solid #414141; padding-left: 0; height:38px; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-degree-type .wdt-select-filter .dropdown-toggle, 
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-category .wdt-select-filter .dropdown-toggle { background-color:#FFFFFF !important; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-degree-type .bootstrap-select.btn-group .dropdown-toggle .filter-option,
@@ -62,6 +62,7 @@
     display: block !important;
     color: #000;
     font-size: 0.97rem;
+    padding-left:5px;
 }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .filter-column { padding-left:5px; }
 .page-template-nalrc-template .wpDataTablesFilter .wpDataTableFilterSection:not(#wdt-clear-filters-button-block):not(#wdt-pf-search-filters-button-block) { width:25% !important; }
@@ -89,7 +90,7 @@
     padding-left: 25px;
     padding-right: 25px;
 }
-.wpdt-c .wpDataTableFilterBox .bootstrap-select > .btn-default:before { right:3px !important; }
+.wpdt-c .wpDataTableFilterBox .bootstrap-select > .btn-default:before { right:5px !important; }
 .wpdt-c .wpDataTableFilterBox .bootstrap-select .bs-searchbox:before { top:unset !important; }
 .wpdt-c .wpDataTablesWrapper { padding:0; }
 .page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable thead th.wdtheader { 
@@ -98,7 +99,7 @@
 	font-size:15px; 
 	padding:5px 10px !important; 
 	text-align:center;
-	border-color: #d0d0d0 !important;
+	border-color: #414141 !important;
     border-width: 1px !important;
     border-style: solid !important;
 }
@@ -122,7 +123,7 @@
 .page-template-nalrc-template .wpdt-c .wpDataTablesWrapper div.dt-buttons { display:none; }
 .page-template-nalrc-template .wpdt-c.wdt-skin-light .wpDataTablesWrapper table.wpDataTable thead th.sorting:after, 
 .page-template-nalrc-template .wpdt-c.wdt-skin-light .wpDataTablesWrapper table.wpDataTable thead th.sorting_asc:after, 
-.page-template-nalrc-template .wpdt-c.wdt-skin-light .wpDataTablesWrapper table.wpDataTable thead th.sorting_desc:after { display:inline; position:absolute;right:2px; top:calc(100%/2.2); }
+.page-template-nalrc-template .wpdt-c.wdt-skin-light .wpDataTablesWrapper table.wpDataTable thead th.sorting_desc:after { display:inline; position:absolute;right:5px; top:calc(100%/2.2); }
 .page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr.even td { background-color:#f5f5f5 !important; }
 .page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr:nth-child(even) {
 	background-color:#f5f5f5 !important;

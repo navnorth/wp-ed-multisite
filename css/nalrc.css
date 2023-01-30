@@ -112,6 +112,7 @@
 	border-color: #414141 !important;
     border-width: 1px !important;
     border-style: solid !important;
+    top:0 !important;
 }
 .bootstrap-select.btn-group .dropdown-menu li a { font-size:14px; }
 .wpdt-c .wpDataTablesWrapper table.wpDataTable thead th.sort.column-degree::after,

@@ -8,7 +8,7 @@
  * @since 1.5.0
  */
 ?>
-<?php if ('resource'==get_post_type()): ?>
+<?php if ('resource'==get_post_type() && !is_search()): ?>
     <?php
         get_template_part('template-parts/nalrc/footer');
     ?>

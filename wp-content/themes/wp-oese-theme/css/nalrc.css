@@ -124,6 +124,7 @@
     vertical-align: top;
     padding:10px !important;
 }
+.page-template-nalrc-template .dropdown-menu.show { padding-bottom:0; }
 .page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr td a { font-size:14px; }
 .page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr td.column-link,
 .page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr td.column-website,
@@ -388,7 +389,7 @@
 	color:#333333;
 }
 .nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu,
-.nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu { width:100%; }
+.nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu { width:100%; padding-bottom:0; }
 .nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu.inner,
 .nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu.inner {
 	position: static;
@@ -400,6 +401,7 @@
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+.nalrc-template .oer-cntnr { overflow:unset; }
 .nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu li,
 .nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu li { position:relative; }
 .nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a.dropdown-item,

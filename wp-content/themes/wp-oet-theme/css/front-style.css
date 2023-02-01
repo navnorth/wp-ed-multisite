@@ -904,6 +904,7 @@ body.home .stry-video-avatar-table{ top: 40% !important; }
     padding: 0!important;
     border-bottom: none;
 }
+.pblctn_lft_sid_img_cntnr.padding_left { padding-bottom:15px; }
 .pblctn_lft_sid_img_cntnr h2 {
 	color: #294179 !important;
 	font-size: 24px;

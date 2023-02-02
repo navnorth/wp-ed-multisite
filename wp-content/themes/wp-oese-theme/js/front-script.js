@@ -37,6 +37,16 @@ jQuery( document ).ready(function() {
 		window.print();
 	});
   
+
+  /** Hide Recaptcha Logo on Load **/
+  setTimeout(function(){
+    if (jQuery('.wpcf7').length){
+      jQuery('.grecaptcha-badge').css({'visibilty':'visible','opacity':'1'})
+    } else {
+      jQuery('.grecaptcha-badge').css({'visibilty':'hidden','opacity':'0'})
+    }
+  },500);
+
   
   /*
     var heght = jQuery("#lnk_btn_cntnr_center").height();

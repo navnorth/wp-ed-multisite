@@ -25,7 +25,7 @@ aside.widget {
     margin-top:8px;
 }
 .site-content .right_sid_mtr aside:first-child h3 { margin-top:0 !important; }
-
+.grecaptcha-badge { opacity:0; }
 .pblctn_scl_icns .ssba > div,
 .ssba > div
 {

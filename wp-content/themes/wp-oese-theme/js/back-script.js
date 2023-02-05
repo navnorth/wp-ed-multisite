@@ -14,19 +14,93 @@ jQuery( document ).ready(function() {
     jQuery('#wp_oese_theme_include_crazy_egg_script').on("change", function(){
       jQuery('#wp-oese-theme-settings .settings-error').hide();
       if (this.checked){
-        jQuery('#wp_oese_theme_crazy_egg_script_address').prop("disabled", false);
+        jQuery('#wp_oese_theme_crazy_egg_script_address').removeAttr("readonly");
       } else {
-        jQuery('#wp_oese_theme_crazy_egg_script_address').prop("disabled", true);
+        jQuery('#wp_oese_theme_crazy_egg_script_address').attr("readonly");
       }
     });
     jQuery('#wp_oese_theme_crazy_egg_script_address').on('blur', function(e){
       var errorDisplay = jQuery('#wp-oese-theme-settings').find(".settings-error");
+      var errText = jQuery('#wp-oese-theme-settings').find(".settings-error").text();
       if (jQuery('#wp_oese_theme_include_crazy_egg_script').is(":checked") && (!jQuery(this).val())) {
+        jQuery(this).addClass('required');
+
+        if (errText.length>0)
+          errText += " Crazy Egg Script cannot be empty!";
+        else
+          errText = "Crazy Egg Script cannot be empty!";
+
+        errorDisplay.text(errText);
         errorDisplay.show()
         errorDisplay.removeClass('hidden').css("color","#ff0000");
+      } else {
+        jQuery(this).removeClass('required');
+      }
+    });
+
+    //Enable UA Tracking Script Change Handler
+    jQuery('#wp_oese_theme_include_UA_tracking_script').on("change", function(){
+      jQuery('#wp-oese-theme-settings .settings-error').hide();
+      if (this.checked){
+        jQuery('#wp_oese_theme_ga_propertyid').removeAttr("readonly");
+      } else {
+        jQuery('#wp_oese_theme_ga_propertyid').attr("readonly");
+      }
+    });
+    jQuery('#wp_oese_theme_ga_propertyid').on('blur', function(e){
+      var errorDisplay = jQuery('#wp-oese-theme-settings').find(".settings-error");
+      var errText = jQuery('#wp-oese-theme-settings').find(".settings-error").text();
+      if (jQuery('#wp_oese_theme_include_UA_tracking_script').is(":checked") && (!jQuery(this).val())) {
+        jQuery(this).addClass('required');
+
+        if (errText.length>0)
+          errText += " UA Property ID cannot be empty!";
+        else
+          errText = "UA Property ID cannot be empty!";
+
+        errorDisplay.text(errText);
+        errorDisplay.show()
+        errorDisplay.removeClass('hidden').css("color","#ff0000");
+      } else {
+        jQuery(this).removeClass('required');
+      }
+    });
+
+    //Enable GA4 Tracking Script Change Handler
+    jQuery('#wp_oese_theme_include_GA4_tracking_script').on("change", function(){
+      jQuery('#wp-oese-theme-settings .settings-error').hide();
+      if (this.checked){
+        jQuery('#wp_oese_theme_ga4_propertyid').removeAttr("readonly");
+      } else {
+        jQuery('#wp_oese_theme_ga4_propertyid').attr("readonly");
+      }
+    });
+    jQuery('#wp_oese_theme_ga4_propertyid').on('blur', function(e){
+      var errorDisplay = jQuery('#wp-oese-theme-settings').find(".settings-error");
+      var errText = jQuery('#wp-oese-theme-settings').find(".settings-error").text();
+      if (jQuery('#wp_oese_theme_include_GA4_tracking_script').is(":checked") && (!jQuery(this).val())) {
+        jQuery(this).addClass('required');
+
+        if (errText.length>0)
+          errText += " GA4 Property ID cannot be empty!";
+        else
+          errText = "GA4 Property ID cannot be empty!";
+
+        errorDisplay.text(errText);
+        errorDisplay.show()
+        errorDisplay.removeClass('hidden').css("color","#ff0000");
+      } else {
+        jQuery(this).removeClass('required');
       }
 
     });
+    jQuery('#wp_oese_theme_ga4_propertyid,#wp_oese_theme_ga_propertyid,#wp_oese_theme_crazy_egg_script_address').on('change', function(e){
+      jQuery(this).removeClass('required');
+      var errorDisplay = jQuery('#wp-oese-theme-settings').find(".settings-error");
+      errorDisplay.text("");
+      errorDisplay.hide()
+    });
+
     jQuery('.contact-edit').on("click", function(e){
         e.preventDefault();
         if (confirm('Are you sure that you want to change the global Contact page selection?')==true){

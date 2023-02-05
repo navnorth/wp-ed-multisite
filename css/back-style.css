@@ -82,10 +82,12 @@
 #wp-oese-theme-settings fieldset { border:1px solid #cdcdcd; padding:30px; }
 #wp-oese-theme-settings fieldset legend { padding:0 20px; }
 #wp-oese-theme-settings fieldset label { display:inline; }
-#wp-oese-theme-settings fieldset input[type=textbox] { width:100%; }
+#wp-oese-theme-settings fieldset input[type=textbox] { width:100%; margin-bottom:20px; }
+#wp-oese-theme-settings fieldset input[type=textbox].required { border-color:#FF0000; }
 #wp-oese-theme-settings fieldset .form-group,
 #wp-oese-theme-settings fieldset .wp-editor-wrap{ margin-bottom:15px; }
-#wp-oese-theme-settings fieldset label.inline { display:inline; }
+#wp-oese-theme-settings fieldset .form-group { margin-bottom:5px; }
+#wp-oese-theme-settings fieldset label.inline { display:inline; vertical-align:top; }
 #wp_oese_theme_contact_page { display:none; }
 a.contact-edit { text-decoration:none; }
 a.contact-eidt { text-decoration:underline; }

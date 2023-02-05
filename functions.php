@@ -1520,6 +1520,20 @@ function wp_oese_theme_settings_page() {
     $page
   );
 
+  //Enable UA tracking script
+  add_settings_field(
+    'wp_oese_theme_include_UA_tracking_script',
+    '',
+    'wp_oese_theme_settings_field',
+    $page,
+    'wp_oese_ga_settings',
+    array(
+      'uid' => 'wp_oese_theme_include_UA_tracking_script',
+      'type' => 'checkbox',
+      'name' =>  __('enable UA tracking script', WP_OESE_THEME_SLUG)
+    )
+  );
+  
   //Add GA Property ID Settings field
   add_settings_field(
     'wp_oese_theme_ga_propertyid',
@@ -1530,7 +1544,37 @@ function wp_oese_theme_settings_page() {
     array(
       'uid' => 'wp_oese_theme_ga_propertyid',
       'type' => 'textbox',
-      'name' =>  __('Property ID: ', WP_OESE_THEME_SLUG)
+      'disabled' => (get_option('wp_oese_theme_include_UA_tracking_script')=="1"?false:true),
+      'name' =>  __('UA Property ID: ', WP_OESE_THEME_SLUG)
+    )
+  );
+
+  //Enable GA4 tracking script
+  add_settings_field(
+    'wp_oese_theme_include_GA4_tracking_script',
+    '',
+    'wp_oese_theme_settings_field',
+    $page,
+    'wp_oese_ga_settings',
+    array(
+      'uid' => 'wp_oese_theme_include_GA4_tracking_script',
+      'type' => 'checkbox',
+      'name' =>  __('enable GA4 tracking script', WP_OESE_THEME_SLUG)
+    )
+  );
+  
+  //Add GA4 Property ID Settings field
+  add_settings_field(
+    'wp_oese_theme_ga4_propertyid',
+    '',
+    'wp_oese_theme_settings_field',
+    $page,
+    'wp_oese_ga_settings',
+    array(
+      'uid' => 'wp_oese_theme_ga4_propertyid',
+      'type' => 'textbox',
+      'disabled' => (get_option('wp_oese_theme_include_GA4_tracking_script')=="1"?false:true),
+      'name' =>  __('GA4 Property ID: ', WP_OESE_THEME_SLUG)
     )
   );
 
@@ -1558,6 +1602,7 @@ function wp_oese_theme_settings_page() {
     array(
       'uid' => 'wp_oese_theme_crazy_egg_script_address',
       'type' => 'textbox',
+      'disabled' => (get_option('wp_oese_theme_include_crazy_egg_script')=="1"?false:true),
       'name' =>  __('Crazy Egg Script Address', WP_OESE_THEME_SLUG)
     )
   );
@@ -1722,7 +1767,10 @@ function wp_oese_theme_settings_page() {
   register_setting( 'theme_settings_page' , 'wp_oese_theme_modal_content' );
   register_setting( 'theme_settings_page' , 'wp_oese_theme_modal_enable_redirect' );
   register_setting( 'theme_settings_page' , 'wp_oese_theme_contact_page' );
+  register_setting( 'theme_settings_page' , 'wp_oese_theme_include_UA_tracking_script' );
   register_setting( 'theme_settings_page' , 'wp_oese_theme_ga_propertyid' );
+  register_setting( 'theme_settings_page' , 'wp_oese_theme_include_GA4_tracking_script' );
+  register_setting( 'theme_settings_page' , 'wp_oese_theme_ga4_propertyid' );
   register_setting( 'theme_settings_page' , 'wp_oese_theme_include_crazy_egg_script' );
   register_setting( 'theme_settings_page' , 'wp_oese_theme_crazy_egg_script_address' );
   register_setting( 'theme_settings_page' , 'wp_oese_theme_pdf_viewer' );
@@ -1751,9 +1799,12 @@ function wp_oese_theme_settings_field($arguments){
   $value = get_option($arguments['uid']);
 
   if ($arguments['type']=="textbox") {
+    $disabled = false;
+    if (isset($arguments['disabled']))
+      $disabled = $arguments['disabled'];
     echo '<div class="form-row"><div class="form-group">
       <label for="'.$arguments['uid'].'"><strong>'.$arguments['name'].'</strong></label>
-      <input name="'.$arguments['uid'].'" id="'.$arguments['uid'].'" type="'.$arguments['type'].'" value="' . $value . '" />
+      <input name="'.$arguments['uid'].'" id="'.$arguments['uid'].'" type="'.$arguments['type'].'" value="' . $value . '" '.($disabled?'readonly':'').' />
     </div></div>';
   } elseif ($arguments['type']=="editor"){
     echo '<div class="form-row"><div class="form-group">
@@ -2203,7 +2254,12 @@ function oese_ga_script() {
   $script = "";
 
   // Include GA
-  $ga_id = get_option('wp_oese_theme_ga_propertyid');
+  $ua_enabled = get_option('wp_oese_theme_include_UA_tracking_script');
+  $ua_id = get_option('wp_oese_theme_ga_propertyid');
+  $ua_enabled = ($ua_enabled=="1"?true:false);
+  $ga4_enabled = get_option('wp_oese_theme_include_GA4_tracking_script');
+  $ga4_id = get_option('wp_oese_theme_ga4_propertyid');
+  $ga4_enabled = ($ga4_enabled=="1"?true:false);
   $egg_script = get_option('wp_oese_theme_include_crazy_egg_script');
   $egg_script_address = get_option('wp_oese_theme_crazy_egg_script_address');
 
@@ -2213,16 +2269,36 @@ function oese_ga_script() {
     //$script .= "<script type='text/javascript' src='//s3.amazonaws.com/new.cetrk.com/pages/scripts/0009/9201.js'> </script>\r\n";
     $script .= "<script type='text/javascript' src='".$egg_script_address."' async='async'></script>";
   }
-  if ($ga_id){
-    $script .= "<script>
+  
+  if ($ua_enabled && $ua_id){
+    /**--$script .= "<script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    ga('create', '".$ga_id."', 'auto');
+    ga('create', '".$ua_id."', 'auto');
     ga('send', 'pageview');
-    </script>";
+    </script>";--**/
+    $script .= "<script async src='https://www.googletagmanager.com/gtag/js?id=".$ua_id."'></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '".$ua_id."');
+        </script>";
+  }
+
+  if ($ga4_enabled && $ga4_id){
+    $script .= "<script async src='https://www.googletagmanager.com/gtag/js?id=".$ga4_id."'></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '".$ga4_id."');
+        </script>";
   }
   return $script;
 }

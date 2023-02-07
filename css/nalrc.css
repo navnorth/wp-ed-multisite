@@ -200,7 +200,8 @@
 .nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value a:focus { color:#000000; }
 .nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value p { margin-bottom:0; }
 .nalrc-main #sngl-resource .nalrc-resource-thumbnail a { text-decoration:none; }
-.nalrc-main #sngl-resource a.oer-featureimg .dashicons { height:auto; line-height:1em; }
+.nalrc-main #sngl-resource a.oer-featureimg .dashicons,
+.nalrc-main #sngl-resource div.oer-featureimg .dashicons { height:auto; line-height:1em; }
 .nalrc-main #sngl-resource .nalrc-view-source { text-align:center; }
 .nalrc-view-button { 
 	font-size: 13px;

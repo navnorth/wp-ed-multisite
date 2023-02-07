@@ -466,6 +466,9 @@ jQuery(function($){
         		if ($(event.target).closest('.pagination-item').length>0  && !$(event.target).closest('.pagination-item').hasClass('active')){
         			$(".modal-map-details-popup .pagination-item").removeClass('active').addClass('fade');	
         			$(event.target).closest('.pagination-item').removeClass('fade').addClass('active');
+        			const pageCnt = $(".modal-map-details-popup .pagination-item").length;
+        			const pageIndex = $(event.target).closest('.pagination-item').attr('data-id');
+        			$('.modal-map-details-popup .page-item #page-curr').text(pageCnt.toString()+'/'+pageIndex.toString());
         		}
         	}
     	} 

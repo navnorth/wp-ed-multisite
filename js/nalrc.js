@@ -46,7 +46,7 @@ jQuery(function($){
 		resWrapper.find('select').selectpicker();
 	}
 
-	$('.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-toggle').on('keydown', function(e){
+	$('.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-toggle,.nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-toggle').on('keydown', function(e){
 		var code = e.keyCode || e.which;
 		if (code==32){
 			$(this).trigger('click');
@@ -56,6 +56,14 @@ jQuery(function($){
 	$(document).on('focus', '.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a.dropdown-item', function(){
 		$('.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu li').removeClass('active');
 		$('.nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a.dropdown-item').removeClass('active');
+		
+		$(this).addClass('active');
+		$(this).closest('li').addClass('active');
+	});
+
+	$(document).on('focus', '.nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a.dropdown-item', function(){
+		$('.nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu li').removeClass('active');
+		$('.nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a.dropdown-item').removeClass('active');
 		
 		$(this).addClass('active');
 		$(this).closest('li').addClass('active');

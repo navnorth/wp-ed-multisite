@@ -459,8 +459,16 @@ jQuery(function($){
 	})
 
 	document.addEventListener('focus', (event) => { 
-    	if ($(".modal-map-details-popup").css('display') == 'flex' && $(event.target).closest('.modal-map-details-popup').length<=0)
-        	$(".modal-map-details-popup button").first().focus();
+    	if ($(".modal-map-details-popup").css('display') == 'flex'){
+    		if ($(event.target).closest('.modal-map-details-popup').length<=0)
+        		$(".modal-map-details-popup button").first().focus();
+        	else {
+        		if ($(event.target).closest('.pagination-item').length>0  && !$(event.target).closest('.pagination-item').hasClass('active')){
+        			$(".modal-map-details-popup .pagination-item").removeClass('active');	
+        			$(event.target).closest('.pagination-item').addClass('active');
+        		}
+        	}
+    	} 
 	}, true);
 
 	$('.oese-tabs-block #oeseTabs').on('keydown','.nav-link', function(e){

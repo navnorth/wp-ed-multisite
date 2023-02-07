@@ -468,7 +468,7 @@ jQuery(function($){
         			$(event.target).closest('.pagination-item').removeClass('fade').addClass('active');
         			const pageCnt = $(".modal-map-details-popup .pagination-item").length;
         			const pageIndex = $(event.target).closest('.pagination-item').attr('data-id');
-        			$('.modal-map-details-popup .page-item #page-curr').text(pageCnt.toString()+'/'+pageIndex.toString());
+        			$('.modal-map-details-popup .page-item #page-curr').text(pageIndex.toString()+'/'+pageCnt.toString());
         		}
         	}
     	} 

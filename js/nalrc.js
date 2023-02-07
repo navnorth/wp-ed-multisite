@@ -464,8 +464,8 @@ jQuery(function($){
         		$(".modal-map-details-popup button").first().focus();
         	else {
         		if ($(event.target).closest('.pagination-item').length>0  && !$(event.target).closest('.pagination-item').hasClass('active')){
-        			$(".modal-map-details-popup .pagination-item").removeClass('active');	
-        			$(event.target).closest('.pagination-item').addClass('active');
+        			$(".modal-map-details-popup .pagination-item").removeClass('active').addClass('fade');	
+        			$(event.target).closest('.pagination-item').removeClass('fade').addClass('active');
         		}
         	}
     	} 

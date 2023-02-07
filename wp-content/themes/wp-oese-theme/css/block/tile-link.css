@@ -1,0 +1,97 @@
+.overview-custom-padding{ padding-top: 0 !important;}
+.payments-custom-padding{
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+}
+.payments-custom-padding:nth-child(1){ margin-top: 0; }
+.payments-overlay-section{
+    height: 100%;
+    border-radius: 5px;
+    background: #243C54;
+}
+.payments-details-list{
+    width: 100%;
+    min-height: 90px;
+    height: 100%;
+    padding: 1rem 1.25rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.payments-details-list p { margin-bottom: 0; }
+.payments-details-list a{
+    font-family: 'Merriweather', serif !important; font-weight: 400 !important;
+    font-size: 26px !important;
+    margin-bottom: 0;
+    text-align: center;
+    color: #fff;
+    line-height: 32px !important;
+    text-decoration: none;
+}
+.payments-details-list a:hover, .payments-details-list a:focus { text-decoration: underline; }
+ul.tile-links-wrapper { padding-left:0;margin-left:0; }
+ul.tile-links-wrapper li { list-style-type:none; }
+.gray-background-color{ background: #F1F1F1; }
+.custom-common-padding{ padding: 5% 3%; }
+.custom-common-padding.footer-main-section { padding: 4% 2%; }
+.half-tile-link, .full-tile-link  {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.half-tile-link a, .full-tile-link a { text-decoration: none; font-size: 16px; color: #333333; }
+.half-tile-link a:hover, .full-tile-link a:hover, .half-tile-link a:focus, .full-tile-link a:focus {
+    text-decoration: underline;
+    color: #fff;
+}
+.tile-link { width: 100%; }
+.payments-details-list p{
+    font-family: 'Merriweather', serif !important; font-weight: 400;
+    font-size: 30px !important;
+    margin-bottom: 0;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    color: #fff;
+    line-height: 32px !important;
+}
+.office-grid-section{
+    height: 100%;
+    border-radius: 5px;
+    background: #243C54;
+}
+.office-grid-list-details{
+    width: 100%;
+    min-height: 200px;
+    display: table;
+    padding: 1rem 1.25rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:100%;
+}
+.office-grid-list-details p, .payments-details-list p{
+    font-family: 'Merriweather', serif !important; font-weight: 400;
+    font-size: 30px !important;
+    margin-bottom: 0;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    color: #fff;
+    line-height: 32px !important;
+}
+.office-grid-list-details a {
+    font-family: 'Merriweather', serif !important; font-weight: 400;
+    font-size: 26px !important;
+    margin-bottom: 0;
+    text-align: center;
+    color: #fff;
+    line-height: 32px !important;
+    text-decoration: none;
+}
+.office-grid-list-details a:hover, .office-grid-list-details a:focus { text-decoration: underline; }
+.office-custom-padding{
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+}

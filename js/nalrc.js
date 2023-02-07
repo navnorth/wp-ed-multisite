@@ -292,6 +292,7 @@ jQuery(function($){
 				if ($(this).height()>hght)
 					hght = $(this).height();
 			});
+			$('.page-item.disabled #page-curr').attr('tabindex','-1');
 			$('.pagination-content').css('height',hght + 'px');
 			$('.page-link').on('click', function(e){
 				e.preventDefault();

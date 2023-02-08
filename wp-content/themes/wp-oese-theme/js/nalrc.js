@@ -483,4 +483,9 @@ jQuery(function($){
 	$('.oese-tabs-block #oeseTabs').on('keydown','.nav-link', function(e){
         $(this).trigger('click');
      });
+
+	// Set slider img alt text
+	if ($('.nalrc-banner #oese-acf-slider').length>0){
+		$('.nalrc-banner #oese-acf-slider .slider-list img').attr('alt','');
+	}
 });

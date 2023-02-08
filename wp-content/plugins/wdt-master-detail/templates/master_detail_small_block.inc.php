@@ -1,2 +1,0 @@
-<span class="pull-right wdt-column-block-icon m-l-5" data-toggle="tooltip" title="<?php _e('Show/hide Master-detail column'); ?>"><i
-        class="wpdt-icon-layer-group column-control wdt-toggle-show-details"></i></span>

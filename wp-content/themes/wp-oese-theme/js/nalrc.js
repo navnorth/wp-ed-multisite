@@ -288,6 +288,10 @@ jQuery(function($){
 	var popup_pagination = function(){
 		if ($('.nalrc-paginated-content').length){
 			var hght = 0;
+			if ($('#page-prev').length)
+				$('#page-prev').attr('aria-label','Previous certification');
+			if ($('#page-next').length)
+				$('#page-next').attr('aria-label','Next certification');
 			$('.pagination-item').each(function(){
 				if ($(this).height()>hght)
 					hght = $(this).height();

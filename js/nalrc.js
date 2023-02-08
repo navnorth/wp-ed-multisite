@@ -310,8 +310,10 @@ jQuery(function($){
 					next = (target==pageCount?target:parseInt(target)+1);
 				}
 				$('#page-prev').attr('data-target',prev);
+				$('#page-prev').attr('aria-label','Previous certification');
 				$('#page-curr').text(target + '/' + pageCount);
 				$('#page-next').attr('data-target',next);
+				$('#page-next').attr('aria-label','Next certification');
 			});
 		}
 	};

@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "oese-block/oese-callout-box-block",
+	"version": "0.1.0",
+	"title": "Callout Box",
+	"category": "oese-block-category",
+	"icon": "archive",
+	"description": "Add Callout Box Block",
+	"supports": {
+		"html": false
+	},
+	"attributes":{
+		"blockid": {"type": "string"},
+		"icon":{"type": "string", "default": "check"},
+    "color":{"type": "string","default": "#294179"},
+		"width": {"type": "integer","default": 12},
+		"align": {"type": "string"},
+		"content": {"type": "string"},
+		"contentRows": {"type":"integer", "default": 1}
+	},
+	"textdomain": "oese-callout-box-block",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

@@ -98,6 +98,29 @@ jQuery(function($){
 				}
 			} );
 		});
+
+		// Keyboard navigation of filter dropdown
+		$(document).on('keydown', '.filter_select button.dropdown-toggle', function(e){
+			var code = e.keyCode || e.which;
+			console.log(code);
+			if (code==13 || code==32){
+				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('show');
+			} else if (code==38) {
+				$(this).closest('.bootstrap-select').find('.dropdown-menu li:last-child a').focus();
+			} else if (code==40) {
+				$(this).closest('.bootstrap-select').find('.dropdown-menu li:first-child a').focus();
+			}
+		});
+		$(document).on('focus', '.filter_select .dropdown-menu li a', function(e){
+			$(this).closest('.dropdown-menu').find('li').removeClass('active');
+			$(this).closest('li').addClass('active');
+		});
+		$(document).on('keycode', '.filter_select .dropdown-menu li a', function(e){
+			var code = e.keyCode || e.which;
+			if (code==13 || code==32){
+				$(this).trigger('click');
+			}
+		});
 	},1000);
 
 	setTimeout(function(){

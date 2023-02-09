@@ -24,6 +24,9 @@ global $post;
 									if ($nav_item->object_id==(string)$post->ID){
 										$class = " current-menu-item";
 									}
+									if ($nav_item->post_title=='Resources' && is_archive()){
+										$class = " current-menu-item";
+									}
 									?>
 									<li class="nav-item<?php echo $class; ?>">
 										<a href="<?php echo esc_url($nav_item->url); ?>"><?php echo esc_html($nav_item->title); ?></a>

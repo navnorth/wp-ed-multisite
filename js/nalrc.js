@@ -269,6 +269,9 @@ jQuery(function($){
 				case "TXTX":
 					state = 'Texas';
 					break;
+				case "UTUT":
+					state = 'Utah';
+					break;
 				case "VTVT":
 					state = 'Vermont';
 					break;

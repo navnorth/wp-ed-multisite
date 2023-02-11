@@ -111,6 +111,19 @@ jQuery(function($){
 				$(this).closest('.bootstrap-select').find('.dropdown-menu li:first-child a').focus();
 			}
 		});
+
+		// Keyboard navigation on resources filter dropdown
+		$(document).on('keydown', '.nalrc-select-filter button.dropdown-toggle', function(e){
+			var code = e.keyCode || e.which;
+			if (code==13 || code==32){
+				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('show');
+			} else if (code==38) {
+				$(this).closest('.bootstrap-select').find('.dropdown-menu li:last-child a').focus();
+			} else if (code==40) {
+				$(this).closest('.bootstrap-select').find('.dropdown-menu li:first-child a').focus();
+			}
+		});
+		
 		$(document).on('focus', '.filter_select .dropdown-menu li a', function(e){
 			$(this).closest('.dropdown-menu').find('li').removeClass('active');
 			$(this).closest('li').addClass('active');

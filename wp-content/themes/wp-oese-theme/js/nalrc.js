@@ -140,6 +140,18 @@ jQuery(function($){
 			$(this).closest('li').addClass('active');
 		});
 
+		$(document).on('keydown', '.nalrc-select-filter .dropdown-menu li a', function(e){
+	      var code = e.keyCode || e.which;
+	      if (code==9){
+	        $(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('toggle');
+	        filter_index = 0;
+	      } else if (code==40) {
+	        var curItem = $(this).closest('li');
+
+	        $(".dropdown-menu ul").scrollTop($('li').index(curItem) * $('.dropdown-menu li').height());
+	      }
+    	});
+
 	},1000);
 
 	setTimeout(function(){

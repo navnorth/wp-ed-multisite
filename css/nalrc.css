@@ -449,6 +449,13 @@
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+.nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu li.active a.dropdown-item,
+.nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu li a.dropdown-item:focus{ 
+  background-color:#ececec; 
+  border:none;
+  outline:none;
+}
+.nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu.inner { position:relative; }
 /** End of NALRC Resources Styles **/
 /** NALRC Certifications Page Styles **/
 .page-template-nalrc-template .usacustomHtml5MapStateInfo { 

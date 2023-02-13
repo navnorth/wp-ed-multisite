@@ -554,6 +554,30 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
     position: absolute;
 	padding:10px;
 }
+.certifications-table table { width:100%; margin:0 auto; }
+.certifications-table table tr th {
+	background-color: #414141 !important;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 5px 10px !important;
+    text-align: center;
+    border-color: #414141 !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    color: #ffffff !important;
+}
+.certifications-table.is-style-stripes table tbody tr:nth-child(odd) { background-color:#FFFFFF !important; } 
+.certifications-table.is-style-stripes table tbody tr:nth-child(even) { background-color:#F5F5F5 !important; } 
+.certifications-table.is-style-stripes table tbody tr td {
+	border-color: #d0d0d0 !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    vertical-align: top;
+    padding: 10px !important;
+	color:#000000 !important;
+}
+.certifications-table.is-style-stripes table tbody tr td:last-child { text-align:center; }
+.state-accordion { width:60%; margin:0 auto; display:block; }
 /** End of NALRC Certifications Page Styles **/
 /** Responsive Styles **/
 @media only screen and (max-width:1200px){

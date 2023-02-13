@@ -452,6 +452,54 @@ jQuery(function($){
 		}
 	},1000);
 
+	var certificationPopup = function(sid){
+		var mapVar = $('.usacustomHtml5MapContainer').attr('data-map-variable');
+		var sid = $(this).attr('class');
+		selectedState = sid;
+		var link = usacustomhtml5map_map_0.fetchStateAttr(sid, 'link'); 
+		var is_group = usacustomhtml5map_map_0.fetchStateAttr(sid, 'group'); 
+		var popup_id = usacustomhtml5map_map_0.fetchStateAttr(sid, 'popup-id'); 
+		var is_group_info = false; 
+		
+		if (is_group==undefined) { 
+			if (sid.substr(0,1)=='p') { 
+				popup_id = usacustomhtml5map_map_0.fetchPointAttr(sid, 'popup_id'); 
+				link = usacustomhtml5map_map_0.fetchPointAttr(sid, 'link'); 
+			} 
+		} else if (typeof cfg.groups[is_group]['ignore_link'] == 'undefined' || ! cfg.groups[is_group].ignore_link) { 
+			link = cfg.groups[is_group].link; 
+			popup_id = cfg.groups[is_group]['popup_id']; 
+			is_group_info = true; 
+		} 
+
+		var id = is_group_info ? is_group : (sid.substr(0,1)=='p' ? sid : usacustomhtml5map_map_0.fetchStateAttr(sid, 'id')); 
+		$('#usacustom-html5-map-state-info_0').html('<div class="nalrc-loader">Loading...</div>');
+		$('#usacustom-html5-map-state-info_0').css('display','flex');
+		$.ajax({ 
+			type: 'POST', 
+			url: (is_group_info ? nalrc.home_url + '/index.php' + '?map_id=' + window.map_id + '&usacustomhtml5map_get_group_info=' : 'https://oese.wp.nnth.dev/' + 'index.php' + '?map_id=5' + '&usacustomhtml5map_get_state_info=') + id, 
+			success: function(data, textStatus, jqXHR){ 
+				$('#usacustom-html5-map-state-info_0').html(data).css('opacity','1'); 
+				$('#usacustom-html5-map-state-info_0').find('.modal-map-details-popup').modal('show');
+				//$('#usacustom-html5-map-state-info_0').find('.modal-map-details-popup .modal-content').attr('tabindex','0').focus();
+				$('#usacustom-html5-map-state-info_0 .modal-map-details-popup').find('button').first().focus();
+				if ($('.modal-backdrop').is(":visible"))
+					$('.modal-backdrop').hide();
+				popup_pagination();
+			}, 
+			dataType: 'text' 
+		}); 
+		return false; 
+	}
+
+	// View More link in Certifications Table
+	if ($('.certifications-table').length){
+		$(document).on('click', '.certifications-table.is-style-stripes table tbody tr td a', function(){
+			let stId = $(this).attr('data-id');
+			certificationPopup(stId);
+		});
+	}
+
 	// Certifications Map Enter/Space bar key press
 	$('.usacustomHtml5MapContainer').on('keydown','svg path',function(e){
 		var code = e.keyCode || e.which;

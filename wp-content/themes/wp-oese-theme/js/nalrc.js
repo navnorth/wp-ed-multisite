@@ -97,6 +97,13 @@ jQuery(function($){
 					$(this).find('.dropdown-menu.inner .divider').next().find('a span.text').addClass('emptyValue').css('opacity','0.75');
 				}
 			} );
+
+			// Make Visit button to be read as button instead of link
+			if ($(this).find('.wpdt-c .wpDataTables table td.column-link a').length){
+				$(this).find('.wpdt-c .wpDataTables table td.column-link a').each(function(){
+					$(this).attr('role','button');
+				});
+			}
 		});
 
 		// Keyboard navigation of filter dropdown on Certifications page

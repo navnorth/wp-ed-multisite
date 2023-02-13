@@ -131,15 +131,14 @@ jQuery(function($){
 			} else if (code==38) {
 				$(this).closest('.bootstrap-select').find('.dropdown-menu li:last-child a').focus();
 			} else if (code==40) {
-				console.log('arrow down focus')
 				$(this).closest('.bootstrap-select').find('.dropdown-menu li:first-child a').focus();
 			}
 		});
 
-		$(document).on('focus', '.nalrc-select-filter .dropdown-menu li a', function(e){
+		/**--$(document).on('focus', '.nalrc-select-filter .dropdown-menu li a', function(e){
 			$(this).closest('.dropdown-menu').find('li').removeClass('active');
 			$(this).closest('li').addClass('active');
-		});
+		});--**/
 
 		$(document).on('keydown', '.nalrc-select-filter .dropdown-menu li a', function(e){
 	      var code = e.keyCode || e.which;
@@ -147,8 +146,7 @@ jQuery(function($){
 	        $(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('toggle');
 	        filter_index = 0;
 	      } else if (code==40) {
-	        var curItem = $(this).closest('li');
-
+	        console.log($(this).closest('ul.dropdown-menu').find('li.active').index());
 	        $(this).closest("ul.dropdown-menu").scrollTop = ($(this).closest('ul.dropdown-menu').find('li.active').index())*32;
 	      }
     	});

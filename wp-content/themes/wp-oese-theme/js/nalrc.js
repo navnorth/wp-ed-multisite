@@ -454,7 +454,6 @@ jQuery(function($){
 
 	var certificationPopup = function(sid){
 		var mapVar = $('.usacustomHtml5MapContainer').attr('data-map-variable');
-		var sid = $(this).attr('class');
 		selectedState = sid;
 		var link = usacustomhtml5map_map_0.fetchStateAttr(sid, 'link'); 
 		var is_group = usacustomhtml5map_map_0.fetchStateAttr(sid, 'group'); 

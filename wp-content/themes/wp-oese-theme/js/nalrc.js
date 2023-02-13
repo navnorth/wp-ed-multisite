@@ -148,7 +148,7 @@ jQuery(function($){
 	      } else if (code==40) {
 	        var curItem = $(this).closest('li');
 
-	        $(".dropdown-menu ul").scrollTop($('li').index(curItem) * $('.dropdown-menu li').height());
+	        $(this).closest("ul.dropdown-menu").scrollTop = ($(this).closest('ul.dropdown-menu').find('li.active').index())*32;
 	      }
     	});
 

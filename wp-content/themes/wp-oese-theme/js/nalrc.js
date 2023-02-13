@@ -497,6 +497,13 @@ jQuery(function($){
 			let stId = $(this).attr('data-id');
 			certificationPopup(stId);
 		});
+		$(document).on('keydown', '.certifications-table.is-style-stripes table tbody tr td a', function(e){
+			var code = e.keyCode || e.which;
+			if (code==13 || code==32){
+				let stId = $(this).attr('data-id');
+				certificationPopup(stId);
+			}
+		});
 	}
 
 	// Certifications Map Enter/Space bar key press

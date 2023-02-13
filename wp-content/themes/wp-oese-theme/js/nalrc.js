@@ -146,8 +146,8 @@ jQuery(function($){
 	        $(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('toggle');
 	        filter_index = 0;
 	      } else if (code==40) {
-	        console.log($(this).closest('ul.dropdown-menu').find('li.active').index());
-	        $(this).closest("ul.dropdown-menu").scrollTop = ($(this).closest('ul.dropdown-menu').find('li.active').index())*32;
+	        //console.log($(this).closest('ul.dropdown-menu').find('li.active').index());
+	        //$(this).closest("ul.dropdown-menu").scrollTop = ($(this).closest('ul.dropdown-menu').find('li.active').index())*32;
 	      }
     	});
 

@@ -168,6 +168,7 @@ jQuery(function($){
 			if ($(this).attr('fill')=='#3693bb')
 				$(this).attr('tabindex','0');
 			let stClass = $(this).attr('class');
+			selectedState = stClass;
 			let st = $(this).parent().find('text.' + stClass + '').text();
 			var state;
 			switch(st){
@@ -564,6 +565,9 @@ jQuery(function($){
 				$('.modal-map-details-popup').modal('hide');
 				$('.usacustomHtml5MapContainer').find('svg path.'+ selectedState).focus();
 			}
+			if ($('.usacustomHtml5MapContainer').find('svg path.'+ selectedState).length){
+				$('.usacustomHtml5MapContainer').find('svg path.'+ selectedState).focus();
+			}
 			$('.usacustomHtml5MapStateInfo').hide().css('opacity','0.8');
 		}
 	});
@@ -577,7 +581,6 @@ jQuery(function($){
 		e.preventDefault();
 		var code = e.keyCode || e.which;
 		if (code==13 || code==32){
-			console.log(selectedState);
 			$('.modal-map-details-popup').modal('hide');
 			$('.usacustomHtml5MapStateInfo').hide().css('opacity','0.8');
 			$('.usacustomHtml5MapContainer').find('svg path.'+ selectedState).focus();

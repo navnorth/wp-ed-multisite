@@ -579,6 +579,8 @@ jQuery(function($){
 
 	$('.usacustomHtml5MapStateInfo').find('.modal-map-details-popup').on('hidden.bs.modal', function (e) {
 	  $('.usacustomHtml5MapStateInfo').hide();
+	  if (selectedState)
+	  	$('.usacustomHtml5MapStateInfo').find('svg path.'+ selectedState).focus();
 	})
 
 	document.addEventListener('focus', (event) => { 

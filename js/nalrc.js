@@ -572,6 +572,18 @@ jQuery(function($){
 		$('.usacustomHtml5MapStateInfo').css({'display':'none','opacity':'0.8'});
 	});
 
+	// Move focus back to state on modal close
+	$(document).on('keydown', '.modal-map-details-popup button.close', function(e){
+		e.preventDefault();
+		var code = e.keyCode || e.which;
+		if (code==13 || code==32){
+			console.log(selectedState);
+			$('.modal-map-details-popup').modal('hide');
+			$('.usacustomHtml5MapStateInfo').hide().css('opacity','0.8');
+			$('.usacustomHtml5MapContainer').find('svg path.'+ selectedState).focus();
+		}
+	});
+
 	$(document).on('click','.usacustomHtml5MapStateInfo .modal-map-details-popup', function(){
 		if ($(this).is(":hidden"))
 			$('.usacustomHtml5MapStateInfo').css({'display':'none','opacity':'0.8'});

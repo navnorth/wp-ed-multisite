@@ -561,8 +561,8 @@ jQuery(function($){
 		var code = e.keyCode || e.which;
 		if (code==27){
 			if ($('.modal-map-details-popup').is(':visible')){
-				$('.usacustomHtml5MapStateInfo').find('svg path.'+ selectedState).focus();
 				$('.modal-map-details-popup').modal('hide');
+				$('.usacustomHtml5MapContainer').find('svg path.'+ selectedState).focus();
 			}
 			$('.usacustomHtml5MapStateInfo').hide().css('opacity','0.8');
 		}

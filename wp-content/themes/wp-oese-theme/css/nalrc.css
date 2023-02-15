@@ -15,12 +15,17 @@
 .nalrc-banner nav {
 	background-color:#3693bb;
 	border-radius: 6px;
-	padding:25px 10px 25px 25px;
+	padding:25px 10px 25px 0;
 }
 .nalrc-banner .nalrc-wrapper { padding:0; display:flex; }
 .nalrc-banner nav .nalrc-menu { margin-bottom:0; padding-left:0; }
 .nalrc-banner .nalrc-nav { padding-left:0; flex-basis:20%; max-width:20%; height:300px; padding-right:0; background-color: #3693bb; border-bottom-left-radius:6px; border-top-left-radius:6px; }
-.nalrc-banner nav li { text-align:left; margin-bottom:15px; list-style:none; line-height:1.5em; }
+.nalrc-banner nav li:hover, .nalrc-banner nav li:focus,
+.nalrc-banner nav li.current-menu-item {
+	background-color: rgba(255,255,255,0.6);
+}
+.nalrc-banner nav li:hover a, .nalrc-banner nav li:focus a, .nalrc-banner nav li.current-menu-item a { color:#000; }
+.nalrc-banner nav li { text-align:left; margin-bottom:15px; list-style:none; line-height:1.5em; padding-left: 20px; }
 .nalrc-banner nav li:last-child { margin-bottom:0; }
 .nalrc-banner nav li a {
 	font-size:19px;

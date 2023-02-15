@@ -381,13 +381,13 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("ul", {
       className: "nav nav-tabs",
       id: "oeseTabs",
-      role: "tablist"
+      role: "tablist",
+      "aria-labelledby": "page_header"
     }, attributes.tab1Checked && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("li", {
       className: "nav-item"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link active",
       id: 'Tab' + attributes.blockId + '_1',
-      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_1',
       "data-id": "1",
@@ -401,7 +401,6 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link",
       id: 'Tab' + attributes.blockId + '_2',
-      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_2',
       "data-id": "2",
@@ -416,7 +415,6 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link",
       id: 'Tab' + attributes.blockId + '_3',
-      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_3',
       "data-id": "3",
@@ -431,7 +429,6 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link",
       id: 'Tab' + attributes.blockId + '_4',
-      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_4',
       "data-id": "4",
@@ -446,7 +443,6 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link",
       id: 'Tab' + attributes.blockId + '_5',
-      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_5',
       "data-id": "5",
@@ -461,7 +457,6 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link",
       id: 'Tab' + attributes.blockId + '_6',
-      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_6',
       "data-id": "6",
@@ -476,7 +471,6 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link",
       id: 'Tab' + attributes.blockId + '_7',
-      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_7',
       "data-id": "7",
@@ -491,7 +485,6 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link",
       id: 'Tab' + attributes.blockId + '_8',
-      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_8',
       "data-id": "8",
@@ -505,7 +498,6 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link",
       id: 'Tab' + attributes.blockId + '_9',
-      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_9',
       "data-id": "9",
@@ -519,7 +511,6 @@ function Edit(props) {
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("a", {
       className: "nav-link",
       id: 'Tab' + attributes.blockId + '_10',
-      type: "button",
       "data-toggle": "tab",
       href: '#TabContent' + attributes.blockId + '_10',
       "data-id": "10",

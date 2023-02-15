@@ -13,7 +13,7 @@ get_header();
 ?>
 	<div id="content" class="row custom-common-padding">
 		<div class="row nalrc-details">
-			<h1 class="page_header"><?php echo $post->post_title; ?></h1>
+			<h1 id="page_header" class="page_header"><?php echo $post->post_title; ?></h1>
 			<?php
 			// Load Page Content
 			while (have_posts()):

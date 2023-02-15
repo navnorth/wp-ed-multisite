@@ -1,6 +1,7 @@
 var map_cfg = 'usacustomhtml5map_map_cfg_5';
 var map_id = 5;
 var selectedState;
+
 jQuery(function($){
 	// Learn Languages Filter Section
 	setTimeout(function(){
@@ -499,6 +500,31 @@ jQuery(function($){
 		return false; 
 	}
 
+	var nalrcAlternateMenu = function(){
+		if(jQuery(window).width()<800){
+			const zoomLevel = Math.round(window.devicePixelRatio * 100);
+			if (zoomLevel>150){
+				$('.mobile-nav-bar .responsive-menu-section .mobile-nav-icons.navi_icn').attr('aria-hidden', 'true');
+				$('.mobile-nav-bar .responsive-menu-section .mobile-nav-icons.navi_icn').attr('tabindex', '-1');
+				$('.mobile-nav-bar .responsive-menu-section').attr('style','display: none !important');
+				$('.mobile-nav-bar').addClass('nalrc-responsive-menu');
+				$('.top-nav-spacing').addClass('nalrc-top-nav-spacing');
+			} else {
+				$('.mobile-nav-bar .responsive-menu-section .mobile-nav-icons.navi_icn').removeAttr('aria-hidden');
+				$('.mobile-nav-bar .responsive-menu-section .mobile-nav-icons.navi_icn').attr('tabindex', '0');
+				$('.mobile-nav-bar .responsive-menu-section').attr('style','display: inline-block !important');
+				$('.mobile-nav-bar').removeClass('nalrc-responsive-menu');
+				$('.top-nav-spacing').removeClass('nalrc-top-nav-spacing');
+			}
+		} else {
+			$('.mobile-nav-bar .responsive-menu-section .mobile-nav-icons.navi_icn').removeAttr('aria-hidden');
+			$('.mobile-nav-bar .responsive-menu-section .mobile-nav-icons.navi_icn').attr('tabindex', '0');
+			$('.mobile-nav-bar .responsive-menu-section').attr('style','display: inline-block !important');
+			$('.mobile-nav-bar').removeClass('nalrc-responsive-menu');
+			$('.top-nav-spacing').removeClass('nalrc-top-nav-spacing');
+		}
+	}
+
 	// View More link in Certifications Table
 	if ($('.certifications-table').length){
 		$(document).on('click', '.certifications-table.is-style-stripes table tbody tr td a', function(){
@@ -622,4 +648,11 @@ jQuery(function($){
 	if ($('.nalrc-banner #oese-acf-slider').length>0){
 		$('.nalrc-banner #oese-acf-slider .slider-list img').attr('alt','');
 	}
+
+	window.addEventListener('resize', (e) => {
+		nalrcAlternateMenu();
+		return false;   
+	})
+
+	nalrcAlternateMenu();
 });

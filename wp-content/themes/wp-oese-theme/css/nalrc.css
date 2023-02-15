@@ -15,7 +15,7 @@
 .nalrc-banner nav {
 	background-color:#3693bb;
 	border-radius: 6px;
-	padding:25px 10px 25px 0;
+	padding:25px 0;
 }
 .nalrc-banner .nalrc-wrapper { padding:0; display:flex; }
 .nalrc-banner nav .nalrc-menu { margin-bottom:0; padding-left:0; }
@@ -25,7 +25,7 @@
 	background-color: rgba(255,255,255,0.6);
 }
 .nalrc-banner nav li:hover a, .nalrc-banner nav li:focus a, .nalrc-banner nav li.current-menu-item a { color:#000; }
-.nalrc-banner nav li { text-align:left; list-style:none; line-height:1.5em; padding-left: 20px; padding-top:6px; padding-bottom:6px; }
+.nalrc-banner nav li { text-align:left; list-style:none; line-height:1.5em; padding:6px 25px; }
 .nalrc-banner nav li:last-child { margin-bottom:0; }
 .nalrc-banner nav li a {
 	font-size:19px;

@@ -588,7 +588,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 @media only screen and (max-width:1200px){
 	.nalrc-banner .nalrc-nav { max-width:25%;flex-basis:25% }
 	.nalrc-banner .nalrc-slider { max-width:76%; flex-basis:76%; }
-	.nalrc-banner nav li { padding-right:15px; }
+	.nalrc-banner nav li { padding-right:25px; }
 	.nalrc-banner nav li a { font-size:18px; }
 	.nalrc-banner .nalrc-nav { height:300px; }
 	.nalrc-slider #oese-acf-slider { height:300px; }

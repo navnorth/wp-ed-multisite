@@ -148,7 +148,7 @@ jQuery(function($){
 			$(this).closest('li').addClass('active');
 		});--**/
 
-		$(document).on('keydown', '.nalrc-select-filter .dropdown-menu li a', function(e){
+		/**--$(document).on('keydown', '.nalrc-select-filter .dropdown-menu li a', function(e){
 	      var code = e.keyCode || e.which;
 	      if (code==9){
 	        $(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('toggle');
@@ -157,7 +157,7 @@ jQuery(function($){
 	        //console.log($(this).closest('ul.dropdown-menu').find('li.active').index());
 	        //$(this).closest("ul.dropdown-menu").scrollTop = ($(this).closest('ul.dropdown-menu').find('li.active').index())*32;
 	      }
-    	});
+    	});--**/
 
 	},1000);
 

@@ -131,6 +131,19 @@ jQuery(function($){
 			}
 		});
 
+
+		// Keyboard navigation of filter dropdown on Resources page
+		$(document).on('keydown', '.nalrc-select-filter button.dropdown-toggle', function(e){
+			var code = e.keyCode || e.which;
+			if (code==13 || code==32){
+				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('toggle');
+			} else if (code==38) {
+				$(this).closest('.bootstrap-select').find('.dropdown-menu li:last-child a').focus();
+			} else if (code==40) {
+				$(this).closest('.bootstrap-select').find('.dropdown-menu li:first-child a').focus();
+			}
+		});
+
 		$(document).on('keydown', '.nalrc-select-filter .dropdown-menu li a', function(e){
 	      var code = e.keyCode || e.which;
 	      if (code==9){

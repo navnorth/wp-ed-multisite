@@ -149,6 +149,8 @@ jQuery(function($){
 	      if (code==9){
 	        $(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('toggle');
 	        filter_index = 0;
+	      } else if (code==13 || code==32) {
+	      	$(this).trigger('click');
 	      } else if (code==40) {
 	        //console.log($(this).closest('ul.dropdown-menu').find('li.active').index());
 	        //$(this).closest("ul.dropdown-menu").scrollTop = ($(this).closest('ul.dropdown-menu').find('li.active').index())*32;

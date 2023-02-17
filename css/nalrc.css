@@ -199,6 +199,7 @@
 .nalrc-main { margin:30px 0; padding:0 15px; }
 .nalrc-main #sngl-resource { flex-direction:column; display:flex; }
 .nalrc-main #sngl-resource h1{ padding: 0; max-width: 100%; color: #981F33 !important; margin-bottom:0; }
+.nalrc-main #sngl-resource h1.bottom28 { margin-bottom:28px; }
 .nalrc-main #sngl-resource .nalrc-resource-row { margin-bottom:25px; }
 .nalrc-main #sngl-resource .nalrc-resource-row label { color: #981F33; font-size: 18px; font-weight: 600; margin-bottom: 0; }
 .nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value { font-size: 16px; color:#4b4e53; }

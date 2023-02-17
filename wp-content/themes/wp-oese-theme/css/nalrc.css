@@ -19,7 +19,7 @@
 }
 .nalrc-banner .nalrc-wrapper { padding:0; display:flex; }
 .nalrc-banner nav .nalrc-menu { margin-bottom:0; padding-left:0; }
-.nalrc-banner .nalrc-nav { padding-left:0; flex-basis:20%; max-width:20%; height:300px; padding-right:0; background-color: #3693bb; border-bottom-left-radius:6px; border-top-left-radius:6px; }
+.nalrc-banner .nalrc-nav { padding-left:0; flex-basis:20%; max-width:20%; height:300px; padding-right:0; background-color: #3693bb; border-bottom-left-radius:6px; border-top-left-radius:6px; overflow:hidden; }
 .nalrc-banner nav li:hover, .nalrc-banner nav li:focus,
 .nalrc-banner nav li.current-menu-item {
 	background-color: rgba(255,255,255,0.6);
@@ -192,7 +192,7 @@
 .nalrc-slider #oese-acf-slider .slide { background:transparent; }
 .nalrc-slider  #oese-acf-slider .oese-acf-slider-wrapper { margin-bottom:0; }
 .nalrc-slider #oese-acf-slider .oese-acf-slider-wrapper { top:0;right:0;bottom:0;left:0; }
-.nalrc-banner .nalrc-slider { flex-basis: 81%; max-width: 81%; padding-right: 0; padding-left:0; margin-left:-1%; }
+.nalrc-banner .nalrc-slider { flex-basis: 81%; max-width: 81%; padding-right: 0; padding-left:0; margin-left:-1%; height:300px; }
 #oese-acf-slider ul.bullet-list.nalrc-list.wCaption { bottom:0; }
 #oese-acf-slider .wCaption .slide-content h3 { padding-bottom:20px !important; }
 /** NALRC Resource Styles **/
@@ -601,6 +601,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.nalrc-banner nav li a { font-size:18px; }
 	.nalrc-banner .nalrc-nav { height:300px; }
 	.nalrc-slider #oese-acf-slider { height:300px; }
+	.nalrc-header .nalrc-wrapper img { width:100%; }
 }
 @media only screen and (max-width:1050px){
 	.nalrc-banner .nalrc-nav { 

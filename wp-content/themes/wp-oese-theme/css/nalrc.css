@@ -722,7 +722,14 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.nalrc-footer .nalrc-social { display:flex; flex: 0 0 100%; padding-left:0; }
 	.nalrc-footer .nalrc-nav .nalrc-menu > li.nav-item,
 	.nalrc-footer .nalrc-social .nalrc-menu > li.nav-item { margin-top:10px; }
-	.oer_blgpst .oer-feature-image { padding-right:0; }
-	.oer_blgpst .rght-sd-cntnr-blg { padding-left:0; }
+	.nalrc-blogpost { display:block; }
+	.oer_blgpst .oer-feature-image { padding-right:0; display:block; max-width:100%; flex-basis:100%; }
+	.oer_blgpst .rght-sd-cntnr-blg { 
+		padding-left:0; 
+		display: block;
+    	max-width: 100%;
+    	flex-basis: 100%;
+    	margin-left: 0;
+	}
 }
 /** End of Responsive Styles **/

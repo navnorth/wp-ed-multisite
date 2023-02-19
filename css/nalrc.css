@@ -677,11 +677,44 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.nalrc-main #sngl-resource .nalrc-resource-details { display:block; padding-left:0; padding-right:0; }
 	.nalrc-main #sngl-resource .nalrc-resource-details .nalrc-resource-desc { margin-top:0; }
 	.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content { width:95%; }
+	.nalrc-search-filters .nalrc-search-keyword,
+	.nalrc-search-filters .nalrc-search-product { margin:10px 0; }
+	.nalrc-search-filters .nalrc-search-grade-level {
+		flex-basis: 100%;
+    	max-width: 100%;
+    	padding-right: 15px;
+    	margin:10px 0;
+	}
+	.nalrc-search-filters .nalrc-search-button-wrapper {
+		flex-basis: 100%;
+	    text-align: center;
+	    max-width: 100%;
+	    padding-right: 15px;
+	    margin: 10px 0;
+	}
+	.nalrc-search-button {
+		display: block;
+	    width: 100%;
+	    padding: 10px;
+	}
 }
 @media only screen and (max-width:600px){
 	.nalrc-details.row { padding-left:30px; padding-right:0px; }
 	.nalrc-slider #oese-acf-slider  { height:200px; }
 	h2#partners { font-size:26px !important; font-weight:700; }
+	.nalrc-blogpost { max-width:100%; display: flex; flex-direction: row; }
+	.nalrc-blogpost .oer-feature-image {
+		max-width: 35%;
+    	display: flex;
+    	flex-basis: 35%;
+	}
+	.nalrc-blogpost .rght-sd-cntnr-blg {
+		display: flex;
+	    max-width: 55%;
+	    flex-basis: 55%;
+	    flex-direction: column;
+	    margin-left: 3%;
+	}
 }
 @media only screen and (max-width:480px){
 	.nalrc-footer .nalrc-wrapper { flex-direction:column; padding:5px 0; }
@@ -689,5 +722,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.nalrc-footer .nalrc-social { display:flex; flex: 0 0 100%; padding-left:0; }
 	.nalrc-footer .nalrc-nav .nalrc-menu > li.nav-item,
 	.nalrc-footer .nalrc-social .nalrc-menu > li.nav-item { margin-top:10px; }
+	.oer_blgpst .oer-feature-image { padding-right:0; }
+	.oer_blgpst .rght-sd-cntnr-blg { padding-left:0; }
 }
 /** End of Responsive Styles **/

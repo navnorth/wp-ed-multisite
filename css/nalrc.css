@@ -681,7 +681,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 @media only screen and (max-width:600px){
 	.nalrc-details.row { padding-left:30px; padding-right:0px; }
 	.nalrc-slider #oese-acf-slider  { height:200px; }
-	h2#partners { font-size:26px; }
+	h2#partners { font-size:26px !important; font-weight:700; }
 }
 @media only screen and (max-width:480px){
 	.nalrc-footer .nalrc-wrapper { flex-direction:column; padding:5px 0; }

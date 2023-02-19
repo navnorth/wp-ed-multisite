@@ -702,13 +702,14 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 		max-width: 35%;
     	display: flex;
     	flex-basis: 35%;
+    	padding-right:0;
 	}
 	.nalrc-blogpost .rght-sd-cntnr-blg {
 		display: flex;
-	    max-width: 55%;
-	    flex-basis: 55%;
+	    max-width: 65%;
+	    flex-basis: 65%;
 	    flex-direction: column;
-	    margin-left: 3%;
+	    margin-left: 0;
 	}
 }
 @media only screen and (max-width:600px){

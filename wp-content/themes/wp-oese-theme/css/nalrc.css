@@ -697,11 +697,6 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	    width: 100%;
 	    padding: 10px;
 	}
-}
-@media only screen and (max-width:600px){
-	.nalrc-details.row { padding-left:30px; padding-right:0px; }
-	.nalrc-slider #oese-acf-slider  { height:200px; }
-	h2#partners { font-size:26px !important; font-weight:700; }
 	.nalrc-blogpost { max-width:100%; display: flex; flex-direction: row; }
 	.nalrc-blogpost .oer-feature-image {
 		max-width: 35%;
@@ -715,6 +710,11 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	    flex-direction: column;
 	    margin-left: 3%;
 	}
+}
+@media only screen and (max-width:600px){
+	.nalrc-details.row { padding-left:30px; padding-right:0px; }
+	.nalrc-slider #oese-acf-slider  { height:200px; }
+	h2#partners { font-size:26px !important; font-weight:700; }
 }
 @media only screen and (max-width:480px){
 	.nalrc-footer .nalrc-wrapper { flex-direction:column; padding:5px 0; }

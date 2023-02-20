@@ -705,7 +705,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.nalrc-featured-thumbnail { margin-top:10px; margin-bottom:35px; }
 	.nalrc-main #sngl-resource .nalrc-resource-details { display:block; padding-left:0; padding-right:0; }
 	.nalrc-main #sngl-resource .nalrc-resource-details .nalrc-resource-desc { margin-top:0; }
-	.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content { width:95%; }
+	.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content { width:98%; margin:auto; }
 	.nalrc-search-filters .nalrc-search-keyword,
 	.nalrc-search-filters .nalrc-search-product { margin:10px 0; }
 	.nalrc-search-filters .nalrc-search-grade-level {
@@ -740,6 +740,9 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	    flex-direction: column;
 	    margin-left: 0;
 	}
+	.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup.show { padding-right:0 !important; }
+	.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-header button { margin:10px 0 10px; }
+	.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-header .modal-title { margin-top:10px !important; margin-bottom:10px !important; }
 }
 @media only screen and (max-width:600px){
 	.nalrc-details.row { padding-left:30px; padding-right:0px; }

@@ -599,6 +599,9 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	opacity:1;
 }
 .hide-on-desktop { display:none; }
+.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .map-popup-detail .map-detail-label a {
+	word-break: break-all;
+}
 @media only screen and (max-width:1200px){
 	.nalrc-banner .nalrc-nav { max-width:25%;flex-basis:25% }
 	.nalrc-banner .nalrc-slider { max-width:76%; flex-basis:76%; }
@@ -698,6 +701,14 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 		width:50% !important;
 	}
 	.show-on-mobile { display:block; }
+	#state-certifications-wrapper { text-align: center; }
+	#state-certifications-wrapper #stateCertifications {
+		background-color: #3693bb;
+	    color: #FFF;
+	    font-weight: bold;
+	    padding: 5px;
+	    border-radius: 4px;
+	}
 }
 @media only screen and (max-width:768px){
 	.nalrc-wrapper { padding:15px; }

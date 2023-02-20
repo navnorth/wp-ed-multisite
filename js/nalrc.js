@@ -551,6 +551,14 @@ jQuery(function($){
 		});
 	}
 
+	//Certifications Dropdown Popup
+	if ($('#state-certifications-wrapper').length){
+		$('#stateCertifications').on('change',function(e){
+			const selectedState = $(this).val();
+			certificationPopup(selectedState);
+		});
+	}
+
 	// Certifications Map Enter/Space bar key press
 	$('.usacustomHtml5MapContainer').on('keydown','svg path',function(e){
 		var code = e.keyCode || e.which;

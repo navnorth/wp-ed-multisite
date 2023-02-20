@@ -667,6 +667,21 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	    flex-basis: 100%;
 	}
 	.nalrc-slider #oese-acf-slider { height:300px; }
+	.page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable thead th.wdtheader:first-child {
+		width:15%;
+	}
+	.page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable thead th.wdtheader:nth-child(2) {
+		width:15%;
+	}
+	.page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable thead th.wdtheader:nth-child(3) {
+		width:30%;
+	}
+	.page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable thead th.wdtheader:nth-child(4) {
+		width:27%;
+	}
+	.page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable thead th.wdtheader:nth-child(5) {
+		width:13%;
+	}
 }
 @media only screen and (max-width:768px){
 	.nalrc-wrapper { padding:15px; }

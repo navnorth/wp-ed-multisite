@@ -595,6 +595,9 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	max-width: 100%;
     flex: 0 0 100%;
 }
+.wpdt-c.wdt-skin-light .wpDataTablesWrapper table.has-columns-hidden span.responsiveExpander:focus {
+	opacity:1;
+}
 @media only screen and (max-width:1200px){
 	.nalrc-banner .nalrc-nav { max-width:25%;flex-basis:25% }
 	.nalrc-banner .nalrc-slider { max-width:76%; flex-basis:76%; }

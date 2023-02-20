@@ -732,5 +732,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
     	flex-basis: 100%;
     	margin-left: 0;
 	}
+	.certification-map-legend { padding-left:15px; font-size:0.95em; }
+	.usacustomHtml5Mapbottom { margin-bottom:60px; }
 }
 /** End of Responsive Styles **/

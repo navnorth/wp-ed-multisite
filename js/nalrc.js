@@ -157,6 +157,19 @@ jQuery(function($){
 	      }
     	});
 
+		if ($('table .responsiveExpander').length){
+			$('table .responsiveExpander').each(function(){
+				$(this).attr('tabindex','0');
+				$(this).on('keydown',function(e){
+					var code = e.keyCode || e.which;
+					console.log(code);
+					if (code==13 || code==32){
+						$(this).trigger('click');
+					}
+				});
+			});
+		}
+
 	},1000);
 
 	setTimeout(function(){

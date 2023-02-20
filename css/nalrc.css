@@ -682,6 +682,11 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable thead th.wdtheader:nth-child(5) {
 		width:13%;
 	}
+	.page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable { width:100% !important; }
+	.page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr.row-detail ul {
+		padding-left:5px;
+		padding-bottom:5px;
+	}
 }
 @media only screen and (max-width:768px){
 	.nalrc-wrapper { padding:15px; }

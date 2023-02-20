@@ -687,6 +687,12 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 		padding-left:5px;
 		padding-bottom:5px;
 	}
+	.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSectionLabel {
+		padding-left:15px;
+	}
+	.page-template-nalrc-template .wpDataTablesFilter .wpDataTableFilterSection:not(#wdt-clear-filters-button-block):not(#wdt-pf-search-filters-button-block) {
+		width:50% !important;
+	}
 }
 @media only screen and (max-width:768px){
 	.nalrc-wrapper { padding:15px; }

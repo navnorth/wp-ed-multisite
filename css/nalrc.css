@@ -735,13 +735,12 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.certification-map-legend { padding-left:15px; font-size:0.95em; }
 	.usacustomHtml5Mapbottom { margin-bottom:60px; }
 	.wp-block-oese-block-oese-tabs #oeseTabs li {
-		width: 49%;
+		width: 50%;
     	text-align: center;
+    	margin-left:0;
+    	margin-right:0;
 	}
-	.wp-block-oese-block-oese-tabs #oeseTabs li a { font-size:14px; padding:10px 20px; }
+	.wp-block-oese-block-oese-tabs #oeseTabs li a { font-size:14px; padding:10px; }
 	.wp-block-oese-block-oese-tabs #oeseTabs li i.fas { display:none; }
-}
-@media only screen and (max-width:400px){
-	.wp-block-oese-block-oese-tabs #oeseTabs li a { padding:10px; }
 }
 /** End of Responsive Styles **/

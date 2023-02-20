@@ -746,6 +746,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 		background-color: #3693BB;
     	color: #FFF;
     	padding-bottom:0;
+    	overflow:hidden;
 	}
 	.wp-block-oese-block-oese-tabs #oeseTabs { justify-content:center; }
 	.wp-block-oese-block-oese-tabs .oese-tabs-block div.tab-content .tab-pane .program-content { padding:5px 10px; }
@@ -767,6 +768,16 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	}
 	.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSectionLabel {
 		margin-bottom:20px;
+	}
+	.page-template-nalrc-template .wpdt-c.cstm { display:none; }
+	.page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable thead th.wdtheader:first-child {
+		width:40%;
+	}
+	.page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable thead th.wdtheader:nth-child(2) {
+		width:35%;
+	}
+	.page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable thead th.wdtheader:nth-child(3) {
+		width:25%;
 	}
 }
 /** End of Responsive Styles **/

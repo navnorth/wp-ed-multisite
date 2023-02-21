@@ -278,7 +278,8 @@
 
 .home #oese-acf-slider .oese-acf-slider-content-wrapper #pause-control #pauseplay-button.pause:before,
 #oese-acf-slider .oese-acf-slider-content-wrapper #pause-control #pauseplay-button.play:before {
-  color:#2D8700;
+  color:#d1d1d1;
+  background-color:#2D8700;
   font-size:32px;
 }
 

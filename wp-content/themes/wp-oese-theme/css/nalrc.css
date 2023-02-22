@@ -719,14 +719,13 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	    padding: 5px;
 	    border-radius: 4px;
 	}
-	.nalrc-details .wp-block-column:not(:first-child) {
+	.cta-buttons .wp-block-column:not(:first-child) {
 		margin-left:1em;
 	}
-	.nalrc-details figure.wp-block-image:not(.wp-block) { 
-		max-height:120px;
-	}
+	.cta-buttons .nalrc-cta-button { height:250px; }
 }
-@media only screen and (max-width:782px){
+@media only screen and (max-width:768px){
+	.nalrc-details .wp-block-column:nth-child(2) { margin-left:2em;  }
 	.nalrc-details .wp-block-column:nth-child(3) { margin-left:0;  }
 }
 @media only screen and (max-width:768px){
@@ -783,6 +782,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.nalrc-details.row { padding-left:30px; padding-right:0px; }
 	.nalrc-slider #oese-acf-slider  { height:200px; }
 	h2#partners { font-size:26px !important; font-weight:700; }
+	.wp-block-column .nalrc-cta-button { height:auto; }
 }
 @media only screen and (max-width:480px){
 	.nalrc-footer .nalrc-wrapper { flex-direction:column; padding:5px 0; }

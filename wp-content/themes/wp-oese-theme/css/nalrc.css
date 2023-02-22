@@ -646,7 +646,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
     	overflow: hidden;
     	height: 100%;
 	}
-	.wp-block-column .nalrc-cta-button { margin: 10px; padding: 15px; }
+	.wp-block-column .nalrc-cta-button { margin: 10px; padding: 15px; height: 230px; }
 	.wp-block-column .nalrc-cta-button h4 { font-size:15px !important; height:64px; }
 	.wp-block-column .nalrc-cta-button .cta-button-icon { padding:5px; }
 }
@@ -722,6 +722,12 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.nalrc-details .wp-block-column:not(:first-child) {
 		margin-left:1em;
 	}
+	.nalrc-details figure.wp-block-image:not(.wp-block) { 
+		max-height:120px;
+	}
+}
+@media only screen and (max-width:782px){
+	.nalrc-details .wp-block-column:nth-child(3) { margin-left:0;  }
 }
 @media only screen and (max-width:768px){
 	.nalrc-wrapper { padding:15px; }
@@ -770,7 +776,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-header button { margin:10px 0 10px; }
 	.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-header .modal-title { margin-top:10px !important; margin-bottom:10px !important; }
 	.nalrc-details .wp-block-column {
-		margin-left:0;
+		margin-left:0 !important;
 	}
 }
 @media only screen and (max-width:600px){

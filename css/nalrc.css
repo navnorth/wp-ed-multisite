@@ -649,8 +649,8 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.wp-block-column .nalrc-cta-button { margin: 10px; padding: 15px; height: 230px; }
 	.wp-block-column .nalrc-cta-button h4 { font-size:15px !important; height:64px; }
 	.wp-block-column .nalrc-cta-button .cta-button-icon { padding:5px; }
-	.cta-buttons .wp-block-column:not(:first-child) {
-		margin-left:1em;
+	.cta-buttons > .wp-block-column:not(:first-child) {
+		margin-left:1em !important;
 	}
 }
 @media only screen and (max-width:800px){
@@ -725,9 +725,12 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.cta-buttons .wp-block-column:not(:first-child) {
 		margin-left:1em;
 	}
-	.cta-buttons .nalrc-cta-button { height:250px; }
-	.nalrc-details .wp-block-column:nth-child(2) { margin-left:2em;  }
-	.nalrc-details .wp-block-column:nth-child(3) { margin-left:0;  }
+	.cta-buttons .nalrc-cta-button { height:220px; }
+	.cta-buttons .wp-block-column:nth-child(2) { margin-left:1em;  }
+	.cta-buttons .wp-block-column:nth-child(3) { margin-left:1em;  }
+}
+@media only screen and (max-width:782px){
+	.cta-buttons .wp-block-column:nth-child(3) { margin-left:0;  }
 }
 @media only screen and (max-width:768px){
 	.nalrc-wrapper { padding:15px; }

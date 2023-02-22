@@ -625,6 +625,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 		max-width:75%;
 		flex-basis: 75%;
 	}
+	.wp-block-column .nalrc-cta-button { height:250px; }
 }
 @media only screen and (max-width:990px){
 	.nalrc-banner .nalrc-nav { 
@@ -650,7 +651,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.wp-block-column .nalrc-cta-button h4 { font-size:15px !important; height:64px; }
 	.wp-block-column .nalrc-cta-button .cta-button-icon { padding:5px; }
 	.cta-buttons > .wp-block-column:not(:first-child) {
-		margin-left:1em !important;
+		margin-left:1em;
 	}
 }
 @media only screen and (max-width:800px){

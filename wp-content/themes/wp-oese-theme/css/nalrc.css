@@ -630,9 +630,10 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.nalrc-banner .nalrc-nav { 
 		max-width:25%;
 		flex-basis:25%;
-		height:auto;
+		height:300px;
+		overflow:hidden;
 	}
-	.nalrc-banner nav li { line-height:1.5em; }
+	.nalrc-banner nav li { line-height:1.5em; padding-right:0; }
 	.nalrc-banner nav li a { font-size:16px; }
 	.nalrc-banner .nalrc-slider {
 		max-width:75%;
@@ -640,6 +641,11 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	}
 	.nalrc-slider #oese-acf-slider { height:100%; }
 	.certification-map-legend { margin-left:0; margin-top:0; }
+	.nalrc-details figure.wp-block-image:not(.wp-block){
+		max-height: 130px;
+    	overflow: hidden;
+    	height: 100%;
+	}
 }
 @media only screen and (max-width:800px){
 	.nalrc-wrapper { flex-direction:column; }
@@ -664,6 +670,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	    flex: 0 0 100%;
 	    max-width:100%;
 	    padding-left:0;
+	    margin-left:0;
 	}
 	.nalrc-header .nalrc-wrapper img { max-width:100%; width:100%; }
 	.nalrc-footer .nalrc-social { max-width:32%; flex-basis:32%; padding-left:0;padding-top:3%; }
@@ -709,6 +716,12 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	    padding: 5px;
 	    border-radius: 4px;
 	}
+	.nalrc-details .wp-block-column:not(:first-child) {
+		margin-left:1em;
+	}
+	.wp-block-column .nalrc-cta-button { margin: 10px; padding: 15px; }
+	.wp-block-column .nalrc-cta-button h4 { font-size:15px !important; height:64px; }
+	.wp-block-column .nalrc-cta-button .cta-button-icon { padding:5px; }
 }
 @media only screen and (max-width:768px){
 	.nalrc-wrapper { padding:15px; }

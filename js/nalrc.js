@@ -555,7 +555,8 @@ jQuery(function($){
 	if ($('#state-certifications-wrapper').length){
 		$('#stateCertifications').on('change',function(e){
 			const selectedState = $(this).val();
-			certificationPopup(selectedState);
+			if (selectedState!="")
+				certificationPopup(selectedState);
 		});
 	}
 

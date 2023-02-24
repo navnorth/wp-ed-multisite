@@ -2296,6 +2296,7 @@ div[id*='res'] .oese-search-result .p_title a{ color:#2d8700; font-size:20px; fo
         flex: 0 0 90%;
         max-width: 90%;
         z-index: 10;
+        margin-left:0;
     }
     .responsive-menu-section {
         top:-40px;
@@ -2369,9 +2370,6 @@ div[id*='res'] .oese-search-result .p_title a{ color:#2d8700; font-size:20px; fo
     }
     #ssba-share-buttons {
         margin-left: -40px;
-    }
-    .top-nav-spacing .d-xl-block {
-        margin-left:0;
     }
     .responsive-menu-section {
         top:0;

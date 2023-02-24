@@ -784,6 +784,12 @@ animation-fill-mode: both;
 
 @media screen and (max-width: 767px) {
 	.oeseslider-ring {left:45% !important;}
+  #oese-acf-slider .oese-acf-slider-content-wrapper #pause-control #pauseplay-button.pause:before,
+  #oese-acf-slider .oese-acf-slider-content-wrapper #pause-control #pauseplay-button.play:before{
+    font-size:32px;
+    top:0;
+    left:0;
+  }
 }
 
 @media screen and (max-width: 550px) {

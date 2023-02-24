@@ -2498,6 +2498,9 @@ div[id*='res'] .oese-search-result .p_title a{ color:#2d8700; font-size:20px; fo
     .page-template-program-template #content.custom-common-padding { /*flex-wrap:wrap-reverse;*/ padding:5% 0; }
 	.program-sidebar { position:relative; float:none; margin-bottom:30px; /*padding-left: 0px; padding-right: 0px;*/ }
     .mobile-nav-bar.row { margin-top:-12px; }
+    .responsive-menu-section {
+        top:-40px;
+    }
 }
 @media (max-width: 550px){
     .slideshow_container, .slideshow_container .slideshow_content { height:235px !important; }

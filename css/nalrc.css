@@ -798,6 +798,9 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.nalrc-slider #oese-acf-slider  { height:200px; }
 	h2#partners { font-size:26px !important; font-weight:700; }
 	.wp-block-column .nalrc-cta-button { height:auto; }
+	.paging_full_numbers > span a:nth-child(4),
+	.paging_full_numbers > span a:nth-child(3),
+	.paging_full_numbers > span a:nth-child(5){ display:none;  }
 }
 @media only screen and (max-width:480px){
 	.nalrc-footer .nalrc-wrapper { flex-direction:column; padding:5px 0; }

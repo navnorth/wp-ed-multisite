@@ -768,7 +768,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.nalrc-main #sngl-resource .nalrc-resource-details .nalrc-resource-desc { margin-top:0; }
 	.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content { width:95%; margin:auto; }
 	.nalrc-search-filters .nalrc-search-keyword,
-	.nalrc-search-filters .nalrc-search-product { margin:10px 0; }
+	.nalrc-search-filters .nalrc-search-product { margin:10px 0; flex:0 0 100%; max-width: 100%; }
 	.nalrc-search-filters .nalrc-search-grade-level {
 		flex-basis: 100%;
     	max-width: 100%;

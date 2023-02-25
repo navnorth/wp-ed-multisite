@@ -612,6 +612,13 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.nalrc-header .nalrc-wrapper img { width:100%; }
 	.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-dialog { width:100%; }
 	.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSectionLabel { padding-left:15px; }
+	.nalrc-footer .nalrc-nav {
+		max-width: 100%;
+	    border-right: none;
+	    border-bottom: 1px solid #d1d1d1;
+	    flex-basis: 100%;
+	}
+	.nalrc-footer .nalrc-social { max-width:32%; flex-basis:32%; padding-left:0;padding-top:3%; }
 }
 @media only screen and (max-width:1050px){
 	.nalrc-banner .nalrc-nav { 

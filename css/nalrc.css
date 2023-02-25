@@ -619,6 +619,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	    flex-basis: 100%;
 	}
 	.nalrc-footer .nalrc-social { max-width:32%; flex-basis:32%; padding-left:0;padding-top:3%; }
+	.nalrc-footer .nalrc-wrapper { flex-direction:column; }
 }
 @media only screen and (max-width:1050px){
 	.nalrc-banner .nalrc-nav { 

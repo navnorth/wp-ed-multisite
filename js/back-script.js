@@ -16,7 +16,8 @@ jQuery( document ).ready(function() {
       if (this.checked){
         jQuery('#wp_oese_theme_crazy_egg_script_address').removeAttr("readonly");
       } else {
-        jQuery('#wp_oese_theme_crazy_egg_script_address').attr("readonly");
+        jQuery('#wp_oese_theme_crazy_egg_script_address').attr("readonly", true);
+        jQuery('#wp_oese_theme_crazy_egg_script_address').focus();
       }
     });
     jQuery('#wp_oese_theme_crazy_egg_script_address').on('blur', function(e){
@@ -45,6 +46,7 @@ jQuery( document ).ready(function() {
         jQuery('#wp_oese_theme_ga_propertyid').removeAttr("readonly");
       } else {
         jQuery('#wp_oese_theme_ga_propertyid').attr("readonly", true);
+        jQuery('#wp_oese_theme_ga_propertyid').focus();
       }
     });
     jQuery('#wp_oese_theme_ga_propertyid').on('blur', function(e){
@@ -73,6 +75,7 @@ jQuery( document ).ready(function() {
         jQuery('#wp_oese_theme_ga4_propertyid').removeAttr("readonly");
       } else {
         jQuery('#wp_oese_theme_ga4_propertyid').attr("readonly", true);
+        jQuery('#wp_oese_theme_ga4_propertyid').focus();
       }
     });
     jQuery('#wp_oese_theme_ga4_propertyid').on('blur', function(e){

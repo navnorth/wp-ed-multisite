@@ -41,10 +41,10 @@ jQuery( document ).ready(function() {
     //Enable UA Tracking Script Change Handler
     jQuery('#wp_oese_theme_include_UA_tracking_script').on("change", function(){
       jQuery('#wp-oese-theme-settings .settings-error').hide();
-      if (this.checked){
+      if (this.checked==true){
         jQuery('#wp_oese_theme_ga_propertyid').removeAttr("readonly");
       } else {
-        jQuery('#wp_oese_theme_ga_propertyid').attr("readonly");
+        jQuery('#wp_oese_theme_ga_propertyid').attr("readonly", true);
       }
     });
     jQuery('#wp_oese_theme_ga_propertyid').on('blur', function(e){
@@ -72,7 +72,7 @@ jQuery( document ).ready(function() {
       if (this.checked){
         jQuery('#wp_oese_theme_ga4_propertyid').removeAttr("readonly");
       } else {
-        jQuery('#wp_oese_theme_ga4_propertyid').attr("readonly");
+        jQuery('#wp_oese_theme_ga4_propertyid').attr("readonly", true);
       }
     });
     jQuery('#wp_oese_theme_ga4_propertyid').on('blur', function(e){

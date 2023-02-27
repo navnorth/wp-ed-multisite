@@ -1530,7 +1530,7 @@ function wp_oese_theme_settings_page() {
     array(
       'uid' => 'wp_oese_theme_include_UA_tracking_script',
       'type' => 'checkbox',
-      'name' =>  __('enable UA tracking script', WP_OESE_THEME_SLUG)
+      'name' =>  __('Enable UA Tracking', WP_OESE_THEME_SLUG)
     )
   );
   
@@ -1559,7 +1559,7 @@ function wp_oese_theme_settings_page() {
     array(
       'uid' => 'wp_oese_theme_include_GA4_tracking_script',
       'type' => 'checkbox',
-      'name' =>  __('enable GA4 tracking script', WP_OESE_THEME_SLUG)
+      'name' =>  __('Enable GA4 Tracking', WP_OESE_THEME_SLUG)
     )
   );
   
@@ -1574,7 +1574,7 @@ function wp_oese_theme_settings_page() {
       'uid' => 'wp_oese_theme_ga4_propertyid',
       'type' => 'textbox',
       'disabled' => (get_option('wp_oese_theme_include_GA4_tracking_script')=="1"?false:true),
-      'name' =>  __('GA4 Property ID: ', WP_OESE_THEME_SLUG)
+      'name' =>  __('GA4 Measurement ID: ', WP_OESE_THEME_SLUG)
     )
   );
 
@@ -1588,7 +1588,7 @@ function wp_oese_theme_settings_page() {
     array(
       'uid' => 'wp_oese_theme_include_crazy_egg_script',
       'type' => 'checkbox',
-      'name' =>  __('enable Crazy Egg tracking script', WP_OESE_THEME_SLUG)
+      'name' =>  __('Enable Crazy Egg Tracking', WP_OESE_THEME_SLUG)
     )
   );
 
@@ -1603,7 +1603,7 @@ function wp_oese_theme_settings_page() {
       'uid' => 'wp_oese_theme_crazy_egg_script_address',
       'type' => 'textbox',
       'disabled' => (get_option('wp_oese_theme_include_crazy_egg_script')=="1"?false:true),
-      'name' =>  __('Crazy Egg Script Address', WP_OESE_THEME_SLUG)
+      'name' =>  __('Crazy Egg Script Address:', WP_OESE_THEME_SLUG)
     )
   );
 
@@ -2269,6 +2269,17 @@ function oese_ga_script() {
     //$script .= "<script type='text/javascript' src='//s3.amazonaws.com/new.cetrk.com/pages/scripts/0009/9201.js'> </script>\r\n";
     $script .= "<script type='text/javascript' src='".$egg_script_address."' async='async'></script>";
   }
+
+  if ($ga4_enabled && $ga4_id){
+    $script .= "<script async src='https://www.googletagmanager.com/gtag/js?id=".$ga4_id."'></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '".$ga4_id."');
+        </script>";
+  } 
   
   if ($ua_enabled && $ua_id){
     /**--$script .= "<script>
@@ -2287,17 +2298,6 @@ function oese_ga_script() {
           gtag('js', new Date());
 
           gtag('config', '".$ua_id."');
-        </script>";
-  }
-
-  if ($ga4_enabled && $ga4_id){
-    $script .= "<script async src='https://www.googletagmanager.com/gtag/js?id=".$ga4_id."'></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', '".$ga4_id."');
         </script>";
   }
   return $script;

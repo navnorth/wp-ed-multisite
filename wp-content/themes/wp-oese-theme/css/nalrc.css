@@ -8,7 +8,7 @@
 .nalrc-details h1, .nalrc-details h2, .nalrc-details h3 { color: #981F33 !important; }
 .nalrc-wrapper { padding:30px; text-align:center; }
 .nalrc-details a,
-.nalrc-resources-content a { color:#3693bb; text-decoration:none; }
+.nalrc-resources-content a { color:#981F33; text-decoration:none; }
 .nalrc-details a:hover, .nalrc-details a:focus,
 .nalrc-resources-content a:hover, .nalrc-resources-content a:focus  { text-decoration:underline; }
 /** NALRC Header Styles **/
@@ -80,12 +80,16 @@
 .page-template-nalrc-template .wpdt-c .wpDataTablesWrapper .filter_column button { height:34px !important;border-bottom:none !important; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSectionLabel {
 	float: none;
-  min-height: 20px;
-  padding-left: 0;
+  	min-height: 20px;
+  	padding-left: 0;
 }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSectionLabel {
 	line-height: 1em;
   margin-bottom: 0;
+}
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSectionLabel label {
+	font-size:20px;
+	font-weight:bold;
 }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSectionButton {
 	min-height: 45px !important;
@@ -285,7 +289,7 @@
 .nalrc-blogpost:last-child { border-bottom:none; }
 .nalrc-search-filters { background-color: #3692BB; padding: 30px; border-radius:5px; }
 .nalrc-search-filters .filter-title h4,
-.nalrc-search-filters .filter-title h2 { margin-top: 0 !important; color: #ffffff; margin-bottom: 20px; font-size: 18px !important; line-height:20px; font-weight:normal; }
+.nalrc-search-filters .filter-title h2 { margin-top: 0 !important; color: #ffffff; margin-bottom: 20px; font-size: 20px !important; line-height:20px; font-weight:bold; }
 .nalrc-search-filters input, 
 .nalrc-search-filters select { width:100%; height:38px; color:#000000; }
 .nalrc-search-filters select { 
@@ -338,6 +342,7 @@
     border-radius: 5px;
     text-decoration: none;
     color: #ffffff;
+    font-weight:bold;
 }
 .nalrc-pagination-nav a:hover,
 .nalrc-pagination-nav a:focus {
@@ -466,6 +471,10 @@
   outline:none;
 }
 .nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu.inner { position:relative; }
+.oer_resource_posts .nalrc-blogpost .rght-sd-cntnr-blg h3 a {
+	color:#981F33 !important;
+	font-size:22px !important;
+}
 /** End of NALRC Resources Styles **/
 /** NALRC Certifications Page Styles **/
 .page-template-nalrc-template .usacustomHtml5MapStateInfo { 

@@ -394,6 +394,12 @@ jQuery(function($){
 			});
 			$('.page-item.disabled #page-curr').attr('tabindex','-1');
 			$('.pagination-content').css('height',hght + 'px');
+			$('.pagination-content .pagination-item').each(function(){
+				$(this).find('a').attr('tabindex','-1');
+				if ($(this).hasClass('active')){
+					$(this).find('a').removeAttr('tabindex');
+				}
+			});
 			$('.page-link').on('click', function(e){
 				e.preventDefault();
 				let target = $(this).attr('data-target');

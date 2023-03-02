@@ -52,6 +52,7 @@
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-educator-certification,
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-location,
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection #table_1_7_filter,
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection #table_2_7_filter
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-instructional-approach,
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-program-type,
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-grade-levels-served,
@@ -62,6 +63,7 @@
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-educator-certification .bootstrap-select.btn-group .dropdown-toggle .filter-option,
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-location .bootstrap-select.btn-group .dropdown-toggle .filter-option,
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection #table_1_7_filter .bootstrap-select.btn-group .dropdown-toggle .filter-option,
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection #table_2_7_filter .bootstrap-select.btn-group .dropdown-toggle .filter-option,
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-instructional-approach .bootstrap-select.btn-group .dropdown-toggle .filter-option,
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-program-type .bootstrap-select.btn-group .dropdown-toggle .filter-option,
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .column-grade-levels-served .bootstrap-select.btn-group .dropdown-toggle .filter-option,
@@ -836,6 +838,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	}
 	.nalrc-footer .nalrc-menu > li:nth-child(5){ margin-left:0; }
 	.nalrc-footer .nalrc-menu > li:last-child { margin-left:0; }
+	.wp-block-oese-block-oese-tabs #oeseTabs li a { font-size:13px !important; }
 }
 @media only screen and (max-width:600px){
 	.nalrc-details.row { padding-left:30px; padding-right:0px; }

@@ -401,7 +401,9 @@ jQuery(function($){
 				var prev = 1;
 				var next = 2;
 				$('.pagination-item').removeClass('active').addClass('fade');
+				$('.pagination-item').find('a').attr('tabindex','-1');
 				$('.pagination-item[data-id='+ target + ']').removeClass('fade').addClass('active');
+				$('.pagination-item[data-id='+ target + ']').find('a').attr('tabindex','0');
 				if ($(this).attr('id')=="page-prev"){
 					prev = (target==1?target:parseInt(target)-1);
 					next = (target==1?next:parseInt(next)+1);

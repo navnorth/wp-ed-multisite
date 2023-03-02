@@ -611,6 +611,8 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .map-popup-detail .map-detail-label a {
 	word-break: break-all;
 }
+.show-magnified { display:block; }
+.hidden-magnified { display:none; }
 @media only screen and (max-width:1200px){
 	.nalrc-banner .nalrc-nav { max-width:25%;flex-basis:25% }
 	.nalrc-banner .nalrc-slider { max-width:76%; flex-basis:76%; }

@@ -772,6 +772,15 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.cta-buttons .nalrc-cta-button { height:220px; }
 	.cta-buttons .wp-block-column:nth-child(2) { margin-left:1em;  }
 	.cta-buttons .wp-block-column:nth-child(3) { margin-left:1em;  }
+	.hide-on-desktop .wpdt-c .wpDataTables.wpDataTablesWrapper .wdtResponsiveWrapper {
+		overflow:auto;
+	}
+	.hide-on-desktop .wpdt-c .wpDataTables.wpDataTablesWrapper .wdtResponsiveWrapper table.wpDataTable.responsive {
+		height: 100% !important;
+    	display: block;
+    	overflow-x: scroll;
+    	overflow-y: hidden !important;
+	}
 }
 @media only screen and (max-width:782px){
 	.cta-buttons .wp-block-column:nth-child(3) { margin-left:0;  }

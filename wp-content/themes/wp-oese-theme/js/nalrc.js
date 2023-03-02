@@ -31,7 +31,7 @@ jQuery(function($){
 			}
 
 			var filterBox2 = $(this).find('.wpdt_main_wrapper .wpDataTablesFilter #filterBox_table_2');
-			var languagestaught2 = filterBox.find('#table_2_7_filter_sections');
+			var languagestaught2 = filterBox2.find('#table_2_7_filter_sections');
 			
 			if (filterBox2.length){
 				filterBox2.find('#table_search_filter_label').after(languagestaught2);

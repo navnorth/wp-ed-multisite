@@ -74,6 +74,7 @@
     padding-left:5px;
 }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection .filter-column { padding-left:5px; }
+.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox > div:nth-child(2) { padding-left:0; }
 .page-template-nalrc-template .wpDataTablesFilter .wpDataTableFilterSection:not(#wdt-clear-filters-button-block):not(#wdt-pf-search-filters-button-block) { width:25% !important; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter { float:left; min-height: 45px !important; padding: 15px; font-size: 16px;  padding:5px 0; margin-bottom:0 !important; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter label { font-size:16px; }

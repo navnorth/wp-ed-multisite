@@ -23,7 +23,7 @@ jQuery(function($){
 
 			// Move Languages Taught as filter option
 			var filterBox = $(this).find('.wpdt_main_wrapper .wpDataTablesFilter #filterBox_table_1');
-			var languagestaught = filterBox.find('#table_1_7_filter_sections');
+			var languagestaught = filterBox.find('#table_1_7_filter_sections,#table_2_7_filter_sections');
 			
 			if (filterBox.length){
 				filterBox.find('#table_search_filter_label').after(languagestaught);
@@ -34,7 +34,11 @@ jQuery(function($){
 			if ($(this).find('.wpdt-c .wpDataTables#table_1_wrapper').length)
 				$(this).find('.wpdt-c .wpDataTables#table_1_wrapper').prepend('<div class="wpdt_info"><h2><span class="program-name">IHEs </span> Showing: <span class="cur-count"></span> of <span class="total-count"></span></h2></div>');
 			if ($(this).find('.wpdt-c .wpDataTables#table_2_wrapper').length)
-				$(this).find('.wpdt-c .wpDataTables#table_2_wrapper').prepend('<div class="wpdt_info"><h2><span class="program-name">Early Childhood – Grade 12 </span> Showing: <span class="cur-count"></span> of <span class="total-count"></span></h2></div>');
+				$(this).find('.wpdt-c .wpDataTables#table_2_wrapper').prepend('<div class="wpdt_info"><h2><span class="program-name">IHEs </span> Showing: <span class="cur-count"></span> of <span class="total-count"></span></h2></div>');
+			if ($(this).find('.wpdt-c .wpDataTables#table_3_wrapper').length)
+				$(this).find('.wpdt-c .wpDataTables#table_3_wrapper').prepend('<div class="wpdt_info"><h2><span class="program-name">Early Childhood – Grade 12 </span> Showing: <span class="cur-count"></span> of <span class="total-count"></span></h2></div>');
+			if ($(this).find('.wpdt-c .wpDataTables#table_4_wrapper').length)
+				$(this).find('.wpdt-c .wpDataTables#table_4_wrapper').prepend('<div class="wpdt_info"><h2><span class="program-name">Early Childhood – Grade 12 </span> Showing: <span class="cur-count"></span> of <span class="total-count"></span></h2></div>');
 			
 			function showInfo(show, show_info){
 				var info = show_info.split(" ");
@@ -45,11 +49,19 @@ jQuery(function($){
 								show.find('.wpdt-c .wpDataTables#table_1_wrapper .cur-count').text(str);
 							if (show.find('.wpdt-c .wpDataTables#table_2_wrapper').length)
 								show.find('.wpdt-c .wpDataTables#table_2_wrapper .cur-count').text(str);
+							if (show.find('.wpdt-c .wpDataTables#table_3_wrapper').length)
+								show.find('.wpdt-c .wpDataTables#table_3_wrapper .cur-count').text(str);
+							if (show.find('.wpdt-c .wpDataTables#table_4_wrapper').length)
+								show.find('.wpdt-c .wpDataTables#table_4_wrapper .cur-count').text(str);
 						} else if (index==5) {
 							if (show.find('.wpdt-c .wpDataTables#table_1_wrapper').length)
 								show.find('.wpdt-c .wpDataTables#table_1_wrapper .total-count').text(str);
 							if (show.find('.wpdt-c .wpDataTables#table_2_wrapper').length)
 								show.find('.wpdt-c .wpDataTables#table_2_wrapper .total-count').text(str);
+							if (show.find('.wpdt-c .wpDataTables#table_3_wrapper').length)
+								show.find('.wpdt-c .wpDataTables#table_3_wrapper .total-count').text(str);
+							if (show.find('.wpdt-c .wpDataTables#table_4_wrapper').length)
+								show.find('.wpdt-c .wpDataTables#table_4_wrapper .total-count').text(str);
 						}
 					});
 				}
@@ -520,12 +532,20 @@ jQuery(function($){
 				$('.mobile-nav-bar .responsive-menu-section').attr('style','display: none !important');
 				$('.mobile-nav-bar').addClass('nalrc-responsive-menu');
 				$('.top-nav-spacing').addClass('nalrc-top-nav-spacing');
+				if ($('.hide-on-desktop').length){
+					$('.hide-on-desktop').removeClass('hide-on-desktop').show();
+					$('.show-on-desktop').hide();
+				}
 			} else {
 				$('.mobile-nav-bar .responsive-menu-section .mobile-nav-icons.navi_icn').removeAttr('aria-hidden');
 				$('.mobile-nav-bar .responsive-menu-section .mobile-nav-icons.navi_icn').attr('tabindex', '0');
 				$('.mobile-nav-bar .responsive-menu-section').attr('style','display: inline-block !important');
 				$('.mobile-nav-bar').removeClass('nalrc-responsive-menu');
 				$('.top-nav-spacing').removeClass('nalrc-top-nav-spacing');
+				if ($('.hide-on-desktop').length){
+					$('.hide-on-desktop').hide();
+					$('.show-on-desktop').show();
+				}
 			}
 		} else {
 			$('.mobile-nav-bar .responsive-menu-section .mobile-nav-icons.navi_icn').removeAttr('aria-hidden');

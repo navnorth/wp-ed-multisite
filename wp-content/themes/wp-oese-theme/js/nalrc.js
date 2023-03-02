@@ -544,7 +544,7 @@ jQuery(function($){
 	var nalrcAlternateMenu = function(){
 		if(jQuery(window).width()<800){
 			const zoomLevel = Math.round(window.devicePixelRatio * 100);
-			if (zoomLevel>150){
+			if (zoomLevel>=150){
 				$('.mobile-nav-bar .responsive-menu-section .mobile-nav-icons.navi_icn').attr('aria-hidden', 'true');
 				$('.mobile-nav-bar .responsive-menu-section .mobile-nav-icons.navi_icn').attr('tabindex', '-1');
 				$('.mobile-nav-bar .responsive-menu-section').attr('style','display: none !important');
@@ -571,9 +571,17 @@ jQuery(function($){
 			$('.mobile-nav-bar .responsive-menu-section').attr('style','display: inline-block !important');
 			$('.mobile-nav-bar').removeClass('nalrc-responsive-menu');
 			$('.top-nav-spacing').removeClass('nalrc-top-nav-spacing');
-			if ($('.hide-on-desktop').length){
-				$('.hide-on-desktop').hide();
-				$('.show-on-desktop').show();
+			const zoomLevel = Math.round(window.devicePixelRatio * 100);
+			if (zoomLevel>=125){
+				if ($('.hide-on-desktop').length){
+					$('.hide-on-desktop').show();
+					$('.show-on-desktop').hide();
+				}
+			} else {
+				if ($('.hide-on-desktop').length){
+					$('.hide-on-desktop').hide();
+					$('.show-on-desktop').show();
+				}
 			}
 		}
 	}

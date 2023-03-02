@@ -23,11 +23,19 @@ jQuery(function($){
 
 			// Move Languages Taught as filter option
 			var filterBox = $(this).find('.wpdt_main_wrapper .wpDataTablesFilter #filterBox_table_1');
-			var languagestaught = filterBox.find('#table_1_7_filter_sections,#table_2_7_filter_sections');
+			var languagestaught = filterBox.find('#table_1_7_filter_sections');
 			
 			if (filterBox.length){
 				filterBox.find('#table_search_filter_label').after(languagestaught);
 				languagestaught.css({'padding-left':'0'});
+			}
+
+			var filterBox2 = $(this).find('.wpdt_main_wrapper .wpDataTablesFilter #filterBox_table_2');
+			var languagestaught2 = filterBox.find('#table_2_7_filter_sections');
+			
+			if (filterBox2.length){
+				filterBox2.find('#table_search_filter_label').after(languagestaught2);
+				languagestaught2.css({'padding-left':'0'});
 			}
 
 			// Start - Move Show Info above the table

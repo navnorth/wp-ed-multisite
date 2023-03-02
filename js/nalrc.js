@@ -624,9 +624,9 @@ jQuery(function($){
 
 	// Move focus back to state on modal close
 	$(document).on('keydown', '.modal-map-details-popup button.close', function(e){
-		e.preventDefault();
 		var code = e.keyCode || e.which;
 		if (code==13 || code==32){
+			e.preventDefault();
 			$('.modal-map-details-popup').modal('hide');
 			$('.usacustomHtml5MapStateInfo').hide().css('opacity','0.8');
 			$('.usacustomHtml5MapContainer').find('svg path.'+ selectedState).focus();

@@ -141,9 +141,11 @@ jQuery(function($){
 				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('show');
 				$(this).closest('.bootstrap-select').find('.dropdown-menu li:first-child a').focus();
 			} else if (code==9){
-				if ($(this).closest('.wpDataTableFilterSection').next().length){
-					e.preventDefault();
-					$(this).closest('.wpDataTableFilterSection').next().find('.bootstrap-select button').focus();
+				if (!e.shiftKey){
+					if ($(this).closest('.wpDataTableFilterSection').next().length){
+						e.preventDefault();
+						$(this).closest('.wpDataTableFilterSection').next().find('.bootstrap-select button').focus();
+					}
 				}
 			}
 		});

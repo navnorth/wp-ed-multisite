@@ -840,6 +840,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.nalrc-footer .nalrc-menu > li:nth-child(5){ margin-left:0; }
 	.nalrc-footer .nalrc-menu > li:last-child { margin-left:0; }
 	.wp-block-oese-block-oese-tabs #oeseTabs li a { font-size:13px !important; }
+	.page-template-nalrc-template .wpDataTable tbody tr td button { font-size:12px !important; }
 }
 @media only screen and (max-width:600px){
 	.nalrc-details.row { padding-left:30px; padding-right:0px; }

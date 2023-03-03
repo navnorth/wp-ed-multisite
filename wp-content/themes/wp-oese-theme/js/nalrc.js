@@ -679,19 +679,21 @@ jQuery(function($){
 		}
 	});
 
-	$(document).on('keydown',function(e){
-		var code = e.keyCode || e.which;
-		if (code==27){
-			if ($('.modal-map-details-popup').is(':visible')){
-				$('.modal-map-details-popup').modal('hide');
-				$('.usacustomHtml5MapContainer').find('svg path.'+ selectedState).focus();
+	if ($('.usacustomHtml5MapContainer').length){
+		$(document).on('keydown',function(e){
+			var code = e.keyCode || e.which;
+			if (code==27){
+				if ($('.modal-map-details-popup').is(':visible')){
+					$('.modal-map-details-popup').modal('hide');
+					$('.usacustomHtml5MapContainer').find('svg path.'+ selectedState).focus();
+				}
+				if ($('.usacustomHtml5MapContainer').find('svg path.'+ selectedState).length){
+					$('.usacustomHtml5MapContainer').find('svg path.'+ selectedState).focus();
+				}
+				$('.usacustomHtml5MapStateInfo').hide().css('opacity','0.8');
 			}
-			if ($('.usacustomHtml5MapContainer').find('svg path.'+ selectedState).length){
-				$('.usacustomHtml5MapContainer').find('svg path.'+ selectedState).focus();
-			}
-			$('.usacustomHtml5MapStateInfo').hide().css('opacity','0.8');
-		}
-	});
+		});
+	}
 
 	$(document).on('click','.usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-header button', function(){
 		$('.usacustomHtml5MapStateInfo').css({'display':'none','opacity':'0.8'});

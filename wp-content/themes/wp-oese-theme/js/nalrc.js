@@ -146,11 +146,11 @@ jQuery(function($){
 			$(this).closest('.dropdown-menu').find('li').removeClass('active');
 			$(this).closest('li').addClass('active');
 		});
-		$(document).on('keycode', '.filter_select .dropdown-menu li a', function(e){
+		$(document).on('keydown', '.filter_select .dropdown-menu li a', function(e){
 			var code = e.keyCode || e.which;
 			if (code==13 || code==32){
 				$(this).trigger('click');
-				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('hide');
+				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('toggle');
 			}
 		});
 

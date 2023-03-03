@@ -569,7 +569,7 @@ jQuery(function($){
 						$('.hide-on-desktop').show();
 						$('.show-on-desktop').hide();
 					}
-					$('.wpDataTable tbody tr td button').css('padding','0.5em');
+					$('.wpDataTable tbody tr td button').css({'padding':'0.25em','font-size':'12px !important'});
 				} else {
 					$('.mobile-nav-bar .responsive-menu-section .mobile-nav-icons.navi_icn').removeAttr('aria-hidden');
 					$('.mobile-nav-bar .responsive-menu-section .mobile-nav-icons.navi_icn').attr('tabindex', '0');
@@ -595,7 +595,7 @@ jQuery(function($){
 						$('.hide-on-desktop').show();
 						$('.show-on-desktop').hide();
 					}
-					$('.wpDataTable tbody tr td button').css('padding','0.5em');
+					$('.wpDataTable tbody tr td button').css({'padding':'0.25em','font-size':'12px !important'});
 				} else {
 					if ($('.hide-on-desktop').length){
 						$('.hide-on-desktop').hide();

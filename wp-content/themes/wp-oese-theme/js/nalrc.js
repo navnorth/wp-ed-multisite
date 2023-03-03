@@ -128,7 +128,6 @@ jQuery(function($){
 		});
 
 		// Keyboard navigation of filter dropdown on Certifications page
-		var tabPressed = false;
 		$(document).on('keydown', '.filter_select button.dropdown-toggle', function(e){
 			var code = e.keyCode || e.which;
 			console.log(code);
@@ -143,12 +142,9 @@ jQuery(function($){
 				$(this).closest('.bootstrap-select').find('.dropdown-menu li:first-child a').focus();
 			} else if (code==9){
 				e.preventDefault();
-				if (!tabPressed){
-					var ev = $.Event('keydown');
-	    			ev.keyCode = code; // Character 'A'
-	    			$(this).trigger(ev);
-	    			tabPressed = true;
-    			}
+				var ev = $.Event('keydown');
+    			ev.keyCode = code; // Character 'A'
+    			$(this).trigger(ev);
 			}
 		});
 

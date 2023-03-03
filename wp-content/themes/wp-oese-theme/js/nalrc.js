@@ -152,7 +152,7 @@ jQuery(function($){
 			if (code==13 || code==32){
 				$(this).trigger('click');
 				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('toggle');
-				$(this).closest('.bootstrap-select').find('button').first().focus();
+				$(this).closest('.bootstrap-select').find('button').focus();
 			}
 		});
 

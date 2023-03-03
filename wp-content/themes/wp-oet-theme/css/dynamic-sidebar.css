@@ -1,0 +1,146 @@
+.oet-sidebar-section-wrapper.panel-default > .panel-heading,
+.oet-sidebar-section-type-wrapper.panel-default > .panel-heading { overflow:hidden; background-color: #f5f5f5 !important; padding:10px 15px !important; }
+.oet-sidebar-section-wrapper .panel-title,
+.oet-sidebar-section-type-wrapper .panel-title{ float:left; line-height:normal; }
+.oet-sidebar-section-wrapper .oet-sortable-handle,
+.oet-sidebar-section-type-wrapper .oet-sortable-handle{ float:left; }
+.oet-sidebar-section-wrapper .oet-remove-sidebar-section ,
+.oet-sidebar-section-type-wrapper .oet-remove-sidebar-section-content{ float:right; padding:0 5px; }
+.oet-sidebar-section-wrapper .oet-preview-section { float:right; padding:0 5px; margin-right:5px; }
+.oet-sidebar-section-wrapper .oet-content-sections.subsection-visible { border: 1px solid #dddddd; padding:10px 15px; }
+.oet-sidebar-section-wrapper .sidebar-section-reorder-up,
+.oet-sidebar-section-wrapper .sidebar-section-reorder-down,
+.oet-sidebar-section-wrapper .sidebar-section-image-reorder-up,
+.oet-sidebar-section-wrapper .sidebar-section-image-reorder-down,
+.oet-sidebar-section-wrapper .sidebar-section-link-reorder-up,
+.oet-sidebar-section-wrapper .sidebar-section-link-reorder-down,
+.oet-sidebar-section-wrapper .sidebar-section-youtube-reorder-up,
+.oet-sidebar-section-wrapper .sidebar-section-youtube-reorder-down,
+.oet-sidebar-section-wrapper .sidebar-section-story-reorder-up,
+.oet-sidebar-section-wrapper .sidebar-section-story-reorder-down,
+.oet-sidebar-section-wrapper .sidebar-section-medium-reorder-up,
+.oet-sidebar-section-wrapper .sidebar-section-medium-reorder-down{ cursor:pointer; }
+.row-inline .oet-sidebar-section-story { width:95%; display:inline-block; }
+.row-inline .preview-story { width: 5%; text-align: center; display: inline-block; line-height: 40px; }
+.row-inline .preview-story i { vertical-align: middle; }
+.acf-field-post-object[data-name='oet_sidebar_story_content_story'] .select2-container { width:95% !important; }
+.acf-field-post-object[data-name='oet_sidebar_story_content_story'] .preview-story { vertical-align: middle; display:inline-block; }
+.acf-field-post-object[data-name='oet_sidebar_story_content_story'] .preview-story .oet-sidebar-story-url { display: block; }
+.acf-field-post-object[data-name='oet_sidebar_story_content_story'] .preview-story .oet-sidebar-story-url[disabled]{ color:#cdcdcd; }
+#oet-dynamic-sidebar-preview.modal.fade.in { display:flex !important; justify-content: center; align-items: center; flex-direction: column; }
+#oet-dynamic-sidebar-preview.modal .modal-header button { margin-top:-10px; }
+#oet-dynamic-sidebar-preview.modal .preview-wrapper { max-height:400px; overflow:auto; }
+#oet-dynamic-sidebar-preview.modal .preview-body { width:300px; margin:0 auto; }
+#oet-dynamic-sidebar-preview.modal .preview-body .col-md-12 { margin-top: 35px; border: 1px solid #94a0bc; padding: 20px; }
+#oet-dynamic-sidebar-preview.modal .preview-body .pblctn_box { width: 50px; margin: -40px auto 0; }
+#oet-dynamic-sidebar-preview.modal .preview-body .preview-loader {
+	border: 10px solid #f3f3f3;
+	border-top:10px solid #3498db;
+	border-radius:50%;
+	width:100px;
+	height:100px;
+	animation: spin 2s linear infinite;
+	margin:0 auto;
+}
+#oet-dynamic-sidebar-preview.modal .preview-body img { width:100%; }
+#oet-dynamic-sidebar-preview.modal .sidebar-medium-post .single-medium {
+    padding: 0;
+    border: none;
+    margin-top: 0;
+}
+#oet-dynamic-sidebar-preview.modal .sidebar-medium-post .single-medium .medium {
+    margin: 0 auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-color: #eee #ddd #bbb;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;
+    min-height: 425px;
+    margin: 5% 1%;
+    color: #ffffff;
+    background-size: cover !important;
+    position: relative;
+    box-sizing: content-box;
+    height: auto;
+    max-width: 335px;
+    width: 100%;
+}
+#oet-dynamic-sidebar-preview.modal .sidebar-medium-post .medium-background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(22, 22, 22, 0.65);
+    padding: 30px;
+    border-radius: 5px;
+}
+#oet-dynamic-sidebar-preview.modal .sidebar-medium-post .medium-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+#oet-dynamic-sidebar-preview .sidebar-youtube-video a {
+    display: block;
+    position: relative;
+}
+#oet-dynamic-sidebar-preview.modal .sidebar-medium-post .single-medium .medium h1 {
+    font-size: 30px;
+    margin-top: 0;
+    -webkit-font-smoothing: antialiased;
+}
+#oet-dynamic-sidebar-preview.modal .sidebar-medium-post .single-medium .medium h1 a {
+    color: #ffffff !important;
+    text-shadow: 1px 4px 10px rgba(0, 0, 0, 1);
+}
+#oet-dynamic-sidebar-preview.modal .sidebar-medium-post .medium-wrapper p.mfooter a.imglink {
+    border-radius: 100%;
+    overflow: hidden;
+    display: inline-block;
+    border: 1px solid #ffffff;
+    margin-bottom: -11px;
+}
+#oet-dynamic-sidebar-preview.modal .sidebar-medium-post .single-medium .medium .medium-background .medium-wrapper p.mfooter {
+    width: 200px;
+}
+#oet-dynamic-sidebar-preview.modal .sidebar-medium-post .single-medium .medium p {
+    text-shadow: 1px 4px 10px rgba(0, 0, 0, 1);
+}
+#oet-dynamic-sidebar-preview.modal .sidebar-medium-post .single-medium .medium p.mfooter {
+    height: 32px;
+    bottom: 30px;
+}
+#oet-dynamic-sidebar-preview.modal  .sidebar-medium-post .single-medium .medium-wrapper p.mfooter {
+    position: absolute;
+    bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 265px;
+}
+#oet-dynamic-sidebar-preview.modal .sidebar-medium-post .single-medium .medium .medium-background .medium-wrapper p.mfooter img {
+    width: auto;
+    margin: 0;
+}
+#oet-dynamic-sidebar-preview.modal .sidebar-medium-post .medium a {
+    color: #ffffff !important;
+}
+#oet-dynamic-sidebar-preview .preview-wrapper .preview-body .hdng_mtr{
+    font-size: 13px;
+    margin-bottom: 0;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    width: 100%;
+    margin-top: 5px;
+}
+#oet-dynamic-sidebar-preview.modal .preview-body .sidebar-story-post .story-embed-box { border:none; margin-top:0; padding:0; }
+#oet-dynamic-sidebar-preview.modal .preview-body .sidebar-story-post { overflow:hidden; }
+#oet-dynamic-sidebar-preview.modal .preview-body .sidebar-story-post:not(first-child) { margin-top:25px;  }
+#oet-dynamic-sidebar-preview.modal .preview-body p img { width:100%; height:auto; }
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}

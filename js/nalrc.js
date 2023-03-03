@@ -141,7 +141,7 @@ jQuery(function($){
 				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('show');
 				$(this).closest('.bootstrap-select').find('.dropdown-menu li:first-child a').focus();
 			} else if (code==9){
-				ev.preventDefault();
+				e.preventDefault();
 				var ev = $.Event('keydown');
     			ev.keyCode = code; // Character 'A'
     			$(this).trigger(ev);

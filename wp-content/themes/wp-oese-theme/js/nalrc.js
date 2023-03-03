@@ -130,7 +130,9 @@ jQuery(function($){
 		// Keyboard navigation of filter dropdown on Certifications page
 		$(document).on('keydown', '.filter_select button.dropdown-toggle', function(e){
 			var code = e.keyCode || e.which;
+			console.log(code);
 			if (code==13 || code==32){
+				e.preventDefault();
 				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('toggle');
 			} else if (code==38) {
 				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('show');

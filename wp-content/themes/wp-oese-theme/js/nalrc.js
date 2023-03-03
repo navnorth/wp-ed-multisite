@@ -134,8 +134,10 @@ jQuery(function($){
 			if (code==13 || code==32){
 				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('show');
 			} else if (code==38) {
+				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('show');
 				$(this).closest('.bootstrap-select').find('.dropdown-menu li:last-child a').focus();
 			} else if (code==40) {
+				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('show');
 				$(this).closest('.bootstrap-select').find('.dropdown-menu li:first-child a').focus();
 			}
 		});
@@ -148,12 +150,13 @@ jQuery(function($){
 			var code = e.keyCode || e.which;
 			if (code==13 || code==32){
 				$(this).trigger('click');
+				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('hide');
 			}
 		});
 
 
 		// Keyboard navigation of filter dropdown on Resources page
-		$(document).on('keydown', '.nalrc-select-filter button.dropdown-toggle', function(e){
+		/**--$(document).on('keydown', '.nalrc-select-filter button.dropdown-toggle', function(e){
 			var code = e.keyCode || e.which;
 			if (code==13 || code==32){
 				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('toggle');
@@ -175,7 +178,7 @@ jQuery(function($){
 	        //console.log($(this).closest('ul.dropdown-menu').find('li.active').index());
 	        //$(this).closest("ul.dropdown-menu").scrollTop = ($(this).closest('ul.dropdown-menu').find('li.active').index())*32;
 	      }
-    	});
+    	});--**/
 
 		if ($('table .responsiveExpander').length){
 			$('table .responsiveExpander').each(function(){

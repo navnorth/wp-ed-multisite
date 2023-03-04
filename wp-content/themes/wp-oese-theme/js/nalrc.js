@@ -592,6 +592,7 @@ jQuery(function($){
 						$('.hide-on-desktop').hide();
 						$('.show-on-desktop').show();
 					}
+					$('.hide-on-desktop .wpDataTable tbody tr td button').css({'padding':'0.5rem 1rem','font-size':'14px !important'});
 				}
 			}
 		} else {
@@ -602,7 +603,7 @@ jQuery(function($){
 			$('.top-nav-spacing').removeClass('nalrc-top-nav-spacing');
 			const zoomLevel = Math.round(window.devicePixelRatio * 100);
 			if (!isMobile()){
-				if (zoomLevel>=125){
+				if (zoomLevel>=150){
 					if ($('.hide-on-desktop').length){
 						$('.hide-on-desktop').show();
 						$('.show-on-desktop').hide();
@@ -613,6 +614,7 @@ jQuery(function($){
 						$('.hide-on-desktop').hide();
 						$('.show-on-desktop').show();
 					}
+					$('.hide-on-desktop .wpDataTable tbody tr td button').css({'padding':'0.5rem 1rem','font-size':'14px !important'});
 				}
 			}
 		}

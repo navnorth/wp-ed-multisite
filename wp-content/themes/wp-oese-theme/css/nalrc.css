@@ -139,7 +139,7 @@
     padding:10px !important;
 }
 .page-template-nalrc-template .dropdown-menu.show { padding-bottom:0; }
-.page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr td a { font-size:14px; }
+.page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr td a { font-size:14px; color:#981F33; }
 .page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr td.column-link,
 .page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr td.column-website,
 .page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr td.column-email {
@@ -210,7 +210,7 @@
 .nalrc-main #sngl-resource .nalrc-resource-row { margin-bottom:25px; }
 .nalrc-main #sngl-resource .nalrc-resource-row label { color: #981F33; font-size: 18px; font-weight: 600; margin-bottom: 0; }
 .nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value { font-size: 16px; color:#4b4e53; }
-.nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value a { color:#3692BB; text-decoration:underline; font-size:16px; }
+.nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value a { color:#981F33; text-decoration:underline; font-size:16px; }
 .nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value a:hover,
 .nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value a:focus { color:#000000; }
 .nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value p { margin-bottom:0; }

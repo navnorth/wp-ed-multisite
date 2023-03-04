@@ -611,7 +611,10 @@ jQuery(function($){
 						$('.hide-on-desktop').show();
 						$('.show-on-desktop').hide();
 					}
-					$('.hide-on-desktop .wpDataTable tbody tr td button').css({'padding':'0.25em','font-size':'12px !important'});
+					if (zoomLevel>150)
+						$('.hide-on-desktop .wpDataTable tbody tr td button').css({'padding':'0.25em','font-size':'12px !important'});
+					else
+						$('.hide-on-desktop .wpDataTable tbody tr td button').css({'padding':'0.5rem 1rem','font-size':'14px !important'});
 				} else {
 					if ($('.hide-on-desktop').length){
 						$('.hide-on-desktop').hide();

@@ -131,9 +131,11 @@ jQuery(function($){
 		$(document).on('keydown', '.filter_select button.dropdown-toggle', function(e){
 			var code = e.keyCode || e.which;
 			console.log(code);
-			if (code==13 || code==32){
+			if (code==13){
 				e.preventDefault();
 				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('toggle');
+			} else if (code==32) {
+				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('show');
 			} else if (code==38) {
 				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('show');
 				$(this).closest('.bootstrap-select').find('.dropdown-menu li:last-child a').focus();

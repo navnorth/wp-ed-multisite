@@ -26,9 +26,11 @@ jQuery( document ).ready(function() {
       //jQuery('#wp-oese-theme-settings .settings-error').hide();
       if (this.checked){
         jQuery('#wp_oese_theme_crazy_egg_script_address').removeAttr("readonly");
-        if (errText.indexOf("Crazy Egg Script")==-1){
-          errText = "<div class='crazy-error'>Crazy Egg Script cannot be empty!</div>";
-          displayError(errText);
+        if (!jQuery('#wp_oese_theme_crazy_egg_script_address').val()){
+          if (errText.indexOf("Crazy Egg Script")==-1){
+            errText = "<div class='crazy-error'>Crazy Egg Script cannot be empty!</div>";
+            displayError(errText);
+          }
         }
       } else {
         jQuery('#wp_oese_theme_crazy_egg_script_address').attr("readonly", true);
@@ -57,9 +59,11 @@ jQuery( document ).ready(function() {
       //jQuery('#wp-oese-theme-settings .settings-error').hide();
       if (this.checked){
         jQuery('#wp_oese_theme_ga_propertyid').removeAttr("readonly");
-        if (errText.indexOf("UA Property ID")==-1){
-          errText = "<div class='ua-error'>UA Property ID cannot be empty!</div>";
-          displayError(errText);
+        if (!jQuery('#wp_oese_theme_ga_propertyid').val()){
+          if (errText.indexOf("UA Property ID")==-1){
+            errText = "<div class='ua-error'>UA Property ID cannot be empty!</div>";
+            displayError(errText);
+          }
         }
       } else {
         jQuery('#wp_oese_theme_ga_propertyid').attr("readonly", true);
@@ -88,9 +92,11 @@ jQuery( document ).ready(function() {
       var errorDisplay = jQuery('#wp-oese-theme-settings').find(".settings-error");
       if (this.checked){
         jQuery('#wp_oese_theme_ga4_propertyid').removeAttr("readonly");
-        if (errText.indexOf("GA4 Property ID")==-1){
-          errText = "<div class='ga4-error'>GA4 Property ID cannot be empty!</div>";
-          displayError(errText);
+        if (!jQuery('#wp_oese_theme_ga4_propertyid').val()){
+          if (errText.indexOf("GA4 Property ID")==-1){
+            errText = "<div class='ga4-error'>GA4 Property ID cannot be empty!</div>";
+            displayError(errText);
+          }
         }
       } else {
         jQuery('#wp_oese_theme_ga4_propertyid').attr("readonly", true);

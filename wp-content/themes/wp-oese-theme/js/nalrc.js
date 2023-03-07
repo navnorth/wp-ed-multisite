@@ -145,7 +145,7 @@ jQuery(function($){
 			} else if (code==27){
 				e.preventDefault();
 				e.stopPropagation();
-				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('refresh');
+				return false;
 			} else if (code==9){
 				if (!e.shiftKey){
 					if ($(this).closest('.wpDataTableFilterSection').next().length){

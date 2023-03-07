@@ -162,6 +162,7 @@ jQuery(function($){
 		$(document).on('focus', '.filter_select .dropdown-menu li a', function(e){
 			$(this).closest('.dropdown-menu').find('li').removeClass('active');
 			$(this).closest('li').addClass('active');
+			console.log($(this).closest('div.dropdown-menu').css('max-height'));
 		});
 		$(document).on('keydown', '.filter_select .dropdown-menu li a', function(e){
 			var code = e.keyCode || e.which;

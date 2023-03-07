@@ -135,7 +135,9 @@ jQuery(function($){
 				e.preventDefault();
 				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('toggle');
 				if (!$(this).closest('.bootstrap-select').find('.dropdown-menu.show').hasClass('open'))
-					$(this).closest('.bootstrap-select').find('.dropdown-menu.show').addClass('open').css('height',$(this).closest('.bootstrap-select').find('.dropdown-menu.show ul').height() + 'px !important');
+					$(this).closest('.bootstrap-select').find('.dropdown-menu.show').addClass('open');
+				$(this).closest('.bootstrap-select').find('.dropdown-menu.show.open').css('height',$(this).closest('.bootstrap-select').find('.dropdown-menu.show ul').height() + 'px !important');
+				$(this).closest('.bootstrap-select').find('.dropdown-menu.show.open').attr('x-placement','bottom-start');
 			} else if (code==32) {
 				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('show');
 			} else if (code==38) {

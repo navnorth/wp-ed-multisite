@@ -136,7 +136,6 @@ jQuery(function($){
 				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('toggle');
 				if (!$(this).closest('.bootstrap-select').find('.dropdown-menu.show').hasClass('open'))
 					$(this).closest('.bootstrap-select').find('.dropdown-menu.show').addClass('open');
-				$(this).closest('.bootstrap-select').find('.dropdown-menu li:first-child a').focus();
 			} else if (code==32) {
 				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('show');
 			} else if (code==38) {

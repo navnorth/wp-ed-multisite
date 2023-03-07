@@ -132,11 +132,9 @@ jQuery(function($){
 			var code = e.keyCode || e.which;
 			console.log(code);
 			if (code==13){
-				e.preventDefault();
 				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('toggle');
 				if (!$(this).closest('.bootstrap-select').find('.dropdown-menu.show').hasClass('open'))
 					$(this).closest('.bootstrap-select').find('.dropdown-menu.show').addClass('open');
-				console.log($(this).closest('.bootstrap-select').find('.dropdown-menu.show ul').height());
 				$(this).closest('.bootstrap-select').find('.dropdown-menu.show.open').css('height',$(this).closest('.bootstrap-select').find('.dropdown-menu.show ul').height() + 'px !important');
 			} else if (code==32) {
 				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('show');

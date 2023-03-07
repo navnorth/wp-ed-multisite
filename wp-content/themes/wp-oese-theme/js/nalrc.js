@@ -137,7 +137,9 @@ jQuery(function($){
 					$(this).closest('.bootstrap-select').find('.dropdown-menu.show').addClass('open');
 				$(this).closest('.bootstrap-select').find('.dropdown-menu.show.open').css('height',$(this).closest('.bootstrap-select').find('.dropdown-menu.show ul').height() + 'px !important');
 			} else if (code==32) {
-				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('show');
+				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('toggle');
+				if (!$(this).closest('.bootstrap-select').find('.dropdown-menu.open').hasClass('show'))
+					$(this).closest('.bootstrap-select').find('.dropdown-menu.open').addClass('show');
 			} else if (code==38) {
 				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('show');
 				$(this).closest('.bootstrap-select').find('.dropdown-menu li:last-child a').focus();

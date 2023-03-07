@@ -21,12 +21,19 @@ jQuery( document ).ready(function() {
 
     // Enable Crazy Egg Script Checkbox change handler
     jQuery('#wp_oese_theme_include_crazy_egg_script').on("change", function(){
-      jQuery('#wp-oese-theme-settings .settings-error').hide();
+      var errText = jQuery('#wp-oese-theme-settings').find(".settings-error").text();
+      var errorDisplay = jQuery('#wp-oese-theme-settings').find(".settings-error");
+      //jQuery('#wp-oese-theme-settings .settings-error').hide();
       if (this.checked){
         jQuery('#wp_oese_theme_crazy_egg_script_address').removeAttr("readonly");
+        if (errText.indexOf("Crazy Egg Script")==-1){
+          errText = "<div class='crazy-error'>Crazy Egg Script cannot be empty!</div>";
+          displayError(errText);
+        }
       } else {
         jQuery('#wp_oese_theme_crazy_egg_script_address').attr("readonly", true);
         jQuery('#wp_oese_theme_crazy_egg_script_address').focus();
+        errorDisplay.find('.crazy-error').remove();
       }
     });
     jQuery('#wp_oese_theme_crazy_egg_script_address').on('blur', function(e){
@@ -45,12 +52,19 @@ jQuery( document ).ready(function() {
 
     //Enable UA Tracking Script Change Handler
     jQuery('#wp_oese_theme_include_UA_tracking_script').on("change", function(){
-      jQuery('#wp-oese-theme-settings .settings-error').hide();
-      if (this.checked==true){
+      var errText = jQuery('#wp-oese-theme-settings').find(".settings-error").text();
+      var errorDisplay = jQuery('#wp-oese-theme-settings').find(".settings-error");
+      //jQuery('#wp-oese-theme-settings .settings-error').hide();
+      if (this.checked){
         jQuery('#wp_oese_theme_ga_propertyid').removeAttr("readonly");
+        if (errText.indexOf("UA Property ID")==-1){
+          errText = "<div class='ua-error'>UA Property ID cannot be empty!</div>";
+          displayError(errText);
+        }
       } else {
         jQuery('#wp_oese_theme_ga_propertyid').attr("readonly", true);
         jQuery('#wp_oese_theme_ga_propertyid').focus();
+        errorDisplay.find('.ua-error').remove();
       }
     });
     jQuery('#wp_oese_theme_ga_propertyid').on('blur', function(e){
@@ -70,12 +84,18 @@ jQuery( document ).ready(function() {
 
     //Enable GA4 Tracking Script Change Handler
     jQuery('#wp_oese_theme_include_GA4_tracking_script').on("change", function(){
-      jQuery('#wp-oese-theme-settings .settings-error').hide();
+      var errText = jQuery('#wp-oese-theme-settings').find(".settings-error").text();
+      var errorDisplay = jQuery('#wp-oese-theme-settings').find(".settings-error");
       if (this.checked){
         jQuery('#wp_oese_theme_ga4_propertyid').removeAttr("readonly");
+        if (errText.indexOf("GA4 Property ID")==-1){
+          errText = "<div class='ga4-error'>GA4 Property ID cannot be empty!</div>";
+          displayError(errText);
+        }
       } else {
         jQuery('#wp_oese_theme_ga4_propertyid').attr("readonly", true);
         jQuery('#wp_oese_theme_ga4_propertyid').focus();
+        errorDisplay.find('.ga4-error').remove();
       }
     });
     jQuery('#wp_oese_theme_ga4_propertyid').on('blur', function(e){

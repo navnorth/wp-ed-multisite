@@ -144,7 +144,6 @@ jQuery(function($){
 				$(this).closest('.bootstrap-select').find('.dropdown-menu li:first-child a').focus();
 			} else if (code==27){
 				e.preventDefault();
-				e.stopPropagation();
 				$(this).closest('.bootstrap-select').find('.dropdown-menu').removeClass('open show');
 			} else if (code==9){
 				if (!e.shiftKey){

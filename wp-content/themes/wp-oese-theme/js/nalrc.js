@@ -142,11 +142,11 @@ jQuery(function($){
 				if (!$(this).closest('.bootstrap-select').find('.dropdown-menu.open').hasClass('show'))
 					$(this).closest('.bootstrap-select').find('.dropdown-menu.open').addClass('show');
 			} else if (code==38) {
-				e.preventDefault();
+				console.log($(this).closest('.bootstrap-select').find('.dropdown-menu.open').hasClass('show'));
 				if ($(this).closest('.bootstrap-select').find('.dropdown-menu.open').hasClass('show'))
 					$(this).closest('.bootstrap-select').find('.dropdown-menu li:last-child a').focus();
 			} else if (code==40) {
-				e.preventDefault();
+				console.log($(this).closest('.bootstrap-select').find('.dropdown-menu.open').hasClass('show'));
 				if ($(this).closest('.bootstrap-select').find('.dropdown-menu.open').hasClass('show'))
 					$(this).closest('.bootstrap-select').find('.dropdown-menu li:first-child a').focus();
 			} else if (code==27){

@@ -174,9 +174,9 @@ jQuery(function($){
 			var code = e.keyCode || e.which;
 			var optionCount = $(this).closest('.bootstrap-select').find('.dropdown-menu li').length;
 			if (code==13 || code==32){
-				e.preventDefault();
-				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('toggle');
+				console.log($(this).text());
 				$(this).trigger('click');
+				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('toggle');
 				$(this).closest('.dropdown-menu').find('li').removeClass('active');
 			  	$(this).closest('.dropdown-menu').find('li a').removeClass('active');
 				$(this).closest('.bootstrap-select').find('button').trigger('focus');

@@ -191,6 +191,7 @@ jQuery(function($){
 					next.addClass('active');
 					next.find('a').addClass('active');
 				}
+				$(this).closest('.dropdown-menu').find('li:nth-child('+itemFocus+') a').focus();
 			}
 		});
 

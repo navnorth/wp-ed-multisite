@@ -181,11 +181,11 @@ jQuery(function($){
 			  	$(this).closest('.dropdown-menu').find('li a').removeClass('active');
 				$(this).closest('.bootstrap-select').find('button').trigger('focus');
 			} else if (code==38){
-				if ($(this).closest('.dropdown-menu').find('li').prev().length)
-					$(this).closest('.dropdown-menu').find('li').prev().find('a').focus();
+				//if ($(this).closest('.dropdown-menu').find('li').prev().length)
+				//	$(this).closest('.dropdown-menu').find('li').prev().find('a').focus();
 			} else if (code==40){
-				if ($(this).closest('.dropdown-menu').find('li').next().length)
-					$(this).closest('.dropdown-menu').find('li').next().find('a').focus();
+				//if ($(this).closest('.dropdown-menu').find('li').next().length)
+				//	$(this).closest('.dropdown-menu').find('li').next().find('a').focus();
 			}
 		});
 

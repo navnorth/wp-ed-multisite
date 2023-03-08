@@ -151,7 +151,10 @@ jQuery(function($){
 				$(this).closest('.bootstrap-select').find('.dropdown-menu').removeClass('open show');
 			} else if (code==9){
 				if (!e.shiftKey){
+					if (!$(this).closest('.bootstrap-select').find('.dropdown-menu.open').hasClass('show'))
+						$(this).closest('.bootstrap-select').find('.dropdown-menu.open').removeClass('show');
 					if ($(this).closest('.wpDataTableFilterSection').next().length){
+						e.preventDefault();
 						$(this).closest('.wpDataTableFilterSection').next().find('.bootstrap-select button').focus();
 					}
 				}

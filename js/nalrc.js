@@ -194,6 +194,14 @@ jQuery(function($){
 					$(this).closest('.dropdown-menu').find('li').next().find('a').focus();
 					$(this).closest('.dropdown-menu').find('li').next().addClass('active');
 				}
+			} else if (code==9){
+				if ($(this).closest('.dropdown-menu').find('li').next().length){
+					$(this).closest('.dropdown-menu').find('li').next().find('a').focus();
+					$(this).closest('.dropdown-menu').find('li').next().addClass('active');
+				}	else {
+					if ($(this).closest('.bootstrap-select').find('.dropdown-menu.open').hasClass('show'))
+						$(this).closest('.bootstrap-select').find('.dropdown-menu.open').removeClass('show');
+				}
 			}
 		});
 

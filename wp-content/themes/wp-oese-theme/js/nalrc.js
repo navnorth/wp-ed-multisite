@@ -165,8 +165,7 @@ jQuery(function($){
 			let height = $(this).closest('div.dropdown-menu').css('max-height'); 
 			$(this).closest('div.dropdown-menu').css('height', height + 'px !important');
 		});
-		var focusedIndex = -1;
-		var itemFocus = 0;
+		
 		$(document).on('keydown', '.filter_select .dropdown-menu li a', function(e){
 			var code = e.keyCode || e.which;
 			var optionCount = $(this).closest('.bootstrap-select').find('.dropdown-menu li').length;
@@ -178,12 +177,14 @@ jQuery(function($){
 			  	$(this).closest('.dropdown-menu').find('li a').removeClass('active');
 			} else if (code==38){
 				console.log('arrow up');
-				/**--if (focusedIndex!=-1)
-					focusedIndex--;--**/
+				e.preventDefault();
+				if ($(this).closest('.dropdown-menu').find('li').prev().length)
+					$(this).closest('.dropdown-menu').find('li').prev().find('a').focus();
 			} else if (code==40){
 				console.log('arrow down');
-				/**--if (focusedIndex<optionCount)
-					focusedIndex++;--**/
+				e.preventDefault();
+				if ($(this).closest('.dropdown-menu').find('li').next().length)
+					$(this).closest('.dropdown-menu').find('li').next().find('a').focus();
 			}
 			/**--if (code==38 || code==40){
 				console.log(focusedIndex);

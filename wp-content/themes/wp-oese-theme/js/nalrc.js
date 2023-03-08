@@ -191,7 +191,8 @@ jQuery(function($){
 				$(this).closest('.dropdown-menu').find('li').removeClass('active');
 			  	$(this).closest('.dropdown-menu').find('li a').removeClass('active');
 			  	var curItem = $(this);
-			  	var next = $(this).closest('.dropdown-menu').find('li:nth-child('+itemFocus+')'); 
+			  	var next = $(this).closest('.dropdown-menu').find('li:nth-child('+itemFocus+')');
+			  	console.log(next); 
 				if (next.length>=0){
 					next.addClass('active');
 					next.find('a').addClass('active');

@@ -165,8 +165,8 @@ jQuery(function($){
 
 		$(document).on('focus', '.filter_select .dropdown-menu li a', function(e){
 			$(this).closest('.dropdown-menu').find('li').removeClass('active');
-			$(this).closest('li').addClass('active');
-			console.log($(this).text());
+			//$(this).closest('li').addClass('active');
+			//console.log($(this).text());
 			let height = $(this).closest('div.dropdown-menu').css('max-height'); 
 			$(this).closest('div.dropdown-menu').css('height', height + 'px !important');
 		});
@@ -184,12 +184,16 @@ jQuery(function($){
 				$(this).closest('.bootstrap-select').find('button').trigger('focus');
 			} else if (code==38){
 				e.preventDefault();
-				if ($(this).closest('.dropdown-menu').find('li').prev().length)
+				if ($(this).closest('.dropdown-menu').find('li').prev().length){
 					$(this).closest('.dropdown-menu').find('li').prev().find('a').focus();
+					$(this).closest('.dropdown-menu').find('li').prev().addClass('active');
+				}
 			} else if (code==40){
 				e.preventDefault();
-				if ($(this).closest('.dropdown-menu').find('li').next().length)
+				if ($(this).closest('.dropdown-menu').find('li').next().length){
 					$(this).closest('.dropdown-menu').find('li').next().find('a').focus();
+					$(this).closest('.dropdown-menu').find('li').next().addClass('active');
+				}
 			}
 		});
 

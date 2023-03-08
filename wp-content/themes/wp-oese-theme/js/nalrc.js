@@ -181,6 +181,7 @@ jQuery(function($){
 				focusedIndex++;
 			}
 			if (code==38 || code==40){
+				console.log(focusedIndex);
 				itemFocus = focusedIndex+1;
 				$(this).closest('.dropdown-menu').find('li').removeClass('active');
 			  	$(this).closest('.dropdown-menu').find('li a').removeClass('active');

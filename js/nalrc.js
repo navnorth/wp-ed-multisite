@@ -178,14 +178,14 @@ jQuery(function($){
 			  	$(this).closest('.dropdown-menu').find('li a').removeClass('active');
 			} else if (code==38){
 				console.log('arrow up');
-				if (focusedIndex!=-1)
-					focusedIndex--;
+				/**--if (focusedIndex!=-1)
+					focusedIndex--;--**/
 			} else if (code==40){
 				console.log('arrow down');
-				if (focusedIndex<optionCount)
-					focusedIndex++;
+				/**--if (focusedIndex<optionCount)
+					focusedIndex++;--**/
 			}
-			if (code==38 || code==40){
+			/**--if (code==38 || code==40){
 				console.log(focusedIndex);
 				itemFocus = focusedIndex+1;
 				$(this).closest('.dropdown-menu').find('li').removeClass('active');
@@ -198,7 +198,7 @@ jQuery(function($){
 					next.find('a').addClass('active');
 				}
 				$(this).closest('.dropdown-menu').find('li:nth-child('+itemFocus+') a').focus();
-			}
+			}--**/
 		});
 
 

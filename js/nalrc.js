@@ -166,6 +166,7 @@ jQuery(function($){
 		$(document).on('focus', '.filter_select .dropdown-menu li a', function(e){
 			$(this).closest('.dropdown-menu').find('li').removeClass('active');
 			$(this).closest('li').addClass('active');
+			console.log($(this).text());
 			let height = $(this).closest('div.dropdown-menu').css('max-height'); 
 			$(this).closest('div.dropdown-menu').css('height', height + 'px !important');
 		});

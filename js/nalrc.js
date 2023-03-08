@@ -176,30 +176,14 @@ jQuery(function($){
 				$(this).closest('.dropdown-menu').find('li').removeClass('active');
 			  	$(this).closest('.dropdown-menu').find('li a').removeClass('active');
 			} else if (code==38){
-				console.log('arrow up');
 				e.preventDefault();
 				if ($(this).closest('.dropdown-menu').find('li').prev().length)
 					$(this).closest('.dropdown-menu').find('li').prev().find('a').focus();
 			} else if (code==40){
-				console.log('arrow down');
 				e.preventDefault();
 				if ($(this).closest('.dropdown-menu').find('li').next().length)
 					$(this).closest('.dropdown-menu').find('li').next().find('a').focus();
 			}
-			/**--if (code==38 || code==40){
-				console.log(focusedIndex);
-				itemFocus = focusedIndex+1;
-				$(this).closest('.dropdown-menu').find('li').removeClass('active');
-			  	$(this).closest('.dropdown-menu').find('li a').removeClass('active');
-			  	var curItem = $(this);
-			  	var next = $(this).closest('.dropdown-menu').find('li:nth-child('+itemFocus+')');
-			  	console.log(next); 
-				if (next.length>=0){
-					next.addClass('active');
-					next.find('a').addClass('active');
-				}
-				$(this).closest('.dropdown-menu').find('li:nth-child('+itemFocus+') a').focus();
-			}--**/
 		});
 
 

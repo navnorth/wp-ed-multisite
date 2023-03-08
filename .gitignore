@@ -1,8 +1,14 @@
-# Ignore wp-config.php and .htaccess
-wp-config.php
-.htaccess
-.DS_Store
-/wp-content/themes/.DS_Store
+*.sublime-*
+*.DS_Store
+*.komodoproject
 
-# Ignore the wp-content/uploads directory
-/wp-content/uploads
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Folder config file
+[Dd]esktop.ini
+
+# Windows shortcuts
+*.lnk

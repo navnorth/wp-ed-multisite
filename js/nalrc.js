@@ -174,11 +174,12 @@ jQuery(function($){
 			var code = e.keyCode || e.which;
 			var optionCount = $(this).closest('.bootstrap-select').find('.dropdown-menu li').length;
 			if (code==13 || code==32){
-				$(this).trigger('click');
+				//$(this).trigger('click');
+				e.preventDefault();
 				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('toggle');
-				$(this).closest('.bootstrap-select').find('button').trigger('focus');
 				$(this).closest('.dropdown-menu').find('li').removeClass('active');
 			  	$(this).closest('.dropdown-menu').find('li a').removeClass('active');
+				$(this).closest('.bootstrap-select').find('button').trigger('focus');
 			} else if (code==38){
 				if ($(this).closest('.dropdown-menu').find('li').prev().length)
 					$(this).closest('.dropdown-menu').find('li').prev().find('a').focus();

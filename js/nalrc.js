@@ -152,7 +152,6 @@ jQuery(function($){
 			} else if (code==9){
 				if (!e.shiftKey){
 					if ($(this).closest('.wpDataTableFilterSection').next().length){
-						e.preventDefault();
 						$(this).closest('.wpDataTableFilterSection').next().find('.bootstrap-select button').focus();
 					}
 				}

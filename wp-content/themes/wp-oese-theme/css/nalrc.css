@@ -131,6 +131,7 @@
 .bootstrap-select.btn-group .dropdown-menu li a { font-size:14px; }
 .bootstrap-select.btn-group .dropdown-menu li.selected a { background:none }
 .bootstrap-select.btn-group .dropdown-menu li.active a { background-color: rgba(0, 0, 0, 0.075); }
+.wpdt-c .dropdown-menu > li > a:focus { background:none; }
 .wpdt-c .wpDataTablesWrapper table.wpDataTable thead th.sort.column-degree::after,
 .wpdt-c .wpDataTablesWrapper table.wpDataTable thead th.sort.column-instructional-approach::after { border: 5px solid transparent; display: inline-block; font-size: 0; line-height: 0; content: ""; height: 0; width: 0; vertical-align: 3px; margin: 0 0 0 10px; opacity: .6; border-bottom-color: #ffffff !important; }
 .page-template-nalrc-template .wpdt-c .wpDataTablesWrapper table.wpDataTable tr td {

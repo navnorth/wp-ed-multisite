@@ -169,16 +169,21 @@ jQuery(function($){
 		var itemFocus = 0;
 		$(document).on('keydown', '.filter_select .dropdown-menu li a', function(e){
 			var code = e.keyCode || e.which;
+			var optionCount = $(this).closest('.bootstrap-select').find('.dropdown-menu li').length;
 			if (code==13 || code==32){
 				$(this).trigger('click');
 				$(this).closest('.bootstrap-select').find('.selectpicker').selectpicker('toggle');
 				$(this).closest('.bootstrap-select').find('button').trigger('focus');
+				$(this).closest('.dropdown-menu').find('li').removeClass('active');
+			  	$(this).closest('.dropdown-menu').find('li a').removeClass('active');
 			} else if (code==38){
 				console.log('arrow up');
-				focusedIndex--;
+				if (focusedIndex!=-1)
+					focusedIndex--;
 			} else if (code==40){
 				console.log('arrow down');
-				focusedIndex++;
+				if (focusedIndex<optionCount)
+					focusedIndex++;
 			}
 			if (code==38 || code==40){
 				console.log(focusedIndex);

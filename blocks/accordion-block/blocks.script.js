@@ -9,6 +9,10 @@ jQuery(document).ready(function(){
       var livetext = (jQuery(this).hasClass('collapsed'))? 'Expanded': 'Collapsed';
       var expanded = (jQuery(this).hasClass('collapsed'))? false: true;
       jQuery(this).attr('aria-expanded', expanded);
+      if (!expanded){
+        let contentId = jQuery(this).attr('href');
+        jQuery(contentId).removeAttr('tabindex');
+      }
       jQuery('#a11y-speak-polite').text(livetext);
     }
   });

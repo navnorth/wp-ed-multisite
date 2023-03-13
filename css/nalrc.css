@@ -615,7 +615,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 .wpdt-c.wdt-skin-light .wpDataTablesWrapper table.has-columns-hidden span.responsiveExpander:focus {
 	opacity:1;
 }
-.hide-on-desktop { display:none; }
+.hide-on-desktop, .hide-state-on-desktop  { display:none; }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .map-popup-detail .map-detail-label a {
 	word-break: break-all;
 }
@@ -704,6 +704,14 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 	.nalrc-footer .nalrc-menu > li:last-child { margin-left:-15px; }
 	.page-template-nalrc-template .wpDataTablesFilter .wpDataTableFilterSection:not(#wdt-clear-filters-button-block):not(#wdt-pf-search-filters-button-block) { width:50% !important; }
 	.page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSectionLabel { padding-left:15px; }
+	#state-certifications-wrapper { text-align: center; }
+	#state-certifications-wrapper #stateCertifications {
+		background-color: #3693bb;
+	    color: #FFF;
+	    font-weight: bold;
+	    padding: 5px;
+	    border-radius: 4px;
+	}
 }
 @media only screen and (max-width:800px){
 	.nalrc-wrapper { flex-direction:column; }

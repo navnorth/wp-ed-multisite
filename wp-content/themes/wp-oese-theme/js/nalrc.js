@@ -83,6 +83,12 @@ jQuery(function($){
 			showInfo($(this),showText);
 			// End - Move Show Info above the table
 
+			//** Add role and aria-expanded attributes to comboboxes
+			$(this).find('.wpDataTableFilterSection').each(function(){
+				$(this).find('.bootstrap-select button').attr('role','combobox');
+				$(this).find('.bootstrap-select button').attr('aria-expanded','false');
+			});
+
 			// Trigger search on pressing Enter key
 			let parent = $(this);
 			$(this).find('.wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .dataTables_filter input').on("input", function(e){

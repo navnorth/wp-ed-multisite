@@ -431,7 +431,7 @@
     box-shadow: none;
 }
 .wpDataTableFilterBox .wpDataTableFilterSection .wdt-filter-control .dropdown-menu.open { display:none !important; }
-.wpDataTableFilterBox .wpDataTableFilterSection .wdt-filter-control .dropdown-menu.open.show { display:block !important; } 
+.wpDataTableFilterBox .wpDataTableFilterSection .wdt-filter-control .dropdown-menu.open.show { display:block !important; transform: translate3d(0px, 34px, 0px) !important; } 
 .nalrc-template .oer-cntnr { overflow:unset; }
 .nalrc-search-grade-level .nalrc-select-wrapper .bootstrap-select .dropdown-menu li,
 .nalrc-search-product .nalrc-select-wrapper .bootstrap-select .dropdown-menu li { position:relative; }

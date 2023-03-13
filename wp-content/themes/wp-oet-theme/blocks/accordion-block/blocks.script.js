@@ -12,8 +12,11 @@ jQuery(document).ready(function(){
       let contentId = jQuery(this).attr('href');
       if (!expanded){
         jQuery(contentId).removeAttr('tabindex');
+        jQuery(contentId).find('a').attr('tabindex','-1');
       } else {
         jQuery(contentId).attr('tabindex','0');
+        if (jQuery(contentId).find('a').attr('tabindex'))
+          jQuery(contentId).find('a').removeAttr('tabindex');
       }
       jQuery('#a11y-speak-polite').text(livetext);
     }
@@ -23,8 +26,11 @@ jQuery(document).ready(function(){
     let contentId = jQuery(this).attr('href');
     if (!expanded){
       jQuery(contentId).removeAttr('tabindex');
+      jQuery(contentId).find('a').attr('tabindex','-1');
     } else {
       jQuery(contentId).attr('tabindex','0');
+      if (jQuery(contentId).find('a').attr('tabindex'))
+        jQuery(contentId).find('a').removeAttr('tabindex');
     }
     jQuery(this).attr('aria-expanded', expanded);
   });

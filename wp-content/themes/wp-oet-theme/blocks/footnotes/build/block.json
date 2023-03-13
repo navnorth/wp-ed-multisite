@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "oet-block/oet-footnotes",
+  "version": "0.1.0",
+  "title": "OET Footnotes",
+  "category": "oet-block-category",
+  "icon": "editor-insertmore",
+  "description": "Displays a footnotes section on a page.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "footnoteCount": {
+      "type": "integer",
+      "default": 1
+    },
+    "footnotes": {
+      "type": "array",
+      "source": "query",
+      "selector": "div"
+    },
+    "isChanged": {
+      "type": "boolean",
+      "default": false
+    },
+    "blockId": {
+      "type": "string"
+    },
+    "firstLoad": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "textdomain": "oet-footnotes",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

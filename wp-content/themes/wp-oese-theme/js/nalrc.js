@@ -242,7 +242,7 @@ jQuery(function($){
 		}
 
 		$('.selectpicker').each(function() {
-			var button = $('button[data-id="'+this.id+'"]').first();
+			var button = $(this).closest('bootstrap-select').find('button').first();
 			if(button.length > 0) {
 				button.attr('aria-label', $(this).attr('title'));
 			}

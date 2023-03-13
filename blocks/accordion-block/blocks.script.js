@@ -9,15 +9,23 @@ jQuery(document).ready(function(){
       var livetext = (jQuery(this).hasClass('collapsed'))? 'Expanded': 'Collapsed';
       var expanded = (jQuery(this).hasClass('collapsed'))? false: true;
       jQuery(this).attr('aria-expanded', expanded);
+      let contentId = jQuery(this).attr('href');
       if (!expanded){
-        let contentId = jQuery(this).attr('href');
         jQuery(contentId).removeAttr('tabindex');
+      } else {
+        jQuery(contentId).attr('tabindex','0');
       }
       jQuery('#a11y-speak-polite').text(livetext);
     }
   });
   jQuery(document).on('click','.oet-blk-accordion-button',function(e){
     var expanded = (jQuery(this).hasClass('collapsed'))? false: true;
+    let contentId = jQuery(this).attr('href');
+    if (!expanded){
+      jQuery(contentId).removeAttr('tabindex');
+    } else {
+      jQuery(contentId).attr('tabindex','0');
+    }
     jQuery(this).attr('aria-expanded', expanded);
   });
 });

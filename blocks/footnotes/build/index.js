@@ -298,7 +298,7 @@ function Edit(props) {
     className: "oet-footnotes-block"
   }, (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)()), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("hr", {
     className: "wp-block-separator has-text-color has-background has-dark-gray-background-color has-dark-gray-color is-style-wide"
-  }), ";", display, inspector);
+  }), display, inspector);
 }
 
 /***/ }),

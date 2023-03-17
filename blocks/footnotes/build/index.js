@@ -347,54 +347,55 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
-if (oet_footnotes.version_58 == '') {
-  (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_5__, {
-    edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
-    save: _save__WEBPACK_IMPORTED_MODULE_4__["default"]
-  });
-} else {
-  (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('oet-block/oet-footnotes', {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Footnotes', 'oet-footnotes-block'),
-    description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Displays a footnotes section on a page.', 'oet-footnotes-block'),
-    category: 'oet-block-category',
-    icon: 'editor-insertmore',
-    keywords: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('OET', 'oet-footnotes-block'), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Footnotes', 'oet-footnotes-block')],
-    attributes: {
-      footnoteCount: {
-        type: 'integer',
-        default: 1
-      },
-      footnotes: {
-        type: 'array',
-        default: [{
-          'index': 1,
-          'text': '',
-          'url': '',
-          'anchor': ''
-        }]
-      },
-      isChanged: {
-        type: 'boolean',
-        default: false
-      },
-      blockId: {
-        type: 'string'
-      },
-      firstLoad: {
-        type: 'boolean',
-        default: true
-      }
+/**--if (oet_footnotes.version_58==''){
+    registerBlockType( metadata , {
+        edit: Edit,
+        save,
+    });
+
+} else {--**/
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)('oet-block/oet-footnotes', {
+  title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Footnotes', 'oet-footnotes-block'),
+  description: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Displays a footnotes section on a page.', 'oet-footnotes-block'),
+  category: 'oet-block-category',
+  icon: 'editor-insertmore',
+  keywords: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('OET', 'oet-footnotes-block'), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Footnotes', 'oet-footnotes-block')],
+  attributes: {
+    footnoteCount: {
+      type: 'integer',
+      default: 1
     },
-    /**
-     * @see ./edit.js
-     */
-    edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
-    /**
-     * @see ./save.js
-     */
-    save: _save__WEBPACK_IMPORTED_MODULE_4__["default"]
-  });
-}
+    footnotes: {
+      type: 'array',
+      default: [{
+        'index': 1,
+        'text': '',
+        'url': '',
+        'anchor': ''
+      }]
+    },
+    isChanged: {
+      type: 'boolean',
+      default: false
+    },
+    blockId: {
+      type: 'string'
+    },
+    firstLoad: {
+      type: 'boolean',
+      default: true
+    }
+  },
+  /**
+   * @see ./edit.js
+   */
+  edit: _edit__WEBPACK_IMPORTED_MODULE_3__["default"],
+  /**
+   * @see ./save.js
+   */
+  save: _save__WEBPACK_IMPORTED_MODULE_4__["default"]
+});
+/**--}--**/
 
 /***/ }),
 

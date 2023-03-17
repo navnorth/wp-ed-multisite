@@ -3,7 +3,26 @@
 function enqueue_inline_footnotes_script(){
     wp_enqueue_script('oet-inline-footnotes', get_stylesheet_directory_uri().'/blocks/footnotes/jquery-inline-footnotes-min.js');
 }
-add_action( 'wp_enqueue_scripts', 'enqueue_inline_footnotes_script' );
+add_action( 'wp_enqueue_scripts', 'enqueue_inline_footnotes_script', 20 );
+
+function oet_init_inline_footnote(){
+    ?>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $('sup').each(function(){
+                if ($(this).find('a').length){
+                    let num = $(this).find('a').text();
+                    $(this).attr('id','fnref:'+num);
+                    $(this).find('a').attr('rel','footnote');
+                }
+            });
+          $("[rel=footnote]").inlineFootnote();
+        });
+    </script>
+    <?php
+}
+add_action( 'wp_footer' , 'oet_init_inline_footnote' );
+
 // Initialize block
 function oet_footnotes_block_init(){
     $dir = dirname(__FILE__);
@@ -20,19 +39,17 @@ function oet_footnotes_block_init(){
     $script_asset = require( $script_asset_path );
     wp_register_script(
         'oet-footnotes-block-editor',
-        //$dir_url . $index_js,
-        plugins_url( $index_js, __FILE__),
+        $dir_url . $index_js,
         $script_asset['dependencies'],
         $script_asset['version']
     );
-    wp_localize_script( 'oet-footnotes-block-editor', 'oet_footnotes', array( 'home_url' => home_url(), 'ajax_url' => admin_url( 'admin-ajax.php' ), 'version_58' => false ) );
+    wp_localize_script( 'oet-footnotes-block-editor', 'oet_footnotes', array( 'home_url' => home_url(), 'ajax_url' => admin_url( 'admin-ajax.php' ), 'version_58' => false, 'back_icon' => get_stylesheet_directory_uri().'/images/footnote-back-icon.svg' ) );
 
 
     $editor_css = 'build/index.css';
     wp_register_style(
         'oet-footnotes-block-editor-style',
-        plugins_url( $editor_css, __FILE__),
-        //$dir_url . $editor_css,
+        $dir_url . $editor_css,
         array(),
         filemtime( "$dir/$editor_css" )
     );
@@ -40,8 +57,7 @@ function oet_footnotes_block_init(){
     $style_css = 'build/style-index.css';
     wp_register_style(
         'oet-footnotes-block-style',
-        //$dir_url . $style_css,
-        plugins_url( $style_css, __FILE__ ),
+        $dir_url . $style_css,
         array(),
         filemtime( "$dir/$style_css" )
     );

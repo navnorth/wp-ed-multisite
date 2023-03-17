@@ -3,7 +3,7 @@
   "apiVersion": 2,
   "name": "oet-block/oet-footnotes",
   "version": "0.1.0",
-  "title": "OET Footnotes",
+  "title": "Footnotes",
   "category": "oet-block-category",
   "icon": "editor-insertmore",
   "description": "Displays a footnotes section on a page.",
@@ -17,8 +17,14 @@
     },
     "footnotes": {
       "type": "array",
-      "source": "query",
-      "selector": "div"
+      "default": [
+        {
+          "index": 1,
+          "text": "",
+          "url": "",
+          "anchor": ""
+        }
+      ]
     },
     "isChanged": {
       "type": "boolean",

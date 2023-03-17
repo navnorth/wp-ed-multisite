@@ -128,6 +128,11 @@ require_once( OET_THEME_PATH . '/blocks/button/init.php' );
 **/
 require_once( OET_THEME_PATH . '/blocks/story-embed/init.php' );
 
+/**
+* OET Footnotes Block
+**/
+require_once( OET_THEME_PATH . '/blocks/footnotes/init.php' );
+
 include_once wp_normalize_path( get_stylesheet_directory() . '/vendor/autoload.php' );
 
 /**

@@ -232,6 +232,7 @@ function theme_front_enqueue_script()
 	}
 
 	wp_enqueue_script('jquery');
+	wp_enqueue_script('auto-track', get_stylesheet_directory_uri() . '/js/auto-track.js' );
 	wp_enqueue_script('theme-front-script', get_stylesheet_directory_uri() . '/js/front-script.js' );
 	wp_enqueue_script( 'ellipsis-script', get_stylesheet_directory_uri() . '/js/jquery.dotdotdot.min.js' );
 	wp_enqueue_script('bootstrap-script', get_stylesheet_directory_uri() . '/js/bootstrap.js' );

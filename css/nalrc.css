@@ -42,6 +42,7 @@
 	color:#000000;
 }
 .nalrc-banner nav li.nav-item.current-menu-item a { color:#000000; }
+.nalrc-header .nalrc-wrapper { padding-top:5px; }
 .nalrc-header .nalrc-wrapper img { width:auto; height:auto; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter { background-color: #3693BB; color: #FFF; border-radius:5px; box-shadow:none; padding:30px; }
 .page-template-nalrc-template .wpdt_main_wrapper .wpDataTablesFilter .wpDataTableFilterBox .wpDataTableFilterSection label { display:none; }

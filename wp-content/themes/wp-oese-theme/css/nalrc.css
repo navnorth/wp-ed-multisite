@@ -554,7 +554,7 @@ font-size:12px; background:#ffffff; border-bottom-left-radius: 8px; border-botto
 }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-body .map-detail-source a { font-size: 12px; font-style: italic; text-decoration: none; }
 .page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content p:empty { display:none; }
-.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-body .map-popup-detail .map-detail-value ul { padding-left:20px; }
+.page-template-nalrc-template .usacustomHtml5MapStateInfo .modal-map-details-popup .modal-content .modal-body .map-popup-detail .map-detail-value ul { padding-left:20px; margin-bottom:0; }
 .certification-map-legend { margin-left:50%; margin-top:-100px; }
 .certification-map-legend li { list-style:none; }
 .fa-blue { color:#3693bb; }

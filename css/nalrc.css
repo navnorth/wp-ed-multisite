@@ -220,7 +220,7 @@
 .nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value a:hover,
 .nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value a:focus { color:#000000; }
 .nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-value p { margin-bottom:0; }
-.nalrc-main #sngl-resource .nalrc-resource-row.col-lg-9 { padding-left:0; }
+.nalrc-main #sngl-resource .nalrc-resource-row.col-lg-9 { padding-left:0; padding-right:0; }
 .nalrc-main #sngl-resource .nalrc-resource-row .nalrc-resource-url { word-break:break-all; }
 .nalrc-main #sngl-resource .nalrc-resource-thumbnail a { text-decoration:none; }
 .nalrc-main #sngl-resource a.oer-featureimg .dashicons,
@@ -246,7 +246,7 @@
 .nalrc-main #sngl-resource .nalrc-featured-thumbnail { 
 	float: right;
     display: inline;
-    margin-left: 1%;
+    margin-left: 0;
     z-index:2;
 }
 .nalrc-main #sngl-resource .nalrc-resource-details { display:inline;  white-space: normal; }

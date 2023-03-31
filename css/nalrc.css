@@ -242,7 +242,7 @@
 }
 .nalrc-main #sngl-resource .nalrc-resource-row:last-child { margin-bottom:0; }
 .nalrc-main #sngl-resource .nalrc-resource-thumbnail { text-align:center; margin-bottom:10px; }
-.nalrc-main #sngl-resource .nalrc-resource-thumbnail .oer-featureimg img { width:175px; }
+.nalrc-main #sngl-resource .nalrc-resource-thumbnail .oer-featureimg img { width:100%; border-radius: 5px; border: 1px solid #3692BB; }
 .nalrc-main #sngl-resource .nalrc-featured-thumbnail { 
 	float: right;
     display: inline;
@@ -285,7 +285,7 @@
 .nalrc-resources-header h1 { color: #981F33 !important; margin-bottom:0; }
 .nalrc-blogpost { padding:25px 0; max-width:97%; margin:auto; border-bottom: 1px solid #d1d1d1; }
 .nalrc-blogpost .oer-feature-image { width:100%; padding-left:0; }
-.nalrc-blogpost .oer-feature-image img{ width:100%; height:auto; }
+.nalrc-blogpost .oer-feature-image img{ width:100%; height:auto; border: 1px solid #3692BB; border-radius: 5px; }
 .nalrc-blogpost .rght-sd-cntnr-blg { width:100%; padding-right:0; }
 .nalrc-blogpost .rght-sd-cntnr-blg h4,
 .nalrc-blogpost .rght-sd-cntnr-blg h3 { margin-top: 0 !important; color: #981F33 !important; margin-bottom:5px; font-size:18px !important; font-weight:bold; line-height:20px; }

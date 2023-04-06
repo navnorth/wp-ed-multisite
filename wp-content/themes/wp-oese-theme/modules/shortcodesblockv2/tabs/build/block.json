@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "oese-block/tabs",
+  "version": "0.1.0",
+  "title": "OESE Tabs",
+  "category": "oese-block-category",
+  "icon": "index-card",
+  "description": "Displays content in a tab",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "oese-tabs",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

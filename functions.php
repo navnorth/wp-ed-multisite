@@ -9,6 +9,7 @@
 define( "WP_OESE_THEME_NAME", "WP OESE Theme" );
 define( "WP_OESE_THEME_VERSION", "2.1.2" );
 define( "WP_OESE_THEME_SLUG", "wp_oese_theme" );
+global $_nalrc;
 
 // Set up the content width value based on the theme's design and stylesheet.
 if ( ! isset( $content_width ) ) {
@@ -3491,6 +3492,8 @@ function oese_add_nalrc_slider_settings(){
 }
 add_action('acf/init', 'oese_add_nalrc_slider_settings');
 
+// Order metaboxes(OER, Script N' Styles, WP SEO)
+$_nalrc = true;
 if ($_nalrc){
   add_filter( 'get_user_option_meta-box-order_resource', 'oese_reorder_metaboxes' );
   function oese_reorder_metaboxes( $order ) {

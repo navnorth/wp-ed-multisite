@@ -8,7 +8,10 @@
  * @subpackage Twenty_Twelve
  * @since Twenty Twelve 1.0
  */
-?>
+?>      
+        <?php if (get_option('disclaimer')): ?>
+        <div id="disclaimer_footer"><?php echo get_option('disclaimer'); ?></div>
+        <?php endif; ?>
         <div class="row ftr oet-footer">
             <!--<div class="col-md-12 col-sm-12 col-xs-12 ftr_strp"></div>-->
             <div class="oet-footer-seal">

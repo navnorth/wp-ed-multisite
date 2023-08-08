@@ -49,6 +49,12 @@ function socialmedia_settings()
 			if (get_option('crazyeggaddress'))
 				delete_option('crazyeggaddress');	
 		}
+		if (isset($disclaimer))
+			update_option("disclaimer", $disclaimer);
+		else {
+			if (get_option('disclaimer'))
+				delete_option('disclaimer');	
+		}
 	}
 
 	$google_analytics_id = get_option("google_analytics_id");
@@ -61,6 +67,7 @@ function socialmedia_settings()
 	$contactsliderpage = get_option("contactsliderpage");
 	$enablecrazyegg = get_option("enablecrazyegg");
 	$crazyeggaddress = get_option("crazyeggaddress");
+	$disclaimer = get_option("disclaimer");
 	$cdisabled = "";
 
 	if (!$enablecrazyegg)
@@ -124,6 +131,10 @@ function socialmedia_settings()
 					<div class="oer_sclmda_sub_wrapper">
 						      <div class="oer_sclmda_txt"><strong>Enable Crazy Egg tracking script</strong></div>
 						      <div class="oer_sclmda_fld checkinput"><input type="checkbox" id="enablecrazyegg" name="enablecrazyegg" value="1" '.checked("1",$enablecrazyegg,false).' /><input type="text" name="crazyeggaddress" id="crazyeggaddress" value="'. $crazyeggaddress.'" '.$cdisabled.'/></div>
+					</div>
+					<div class="oer_sclmda_sub_wrapper">
+						      <div class="oer_sclmda_txt"><strong>Disclaimer</strong></div>
+						      <div class="oer_sclmda_fld"><textarea rows="5" cols="57" id="disclaimer" name="disclaimer">'.$disclaimer.'</textarea></div>
 					</div>
 					<div class="settings-error oet-settings-error hidden">Crazy Egg Script Address cannot be empty!</div>
 					<div class="oer_sclmda_sub_wrapper">

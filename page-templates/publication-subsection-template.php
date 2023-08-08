@@ -21,6 +21,8 @@
 			get_template_part( 'inner-templates/content', 'table' );
 		?>
 	</div>
-
+	<?php if (get_option('disclaimer')): ?>
+    <div id="disclaimer_footer"><?php echo get_option('disclaimer'); ?></div>
+    <?php endif; ?>
 </div>
 <?php get_footer();?>

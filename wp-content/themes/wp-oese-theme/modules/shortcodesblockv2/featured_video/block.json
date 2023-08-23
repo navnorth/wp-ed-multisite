@@ -1,0 +1,23 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "oese-block/oese-featured-video-block",
+	"version": "0.1.0",
+	"title": "Featured Video",
+	"category": "oese-block-category",
+	"icon": "video-alt3",
+	"description": "Add featured video block",
+	"supports": {
+		"html": false
+	},
+	"attributes":{
+		"blockid": {"type":"string"},
+		"clientid": {"type":"string"},
+    "youtubeid":{"type": "string"},
+		"oeseblkFeaturedVideoHeading":{"type": "string"}
+	},
+	"textdomain": "oese-featured-video-block",
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css"
+}

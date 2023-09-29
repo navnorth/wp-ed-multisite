@@ -538,7 +538,7 @@ jQuery(function($){
 				$('#usacustom-html5-map-state-info_0').css('display','flex');
 				$.ajax({ 
 					type: 'POST', 
-					url: (is_group_info ? nalrc.home_url + '/index.php' + '?map_id=' + window.map_id + '&usacustomhtml5map_get_group_info=' : 'https://oese.wp.nnth.dev/' + 'index.php' + '?map_id=5' + '&usacustomhtml5map_get_state_info=') + id, 
+					url: (is_group_info ? nalrc.home_url + '/index.php?map_id=' + window.map_id + '&usacustomhtml5map_get_group_info=' : nalrc.home_url + '/index.php?map_id=' + window.map_id + '&usacustomhtml5map_get_state_info=') + id, 
 					success: function(data, textStatus, jqXHR){ 
 						$('#usacustom-html5-map-state-info_0').html(data).css('opacity','1'); 
 						$('#usacustom-html5-map-state-info_0').find('.modal-map-details-popup').modal('show');
@@ -589,7 +589,7 @@ jQuery(function($){
 		$('#usacustom-html5-map-state-info_0').css('display','flex');
 		$.ajax({ 
 			type: 'POST', 
-			url: (is_group_info ? nalrc.home_url + '/index.php' + '?map_id=' + window.map_id + '&usacustomhtml5map_get_group_info=' : 'https://oese.wp.nnth.dev/' + 'index.php' + '?map_id=5' + '&usacustomhtml5map_get_state_info=') + id, 
+			url: (is_group_info ? nalrc.home_url + '/index.php?map_id=' + window.map_id + '&usacustomhtml5map_get_group_info=' : nalrc.home_url + '/index.php?map_id=' + window.map_id + '&usacustomhtml5map_get_state_info=') + id, 
 			success: function(data, textStatus, jqXHR){ 
 				$('#usacustom-html5-map-state-info_0').html(data).css('opacity','1'); 
 				$('#usacustom-html5-map-state-info_0').find('.modal-map-details-popup').modal('show');
@@ -730,7 +730,7 @@ jQuery(function($){
 			$('#usacustom-html5-map-state-info_0').css('display','flex');
 			$.ajax({ 
 				type: 'POST', 
-				url: (is_group_info ? nalrc.home_url + '/index.php' + '?map_id=' + window.map_id + '&usacustomhtml5map_get_group_info=' : 'https://oese.wp.nnth.dev/' + 'index.php' + '?map_id=5' + '&usacustomhtml5map_get_state_info=') + id, 
+				url: (is_group_info ? nalrc.home_url + '/index.php?map_id=' + window.map_id + '&usacustomhtml5map_get_group_info=' : nalrc.home_url + '/index.php?map_id=' + window.map_id + '&usacustomhtml5map_get_state_info=') + id, 
 				success: function(data, textStatus, jqXHR){ 
 					$('#usacustom-html5-map-state-info_0').html(data).css('opacity','1'); 
 					$('#usacustom-html5-map-state-info_0').find('.modal-map-details-popup').modal('show');

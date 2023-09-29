@@ -7,7 +7,7 @@
  * filter hooks in WordPress to change core functionality.
  */
 define( "WP_OESE_THEME_NAME", "WP OESE Theme" );
-define( "WP_OESE_THEME_VERSION", "2.1.2" );
+define( "WP_OESE_THEME_VERSION", "2.2.1" );
 define( "WP_OESE_THEME_SLUG", "wp_oese_theme" );
 global $_nalrc;
 
@@ -758,7 +758,7 @@ require_once( get_stylesheet_directory() . '/theme-functions/theme-shortcode.php
     wp_enqueue_script('shortcode_script', get_stylesheet_directory_uri() . '/tinymce_button/shortcode_script.js' );
     if (is_page_template('page-templates/nalrc-template.php') || 'resource'==get_post_type()){
       wp_enqueue_style( 'theme-bootstrap-style',get_stylesheet_directory_uri() . '/css/bootstrap.min.css' );
-      wp_enqueue_script('bootstrap-script', get_stylesheet_directory_uri() . '/js/bootstrap.js' );    
+      wp_enqueue_script('bootstrap-script', get_stylesheet_directory_uri() . '/js/bootstrap.js' );
     }
 }
 add_action( 'admin_enqueue_scripts', 'theme_back_enqueue_script' );
@@ -1534,7 +1534,7 @@ function wp_oese_theme_settings_page() {
       'name' =>  __('Enable UA Tracking', WP_OESE_THEME_SLUG)
     )
   );
-  
+
   //Add GA Property ID Settings field
   add_settings_field(
     'wp_oese_theme_ga_propertyid',
@@ -1563,7 +1563,7 @@ function wp_oese_theme_settings_page() {
       'name' =>  __('Enable GA4 Tracking', WP_OESE_THEME_SLUG)
     )
   );
-  
+
   //Add GA4 Property ID Settings field
   add_settings_field(
     'wp_oese_theme_ga4_propertyid',
@@ -1877,12 +1877,12 @@ function wp_oese_theme_select_contact_field($arguments){
 function wp_oese_theme_nalrc_menu_selectbox($arguments){
   $value = get_option($arguments['uid']);
   $menus = wp_get_nav_menus();
-  
+
   echo '<div class="form-row"><div class="form-group">';
 
   if (isset($arguments['name']))
       $title = $arguments['name'];
-      
+
     echo '<label for="'.$arguments['uid'].'"><strong>'.$title.'</strong></label>';
     echo '<select name="'.$arguments['uid'].'" id="'.$arguments['uid'].'">';
 
@@ -2280,8 +2280,8 @@ function oese_ga_script() {
 
           gtag('config', '".$ga4_id."');
         </script>";
-  } 
-  
+  }
+
   if ($ua_enabled && $ua_id){
     /**--$script .= "<script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -3498,9 +3498,9 @@ if ($_nalrc){
   add_filter( 'get_user_option_meta-box-order_resource', 'oese_reorder_metaboxes' );
   function oese_reorder_metaboxes( $order ) {
       return array(
-          'normal' => join( 
-              ",", 
-              array(       
+          'normal' => join(
+              ",",
+              array(
                   'oer_metaboxid',
                   'SnS_meta_box',
                   'wpseo_meta'

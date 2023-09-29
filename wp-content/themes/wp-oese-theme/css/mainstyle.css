@@ -3155,3 +3155,6 @@ blockquote.wp-block-quote.is-style-large p{padding: 0 1.7em 0 2.8em !important;}
 	    width: 100%;
 	}
 }
+
+/** Search Results Styles **/
+.archive_image img { width:100%; height: auto; }

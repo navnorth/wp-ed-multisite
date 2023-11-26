@@ -70,6 +70,10 @@ if (isset($_GET['oii_update']) && $_GET['oii_update']=="true"){
                     <legend><h3><?php _e('NALRC', WP_OESE_THEME_SLUG); ?></h3></legend>
                     <?php do_settings_fields("theme_settings_page", "wp_oese_nalrc_settings"); ?>
                 </fieldset>
+                <fieldset id="other-settings">
+                    <legend><h3><?php _e('Other Settings', WP_OESE_THEME_SLUG); ?></h3></legend>
+                    <?php do_settings_fields("theme_settings_page", "wp_oese_other_settings"); ?>
+                </fieldset>
                 <?php submit_button(); ?>
                 </div>
             </form>

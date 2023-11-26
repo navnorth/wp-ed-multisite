@@ -1303,12 +1303,15 @@ function contactInformationBlock($showHeader=true){
   $contactEmailOption = get_field("ci_email");
   $contactEmailAddress = get_field("ci_email_address");
   $contact_page = get_option('wp_oese_theme_contact_page');
+  $contact_default_email = get_option('wp_oese_theme_default_email');
 
   // email link option - contact page or email address
   $contactEmailLink = "";
   if($contactEmailOption != 'disabled'){
     if( ($contactEmailOption == 'email') && ($contactEmailAddress) ){
       $contactEmailLink = 'mailto:'.$contactEmailAddress.'?subject=OESE Website Contact: '.sanitize_text_field($post->post_title);
+    } elseif ($contactEmailOption == 'default_email' && $contact_default_email){
+      $contactEmailLink = 'mailto:'.$contact_default_email.'?subject=OESE Website Contact: '.sanitize_text_field($post->post_title);
     } elseif ($contactEmailOption == 'contact_form'){
       if ($contact_page){
         $contactEmailLink = get_the_permalink($contact_page).'?contact_reference='.$post->ID;
@@ -1366,6 +1369,13 @@ function contactInformationBlock($showHeader=true){
                   <div class="sub-nav-icons">
                     <span><i class="far fa-address-card"></i></span>
                     <p><a href="'.$contactEmailLink.'" onclick="oese_trackEvent(\'Contact\',\'click\',\''.$post->post_title.'\',\'Contact Form\');">Contact Us</a></p>
+                  </div>
+                </li>';
+      elseif ($contactEmailOption=="default_email" && $contact_default_email)
+        $output .= '<li>
+                  <div class="sub-nav-icons">
+                    <span><i class="fas fa-envelope"></i></span>
+                    <p><a href="'.$contactEmailLink.'" onclick="oese_trackEvent(\'Contact\',\'click\',\''.$post->post_title.'\',\'Email\')">E-mail</a></p>
                   </div>
                 </li>';
     }
@@ -1764,6 +1774,28 @@ function wp_oese_theme_settings_page() {
     )
   );
 
+  // Add Other Settings section
+  add_settings_section(
+    'wp_oese_other_settings',
+    __('Other Settings', WP_OESE_THEME_SLUG),
+    'wp_oese_theme_settings_callback',
+    $page
+  );
+
+  // Add Default Email settings
+  add_settings_field(
+    'wp_oese_theme_default_email',
+    '',
+    'wp_oese_theme_settings_field',
+    $page,
+    'wp_oese_other_settings',
+    array(
+      'uid' => 'wp_oese_theme_default_email',
+      'type' => 'textbox',
+      'name' =>  __('Default Email Address: ', WP_OESE_THEME_SLUG)
+    )
+  );
+
   register_setting( 'theme_settings_page' , 'wp_oese_theme_modal_heading' );
   register_setting( 'theme_settings_page' , 'wp_oese_theme_modal_content' );
   register_setting( 'theme_settings_page' , 'wp_oese_theme_modal_enable_redirect' );
@@ -1783,6 +1815,7 @@ function wp_oese_theme_settings_page() {
   register_setting( 'theme_settings_page' , 'wp_oese_theme_nalrc_youtube' );
   register_setting( 'theme_settings_page' , 'wp_oese_theme_nalrc_instagram' );
   register_setting( 'theme_settings_page' , 'wp_oese_theme_nalrc_newsletter' );
+  register_setting( 'theme_settings_page' , 'wp_oese_theme_default_email' );
 }
 add_action( 'admin_init' , 'wp_oese_theme_settings_page' );
 

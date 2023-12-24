@@ -550,6 +550,7 @@ button:hover {
         .top_strp { margin-top:0px; }
         .soclize .socl_icns { padding:16px; }
         .fa-stack-2x { font-size:1.65em !important }
+		.wp-block-columns { width:100%; }
 }
 @media (max-width: 525px){
 	.tlkt_stp_vdo_cntnr .pblctn_vdo_bg, .tlkt_stp_vdo_cntnr .pblctn_vdo_bg:first-child {width: 100% !important;}

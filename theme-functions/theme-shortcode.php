@@ -598,7 +598,7 @@ function share_the_toolkit_func($atts, $content = null)
         $return .= '<p class="pblctn_scl_icns">';
             $return .= '<a href="'. facebook_url.'"><span class="socl_icns fa-stack"><i class="fa fa-facebook fa-stack-2x"></i></span></a>';
             $return .= '<a href="'. google_url.'"><span class="socl_icns fa-stack"><i class="fa fa-google-plus fa-stack-2x"></i></span></a>';
-            $return .= '<a href="'. twitter_url.'"><span class="socl_icns fa-stack"><i class="fa fa-twitter fa-stack-2x"></i></span></a>';
+            $return .= '<a href="'. twitter_url.'"><span class="socl_icns fa-stack"><i class="fa fa-x-twitter fa-stack-2x"></i></span></a>';
             $return .= '<a href="'. linktonwltr.'"><span class="socl_icns fa-stack"><i class="fa fa-envelope fa-stack-2x"></i></span></a>';
        $return .= ' </p>';
 	$return .= '</div>';

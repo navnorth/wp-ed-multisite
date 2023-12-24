@@ -79,7 +79,7 @@
 
         			<?php if ( twitter_url !== "" ) : ?>
                         <a href="<?php echo twitter_url;?>" target="_blank" title="Follow Us on Twitter">
-        				    <span class="socl_icns fa-stack"><i class="fab fa-twitter fa-stack-2x"></i></span>
+        				    <span class="socl_icns fa-stack"><i class="fab fa-x-twitter fa-stack-2x"></i></span>
                         </a>
         			<?php endif; ?>
         			<?php if ( facebook_url !== "" ) : ?>

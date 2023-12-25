@@ -23,9 +23,6 @@ get_header(); ?>
 				<?php comments_template( '', true ); ?>
 
 			<?php endwhile; // end of the loop. ?>
-			<?php if (get_option('disclaimer')): ?>
-	        <div id="disclaimer_footer"><?php echo get_option('disclaimer'); ?></div>
-	        <?php endif; ?>
 	</div><!-- #row -->
 
 <?php get_sidebar(); ?>

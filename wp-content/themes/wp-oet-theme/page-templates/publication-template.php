@@ -91,8 +91,5 @@
 
        </div>
        <?php  if ($w_sidebar) { echo oet_display_acf_dynamic_sidebar($page_id);  } ?>
-       <?php if (get_option('disclaimer')): ?>
-        <div id="disclaimer_footer"><?php echo get_option('disclaimer'); ?></div>
-        <?php endif; ?>
 </div>
 <?php get_footer();?>

@@ -379,14 +379,14 @@ function google_analytics_4_with_userid(){
         if(isset($_COOKIE['GAT_token']) && !empty($_COOKIE['GAT_token']))
     	{
     	    $token = htmlspecialchars($_COOKIE['GAT_token']);
-    	    echo "gtag('create', '" . $ga_id . "', { 'userId': '" . $token . "' });";
+    	    echo "gtag('config', '" . $ga_id . "', { 'userId': '" . $token . "' });";
     	    echo "gtag('set', 'dimension1', '" . $token . "');";
 
     	} else {
-    	    echo "gtag('create', '" . $ga_id . "');";
+    	    echo "gtag('config', '" . $ga_id . "');";
     	}
-
-	    echo "gtag('send', 'pageview'); </script>";
+        echo "</script>";
+	    //echo "gtag('send', 'pageview'); </script>";
     }
 }
 add_action('wp_head', 'google_analytics_4_with_userid');

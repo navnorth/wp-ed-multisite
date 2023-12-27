@@ -228,14 +228,14 @@ class OET_Medium {
                 <div class="medium" style="<?php echo $background; ?>">
                     <div class="medium-background">
                         <div class="medium-wrapper">
-                            <h1><a href="<?php echo $feed['link']; ?>" target="_blank" onclick="ga('send', 'event', 'Medium Blog Post Click', '<?php echo $feed['link']; ?>');"><?php echo $title; ?></a></h1>
+                            <h1><a href="<?php echo $feed['link']; ?>" target="_blank" onclick="gtag('event','Medium Blog Post Click',{'event_category':'<?php echo $feed['link']; ?>'});"><?php echo $title; ?></a></h1>
                             <p><?php echo $description ?></p>
                             <p class="mfooter">
                                 <?php if ($feed['author']=="Office of Ed Tech"): ?>
-                                <a href="<?php echo $this->_user->data->url; ?>" alt="<?php _e('Office of Educational Technology logo','twentytwelve-child'); ?>" target="_blank" class="imglink" onclick="ga('send', 'event', 'Medium Blog Author Click', '<?php echo $this->_user->data->url; ?>');"><img src="<?php echo $this->_user->data->imageUrl; ?>" alt="<?php _e('Office of Educational Technology logo','twentytwelve-child'); ?>" width="30" height="30" /></a> <a href="<?php echo $this->_user->data->url; ?>" target="_blank" onclick="ga('send', 'event', 'Medium Blog Author Click', '<?php echo $this->_user->data->url; ?>');">@<?php echo $this->_user->data->username; ?></a> in
+                                <a href="<?php echo $this->_user->data->url; ?>" alt="<?php _e('Office of Educational Technology logo','twentytwelve-child'); ?>" target="_blank" class="imglink" onclick="gtag('event','Medium Blog Author Click',{'event_category':'<?php echo $this->_user->data->url; ?>'});"><img src="<?php echo $this->_user->data->imageUrl; ?>" alt="<?php _e('Office of Educational Technology logo','twentytwelve-child'); ?>" width="30" height="30" /></a> <a href="<?php echo $this->_user->data->url; ?>" target="_blank" onclick="gtag('event','Medium Blog Author Click',{'event_category':'<?php echo $this->_user->data->url; ?>'});">@<?php echo $this->_user->data->username; ?></a> in
                                 <?php endif; ?>
                                 <?php if (isset($feed["pub_name"])){ ?>
-                                 <a href="<?php echo $feed["pub_url"]; ?>" alt="<?php echo $feed["pub_name"]; ?>" title="<?php echo $feed["pub_name"]; ?>" target="_blank" onclick="ga('send', 'event', 'Medium Blog Publication Click', '<?php echo $feed["pub_url"]; ?>');"><?php echo $feed["pub_name"]; ?></a>
+                                 <a href="<?php echo $feed["pub_url"]; ?>" alt="<?php echo $feed["pub_name"]; ?>" title="<?php echo $feed["pub_name"]; ?>" target="_blank" onclick="gtag('event','Medium Blog Publication Click',{'event_category':'<?php echo $feed['pub_url']; ?>'});"><?php echo $feed["pub_name"]; ?></a>
                                 <?php } ?>
                             </p>
                         </div>
@@ -299,10 +299,10 @@ class OET_Medium {
                     <div class="medium" style="<?php echo $background; ?>">
                         <div class="medium-background">
                             <div class="medium-wrapper">
-                                <h1><a href="<?php echo $link_url; ?>" target="_blank" onclick="ga('send', 'event', 'Medium Blog Post Click', '<?php echo $link_url; ?>');"><?php echo $title; ?></a></h1>
+                                <h1><a href="<?php echo $link_url; ?>" target="_blank" onclick="gtag('event','Medium Blog Post Click',{'event_category':'<?php echo $link_url; ?>'});"><?php echo $title; ?></a></h1>
                                 <p><?php echo $description ?></p>
                                 <p class="mfooter">
-                                    <a href="<?php echo $this->_user->data->url; ?>" alt="<?php _e('Office of Educational Technology logo','twentytwelve-child'); ?>" target="_blank" class="imglink" onclick="ga('send', 'event', 'Medium Blog Author Click', '<?php echo $this->_user->data->url; ?>');"><img src="<?php echo $this->_user->data->imageUrl; ?>" alt="<?php _e('Office of Educational Technology logo','twentytwelve-child'); ?>" width="30" height="30" /></a> <a href="<?php echo $this->_user->data->url; ?>" target="_blank" onclick="ga('send', 'event', 'Medium Blog Author Click', '<?php echo $this->_user->data->url; ?>');">@<?php echo $this->_user->data->username; ?></a>
+                                    <a href="<?php echo $this->_user->data->url; ?>" alt="<?php _e('Office of Educational Technology logo','twentytwelve-child'); ?>" target="_blank" class="imglink" onclick="gtag('event','Medium Blog Author Click',{'event_category':'<?php echo $this->_user->data->url; ?>'});"><img src="<?php echo $this->_user->data->imageUrl; ?>" alt="<?php _e('Office of Educational Technology logo','twentytwelve-child'); ?>" width="30" height="30" /></a> <a href="<?php echo $this->_user->data->url; ?>" target="_blank" onclick="gtag('event','Medium Blog Author Click',{'event_category':'<?php echo $this->_user->data->url; ?>'});">@<?php echo $this->_user->data->username; ?></a>
                                 </p>
                             </div>
                         </div>
@@ -511,12 +511,12 @@ class OET_Medium {
             <div class="medium" style="'.$story['background'].''.$align.'">
                 <div class="medium-background">
                     <div class="medium-wrapper">
-                        <h1><a href="'.$story['link'].'" target="_blank" onclick="ga(\'send\', \'event\', \'Medium Blog Click\', \''.$story['link'].'\');">'.$story['title'].'</a></h1>
+                        <h1><a href="'.$story['link'].'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Click\',{\'event_category\':\'' . $story['link'] . '\'});">'.$story['title'].'</a></h1>
                         <p>'.$story['description'].'</p>
                         <p class="mfooter">
-                            <a href="'.$story["user_url"].'" alt="Office of Educational Technology logo" target="_blank" class="imglink" onclick="ga(\'send\', \'event\', \'Medium Blog Click\', \''.$story["user_url"].'\');"><img src="'.$logo_url.'" alt="Office of Educational Technology logo" width="30" height="30" /></a> <a href="'.$story["user_url"].'" target="_blank" onclick="ga(\'send\', \'event\', \'Medium Blog Click\', \''.$story["user_url"].'\');">@'.$story["user_name"].'</a> ';
+                            <a href="'.$story["user_url"].'" alt="Office of Educational Technology logo" target="_blank" class="imglink" onclick="gtag(\'event\',\'Medium Blog Author Click\',{\'event_category\':\'' . $story["user_url"] . '\'});"><img src="'.$logo_url.'" alt="Office of Educational Technology logo" width="30" height="30" /></a> <a href="'.$story["user_url"].'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Author Click\',{\'event_category\':\'' . $story["user_url"] . '\'});">@'.$story["user_name"].'</a> ';
                     if (isset($story["pub_name"]) && $story["pub_name"]!==""){
-                        $embed .= 'in <a href="'.$story["pub_url"].'" alt="'.$story["pub_name"].'" title="'.$story["pub_name"].'" target="_blank" onclick="ga(\'send\', \'event\', \'Medium Blog Click\', \''.$story["pub_url"].'\');">'.$story["pub_name"].'</a>';
+                        $embed .= 'in <a href="'.$story["pub_url"].'" alt="'.$story["pub_name"].'" title="'.$story["pub_name"].'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Publication Click\',{\'event_category\':\'' . $story["pub_url"] . '\'});">'.$story["pub_name"].'</a>';
                     }
         $embed .= '     </p>
                     </div>

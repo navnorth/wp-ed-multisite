@@ -42,7 +42,7 @@ function disruptive_content_fun($attr, $content = null)
         $return .= '</div>';
 
 				$return .= '<div class="link_dwnlds_wrapper" >';
-				$return .= '<div class="link_dwnlds"><div><a href="'. $button_url .'" class="btn_dwnld" style="background-color:'. $button_color.'" onclick="ga(\'send\', \'event\', \'download\', \''.$button_url.'\');" target="_blank">'. $button_text .'</a></div></div>';
+				$return .= '<div class="link_dwnlds"><div><a href="'. $button_url .'" class="btn_dwnld" style="background-color:'. $button_color.'" onclick="gtag(\'event\',\'download\',{\'event_category\':\'' . $button_url . '\'});" target="_blank">'. $button_text .'</a></div></div>';
         $return .= '</div>';
 
 				//$return .= '<div class="col-md-4 col-sm-4 col-xs-4 text-right">';
@@ -403,7 +403,7 @@ function feature_video_func_old($attr, $content = null)
 				"function onPlayerError(event) { \n".
 				"	if (event.data) { \n".
 				"		if (gaSent === false) { \n".
-				"			ga('send',  'event', 'Featured Video: " . esc_sql($post->post_title) . "', 'Failed', '". $video_id."'  ); \n".
+				"			gtag('event','Failed',{'event_category':'Featured Video: " . esc_sql($post->post_title) . "', 'event_label':'". $video_id."'}); \n".
 				"			gaSent = true; \n".
 				"		} \n".
 				" 	} \n".
@@ -440,17 +440,17 @@ function feature_video_func_old($attr, $content = null)
 				"	// track when user clicks to Play \n".
 				"	if (event.data == YT.PlayerState.PLAYING) { \n".
 				"		console.log('playing'); \n".
-				"		ga('send','event','Featured Video: ".esc_sql($post->post_title)."','Play', videoId);\n".
+				"       gtag('event','Play',{'event_category':'Featured Video: ".esc_sql($post->post_title)."', 'event_label':videoId}); \n".
 				"		pauseFlag = true; \n".
 				"	}\n".
 				"	// track when user clicks to Pause \n".
 				"	if (event.data == YT.PlayerState.PAUSED && pauseFlag) { \n".
-				"		ga('send','event','Featured Video: ".esc_sql($post->post_title)."', 'Pause', videoId); \n".
+				"       gtag('event','Pause',{'event_category':'Featured Video: ".esc_sql($post->post_title)."', 'event_label':videoId}); \n".
 				"		pauseFlag = false; \n ".
 				"	} \n".
 				"	// track when video ends \n".
 				"	if (event.data == YT.PlayerState.ENDED) { \n".
-				"		ga('send', 'event','Featured Video: ".esc_sql($post->post_title)."', 'Finished', videoId); \n".
+				"       gtag('event','Finished',{'event_category':'Featured Video: ".esc_sql($post->post_title)."', 'event_label':videoId}); \n".
 				"	}\n".
 				"} \n";
 	
@@ -893,7 +893,7 @@ function recommended_resources_func($attr, $content = null)
 	if (isset($url) && !empty($url)) {
 		$urlStart = "<a href='".$url."' onfocus='this.querySelector(\".custom-button\").style.setProperty(\"color\",\"".$hTextColor."\",\"important\");this.querySelector(\".custom-button\").style.setProperty(\"background-color\",\"".$hColor."\",\"important\");' onblur='this.querySelector(\".custom-button\").style.color=\"".$text_color."\";this.querySelector(\".custom-button\").style.backgroundColor=\"".$button_color."\"'";
 		if (isset($new_window) && ($new_window=="yes")) {
-			$urlStart .= " onmousedown='ga(\"send\", \"event\",\"Outbound\",window.location.pathname,\"".$url."\",0);' target='_blank'";
+			$urlStart .= " onmousedown='gtag(\"event\",\"Outbound\",{\"event_category\":window.location.pathname, \"event_label\":\"".$url."\"});' target='_blank'";
 		}
 		$urlStart .= ">";
 		$urlEnd = "</a>";
@@ -1180,7 +1180,7 @@ function oet_medium_func($attribute, $content = null){
 		}
 
 		/**--$footer = '<a href="%authorurl%" title="Go to the Office of Ed Tech Medium Blog" target="_blank" class="imglink" onclick="ga(\'send\', \'event\', \'Medium Blog Click\', \'%authorurl%\');"><img src="%authorlogo%" alt="%authorname%" width="30" height="30" /></a> <a href="%authorurl%" title="Go to the Office of Ed Tech Medium Blog" target="_blank" onclick="ga(\'send\', \'event\', \'Medium Blog Click\', \'%authorurl%\');">@%authorname%</a> '; --**/
-		$footer = '<a href="%authorurl%" title="Go to the Office of Ed Tech Medium Blog" target="_blank" class="imglink" onclick="ga(\'send\', \'event\', \'Medium Blog Click\', \'%authorurl%\');"><img src="%authorlogo%" alt="" width="30" height="30" />@%authorname%</a> ';
+		$footer = '<a href="%authorurl%" title="Go to the Office of Ed Tech Medium Blog" target="_blank" class="imglink" onclick="gtag(\'event\',\'Medium Blog Click\',{\'event_category\':\'%authorurl%\'});"><img src="%authorlogo%" alt="" width="30" height="30" />@%authorname%</a> ';
 
 		$default_author_url = "https://medium.com/@OfficeofEdTech";
 		$default_author_name = "OfficeofEdTech";
@@ -1219,22 +1219,22 @@ function oet_medium_func($attribute, $content = null){
 		
 		switch($heading){
 			case "h1":
-				$return .=	'<h1><a href="'.$url.'" target="_blank" onclick="ga(\'send\', \'event\', \'Medium Blog Click\', \''.$url.'\');">'.$title.'</a></h1>';
+				$return .=	'<h1><a href="'.$url.'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Click\',{\'event_category\':\''.$url.'\'});">'.$title.'</a></h1>';
 				break;
 			case "h2":
-				$return .=	'<h2><a href="'.$url.'" target="_blank" onclick="ga(\'send\', \'event\', \'Medium Blog Click\', \''.$url.'\');">'.$title.'</a></h2>';
+				$return .=	'<h2><a href="'.$url.'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Click\',{\'event_category\':\''.$url.'\'});">'.$title.'</a></h2>';
 				break;
 			case "h3":
-				$return .=	'<h3><a href="'.$url.'" target="_blank" onclick="ga(\'send\', \'event\', \'Medium Blog Click\', \''.$url.'\');">'.$title.'</a></h3>';
+				$return .=	'<h3><a href="'.$url.'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Click\',{\'event_category\':\''.$url.'\'});">'.$title.'</a></h3>';
 				break;
 			case "h4":
-				$return .=	'<h4><a href="'.$url.'" target="_blank" onclick="ga(\'send\', \'event\', \'Medium Blog Click\', \''.$url.'\');">'.$title.'</a></h4>';
+				$return .=	'<h4><a href="'.$url.'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Click\',{\'event_category\':\''.$url.'\'});">'.$title.'</a></h4>';
 				break;
 			case "h5":
-				$return .=	'<h5><a href="'.$url.'" target="_blank" onclick="ga(\'send\', \'event\', \'Medium Blog Click\', \''.$url.'\');">'.$title.'</a></h5>';
+				$return .=	'<h5><a href="'.$url.'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Click\',{\'event_category\':\''.$url.'\'});">'.$title.'</a></h5>';
 				break;
 			case "h6":
-				$return .=	'<h6><a href="'.$url.'" target="_blank" onclick="ga(\'send\', \'event\', \'Medium Blog Click\', \''.$url.'\');">'.$title.'</a></h6>';
+				$return .=	'<h6><a href="'.$url.'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Click\',{\'event_category\':\''.$url.'\'});">'.$title.'</a></h6>';
 				break;
 		}
 

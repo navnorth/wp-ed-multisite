@@ -366,7 +366,30 @@ function google_analytics_with_userid(){
 	    echo "ga('send', 'pageview'); </script>";
     }
 }
-add_action('wp_head', 'google_analytics_with_userid');
+//add_action('wp_head', 'google_analytics_with_userid');
+
+// GA4 Analytics script
+function google_analytics_4_with_userid(){
+    $ga_id = get_option("google_analytics_id");
+    if (!empty($ga_id))
+    {
+	    echo '<script async src="https://www.googletagmanager.com/gtag/js?id='.$ga_id.'"></script>';
+        echo "<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date());";
+
+        if(isset($_COOKIE['GAT_token']) && !empty($_COOKIE['GAT_token']))
+    	{
+    	    $token = htmlspecialchars($_COOKIE['GAT_token']);
+    	    echo "gtag('create', '" . $ga_id . "', { 'userId': '" . $token . "' });";
+    	    echo "gtag('set', 'dimension1', '" . $token . "');";
+
+    	} else {
+    	    echo "gtag('create', '" . $ga_id . "');";
+    	}
+
+	    echo "gtag('send', 'pageview'); </script>";
+    }
+}
+add_action('wp_head', 'google_analytics_4_with_userid');
 
 function load_contact_slider() {
     global $csenabled, $cspage, $wp, $post;

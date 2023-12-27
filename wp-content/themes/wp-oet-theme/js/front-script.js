@@ -267,13 +267,34 @@ window.onYouTubePlayerAPIReady = function() { //simple implementation
             //Inline function to get the featured video attributes
             'onStateChange': function(e) {
                 if (e.data == 1) { //play
-                  ga('send','event','Featured Video: '+frametitle,'Play', vidid);
+					if (typeof gtag =='function'){
+						gtag('event', 'Play', {
+							'event_category': 'Featured Video: '+frametitle,
+							'event_label': vidid,
+						});
+					} else {
+						ga('send','event','Featured Video: '+frametitle,'Play', vidid);
+					}
                 }
                 if (e.data == 2) { //paused
-                  ga('send','event','Featured Video: '+frametitle, 'Pause', vidid);
+					if (typeof gtag =='function'){
+						gtag('event', 'Pause', {
+							'event_category': 'Featured Video: '+frametitle,
+							'event_label': vidid,
+						});
+					} else {
+                  		ga('send','event','Featured Video: '+frametitle, 'Pause', vidid);
+					}
                 }
                 if (e.data == 0) { //ended
-                  ga('send', 'event','Featured Video: '+frametitle, 'Finished', vidid);
+					if (typeof gtag =='function'){
+						gtag('event', 'Finished', {
+							'event_category': 'Featured Video: '+frametitle,
+							'event_label': vidid,
+						});
+					} else {
+                  		ga('send', 'event','Featured Video: '+frametitle, 'Finished', vidid);
+					}
                 }
               }
           }

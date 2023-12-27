@@ -107,7 +107,14 @@ jQuery(document).ready(function(){
     function onTempPlayerError(event) { 
         if (event.data) { 
             if (gaSent === false) { 
-                ga('send',  'event', 'Featured Video: STEM', 'Failed', ''  ); 
+                if (typeof gtag =='function'){
+                    gtag('event', 'Failed', {
+                        'event_category': 'Featured Video: STEM',
+                        'event_label': '',
+                    });
+                } else {
+                    ga('send',  'event', 'Featured Video: STEM', 'Failed', ''  ); 
+                }
                 gaSent = true; 
             } 
         } 
@@ -127,19 +134,40 @@ jQuery(document).ready(function(){
         // track when user clicks to Play 
         if (event.data == YT.PlayerState.PLAYING) { 
             console.log('playing'); 
-            ga('send','event','Featured Video: STEM','Play', videoId);
+            if (typeof gtag =='function'){
+                gtag('event', 'Play', {
+                    'event_category': 'Featured Video: STEM',
+                    'event_label': videoId,
+                });
+            } else {
+                ga('send','event','Featured Video: STEM','Play', videoId);
+            }
             pauseFlag = true; 
         }
         // track when user clicks to Pause 
         if (event.data == YT.PlayerState.PAUSED && pauseFlag) { 
             console.log('pausing');
-            ga('send','event','Featured Video: STEM', 'Pause', videoId); 
+            if (typeof gtag =='function'){
+                gtag('event', 'Pause', {
+                    'event_category': 'Featured Video: STEM',
+                    'event_label': videoId,
+                });
+            } else {
+                ga('send','event','Featured Video: STEM', 'Pause', videoId); 
+            }
             pauseFlag = false; 
         } 
         // track when video ends 
         if (event.data == YT.PlayerState.ENDED) { 
             console.log('stoping');
-            ga('send', 'event','Featured Video: STEM', 'Finished', videoId); 
+            if (typeof gtag =='function'){
+                gtag('event', 'Finished', {
+                    'event_category': 'Featured Video: STEM',
+                    'event_label': videoId,
+                });
+            } else {
+                ga('send', 'event','Featured Video: STEM', 'Finished', videoId); 
+            }
         }
     } 
 

@@ -51,12 +51,12 @@
             echo '<div class="link_dwnlds">';
             if(isset($button_one_text) && !empty($button_one_text) && isset($button_one_link) && !empty($button_one_link) && isset($button_one_color) && !empty($button_one_color))
             {
-                ?><div><a href="<?php echo $button_one_link; ?>" onclick="ga('send', 'event', 'download', '<?php echo $button_one_link; ?>');" class="btn_dwnld" style="background-color:#<?php echo $button_one_color; ?>" target="_blank"><?php echo $button_one_text; ?></a></div><?php
+                ?><div><a href="<?php echo $button_one_link; ?>" onclick="gtag('event','download',{'event_category':'<?php echo $button_one_link; ?>'});" class="btn_dwnld" style="background-color:#<?php echo $button_one_color; ?>" target="_blank"><?php echo $button_one_text; ?></a></div><?php
             }
 
             if(isset($button_two_text) && !empty($button_two_text) && isset($button_two_link) && !empty($button_two_link) && isset($button_two_color) && !empty($button_two_color))
             {
-                ?><div><a href="<?php echo $button_two_link; ?>" onclick="ga('send', 'event', 'download', '<?php echo $button_two_link; ?>');" class="btn_dwnld" style="background-color:#<?php echo $button_two_color; ?>" target="_blank"><?php echo $button_two_text; ?></a></div><?php
+                ?><div><a href="<?php echo $button_two_link; ?>" onclick="gtag('event','download',{'event_category':'<?php echo $button_two_link; ?>'});" class="btn_dwnld" style="background-color:#<?php echo $button_two_color; ?>" target="_blank"><?php echo $button_two_text; ?></a></div><?php
             }
             echo '</div>';
 

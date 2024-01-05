@@ -12,6 +12,7 @@ add_action('admin_enqueue_scripts','oet_add_theme_settings_script');
 
 function socialmedia_settings()
 {
+	global $_allowed_tags;
 	$notice = null;
 	if(isset($_POST["save_social"]))
 	{
@@ -49,9 +50,9 @@ function socialmedia_settings()
 			if (get_option('crazyeggaddress'))
 				delete_option('crazyeggaddress');	
 		}
-		if (isset($disclaimer))
+		if (isset($disclaimer)){
 			update_option("disclaimer", $disclaimer);
-		else {
+		} else {
 			if (get_option('disclaimer'))
 				delete_option('disclaimer');	
 		}
@@ -67,7 +68,7 @@ function socialmedia_settings()
 	$contactsliderpage = get_option("contactsliderpage");
 	$enablecrazyegg = get_option("enablecrazyegg");
 	$crazyeggaddress = get_option("crazyeggaddress");
-	$disclaimer = get_option("disclaimer");
+	$disclaimer = wp_kses(get_option("disclaimer"),$_allowed_tags);
 	$cdisabled = "";
 
 	if (!$enablecrazyegg)

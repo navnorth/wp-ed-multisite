@@ -1219,22 +1219,22 @@ function oet_medium_func($attribute, $content = null){
 		
 		switch($heading){
 			case "h1":
-				$return .=	'<h1><a href="'.$url.'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Click\',{\'event_category\':\''.$url.'\'});">'.$title.'</a></h1>';
+				$return .=	'<h1><a href="'.$url.'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Click\',{\'post_url\':\''.$url.'\'});">'.$title.'</a></h1>';
 				break;
 			case "h2":
-				$return .=	'<h2><a href="'.$url.'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Click\',{\'event_category\':\''.$url.'\'});">'.$title.'</a></h2>';
+				$return .=	'<h2><a href="'.$url.'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Click\',{\'post_url\':\''.$url.'\'});">'.$title.'</a></h2>';
 				break;
 			case "h3":
-				$return .=	'<h3><a href="'.$url.'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Click\',{\'event_category\':\''.$url.'\'});">'.$title.'</a></h3>';
+				$return .=	'<h3><a href="'.$url.'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Click\',{\'post_url\':\''.$url.'\'});">'.$title.'</a></h3>';
 				break;
 			case "h4":
-				$return .=	'<h4><a href="'.$url.'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Click\',{\'event_category\':\''.$url.'\'});">'.$title.'</a></h4>';
+				$return .=	'<h4><a href="'.$url.'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Click\',{\'post_url\':\''.$url.'\'});">'.$title.'</a></h4>';
 				break;
 			case "h5":
-				$return .=	'<h5><a href="'.$url.'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Click\',{\'event_category\':\''.$url.'\'});">'.$title.'</a></h5>';
+				$return .=	'<h5><a href="'.$url.'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Click\',{\'post_url\':\''.$url.'\'});">'.$title.'</a></h5>';
 				break;
 			case "h6":
-				$return .=	'<h6><a href="'.$url.'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Click\',{\'event_category\':\''.$url.'\'});">'.$title.'</a></h6>';
+				$return .=	'<h6><a href="'.$url.'" target="_blank" onclick="gtag(\'event\',\'Medium Blog Click\',{\'post_url\':\''.$url.'\'});">'.$title.'</a></h6>';
 				break;
 		}
 
